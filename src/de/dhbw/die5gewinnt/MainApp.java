@@ -1,4 +1,4 @@
-package de.projekt.viergewinnt;
+package de.dhbw.die5gewinnt;
 
 
 import java.io.IOException;
@@ -9,8 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import de.projekt.viergewinnt.view.*;
+import de.dhbw.die5gewinnt.view.*;
 
 public class MainApp extends Application {
 	//kathi4

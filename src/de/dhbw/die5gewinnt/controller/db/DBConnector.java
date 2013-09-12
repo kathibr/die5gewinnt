@@ -1,4 +1,4 @@
-package de.projekt.viergewinnt.controller.db;
+package de.dhbw.die5gewinnt.controller.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
