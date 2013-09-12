@@ -2,6 +2,7 @@ package de.dhbw.die5gewinnt.model;
 
 public class Set {
 	
+	private int id;
 	private Move[] moves;
 	private int[][] field;
 	private int[] columnHeight;
@@ -13,6 +14,10 @@ public class Set {
 	}
 	
 	/* GETTER-Methods */
+	public int getId() {
+		return this.id;
+	}	
+	
 	public Move[] getMoves() {
 		return this.moves;
 	}
@@ -26,6 +31,10 @@ public class Set {
 	}
 	
 	/* SETTER-Methods */
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setMoves(Move[] moves) {
 		this.moves = moves;
 	}

@@ -12,7 +12,7 @@ public class Move {
 		this.setId(0);
 		this.setRow(0);
 		this.setColumn(0);
-		this.setPlayer("X"); // or "O"
+		this.setPlayer(null); // "X" or "O"
 		this.setSetId(0);
 	}
 
@@ -20,7 +20,7 @@ public class Move {
 		this.setId(id);
 		this.setRow(row);
 		this.setColumn(column);
-		this.setPlayer(player);
+		this.setPlayer(player); // "X" or "O"
 		this.setSetId(setId);
 	}
 	
