@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import de.projekt.viergewinnt.view.*;
 
 public class MainApp extends Application {
-	//kathi3
+	//kathi4
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
