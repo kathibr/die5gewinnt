@@ -4,38 +4,36 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class DBConnector {
+public class DBConnector {
 	
-	private static DBConnector dbConnector;
 	private static Connection dbConnection;
 	
     private DBConnector() {          
-    	dbConnector = null;
-	    dbConnection = null; 
-	    
+	    dbConnection = null;
+    }
+    
+	protected static Connection getDBConnection() {
+    	if(dbConnection == null)
+    		openDBConnection();
+    	return dbConnection;
+    }
+    
+	private static void openDBConnection() {
 	    try {
 	    	dbConnection = DriverManager.getConnection("jdbc:hsqldb:file:db/; shutdown=true", "die5gewinnt", "lauterbach" );
 	    } catch(Exception e) {
 	    	System.err.println("Connection failed!");
-	    }
-    }
-    
-    @SuppressWarnings("static-access")
-	public static Connection getDBConnection() {
-    	if(dbConnector == null)
-    		dbConnector = new DBConnector();
-    	return dbConnector.dbConnection;
-    }
-    
-    public static void closeDBConnection() {
-    	if(dbConnector != null) {
+	    }		
+	}
+	
+    protected static void closeDBConnection() {
+    	if(dbConnection != null) {
     		try { 
     			dbConnection.close(); 
             } catch (SQLException e) { 
                 e.printStackTrace(); 
             }
     	}
-    	dbConnector = null;
     	dbConnection = null;
     }
     
