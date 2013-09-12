@@ -1,4 +1,4 @@
-package de.projekt.viergewinnt.model.db;
+package de.projekt.viergewinnt.controller.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
