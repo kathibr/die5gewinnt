@@ -14,7 +14,7 @@ import de.projekt.viergewinnt.view.*;
 
 public class MainApp extends Application {
 	//kathi4
-
+	//Arne
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	  
