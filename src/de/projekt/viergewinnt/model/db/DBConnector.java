@@ -21,7 +21,7 @@ public class DBConnector {
 	  
 	    try { 
 	      con = DriverManager.getConnection(  
-	              "jdbc:hsqldb:file:db; shutdown=true", "die5gewinnt", "lauterbach" ); 
+	              "jdbc:hsqldb:file:db/; shutdown=true", "die5gewinnt", "lauterbach" ); 
 	      Statement stmt = con.createStatement(); 
 	  
 	      // Alle Kunden ausgeben
