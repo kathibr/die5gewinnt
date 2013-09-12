@@ -6,25 +6,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="609.0" prefWidth="903.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<BorderPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #bcbcbc" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.RootLayoutController">
   <!-- TODO Add Nodes -->
-  <left>
-    <AnchorPane prefHeight="550.0" prefWidth="116.0" style="-fx-background-color: #cfcfcf;">
-      <children>
-        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Neues Spiel" />
-        <Button layoutX="14.0" layoutY="56.0" mnemonicParsing="false" prefWidth="82.99990000000253" text="Alte Spiele" />
-      </children>
-    </AnchorPane>
-  </left>
   <top>
-    <ToolBar prefHeight="59.0" prefWidth="903.0">
-      <items>
-        <Label text="die5gewinnt">
+    <AnchorPane prefHeight="75.0" prefWidth="800.0" style="-fx-background-color:#cfcfcf;">
+      <children>
+        <Button layoutX="590.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleNewGame" text="New Game" />
+        <Button layoutX="691.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleOldGames" text="Old Games" />
+        <Label layoutX="35.0" layoutY="23.0" prefHeight="21.000091552734375" text="die5gewinnt">
           <font>
             <Font size="22.0" />
           </font>
         </Label>
-      </items>
-    </ToolBar>
+      </children>
+    </AnchorPane>
   </top>
 </BorderPane>
