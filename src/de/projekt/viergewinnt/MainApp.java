@@ -16,6 +16,8 @@ public class MainApp extends Application {
 	//kathi4
 	//Arne
 	//blabla
+	//arnes test zum mergen
+
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	  
