@@ -8,9 +8,17 @@ public class Set {
 	private int[] columnHeight;
 	
 	public Set() {
+		this.setId(0);
 		this.setMoves(new Move[42]);
 		this.setField(new int[7][6]);
 		this.setColumnHeight(new int[7]);
+	}
+	
+	public Set(int id, Move[] moves, int[][] field, int[] columnHeight) {
+		this.setId(id);
+		this.setMoves(moves);
+		this.setField(field);
+		this.setColumnHeight(columnHeight);		
 	}
 	
 	/* GETTER-Methods */

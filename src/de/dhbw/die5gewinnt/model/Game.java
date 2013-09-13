@@ -11,11 +11,20 @@ public class Game {
 	
 	public Game() {
 		this.setId(0);
-		this.setName("NameOfTheGame");
+		this.setName("");
 		this.setSets(new Set[3]);
 		this.setScore(new int[2]);
-		this.setWinner(true); // or false
-		this.setPlayer("X"); // or "O"
+		this.setWinner(true);
+		this.setPlayer("");
+	}
+	
+	public Game(int id, String name, Set[] sets, int[] score, boolean winner, String player) {
+		this.setId(id);
+		this.setName(name);
+		this.setSets(sets);
+		this.setScore(score);
+		this.setWinner(winner); // true or false
+		this.setPlayer(player); // "X" or "O"
 	}
 	
 	/* GETTER-Methods */
