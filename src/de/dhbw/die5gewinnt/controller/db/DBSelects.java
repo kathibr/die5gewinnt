@@ -92,6 +92,23 @@ public class DBSelects extends DBQuery {
 		}
 		return gameId;	
 	}
+
+	public static String[] selectGameNames() {
+		ArrayList<String> gameNames = new ArrayList<String>();
+		try {
+			Statement stmt = getDBConnection().createStatement();
+			String sql = "SELECT name FROM Games";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				gameNames.add(rs.getString(1));
+	    	}
+	    	rs.close();
+	    	stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return gameNames.toArray(new String[gameNames.size()]);	
+	}
 	
 	/* SELECT-Queries for Model Set */
 	public static Set selectSet(int id) {

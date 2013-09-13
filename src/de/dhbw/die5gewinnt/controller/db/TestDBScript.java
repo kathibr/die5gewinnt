@@ -1,5 +1,6 @@
 package de.dhbw.die5gewinnt.controller.db;
 
+import de.dhbw.die5gewinnt.controller.fileaccess.FileChecker;
 import de.dhbw.die5gewinnt.model.*;
 
 public class TestDBScript {
@@ -48,6 +49,18 @@ public class TestDBScript {
 
 		// Close the HSQL Database Connection
 	    DBConnector.closeDBConnection();
+	    
+//	    FileChecker fileChecker = new FileChecker("","file.txt");
+//	    fileChecker.start();    
+//	    while(!fileChecker.getExistingServerFile());
+//	    {
+//	    	System.out.println("TestDBScript: "+fileChecker.getExistingServerFile());
+//	    	System.out.println("TestDBScript");
+//	    }
+//	    System.out.println("while-Schleife verlassen, d.h. die Datei wurde entdeckt!");
+	    String[] gameNames = DBSelects.selectGameNames();
+	    for(int i = 0; i < gameNames.length; i++)
+	    	System.out.println(gameNames[i]);
 	}
 
 }
