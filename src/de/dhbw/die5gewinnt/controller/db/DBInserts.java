@@ -11,55 +11,56 @@ public class DBInserts extends DBQuery {
 		super();
 	}
 	
-	/* INSERT-Query for Game */
+	/* INSERT-Query for Model Game */
 	public static Game insertGame(Game game) {
 		if(game.getClass().getName().equals("de.dhbw.die5gewinnt.model.Game")) {
-			game.setId(AutoIncrementKeys.getGameIdAndIncrement());
+			game.setId(AutoIncrementKeys.getNextGameIdAndIncrement());
 			try {
 				Statement stmt = getDBConnection().createStatement();	
 				String sql = "INSERT INTO Games VALUES("+game.getId()+", \'"+game.getName()+"\', \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', \'"+DataManipulation.getGameWinnerForDB(game.getWinner())+"\', \'"+game.getPlayer()+"\')";
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {
+				System.err.println("--- SQL INSERT into Game failed!");
 				e.printStackTrace();
 			}
-			return game;
 		}
-		return null;
+		return game;
 	}
 	
-	/* INSERT-Query for Set */
+	/* INSERT-Query for Model Set */
 	public static Set insertSet(Set set) {
 		if(set.getClass().getName().equals("de.dhbw.die5gewinnt.model.Set")) {
-			set.setId(AutoIncrementKeys.getSetIdAndIncrement());
+			set.setId(AutoIncrementKeys.getNextSetIdAndIncrement());
 			try {
 				Statement stmt = getDBConnection().createStatement();	
 				String sql = "INSERT INTO Sets VALUES("+set.getId()+", \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\')";
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {
+				System.err.println("--- SQL INSERT into Set failed!");
 				e.printStackTrace();
 			}
-			return set;
 		}
-		return null;
+		return set;
 	}
 	
-	/* INSERT-Query for Move */
-	public static Move insertMove(Move move) {
+	/* INSERT-Query for Model Move */
+	public static Move insertMove(Move move, int gameId, int setId) {
 		if(move.getClass().getName().equals("de.dhbw.die5gewinnt.model.Move")) {
-			move.setId(AutoIncrementKeys.getMoveIdAndIncrement());
+			move.setId(AutoIncrementKeys.getNextMoveIdAndIncrement());
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "INSERT INTO Moves VALUES("+move.getId()+", "+move.getRow()+", "+move.getColumn()+", \'"+move.getPlayer()+"\', "+move.getSetId()+")";
+				String sql = "INSERT INTO Moves VALUES("+move.getId()+", "+move.getRow()+", "+move.getColumn()+", \'"+move.getPlayer()+"\')";
 				stmt.executeQuery(sql);
+				sql = "INSERT INTO GameToSetToMove VALUES("+gameId+", "+setId+", "+move.getId()+")";
 				stmt.close();
 			} catch (SQLException e) {
+				System.err.println("--- SQL INSERT into Move, GameToSetToMove failed!");
 				e.printStackTrace();
 			}
-			return move;
 		}
-		return null;
+		return move;
 	}
 
 }

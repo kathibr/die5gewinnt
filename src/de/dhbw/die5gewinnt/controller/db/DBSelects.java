@@ -30,7 +30,7 @@ public class DBSelects extends DBQuery {
 		}
 	}
 	
-	/* SELECT-Queries for Game */
+	/* SELECT-Queries for Model Game */
 	public static Game selectGame(int id) {
 		Game game = new Game();
 		try {
@@ -59,7 +59,41 @@ public class DBSelects extends DBQuery {
 //		return games.toArray(new Game[games.size()]);
 //	}
 	
-	/* SELECT-Queries for Set */
+	public static int selectGameIdFromSetId(int setId) {
+		int gameId = 0;
+		try {
+			Statement stmt = getDBConnection().createStatement();
+			String sql = "SELECT gameId FROM GameToSetToMove WHERE setId = "+setId;
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				gameId = Integer.parseInt(rs.getString(1));
+	    	}
+	    	rs.close();
+	    	stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return gameId;			
+	}
+	
+	public static int selectGameIdFromMoveId(int moveId) {
+		int gameId = 0;
+		try {
+			Statement stmt = getDBConnection().createStatement();
+			String sql = "SELECT gameId FROM GameToSetToMove WHERE moveId = "+moveId;
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				gameId = Integer.parseInt(rs.getString(1));
+	    	}
+	    	rs.close();
+	    	stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return gameId;	
+	}
+	
+	/* SELECT-Queries for Model Set */
 	public static Set selectSet(int id) {
 		Set set = new Set();
 		try {
@@ -97,8 +131,25 @@ public class DBSelects extends DBQuery {
 		}
 		return sets.toArray(new Set[sets.size()]);		
 	}
+	
+	public static int selectSetId(int moveId) {
+		int setId = 0;
+		try {
+			Statement stmt = getDBConnection().createStatement();
+			String sql = "SELECT setId FROM GameToSetToMove WHERE moveId = "+moveId;
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				setId = Integer.parseInt(rs.getString(1));
+	    	}
+	    	rs.close();
+	    	stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return setId;			
+	}
 
-	/* SELECT-Queries for Move */
+	/* SELECT-Queries for Model Move */
 	public static Move selectMove(int id) {
 		Move move = new Move();
 		try {
@@ -110,7 +161,6 @@ public class DBSelects extends DBQuery {
 	    		move.setRow(Integer.parseInt(rs.getString(2)));
 	    		move.setColumn(Integer.parseInt(rs.getString(3)));
 	    		move.setPlayer(rs.getString(4));
-	    		move.setSetId(Integer.parseInt(rs.getString(5)));
 	    	}
 	    	rs.close();
 	    	stmt.close();
@@ -127,7 +177,7 @@ public class DBSelects extends DBQuery {
 			String sql = "SELECT * FROM Moves INNER JOIN GameToSetToMove ON Moves.id = GameToSetToMove.moveId WHERE GameToSetToMove.setId = "+setId;
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
-	    		moves.add(new Move(Integer.parseInt(rs.getString(1)), Integer.parseInt(rs.getString(2)), Integer.parseInt(rs.getString(3)), rs.getString(4), Integer.parseInt(rs.getString(5))));
+	    		moves.add(new Move(Integer.parseInt(rs.getString(1)), Integer.parseInt(rs.getString(2)), Integer.parseInt(rs.getString(3)), rs.getString(4)));
 	    	}
 	    	rs.close();
 	    	stmt.close();

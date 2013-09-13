@@ -9,29 +9,41 @@ public class AutoIncrementKeys {
 	}
 	
 	/* GETTER-Methods */
-	public static int getGameId() {
+	public static int getLastGameId() {
 		return gameId;
 	}
 	
-	public static int getGameIdAndIncrement() {
+	public static int getNextGameId() {
+		return gameId + 1;
+	}
+	
+	public static int getNextGameIdAndIncrement() {
 		AutoIncrementKeys.incrementGameId();
 		return gameId;
 	}
 	
-	public static int getSetId() {
+	public static int getLastSetId() {
 		return setId;
 	}
 	
-	public static int getSetIdAndIncrement() {
+	public static int getNextSetId() {
+		return setId + 1;
+	}
+	
+	public static int getNextSetIdAndIncrement() {
 		AutoIncrementKeys.incrementSetId();
 		return setId;
 	}
 	
-	public static int getMoveId() {
+	public static int getLastMoveId() {
 		return moveId;
 	}
 	
-	public static int getMoveIdAndIncrement() {
+	public static int getNextMoveId() {
+		return moveId + 1;
+	}
+	
+	public static int getNextMoveIdAndIncrement() {
 		AutoIncrementKeys.incrementMoveId();
 		return moveId;
 	}

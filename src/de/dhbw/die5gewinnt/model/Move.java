@@ -6,22 +6,19 @@ public class Move {
 	private int row;
 	private int column;
 	private String player;
-	private int setId;
 	
 	public Move() {
 		this.setId(0);
 		this.setRow(0);
 		this.setColumn(0);
-		this.setPlayer(null); // "X" or "O"
-		this.setSetId(0);
+		this.setPlayer(null);
 	}
 
-	public Move(int id, int row, int column, String player, int setId) {
+	public Move(int id, int row, int column, String player) {
 		this.setId(id);
 		this.setRow(row);
 		this.setColumn(column);
-		this.setPlayer(player); // "X" or "O"
-		this.setSetId(setId);
+		this.setPlayer(player);
 	}
 	
 	/* GETTER-Methods */
@@ -41,10 +38,6 @@ public class Move {
 		return this.player;
 	}
 	
-	public int getSetId() {
-		return this.setId;
-	}
-	
 	/* SETTER-Methods */
 	public void setId(int id) {
 		this.id = id;
@@ -60,10 +53,6 @@ public class Move {
 	
 	public void setPlayer(String player) {
 		this.player = player;
-	}
-	
-	public void setSetId(int setId) {
-		this.setId = setId;
 	}
 	
 }

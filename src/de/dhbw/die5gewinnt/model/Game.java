@@ -23,8 +23,8 @@ public class Game {
 		this.setName(name);
 		this.setSets(sets);
 		this.setScore(score);
-		this.setWinner(winner); // true or false
-		this.setPlayer(player); // "X" or "O"
+		this.setWinner(winner);
+		this.setPlayer(player);
 	}
 	
 	/* GETTER-Methods */

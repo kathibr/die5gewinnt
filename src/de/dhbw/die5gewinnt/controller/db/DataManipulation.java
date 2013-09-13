@@ -1,22 +1,20 @@
 package de.dhbw.die5gewinnt.controller.db;
 
-import de.dhbw.die5gewinnt.model.*;
-
 public class DataManipulation {
 
 	private DataManipulation() {}
 	
-	/* Methods to manipulate game attributes for database */
-	public static String getGameSetsForDB(Set[] sets) {
-		return sets[0].getId()+","+sets[1].getId()+","+sets[2].getId();
-	}
-	
+	/* Data Manipulation for Model Game */
 	public static String getGameScoreForDB(int[] score) {
 		return score[0]+","+score[1];
 	}
 	
 	public static int[] getGameScoreForJava(String score) {
-		return new int[3];
+		int[] returnScore = new int[3];
+		String[] stringScore = score.split(",");
+		returnScore[0] = Integer.parseInt(stringScore[0]);
+		returnScore[1] = Integer.parseInt(stringScore[1]);
+		return returnScore;
 	}
 	
 	public static String getGameWinnerForDB(boolean winner) {
@@ -33,7 +31,7 @@ public class DataManipulation {
 			return false;
 	}
 	
-	/* Methods to manipulate set attributes for database */
+	/* Data Manipulation for Model Set */
 	public static String getSetFieldForDB(int[][] field) {
 		String returnField = "";
 		for(int i = 0; i < 7; i++)

@@ -22,7 +22,8 @@ public class DBConnector {
 	    try {
 	    	dbConnection = DriverManager.getConnection("jdbc:hsqldb:file:db/; shutdown=true", "die5gewinnt", "lauterbach" );
 	    } catch(Exception e) {
-	    	System.err.println("Connection failed!");
+	    	System.err.println("--- Open connection failed!");
+	    	e.printStackTrace();
 	    }		
 	}
 	
@@ -31,6 +32,7 @@ public class DBConnector {
     		try { 
     			dbConnection.close(); 
             } catch (SQLException e) { 
+            	System.err.println("--- Close connection failed!");
                 e.printStackTrace(); 
             }
     	}

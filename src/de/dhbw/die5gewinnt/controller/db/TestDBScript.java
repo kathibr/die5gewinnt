@@ -2,7 +2,7 @@ package de.dhbw.die5gewinnt.controller.db;
 
 import de.dhbw.die5gewinnt.model.*;
 
-public class MainDB {
+public class TestDBScript {
 	
 	public static void main(String[] args) {
 		// Init the auto increment keys for Game, Set and Move
@@ -32,7 +32,7 @@ public class MainDB {
 		score[1] = 1;
 		
 		// Create an Game-Object
-		Game game = new Game(0, "die5gewinnt", sets, score, true, "X");
+//		Game game = new Game(0, "die5gewinnt", sets, score, true, "X");
 		
 //		game = DBInserts.insertGame(game);
 //		sets[0] = DBInserts.insertSet(sets[0]);
@@ -40,11 +40,11 @@ public class MainDB {
 //		sets[2] = DBInserts.insertSet(sets[2]);
 		
 		// Test SELECT-Queries
-		Game selectGame = DBSelects.selectGame(AutoIncrementKeys.getGameId());
+//		Game selectGame = DBSelects.selectGame(AutoIncrementKeys.getGameId());
 //		Set selectSet = DBSelects.selectSet(AutoIncrementKeys.getSetId());
 		
-		System.out.println("Game.name: "+selectGame.getName());
-		System.out.println("Set.columnHeight: "+selectGame.getSets()[0].getColumnHeight()[0]);
+//		System.out.println("Game.name: "+selectGame.getName());
+//		System.out.println("Set.columnHeight: "+selectGame.getSets()[0].getColumnHeight()[0]);
 
 		// Close the HSQL Database Connection
 	    DBConnector.closeDBConnection();
