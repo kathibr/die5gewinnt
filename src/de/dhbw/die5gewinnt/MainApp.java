@@ -2,15 +2,12 @@ package de.dhbw.die5gewinnt;
 
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import de.dhbw.die5gewinnt.view.*;
 
 public class MainApp extends Application {
 
@@ -80,7 +77,7 @@ public class MainApp extends Application {
 	      return primaryStage;
 	  }
 	
-	public static void main(String[] args) {
-	      launch(args);
+	public static void main(String[] args) {	
+		launch(args);
 	  }
 }
