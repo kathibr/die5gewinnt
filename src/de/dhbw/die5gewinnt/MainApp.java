@@ -1,6 +1,5 @@
 package de.dhbw.die5gewinnt;
 
-
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -23,7 +22,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 			
 		this.primaryStage = primaryStage;
-		  this.primaryStage.setTitle("die5gewinnt");
+		this.primaryStage.setTitle("die5gewinnt");
 		
 		  try {
 		    // Load the root layout from the fxml file
@@ -44,8 +43,8 @@ public class MainApp extends Application {
 
 	}
 	
-	public void showPlayingField(){
-		try{
+	public void showPlayingField() {
+		try {
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/PlayingField.fxml"));
 			AnchorPane playingFieldPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(playingFieldPage);
@@ -53,32 +52,32 @@ public class MainApp extends Application {
 			PlayingFieldController controller = loader.getController();
 			controller.setMainApp(this);
 			
-		}catch(IOException e){
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void showOldGames(){
-		try{
+	public void showOldGames() {
+		try {
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/OldGames.fxml"));
 			AnchorPane oldGamesPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(oldGamesPage);
+					
+			PlayingFieldController controller = loader.getController();
+			controller.setMainApp(this);
 			
-			//muss implementiert werden sobald wir uns an die Ansicht alter Spiele machen			
-			//PlayingFieldController controller = loader.getController();
-			//controller.setMainApp(this);
-			
-		}catch(IOException e){
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public Stage getPrimaryStage() {
 	      return primaryStage;
-	  }
+	}
 	
 	public static void main(String[] args) {
 	      launch(args);
-	  }
+	}
+	
 }

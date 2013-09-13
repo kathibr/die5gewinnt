@@ -12,7 +12,11 @@
     <SplitPane dividerPositions="0.29197994987468673" focusTraversable="true" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <ListView fx:id="listGameNames" layoutX="14.0" layoutY="14.0" prefHeight="470.0" prefWidth="535.0" />
+          </children>
+        </AnchorPane>
       </items>
     </SplitPane>
   </children>
