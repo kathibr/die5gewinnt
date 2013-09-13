@@ -1,4 +1,4 @@
-package de.dhbw.die5gewinnt.controller;
+package de.dhbw.die5gewinnt.controller.fileaccess;
 
 import java.io.File;
 

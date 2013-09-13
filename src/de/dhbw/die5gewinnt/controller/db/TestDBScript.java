@@ -1,6 +1,6 @@
 package de.dhbw.die5gewinnt.controller.db;
 
-import de.dhbw.die5gewinnt.controller.*;
+import de.dhbw.die5gewinnt.controller.fileaccess.FileChecker;
 import de.dhbw.die5gewinnt.model.*;
 
 public class TestDBScript {
