@@ -2,7 +2,6 @@ package de.dhbw.die5gewinnt.controller.xmlaccess;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
