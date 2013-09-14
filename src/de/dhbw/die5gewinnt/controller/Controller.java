@@ -37,7 +37,7 @@ public class Controller {
 	public void startSet(){
 		SetID++;
 		moveID = 0;
-		
+				
 	}
 	
 }
