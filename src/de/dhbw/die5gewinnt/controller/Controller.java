@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.xmlaccess.XMLReader;
+import de.dhbw.die5gewinnt.controller.xmlaccess.XMLWriter;
 
 public class Controller {
 	
@@ -16,6 +17,9 @@ public class Controller {
 	public Controller() throws JDOMException, IOException, InterruptedException 
 	{
 		//readXML();
+		//XMLReader reader = new XMLReader();
+		//new XMLWriter(reader.getServerFile());
+		
 	}
 
 	public void readXML() throws JDOMException, IOException, InterruptedException{
