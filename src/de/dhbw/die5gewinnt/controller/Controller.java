@@ -1,12 +1,17 @@
 package de.dhbw.die5gewinnt.controller;
 
 import java.io.IOException;
+
 import org.jdom2.JDOMException;
+
 import de.dhbw.die5gewinnt.controller.xmlaccess.XMLReader;
 
 public class Controller {
 
-	public Controller() {}
+	public Controller() throws JDOMException, IOException, InterruptedException 
+	{
+		readXML();
+	}
 
 	public void readXML() throws JDOMException, IOException, InterruptedException{
 		XMLReader reader = new XMLReader();
