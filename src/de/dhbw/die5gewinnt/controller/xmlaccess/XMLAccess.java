@@ -1,15 +1,15 @@
-package de.dhbw.die5gewinnt.controller.fileaccess;
+package de.dhbw.die5gewinnt.controller.xmlaccess;
 
-public class FileAccess {
+public class XMLAccess {
 	
 	private String path, file, filePath;
 	
-	protected FileAccess() {
+	protected XMLAccess() {
 		this.setPath("");
-		this.setFile("");	
+		this.setFile("server2spielero.xml");	
 	}
 
-	protected FileAccess(String path, String file) {
+	protected XMLAccess(String path, String file) {
 		this.setPath(path);
 		this.setFile(file);
 	}

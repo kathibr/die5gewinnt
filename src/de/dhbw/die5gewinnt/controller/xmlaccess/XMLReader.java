@@ -8,21 +8,21 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-public class XMLReader {
+import de.dhbw.die5gewinnt.model.ServerFile;
+
+public class XMLReader extends XMLAccess {
 	
-	private static String path = "C:/Users/D056939/Desktop/die5gewinnt/server2spielero.xml";
 	private Element root;
 
-
 	public XMLReader() {
-	
+		super();
 	}
 	
 	public void readXML() throws InterruptedException, JDOMException, IOException 
 	{
 		while (true)
 		{
-			File f = new File(path);
+			File f = new File(getFilePath());
 			if(f.exists()) 
 			{ 
 				break;
@@ -31,32 +31,29 @@ public class XMLReader {
 		}
 		
 		SAXBuilder builder = new SAXBuilder();
-		Document doc = builder.build(path);
+		Document doc = builder.build(getFilePath());
 		this.root = doc.getRootElement(); 
+//		delete File
 	}
 
 	
-	public String getFreigabe() 
-	{
-	    String freigabe = this.root.getChild("freigabe").getText();
-	    return freigabe;
+	private String getApproval() {
+	    return this.root.getChild("freigabe").getText();
 	}
 
-	public String getSatzstatus() 
-	{
-	    String satzstatus = this.root.getChild("satzstatus").getText();
-	    return satzstatus;
+	private String getSetStatus() {
+	    return this.root.getChild("satzstatus").getText();
 	}
 
-	public String getGegnerzug() 
-	{
-	    String gegnerzug = this.root.getChild("gegnerzug").getText();
-	    return gegnerzug;
+	private String getOpponentMove() {
+		return this.root.getChild("gegnerzug").getText();
 	}
 
-	public String getSieger() 
-	{
-	    String sieger = this.root.getChild("sieger").getText();
-	    return sieger;
-	}	
+	private String getWinner() {
+	    return this.root.getChild("sieger").getText();
+	}
+	
+	public ServerFile getObject() {
+		return new ServerFile(getApproval(), getSetStatus(), getOpponentMove(), getWinner());
+	}
 }

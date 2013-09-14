@@ -1,6 +1,7 @@
-package de.dhbw.die5gewinnt.controller.fileaccess;
+package de.dhbw.die5gewinnt.controller.xmlaccess;
 
-public class FileWriter extends FileAccess {
+
+public class FileWriter extends XMLAccess {
 	
 	public FileWriter() {
 		super();
