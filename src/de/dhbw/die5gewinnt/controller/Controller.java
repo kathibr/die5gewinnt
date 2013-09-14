@@ -10,7 +10,7 @@ public class Controller {
 
 	public Controller() throws JDOMException, IOException, InterruptedException 
 	{
-		readXML();
+		//readXML();
 	}
 
 	public void readXML() throws JDOMException, IOException, InterruptedException{
@@ -21,4 +21,7 @@ public class Controller {
 		System.out.println(reader.getServerFile().getOpponentMove());
 		System.out.println(reader.getServerFile().getWinner());
 	}
+	
+	
+	
 }

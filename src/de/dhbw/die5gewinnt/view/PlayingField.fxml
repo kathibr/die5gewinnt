@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.*?>
@@ -55,7 +56,11 @@
         <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
         <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
         <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fill="$x1" onMouseClicked="#circleAction" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+          <effect>
+            <ColorAdjust />
+          </effect>
+        </Circle>
         <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
         <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
         <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />

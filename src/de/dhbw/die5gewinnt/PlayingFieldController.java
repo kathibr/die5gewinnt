@@ -26,5 +26,10 @@ public class PlayingFieldController {
 		          "Hallo Hallo",
 		          "Irgendein Schund", "Neuer Dialog");
 	}
+	
+	@FXML
+	public void circleAction(){
+		
+	}
 
 }
