@@ -2,6 +2,7 @@ package de.dhbw.die5gewinnt.controller.xmlaccess;
 
 import java.io.File;
 import java.io.IOException;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -13,7 +14,12 @@ public class XMLReader {
 	private Element root;
 
 
-	public XMLReader() throws InterruptedException, JDOMException, IOException {
+	public XMLReader() {
+	
+	}
+	
+	public void readXML() throws InterruptedException, JDOMException, IOException 
+	{
 		while (true)
 		{
 			File f = new File(path);
@@ -26,8 +32,9 @@ public class XMLReader {
 		
 		SAXBuilder builder = new SAXBuilder();
 		Document doc = builder.build(path);
-		this.root = doc.getRootElement(); 	
+		this.root = doc.getRootElement(); 
 	}
+
 	
 	public String getFreigabe() 
 	{
