@@ -1,0 +1,9 @@
+.emptyCircle{
+	-fx-fill: white;
+}
+.yellowCircle{
+	-fx-fill: yellow;
+}
+.redCircle{
+	-fx-fill:red;	
+}
