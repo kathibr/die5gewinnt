@@ -7,6 +7,11 @@ import org.jdom2.JDOMException;
 import de.dhbw.die5gewinnt.controller.xmlaccess.XMLReader;
 
 public class Controller {
+	
+	private int GameID;
+	private int SetID;
+	private int moveID;
+	
 
 	public Controller() throws JDOMException, IOException, InterruptedException 
 	{
@@ -22,6 +27,17 @@ public class Controller {
 		System.out.println(reader.getServerFile().getWinner());
 	}
 	
+	public void startGame(){
+		GameID++;
+		SetID = 0;
+		startSet();
+		
+	}
 	
+	public void startSet(){
+		SetID++;
+		moveID = 0;
+		
+	}
 	
 }
