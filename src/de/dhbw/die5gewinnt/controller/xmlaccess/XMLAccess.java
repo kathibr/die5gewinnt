@@ -1,11 +1,14 @@
 package de.dhbw.die5gewinnt.controller.xmlaccess;
 
+import org.jdom2.Element;
+
 public class XMLAccess {
 	
 	private String path, file, filePath;
+	protected Element root;
 	
 	protected XMLAccess() {
-		this.setPath("");
+		this.setPath("C:/Users/D056939/Desktop/die5gewinnt/");
 		this.setFile("server2spielero.xml");	
 	}
 
@@ -27,6 +30,7 @@ public class XMLAccess {
 		return this.filePath;
 	}
 	
+
 	/* SETTER-Methods */
 	public void setPath(String path) {
 		this.path = path;
@@ -48,5 +52,4 @@ public class XMLAccess {
 		else
 			this.filePath = this.getPath().concat(this.getFile());
 	}
-	
 }

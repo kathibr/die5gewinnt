@@ -1,6 +1,8 @@
 package de.dhbw.die5gewinnt;
 
 import java.io.IOException;
+
+import org.jdom2.JDOMException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -73,7 +75,7 @@ public class MainApp extends Application {
 	      return primaryStage;
 	}
 	
-	public static void main(String[] args) {	
+	public static void main(String[] args) throws JDOMException, IOException, InterruptedException {	
 		launch(args);
 	  }
 }

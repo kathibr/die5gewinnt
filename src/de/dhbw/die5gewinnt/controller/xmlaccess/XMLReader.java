@@ -11,49 +11,28 @@ import org.jdom2.input.SAXBuilder;
 import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class XMLReader extends XMLAccess {
-	
-	private Element root;
+	private ServerFile serverfile;
 
-	public XMLReader() {
+	public XMLReader() throws JDOMException, IOException, InterruptedException {
 		super();
-	}
-	
-	public void readXML() throws InterruptedException, JDOMException, IOException 
-	{
 		while (true)
 		{
-			File f = new File(getFilePath());
+			File f = new File(super.getFilePath());
 			if(f.exists()) 
 			{ 
 				break;
 			}
 			Thread.sleep(300);	
 		}
-		
 		SAXBuilder builder = new SAXBuilder();
 		Document doc = builder.build(getFilePath());
-		this.root = doc.getRootElement(); 
-//		delete File
-	}
-
-	
-	private String getApproval() {
-	    return this.root.getChild("freigabe").getText();
-	}
-
-	private String getSetStatus() {
-	    return this.root.getChild("satzstatus").getText();
-	}
-
-	private String getOpponentMove() {
-		return this.root.getChild("gegnerzug").getText();
-	}
-
-	private String getWinner() {
-	    return this.root.getChild("sieger").getText();
+		
+		Element root = doc.getRootElement();
+		serverfile = new ServerFile(root.getChild("freigabe").getText(), root.getChild("satzstatus").getText(), root.getChild("gegnerzug").getText(), root.getChild("sieger").getText(), root);
 	}
 	
-	public ServerFile getObject() {
-		return new ServerFile(getApproval(), getSetStatus(), getOpponentMove(), getWinner());
+	public ServerFile getServerFile()
+	{
+		return serverfile;
 	}
 }
