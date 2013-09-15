@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane maxHeight="630.0" maxWidth="780.0" minHeight="442.0" prefHeight="442.0" prefWidth="780.0" style="-fx-background-color:white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.PlayingFieldController">
+<AnchorPane maxHeight="442.0" maxWidth="780.0" minHeight="442.0" prefHeight="442.0" prefWidth="780.0" style="-fx-background-color:white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.PlayingFieldController">
   <!-- TODO Add Nodes -->
   <children>
     <TilePane hgap="15.0" layoutX="14.0" layoutY="21.0" prefHeight="397.0" prefWidth="461.0" style="" styleClass="field" vgap="15.0">

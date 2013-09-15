@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,15 +10,18 @@
   <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="184.0" layoutY="119.0" text="Old Games" />
-    <SplitPane dividerPositions="0.29197994987468673" focusTraversable="true" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <SplitPane dividerPositions="0.2609254498714653" focusTraversable="true" maxWidth="500.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane maxWidth="200.0" minHeight="0.0" minWidth="200.0" prefHeight="160.0" prefWidth="200.0">
           <children>
-            <ListView id="listGameNames" fx:id="gameList" layoutX="14.0" layoutY="14.0" prefHeight="470.0" prefWidth="202.0" />
+            <ListView id="listGameNames" fx:id="gameList" layoutX="10.0" layoutY="10.0" prefHeight="470.0" prefWidth="180.0" />
           </children>
         </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="300.0" />
       </items>
     </SplitPane>
   </children>
+  <padding>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+  </padding>
 </AnchorPane>
