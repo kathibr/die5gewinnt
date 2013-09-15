@@ -65,7 +65,7 @@ public class MainApp extends Application {
 			AnchorPane oldGamesPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(oldGamesPage);
 					
-			PlayingFieldController controller = loader.getController();
+			OldGamesController controller = loader.getController();
 			controller.setMainApp(this);
 			
 		} catch(IOException e) {
