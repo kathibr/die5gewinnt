@@ -30,7 +30,10 @@ public class MainApp extends Application {
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/RootLayout.fxml"));
 		    rootLayout = (BorderPane) loader.load();
 		    Scene scene = new Scene(rootLayout);
+		    
 		    primaryStage.setScene(scene);
+		    primaryStage.setMinHeight(700);
+		    primaryStage.setMinWidth(800);
 
 		    // Give the controller access to the main app
 		    RootLayoutController controller = loader.getController();

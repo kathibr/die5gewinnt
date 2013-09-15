@@ -10,61 +10,61 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane minHeight="457.0" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.PlayingFieldController">
+<AnchorPane maxHeight="630.0" maxWidth="780.0" minHeight="442.0" prefHeight="442.0" prefWidth="780.0" style="-fx-background-color:white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.PlayingFieldController">
   <!-- TODO Add Nodes -->
   <children>
-    <TilePane hgap="15.0" layoutX="14.0" layoutY="21.0" prefHeight="397.0" prefWidth="461.0" style="-fx-background-color:blue;&#10;" vgap="15.0">
+    <TilePane hgap="15.0" layoutX="14.0" layoutY="21.0" prefHeight="397.0" prefWidth="461.0" style="" styleClass="field" vgap="15.0">
       <children>
-        <Circle fx:id="circle1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
+        <Circle id="circle1" fx:id="circle05" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
           <fill>
             <Color blue="0.875" green="0.875" red="0.875" fx:id="x1" />
           </fill>
         </Circle>
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" onMouseClicked="#circleAction" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+        <Circle fx:id="circle15" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle25" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle35" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle45" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle55" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle65" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle04" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle14" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle24" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle34" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle44" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle54" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle64" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle03" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle13" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle23" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle33" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle43" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle53" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle63" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle02" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle12" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle22" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle32" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle42" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle52" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle62" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle01" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle11" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle21" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle31" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle41" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle51" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle61" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle00" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle10" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle20" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle30" fill="$x1" onMouseClicked="#circleAction" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
           <effect>
             <ColorAdjust />
           </effect>
         </Circle>
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-        <Circle fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="circle40" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle50" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+        <Circle fx:id="circle60" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
       </children>
       <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -72,6 +72,9 @@
     </TilePane>
     <Button layoutX="613.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleClickMe" text="Klick mich" />
   </children>
+  <padding>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="70.0" />
+  </padding>
   <stylesheets>
     <URL value="@style.css" />
   </stylesheets>
