@@ -22,14 +22,14 @@ public class Main {
 		
 		// Test to read a XML File
 		CommunicationCenter.getCommunicationCenter("", "server2spielero.xml", "spielero2server.txt");
-		readXML();
-		TXTWriter.setAgentFile(2);
+//		readXML();
 		
 		/* Test to insert sample DB data */
 //		loadSampleDBData();
 	
 		// Load the AlgorithmManager and get the next Move
-		System.out.println(AlgorithmManager.getAlgorithmManager().getNextColumn(System.currentTimeMillis()));
+//		System.out.println(AlgorithmManager.getAlgorithmManager().getNextColumn(System.currentTimeMillis()));
+		TXTWriter.setAgentFile(AlgorithmManager.getAlgorithmManager().getNextColumn(System.currentTimeMillis()));
 		
 		// Close the HSQL Database Connection
 	    DBConnector.closeDBConnection();
