@@ -14,8 +14,8 @@ public class Set {
 		this.setColumnHeight(new int[7]);
 	}
 	
-	public Set(int id, Move[] moves, int[][] field, int[] columnHeight) {
-		this.setId(id);
+	public Set(Move[] moves, int[][] field, int[] columnHeight) {
+		this.setId(0);
 		this.setMoves(moves);
 		this.setField(field);
 		this.setColumnHeight(columnHeight);		

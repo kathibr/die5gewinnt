@@ -14,8 +14,8 @@ public class Move {
 		this.setPlayer(null);
 	}
 
-	public Move(int id, int row, int column, String player) {
-		this.setId(id);
+	public Move(int row, int column, String player) {
+		this.setId(0);
 		this.setRow(row);
 		this.setColumn(column);
 		this.setPlayer(player);

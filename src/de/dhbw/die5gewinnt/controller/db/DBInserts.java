@@ -54,6 +54,7 @@ public class DBInserts extends DBQuery {
 				String sql = "INSERT INTO Moves VALUES("+move.getId()+", "+move.getRow()+", "+move.getColumn()+", \'"+move.getPlayer()+"\')";
 				stmt.executeQuery(sql);
 				sql = "INSERT INTO GameToSetToMove VALUES("+gameId+", "+setId+", "+move.getId()+")";
+				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {
 				System.err.println("--- SQL INSERT into Move, GameToSetToMove failed!");

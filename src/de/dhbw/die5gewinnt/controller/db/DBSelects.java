@@ -18,6 +18,8 @@ public class DBSelects extends DBQuery {
 			Statement stmt = getDBConnection().createStatement();
 			String sql = "SELECT TOP 1 * FROM GameToSetToMove ORDER BY gameId DESC";
 			ResultSet rs = stmt.executeQuery(sql);
+			if(rs == null)
+				
 			while(rs.next()) {
 				AutoIncrementKeys.setGameId(Integer.parseInt(rs.getString(1)));
 				AutoIncrementKeys.setSetId(Integer.parseInt(rs.getString(2)));
@@ -139,7 +141,7 @@ public class DBSelects extends DBQuery {
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
 				int setId = Integer.parseInt(rs.getString(1));
-				sets.add(new Set(setId, selectMoves(setId), DataManipulation.getSetFieldForJava(rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3))));
+				sets.add(new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3))));
 			}
 	    	rs.close();
 	    	stmt.close();
@@ -194,7 +196,7 @@ public class DBSelects extends DBQuery {
 			String sql = "SELECT * FROM Moves INNER JOIN GameToSetToMove ON Moves.id = GameToSetToMove.moveId WHERE GameToSetToMove.setId = "+setId;
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
-	    		moves.add(new Move(Integer.parseInt(rs.getString(1)), Integer.parseInt(rs.getString(2)), Integer.parseInt(rs.getString(3)), rs.getString(4)));
+	    		moves.add(new Move(Integer.parseInt(rs.getString(2)), Integer.parseInt(rs.getString(3)), rs.getString(4)));
 	    	}
 	    	rs.close();
 	    	stmt.close();

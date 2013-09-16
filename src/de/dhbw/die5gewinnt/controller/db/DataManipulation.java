@@ -52,7 +52,7 @@ public class DataManipulation {
 	
 	public static String getSetColumnHeightForDB(int[] columnHeight) {
 		String returnColumnHeight = "";
-		for(int i = 0; i < 7; i++)
+		for(int i = 0; i < columnHeight.length; i++)
 			returnColumnHeight += columnHeight[i]+",";
 		return returnColumnHeight.substring(0, returnColumnHeight.length() - 1);
 	}

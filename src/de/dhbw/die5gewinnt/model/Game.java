@@ -18,8 +18,8 @@ public class Game {
 		this.setPlayer("");
 	}
 	
-	public Game(int id, String name, Set[] sets, int[] score, boolean winner, String player) {
-		this.setId(id);
+	public Game(String name, Set[] sets, int[] score, boolean winner, String player) {
+		this.setId(0);
 		this.setName(name);
 		this.setSets(sets);
 		this.setScore(score);

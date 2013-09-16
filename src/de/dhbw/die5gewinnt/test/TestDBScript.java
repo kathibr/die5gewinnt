@@ -25,9 +25,9 @@ public class TestDBScript {
 		
 		// Create an Set-Array sets for object game
 		Set[] sets = new Set[3];
-		sets[0] = new Set(1, new Move[42], field, columnHeight);	
-		sets[1] = new Set(2, new Move[42], field, columnHeight);
-		sets[2] = new Set(3, new Move[42], field, columnHeight);
+		sets[0] = new Set(new Move[42], field, columnHeight);	
+		sets[1] = new Set(new Move[42], field, columnHeight);
+		sets[2] = new Set(new Move[42], field, columnHeight);
 	
 		// Create an int-Array score for object game
 		int[] score = new int[2];
