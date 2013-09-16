@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.jdom2.JDOMException;
 
+import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
@@ -23,8 +24,8 @@ public class Main {
 		/* Test to insert sample DB data */
 //		loadSampleDBData();
 	
-		// Show the current time in milliseconds
-		System.out.println("Current time in milliseconds: "+System.currentTimeMillis());
+		// Load the AlgorithmManager and get the next Move
+		System.out.println(AlgorithmManager.getAlgorithmManager().getNextColumn(System.currentTimeMillis()));
 		
 		// Close the HSQL Database Connection
 	    DBConnector.closeDBConnection();

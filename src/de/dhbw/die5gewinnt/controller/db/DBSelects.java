@@ -154,7 +154,7 @@ public class DBSelects extends DBQuery {
 		return sets.toArray(new Set[sets.size()]);		
 	}
 	
-	public static int selectSetId(int moveId) {
+	public static int selectSetIdFromMoveId(int moveId) {
 		int setId = 0;
 		try {
 			Statement stmt = getDBConnection().createStatement();
