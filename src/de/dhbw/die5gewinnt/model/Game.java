@@ -21,7 +21,7 @@ public class Game {
 	public Game(String name, Set[] sets, int[] score, boolean winner, String player) {
 		this.setId(0);
 		this.setName(name);
-		this.setSets(sets);
+		this.setSets(sets);	
 		this.setScore(score);
 		this.setWinner(winner);
 		this.setPlayer(player);

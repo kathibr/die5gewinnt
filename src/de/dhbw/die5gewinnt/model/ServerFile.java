@@ -19,16 +19,19 @@ public class ServerFile {
 	}
 
 	/* GETTER-Methods */
-	public String getApproval() {
-		return this.approval;
+	public boolean getApproval() {
+		if(this.approval.equals("true"))
+			return true;
+		else
+			return false;
 	}
 	
 	public String getSetStatus() {
 		return this.setStatus;
 	}
 	
-	public String getOpponentMove() {
-		return this.opponentMove;
+	public int getOpponentMove() {
+		return Integer.parseInt(this.opponentMove);
 	}
 	
 	public String getWinner() {
