@@ -25,7 +25,7 @@ public class Main {
 		DBSelects.initAutoIncrementKeys();
 		
 		// (2) Create a new game
-		Controller.getController().newGame("Battle Royal", "X");
+		Controller.getController().getModelController().newGame("Battle Royal", "X");
 		
 		// (3) Set the path and the names for the serverFile and the agentFile
 		CommunicationCenter.getCommunicationCenter("", "server2spielero.xml", "spielero2server.txt");
