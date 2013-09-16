@@ -2,18 +2,30 @@
 
 <?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="153.0" prefHeight="153.0" prefWidth="307.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.GameNameDialogController">
+<AnchorPane minHeight="153.0" prefHeight="207.0" prefWidth="307.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.GameNameDialogController">
   <!-- TODO Add Nodes -->
   <children>
-    <Button layoutX="136.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
-    <Button layoutX="209.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-    <Label layoutX="9.0" layoutY="7.0" styleClass="label-header" text="New Game" />
+    <Button layoutX="136.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+    <Button layoutX="209.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+    <Label layoutX="9.0" layoutY="7.0" styleClass="label-header" text="Neues Spiel" />
     <TextField fx:id="gameName" layoutX="65.0" layoutY="63.0" prefWidth="228.0" promptText="" />
     <Label layoutX="14.0" layoutY="66.0" styleClass="label-bright" text="Name" />
+    <Label layoutX="14.0" layoutY="103.0" styleClass="label-bright" text="Spieler" />
+    <Group id="Group" layoutX="65.0" layoutY="102.0">
+      <children>
+        <RadioButton layoutX="0.0" layoutY="0.0" mnemonicParsing="false" selected="true" styleClass="label-bright" text="X">
+          <toggleGroup>
+            <ToggleGroup fx:id="playerGroup" />
+          </toggleGroup>
+        </RadioButton>
+        <RadioButton layoutX="44.0" layoutY="1.0" mnemonicParsing="false" styleClass="label-bright" text="O" toggleGroup="$playerGroup" />
+      </children>
+    </Group>
   </children>
   <stylesheets>
     <URL value="@style.css" />

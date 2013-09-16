@@ -85,7 +85,7 @@ public class MainApp extends Application {
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/GameNameDialog.fxml"));
 		    AnchorPane page = (AnchorPane) loader.load();
 		    Stage dialogStage = new Stage();
-		    dialogStage.setTitle("New Game");
+		    dialogStage.setTitle("Neues Spiel");
 		    dialogStage.initModality(Modality.WINDOW_MODAL);
 		    dialogStage.initOwner(primaryStage);
 		    Scene scene = new Scene(page);
