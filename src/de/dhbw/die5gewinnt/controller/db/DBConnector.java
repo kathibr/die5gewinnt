@@ -27,7 +27,7 @@ public class DBConnector {
 	    }		
 	}
 	
-    protected static void closeDBConnection() {
+    public static void closeDBConnection() {
     	if(dbConnection != null) {
     		try { 
     			dbConnection.close(); 
