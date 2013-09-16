@@ -10,13 +10,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	  
+		  
 	public MainApp() {}
 	
 	@Override
@@ -56,6 +57,7 @@ public class MainApp extends Application {
 			PlayingFieldController controller = loader.getController();
 			controller.setMainApp(this);
 			
+			
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -76,9 +78,40 @@ public class MainApp extends Application {
 		}
 	}
 	
+	public boolean showGameNameDialog(){
+		try{
+			
+			// Load the fxml file and create a new stage for the popup
+		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/GameNameDialog.fxml"));
+		    AnchorPane page = (AnchorPane) loader.load();
+		    Stage dialogStage = new Stage();
+		    dialogStage.setTitle("New Game");
+		    dialogStage.initModality(Modality.WINDOW_MODAL);
+		    dialogStage.initOwner(primaryStage);
+		    Scene scene = new Scene(page);
+		    dialogStage.setScene(scene);
+
+		    
+		    GameNameDialogController controller = loader.getController();
+		    controller.setDialogStage(dialogStage);
+		    //controller.setPerson(person);
+
+		    // Show the dialog and wait until the user closes it
+		    dialogStage.showAndWait();
+	    
+		    return controller.isOkClicked();
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		    return false;
+			
+		}
+	}
+	
 	public Stage getPrimaryStage() {
 	      return primaryStage;
 	}
+	
 	
 	public static void main(String[] args) throws JDOMException, IOException, InterruptedException {	
 		new Controller();

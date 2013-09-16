@@ -2,11 +2,18 @@ package de.dhbw.die5gewinnt;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Dialogs;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Popup;
 
 public class PlayingFieldController {
 
 	private MainApp mainApp;
+	
+	
+	@FXML 
+	private Label gameNameLabel;
 	
 	@FXML
 	private Circle circle05;
@@ -106,7 +113,8 @@ public class PlayingFieldController {
 
 	@FXML
 	private void initialize() {
-
+		gameNameLabel.setText("Game Name");
+		
 	}
 	
 	public void setMainApp(MainApp mainApp) {
@@ -115,10 +123,7 @@ public class PlayingFieldController {
 	
 	@FXML
 	public void handleClickMe(){
-		// Dialogs.showWarningDialog(mainApp.getPrimaryStage(),
-		  //        "Hallo Hallo",
-		    //      "Irgendein Schund", "Neuer Dialog");
-		
+
 		circle00.getStyleClass().remove("emptyCircle");
 		circle00.getStyleClass().add("yellowCircle");
 		circle11.getStyleClass().remove("emptyCircle");
@@ -134,7 +139,7 @@ public class PlayingFieldController {
 		circle21.getStyleClass().remove("emptyCircle");
 		circle21.getStyleClass().add("redCircle");
 	
-	
+		
 	
 	}
 	
