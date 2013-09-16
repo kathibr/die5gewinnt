@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.jdom2.JDOMException;
 
+import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.CommunicationCenter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
@@ -24,11 +25,7 @@ public class Main {
 		DBSelects.initAutoIncrementKeys();
 		
 		// (2) Create a new game
-		int[] score = new int[2];
-		score[0] = 0;
-		score[1] = 0;
-		Game game = new Game("Battle Royal", null, score, false, "X");
-		game = DBInserts.insertGame(game);
+		Controller.getController().newGame("Battle Royal", "X");
 		
 		// (3) Set the path and the names for the serverFile and the agentFile
 		CommunicationCenter.getCommunicationCenter("", "server2spielero.xml", "spielero2server.txt");
