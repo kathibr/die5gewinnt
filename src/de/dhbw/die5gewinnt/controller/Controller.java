@@ -6,6 +6,7 @@ import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.xmlaccess.XMLReader;
 import de.dhbw.die5gewinnt.controller.xmlaccess.XMLWriter;
+import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class Controller {
 	
@@ -23,12 +24,12 @@ public class Controller {
 	}
 
 	public void readXML() throws JDOMException, IOException, InterruptedException{
-		XMLReader reader = new XMLReader();
-		System.out.println(reader.getServerFile().getRoot());
-		System.out.println(reader.getServerFile().getApproval());
-		System.out.println(reader.getServerFile().getSetStatus());
-		System.out.println(reader.getServerFile().getOpponentMove());
-		System.out.println(reader.getServerFile().getWinner());
+		ServerFile serverFile = XMLReader.getServerFile();
+		System.out.println(serverFile.getRoot());
+		System.out.println(serverFile.getApproval());
+		System.out.println(serverFile.getSetStatus());
+		System.out.println(serverFile.getOpponentMove());
+		System.out.println(serverFile.getWinner());
 	}
 	
 	public void startGame(){
