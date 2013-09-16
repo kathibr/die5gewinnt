@@ -2,6 +2,7 @@ package de.dhbw.die5gewinnt.controller.logic;
 
 import java.util.ArrayList;
 
+import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.controller.db.DBUpdates;
 import de.dhbw.die5gewinnt.model.*;
@@ -12,30 +13,41 @@ public class ModelController {
 	private ArrayList<Set> sets;
 	private ArrayList<Move> moves;
 	
+	public static ModelController getModelController() {
+		return Controller.getController().getModelController();
+	}
+	
+	/* Create new game objects */
 	public Game newGame(String name, String player) {
-		this.setGame(ModelController.createNewGame(name, player));
+		Game newGame = null;
+				Set[] sets = new Set[3];
+				int[] score = new int[2];
+				score[0] = score[1] = 0;
+		newGame = new Game(name, sets, score, false, player);
+		newGame = DBInserts.insertGame(newGame);
+		this.setGame(newGame);
 		return this.getGame();
 	}
 	
-	public Set newSet() {
-		if(this.sets.size() == 3) {
-			System.err.println("--- There are already 3 sets!");
-			return this.getSet(3);
-		} else {
-			int newIndex = this.addSet(ModelController.createNewSet());
-			return this.getSet(newIndex);
-		}
-	}
-	
-	public Move newMove() {
-		if(this.moves.size() == 42) {
-			System.err.println("--- There are already 42 moves!");
-			return this.getMove(42);
-		} else {
-			int newIndex = this.addMove(ModelController.createNewMove());
-			return this.getMove(newIndex);
-		}
-	}
+//	public Set newSet() {
+//		if(this.sets.size() == 3) {
+//			System.err.println("--- There are already 3 sets!");
+//			return this.getSet(3);
+//		} else {
+//			int newIndex = this.addSet(ModelController.createNewSet());
+//			return this.getSet(newIndex);
+//		}
+//	}
+//	
+//	public Move newMove() {
+//		if(this.moves.size() == 42) {
+//			System.err.println("--- There are already 42 moves!");
+//			return this.getMove(42);
+//		} else {
+//			int newIndex = this.addMove(ModelController.createNewMove());
+//			return this.getMove(newIndex);
+//		}
+//	}
 	
 	public void deleteCurrentGame() {
 		if(this.game != null)
@@ -51,7 +63,6 @@ public class ModelController {
 				DBUpdates.updateMove(this.moves.get(i));
 			this.moves.remove(i);
 		}
-//		controller = null;
 	}
 	
 	/* GETTER-Methods */
@@ -80,38 +91,18 @@ public class ModelController {
 		this.game = game;
 	}
 	
-	private void setSet(int index) {
-//		
-	}
+	private void setSet(int index) {}
 	
 	private int addSet(Set set) {
 		this.sets.add(set);
 		return this.sets.size();
 	}
 	
-	private void setMove(int index) {
-//		
-	}
+	private void setMove(int index) {}
 	
 	private int addMove(Move move) {
 		this.moves.add(move);
 		return this.sets.size();
 	}
 	
-	public static Game createNewGame(String name, String player) {
-		Game game = null;
-			Set[] sets = new Set[3];
-			int[] score = new int[2];
-		game = new Game(name, sets, score, false, player);
-		game = DBInserts.insertGame(game);
-		return game;
-	}
-	
-	public static Set createNewSet() {
-		return new Set();
-	}
-	
-	public static Move createNewMove() {
-		return new Move();
-	}
 }

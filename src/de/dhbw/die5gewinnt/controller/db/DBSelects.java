@@ -16,14 +16,22 @@ public class DBSelects extends DBQuery {
 	public static void initAutoIncrementKeys() {
 		try {
 			Statement stmt = getDBConnection().createStatement();
-			String sql = "SELECT TOP 1 * FROM GameToSetToMove ORDER BY gameId DESC";
+			String sql = "SELECT TOP 1 id FROM Games ORDER BY id DESC";
 			ResultSet rs = stmt.executeQuery(sql);
-			if(rs == null)
-				System.err.println("--- SQL ResultSet for Game is empty!");
 			while(rs.next()) {
 				AutoIncrementKeys.setGameId(Integer.parseInt(rs.getString(1)));
-				AutoIncrementKeys.setSetId(Integer.parseInt(rs.getString(2)));
-				AutoIncrementKeys.setMoveId(Integer.parseInt(rs.getString(3)));
+			}
+			rs.close();
+			sql = "SELECT TOP 1 id FROM Sets ORDER BY id DESC";
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				AutoIncrementKeys.setSetId(Integer.parseInt(rs.getString(1)));
+			}
+			rs.close();
+			sql = "SELECT TOP 1 id FROM Moves ORDER BY id DESC";
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				AutoIncrementKeys.setMoveId(Integer.parseInt(rs.getString(1)));
 			}
 			rs.close();	
 			stmt.close();

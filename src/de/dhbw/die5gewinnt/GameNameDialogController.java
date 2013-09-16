@@ -1,6 +1,6 @@
 package de.dhbw.die5gewinnt;
 
-import de.dhbw.die5gewinnt.controller.Controller;
+import de.dhbw.die5gewinnt.controller.logic.ModelController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Dialogs;
 import javafx.scene.control.RadioButton;
@@ -35,7 +35,7 @@ public class GameNameDialogController {
 			String player = "X";
 			if(playerO.isSelected())
 				player = "O";
-			Controller.getController().getModelController().newGame(gameName.getText(), "X");
+			ModelController.getModelController().newGame(gameName.getText(), "X");
 			okClicked = true;
 		    dialogStage.close();
 		}	

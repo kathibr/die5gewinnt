@@ -1,5 +1,7 @@
 package de.dhbw.die5gewinnt.controller;
 
+import de.dhbw.die5gewinnt.controller.db.DBConnector;
+import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
 
 public class Controller {
@@ -7,7 +9,10 @@ public class Controller {
 	private static Controller controller;
 	private ModelController modelController;
 	
-	private Controller() {}
+	private Controller() {
+		DBConnector.closeDBConnection();
+		DBSelects.initAutoIncrementKeys();
+	}
 	
 	public static Controller getController() {
 		if(controller == null)
@@ -16,9 +21,9 @@ public class Controller {
 	}
 	
 	public ModelController getModelController() {
-		if(modelController == null)
-			modelController = new ModelController();
-		return modelController;
+		if(this.modelController == null)
+			this.modelController = new ModelController();
+		return this.modelController;
 	}
 	
 }

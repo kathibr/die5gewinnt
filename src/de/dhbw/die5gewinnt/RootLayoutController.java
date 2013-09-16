@@ -1,8 +1,7 @@
 package de.dhbw.die5gewinnt;
 
-import de.dhbw.die5gewinnt.model.Game;
+import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import javafx.fxml.FXML;
-import javafx.scene.control.Dialogs;
 
 public class RootLayoutController {
 	
@@ -30,7 +29,10 @@ public class RootLayoutController {
 	  
       @FXML
       private void handleExit() {
-          System.exit(0);
+    	  // Close the DBConnection
+    	  DBConnector.closeDBConnection();
+    	  // Close the primary stage
+    	  mainApp.getPrimaryStage().close();
       }
 	  
 }
