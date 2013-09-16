@@ -55,8 +55,8 @@ public class DBSelects extends DBQuery {
 		return game;		
 	}
 	
-	public static Game[] selectGames() {
-		ArrayList<Game> games = new ArrayList<Game>();
+	public static Game[] selectGames(boolean withLoadingSets) {
+		ArrayList<Game> oldGames = new ArrayList<Game>();
 		Game game = null;
 		try {
 			Statement stmt = getDBConnection().createStatement();
@@ -64,20 +64,21 @@ public class DBSelects extends DBQuery {
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				game = new Game();
-				game.setId(Integer.parseInt(rs.getString(1)));
-	    		game.setName(rs.getString(2));
-	    		game.setSets(selectSets(Integer.parseInt(rs.getString(1))));
-	    		game.setScore(DataManipulation.getGameScoreForJava(rs.getString(3)));
-	    		game.setWinner(DataManipulation.getGameWinnerForJava(rs.getString(4)));
-	    		game.setPlayer(rs.getString(5));
-				games.add(game);
+					game.setId(Integer.parseInt(rs.getString(1)));
+					game.setName(rs.getString(2));
+					if(withLoadingSets)
+						game.setSets(selectSets(Integer.parseInt(rs.getString(1))));
+					game.setScore(DataManipulation.getGameScoreForJava(rs.getString(3)));
+					game.setWinner(DataManipulation.getGameWinnerForJava(rs.getString(4)));
+					game.setPlayer(rs.getString(5));
+				oldGames.add(game);
 	    	}
 	    	rs.close();
 	    	stmt.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return games.toArray(new Game[games.size()]);	
+		return oldGames.toArray(new Game[oldGames.size()]);	
 	}
 	
 	public static int selectGameIdFromSetId(int setId) {

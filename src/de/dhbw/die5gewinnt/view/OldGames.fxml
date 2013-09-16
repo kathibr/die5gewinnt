@@ -14,7 +14,7 @@
       <items>
         <AnchorPane maxWidth="200.0" minHeight="0.0" minWidth="200.0" prefHeight="160.0" prefWidth="200.0">
           <children>
-            <ListView id="listGameNames" fx:id="gameList" layoutX="10.0" layoutY="10.0" prefHeight="470.0" prefWidth="180.0" />
+            <ListView id="listOfGames" fx:id="listOfGames" layoutX="10.0" layoutY="10.0" prefHeight="470.0" prefWidth="180.0" />
           </children>
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="300.0" />

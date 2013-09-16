@@ -10,31 +10,35 @@ import javafx.scene.control.ListView;
 public class OldGamesController {
 
 	private MainApp mainApp;
-
-	private Game[] games;
+	private Game[] oldGames;
+	
 	@FXML
-	private ListView<String> gameList;
-	private ObservableList<String> oList = FXCollections.observableArrayList();
-	
-	
+	private ListView<String> listOfGames;
+	private ObservableList<String> oList;
 	
 	public OldGamesController() {
+		oList = FXCollections.observableArrayList();
+	}
+	
+	public void setMainApp(MainApp mainApp) {
+	      this.mainApp = mainApp;      
 	}
 
 	@FXML
 	private void initialize() {
-		games = DBSelects.selectGames();
-	    for(int i = 0; i < games.length; i++){
-	    	oList.add(games[i].getName());
+		loadGameData();
+	}
+	
+	private void loadGameData() {
+		oldGames = DBSelects.selectGames(true);
+	    for(int i = 0; i < oldGames.length; i++){
+	    	oList.add(oldGames[i].getName());
 	    }
-	    gameList.setItems(oList);
+	    listOfGames.setItems(oList);		
 	}
-	public ObservableList<String> getGameData() {
-	      return oList;
-	  }
-	public void setMainApp(MainApp mainApp) {
-	      this.mainApp = mainApp;
-	      
-	}
+	
+//	public ObservableList<String> getGameData() {
+//	      return oList;
+//	}
 	
 }
