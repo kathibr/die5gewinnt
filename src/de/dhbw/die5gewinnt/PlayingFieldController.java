@@ -1,5 +1,6 @@
 package de.dhbw.die5gewinnt;
 
+import de.dhbw.die5gewinnt.controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
@@ -113,7 +114,7 @@ public class PlayingFieldController {
 
 	@FXML
 	private void initialize() {
-		gameNameLabel.setText("Game Name");
+		gameNameLabel.setText(Controller.getController().getModelController().getGame().getName());
 		
 	}
 	
