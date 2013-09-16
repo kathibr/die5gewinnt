@@ -1,6 +1,7 @@
 package de.dhbw.die5gewinnt;
 
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
+import de.dhbw.die5gewinnt.model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ public class OldGamesController {
 
 	private MainApp mainApp;
 
-	private String[] gameNames;
+	private Game[] games;
 	@FXML
 	private ListView<String> gameList;
 	private ObservableList<String> oList = FXCollections.observableArrayList();
@@ -22,9 +23,9 @@ public class OldGamesController {
 
 	@FXML
 	private void initialize() {
-		gameNames = DBSelects.selectGameNames();
-	    for(int i = 0; i < gameNames.length; i++){
-	    	oList.add(gameNames[i]);
+		games = DBSelects.selectGames();
+	    for(int i = 0; i < games.length; i++){
+	    	oList.add(games[i].getName());
 	    }
 	    gameList.setItems(oList);
 	}

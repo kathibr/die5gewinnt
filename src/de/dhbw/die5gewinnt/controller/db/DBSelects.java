@@ -55,11 +55,30 @@ public class DBSelects extends DBQuery {
 		return game;		
 	}
 	
-//	public static Game[] selectGames() {
-//		ArrayList<Game> games = new ArrayList<Game>();
-//		# ToDo #
-//		return games.toArray(new Game[games.size()]);
-//	}
+	public static Game[] selectGames() {
+		ArrayList<Game> games = new ArrayList<Game>();
+		Game game = null;
+		try {
+			Statement stmt = getDBConnection().createStatement();
+			String sql = "SELECT * FROM Games";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				game = new Game();
+				game.setId(Integer.parseInt(rs.getString(1)));
+	    		game.setName(rs.getString(2));
+	    		game.setSets(selectSets(Integer.parseInt(rs.getString(1))));
+	    		game.setScore(DataManipulation.getGameScoreForJava(rs.getString(3)));
+	    		game.setWinner(DataManipulation.getGameWinnerForJava(rs.getString(4)));
+	    		game.setPlayer(rs.getString(5));
+				games.add(game);
+	    	}
+	    	rs.close();
+	    	stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return games.toArray(new Game[games.size()]);	
+	}
 	
 	public static int selectGameIdFromSetId(int setId) {
 		int gameId = 0;
@@ -93,23 +112,6 @@ public class DBSelects extends DBQuery {
 			e.printStackTrace();
 		}
 		return gameId;	
-	}
-
-	public static String[] selectGameNames() {
-		ArrayList<String> gameNames = new ArrayList<String>();
-		try {
-			Statement stmt = getDBConnection().createStatement();
-			String sql = "SELECT name FROM Games";
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()) {
-				gameNames.add(rs.getString(1));
-	    	}
-	    	rs.close();
-	    	stmt.close();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return gameNames.toArray(new String[gameNames.size()]);	
 	}
 	
 	/* SELECT-Queries for Model Set */
