@@ -5,11 +5,13 @@ import java.io.IOException;
 import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
+import de.dhbw.die5gewinnt.controller.communication.CommunicationCenter;
+import de.dhbw.die5gewinnt.controller.communication.XMLReader;
+import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
+import de.dhbw.die5gewinnt.controller.communication.XMLWriter;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
-import de.dhbw.die5gewinnt.controller.xmlaccess.XMLAccess;
-import de.dhbw.die5gewinnt.controller.xmlaccess.XMLReader;
 import de.dhbw.die5gewinnt.model.*;
 
 public class Main {
@@ -19,7 +21,9 @@ public class Main {
 		DBSelects.initAutoIncrementKeys();
 		
 		// Test to read a XML File
-//		readXML();
+		CommunicationCenter.getCommunicationCenter("", "server2spielero.xml", "spielero2server.txt");
+		readXML();
+		TXTWriter.setAgentFile(2);
 		
 		/* Test to insert sample DB data */
 //		loadSampleDBData();
@@ -31,16 +35,13 @@ public class Main {
 	    DBConnector.closeDBConnection();
 	}
 	
-	private static void readXML() throws JDOMException, IOException, InterruptedException{
-		XMLAccess.getXMLAccess("", "server2spielero.xml");
-		System.out.println(XMLAccess.getXMLAccess().getFilePath());
+	private static void readXML() {
 		ServerFile serverFile = XMLReader.getServerFile();
 		
-//		System.out.println(serverFile.getRoot());
-//		System.out.println(serverFile.getApproval());
-//		System.out.println(serverFile.getSetStatus());
-//		System.out.println(serverFile.getOpponentMove());
-//		System.out.println(serverFile.getWinner());
+		System.out.println(serverFile.getApproval());
+		System.out.println(serverFile.getSetStatus());
+		System.out.println(serverFile.getOpponentMove());
+		System.out.println(serverFile.getWinner());
 	}
 	
 	/* TEST-Methods for Database testing */

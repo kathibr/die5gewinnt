@@ -1,26 +1,21 @@
 package de.dhbw.die5gewinnt.model;
 
-import org.jdom2.Element;
-
 public class ServerFile {
 
 	private String approval, setStatus, opponentMove, winner;
-	private Element root;
 	
 	public ServerFile() {
 		this.setApproval("");
 		this.setSetStatus("");
 		this.setOpponentMove("");
 		this.setWinner("");
-		this.setRoot(null);
 	}
 	
-	public ServerFile(String approval, String setStatus, String opponentMove, String winner, Element root) {
+	public ServerFile(String approval, String setStatus, String opponentMove, String winner) {
 		this.setApproval(approval);
 		this.setSetStatus(setStatus);
 		this.setOpponentMove(opponentMove);
 		this.setWinner(winner);	
-		this.setRoot(root);
 	}
 
 	/* GETTER-Methods */
@@ -38,10 +33,6 @@ public class ServerFile {
 	
 	public String getWinner() {
 		return this.winner;
-	}
-	
-	public Element getRoot() {
-		return this.root;
 	}
 	
 	
@@ -62,7 +53,4 @@ public class ServerFile {
 		this.winner = winner;
 	}
 	
-	private void setRoot(Element root) {
-		this.root = root;		
-	}
 }
