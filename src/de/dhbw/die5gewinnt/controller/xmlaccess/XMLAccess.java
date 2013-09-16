@@ -1,28 +1,38 @@
 package de.dhbw.die5gewinnt.controller.xmlaccess;
 
-import org.jdom2.Element;
-
 public class XMLAccess {
 	
+	private static XMLAccess xmlAccess;
 	private String path, file, filePath;
-	protected Element root;
 	
-	protected XMLAccess() {
-		this.setPath("C:/Users/D056939/Desktop/die5gewinnt/");
-		this.setFile("server2spielero.xml");	
+	private XMLAccess() {
+		this.path = "";
+		this.file = "";
 	}
-
-	protected XMLAccess(String path, String file) {
-		this.setPath(path);
-		this.setFile(file);
+	
+	private XMLAccess(String path, String file) {
+		setPath(path);
+		setFile(file);
 	}
 	
 	/* GETTER-Methods */
-	public String getPath() {
+	public static XMLAccess getXMLAccess() {
+		if(xmlAccess == null)
+			xmlAccess = new XMLAccess();
+		return xmlAccess;
+	}
+	
+	public static XMLAccess getXMLAccess(String path, String file) {
+		if(xmlAccess == null)
+			xmlAccess = new XMLAccess(path, file);
+		return xmlAccess;
+	}
+	
+	private String getPath() {
 		return this.path;
 	}
 	
-	public String getFile() {
+	private String getFile() {
 		return this.file;
 	}
 	
@@ -45,7 +55,7 @@ public class XMLAccess {
 			this.setFilePath();
 		}
 	}
-	
+
 	private void setFilePath() {
 		if(this.getFile().equals(""))
 			System.err.println("--- There is no serverfile information!");

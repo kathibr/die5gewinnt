@@ -10,9 +10,9 @@ import org.jdom2.output.XMLOutputter;
 
 import de.dhbw.die5gewinnt.model.ServerFile;
 
-public class XMLWriter extends XMLAccess {
+public class XMLWriter {
+	
 	public XMLWriter(ServerFile serverfile) throws JDOMException, IOException {
-		super();
 		
 		Element game = new Element("game");
  
@@ -25,7 +25,7 @@ public class XMLWriter extends XMLAccess {
  
 		XMLOutputter xmlOutput = new XMLOutputter();
 		xmlOutput.setFormat(Format.getPrettyFormat());
-		xmlOutput.output(doc, new FileWriter(getFilePath()));		
+		xmlOutput.output(doc, new FileWriter(XMLAccess.getXMLAccess().getFilePath()));		
 	}
 	
 }
