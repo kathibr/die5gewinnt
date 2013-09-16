@@ -19,7 +19,7 @@ public class DBSelects extends DBQuery {
 			String sql = "SELECT TOP 1 * FROM GameToSetToMove ORDER BY gameId DESC";
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs == null)
-				
+				System.err.println("--- SQL ResultSet for Game is empty!");
 			while(rs.next()) {
 				AutoIncrementKeys.setGameId(Integer.parseInt(rs.getString(1)));
 				AutoIncrementKeys.setSetId(Integer.parseInt(rs.getString(2)));

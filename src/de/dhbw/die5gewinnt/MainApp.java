@@ -114,7 +114,7 @@ public class MainApp extends Application {
 	
 	
 	public static void main(String[] args) throws JDOMException, IOException, InterruptedException {	
-		new Controller();
+		Controller.getController();
 		//Controller unbedingt in einen eigenen Thread, damit Controller und Pberfläche parallel laufen!
 		launch(args);
 	  }

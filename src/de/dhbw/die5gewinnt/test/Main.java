@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.jdom2.JDOMException;
 
+import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.CommunicationCenter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
@@ -17,15 +18,52 @@ import de.dhbw.die5gewinnt.model.*;
 public class Main {
 
 	public static void main(String[] args) throws JDOMException, IOException, InterruptedException {
-		// Init the auto increment keys for Game, Set and Move
+		// --- Test to insert sample DB data
+//		loadSampleDBData();
+		
+		// (1) Init the auto increment keys for Game, Set and Move
 		DBSelects.initAutoIncrementKeys();
 		
-		// Test to read a XML File
-		CommunicationCenter.getCommunicationCenter("", "server2spielero.xml", "spielero2server.txt");
-//		readXML();
+		// (2) Create a new game
+		Controller.getController().getModelController().newGame("Battle Royal", "X");
 		
-		/* Test to insert sample DB data */
-//		loadSampleDBData();
+		// (3) Set the path and the names for the serverFile and the agentFile
+		CommunicationCenter.getCommunicationCenter("", "server2spielero.xml", "spielero2server.txt");
+		
+		// (4) Create a new set
+		int[][] field = new int[7][6];
+		int[] columnHeight = new int[7];
+		for(int i = 0; i < columnHeight.length; i++)
+			columnHeight[i] = 2;
+		
+		Set set = new Set(null, field, columnHeight);
+		set = DBInserts.insertSet(set);
+		
+		// (5) Wait for the first serverFile
+		ServerFile serverFile = XMLReader.getServerFile();
+		if(serverFile.getApproval()) {
+			// freigabe: true => Agent begins or Opponent took a move => Agent have to start his AlgorithmManager
+			switch(serverFile.getOpponentMove()) {
+			case -1: // Own agent begins with his first move
+				break;
+			case 0:		// Opponent choose the first column
+				break;
+			case 1:		// Opponent choose the second column
+				break;
+			case 2:		// Opponent choose the third column
+				break;
+			case 3:		// Opponent choose the fourth column
+				break;
+			case 4:		// Opponent choose the fifth column
+				break;
+			case 5:		// Opponent choose the sixth column
+				break;
+			case 6:		// Opponent choose the seventh column
+				break;
+			}
+		} else {
+			// freigabe: false => One player won / Server ends the game => only refresh the playing field
+		}
 	
 		// Load the AlgorithmManager and get the next Move
 //		System.out.println(AlgorithmManager.getAlgorithmManager().getNextColumn(System.currentTimeMillis()));
@@ -33,15 +71,9 @@ public class Main {
 		
 		// Close the HSQL Database Connection
 	    DBConnector.closeDBConnection();
-	}
-	
-	private static void readXML() {
-		ServerFile serverFile = XMLReader.getServerFile();
-		
-		System.out.println(serverFile.getApproval());
-		System.out.println(serverFile.getSetStatus());
-		System.out.println(serverFile.getOpponentMove());
-		System.out.println(serverFile.getWinner());
+	    
+	    // Delete the last AgentFile
+	    TXTWriter.deleteAgentFile();
 	}
 	
 	/* TEST-Methods for Database testing */

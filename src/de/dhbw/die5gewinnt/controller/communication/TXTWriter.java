@@ -23,4 +23,11 @@ public class TXTWriter {
 		}
 	}
 	
+	public static void deleteAgentFile() {
+		File file = new File(CommunicationCenter.getCommunicationCenter().getAgentFilePath());
+		
+		if(file.exists())
+			file.delete();
+	}
+	
 }
