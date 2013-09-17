@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="150.0" prefHeight="200.0" prefWidth="300.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.GameNameDialogController">
+<AnchorPane minHeight="150.0" prefHeight="221.0" prefWidth="300.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.GameNameDialogController">
   <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="5.0" layoutY="5.0" styleClass="label-header" text="Neues Spiel" />
@@ -16,7 +16,7 @@
       <TextField fx:id="gameName" layoutX="55.0" prefWidth="235.0" promptText="" />
     </Group>
     <Group id="Group" layoutX="5.0" layoutY="115.0">
-    	<Label styleClass="label-bright" text="Spieler" />
+    <Label styleClass="label-bright" text="Spieler" />
       <children>
         <RadioButton fx:id="playerX" layoutX="55.0" mnemonicParsing="false" selected="true" styleClass="label-bright" text="Spieler 'X'">
           <toggleGroup>
@@ -26,8 +26,10 @@
         <RadioButton fx:id="playerO" layoutX="155.0" mnemonicParsing="false" styleClass="label-bright" text="Spieler 'O'" toggleGroup="$playerToggleGroup" />
       </children>
     </Group>
-    <Button layoutX="115.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
-    <Button layoutX="190.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
+    <Label layoutX="5.0" layoutY="146.0" prefWidth="35.0" text="Pfad" textFill="WHITE" />
+    <TextField fx:id="filePath" layoutX="60.0" layoutY="143.0" prefWidth="235.0" promptText="C:/Users/Christian/git/die5gewinnt" />
+    <Button layoutX="115.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+    <Button layoutX="190.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />  
   </children>
   <stylesheets>
     <URL value="@style.css" />

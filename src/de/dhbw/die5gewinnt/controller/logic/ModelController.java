@@ -91,18 +91,18 @@ public class ModelController {
 		this.game = game;
 	}
 	
-	private void setSet(int index) {}
-	
-	private int addSet(Set set) {
-		this.sets.add(set);
-		return this.sets.size();
-	}
-	
-	private void setMove(int index) {}
-	
-	private int addMove(Move move) {
-		this.moves.add(move);
-		return this.sets.size();
-	}
+//	private void setSet(int index) {}
+//	
+//	private int addSet(Set set) {
+//		this.sets.add(set);
+//		return this.sets.size();
+//	}
+//	
+//	private void setMove(int index) {}
+//	
+//	private int addMove(Move move) {
+//		this.moves.add(move);
+//		return this.sets.size();
+//	}
 	
 }

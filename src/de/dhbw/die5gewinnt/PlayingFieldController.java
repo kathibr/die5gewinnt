@@ -1,6 +1,8 @@
 package de.dhbw.die5gewinnt;
 
 import de.dhbw.die5gewinnt.controller.Controller;
+import de.dhbw.die5gewinnt.controller.communication.CommunicationCenter;
+import de.dhbw.die5gewinnt.controller.logic.ModelController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
@@ -114,7 +116,11 @@ public class PlayingFieldController {
 
 	@FXML
 	private void initialize() {
-		gameNameLabel.setText(Controller.getController().getModelController().getGame().getName());
+		gameNameLabel.setText(ModelController.getModelController().getGame().getName());
+		System.out.println("Spielname: "+ModelController.getModelController().getGame().getName());
+		System.out.println("Spieler: "+ModelController.getModelController().getGame().getPlayer());
+		System.out.println("Serverfile: "+CommunicationCenter.getCommunicationCenter().getServerFilePath());
+		System.out.println("Agentfile: "+CommunicationCenter.getCommunicationCenter().getAgentFilePath());
 		
 	}
 	

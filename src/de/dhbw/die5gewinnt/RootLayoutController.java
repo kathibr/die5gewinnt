@@ -13,15 +13,12 @@ public class RootLayoutController {
 	  
 	  @FXML
       private void handleNewGame() {
-
 		  boolean okClicked = mainApp.showGameNameDialog();
-		    if (okClicked) {
-		      mainApp.showPlayingField();
-		    }
-		  
-		  
-		  
+		  	if(okClicked) {
+		  		mainApp.showPlayingField();
+		    }		  
       }
+	  
 	  @FXML
       private void handleOldGames() {
 		 mainApp.showOldGames();
