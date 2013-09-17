@@ -12,10 +12,10 @@ public class TestDBScript {
 		DBSelects.initAutoIncrementKeys();
 		
 		// Create an int-Array field for object of set
-		int[][] field = new int[7][6];
+		Move[][] field = new Move[7][6];
 		for(int i = 0; i < 7; i++) {
 			for(int j = 0; j < 6; j++)
-				field[i][j] = 0;
+				field[i][j] = new Move();
 		}
 		
 		// Create an int-Array columnHeight for object set

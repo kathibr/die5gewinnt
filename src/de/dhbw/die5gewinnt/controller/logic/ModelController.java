@@ -24,21 +24,27 @@ public class ModelController {
 				int[] score = new int[2];
 				score[0] = score[1] = 0;
 		newGame = new Game(name, sets, score, false, player);
-		newGame = DBInserts.insertGame(newGame);
+//		newGame = DBInserts.insertGame(newGame);
 		this.setGame(newGame);
 		return this.getGame();
 	}
 	
-//	public Set newSet() {
-//		if(this.sets.size() == 3) {
-//			System.err.println("--- There are already 3 sets!");
-//			return this.getSet(3);
-//		} else {
-//			int newIndex = this.addSet(ModelController.createNewSet());
-//			return this.getSet(newIndex);
-//		}
-//	}
-//	
+	public Set newSet() {
+		Set newSet = null;
+			Move[] moves = new Move[42];
+			Move[][] field = new Move[7][6];
+			int[] columnHeight = new int[7];
+		if(this.sets.size() == 3) {
+			System.err.println("--- There are already 3 sets!");
+			return this.getSet(3);
+		} else {
+			newSet = new Set(moves, field, columnHeight);
+//			newSet = DBInserts.insertSet(newSet);
+			int newIndex = this.addSet(newSet);
+			return this.getSet(newIndex);
+		}
+	}
+	
 //	public Move newMove() {
 //		if(this.moves.size() == 42) {
 //			System.err.println("--- There are already 42 moves!");
@@ -92,11 +98,11 @@ public class ModelController {
 	}
 	
 //	private void setSet(int index) {}
-//	
-//	private int addSet(Set set) {
-//		this.sets.add(set);
-//		return this.sets.size();
-//	}
+	
+	private int addSet(Set set) {
+		this.sets.add(set);
+		return this.sets.size();
+	}
 //	
 //	private void setMove(int index) {}
 //	

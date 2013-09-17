@@ -1,5 +1,10 @@
 package de.dhbw.die5gewinnt.controller.db;
 
+import java.util.ArrayList;
+
+import de.dhbw.die5gewinnt.model.AutoIncrementKeys;
+import de.dhbw.die5gewinnt.model.Move;
+
 public class DataManipulation {
 
 	private DataManipulation() {}
@@ -32,21 +37,25 @@ public class DataManipulation {
 	}
 	
 	/* Data Manipulation for Model Set */
-	public static String getSetFieldForDB(int[][] field) {
+	public static String getSetFieldForDB(Move[][] field) {
 		String returnField = "";
 		for(int i = 0; i < 7; i++)
 			for(int j = 0; j < 6; j++)
-				returnField += field[i][j]+",";
+				returnField += field[i][j].getId()+",";
 		return returnField.substring(0, returnField.length() - 1);
 	}
 	
-	public static int[][] getSetFieldForJava(String field) {
-		int[][] returnField = new int[7][6];
+	public static Move[][] getSetFieldForJava(int setId, String field) {
+		Move[][] returnField = new Move[7][6];
+		Move[] moves = DBSelects.selectMoves(setId);
+		ArrayList<Move> listOfMoves = new ArrayList<Move>(AutoIncrementKeys.getLastMoveId());
+		for(int i = 0; i < moves.length; i++)
+			listOfMoves.add(moves[i].getId(), moves[i]);
 		String[] stringField = field.split(",");
 		int i = 0;
 			for(int j = 0; j < 7; j++)
 				for(int k = 0; k < 6; k++)
-				returnField[j][k] = Integer.parseInt(stringField[i++]);
+				returnField[j][k] = listOfMoves.get(Integer.parseInt(stringField[i++]));
 		return returnField;
 	}
 	

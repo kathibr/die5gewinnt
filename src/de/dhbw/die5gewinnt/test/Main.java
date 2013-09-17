@@ -81,7 +81,8 @@ public class Main {
 			int[] score = new int[2];
 			score[0] = 2; score[1] = 1;
 		Set set = null;
-			int[][] field = new int[7][6];
+			Move[] moves = new Move[42];
+			Move[][] field = new Move[7][6];
 			int[] columnHeight = new int[7];
 			for(int i = 0; i < columnHeight.length; i++)
 				columnHeight[i] = 2;
@@ -91,7 +92,7 @@ public class Main {
 			game = new Game("Spiel-Nr. "+i, null, score, false, "X");
 			game = DBInserts.insertGame(game);
 			for(int j = 0; j < (int) (Math.random() * (3 - 2) + 2); j++) { // Create a set
-				set = new Set(null, field, columnHeight);
+				set = new Set(moves, field, columnHeight);
 				set = DBInserts.insertSet(set);
 				for(int k = 0; k < (int) (Math.random() * (40 - 15) + 15); k++) { // Create a move
 					move = new Move((int) (Math.random() * 7), (int) (Math.random() * 6), "X");

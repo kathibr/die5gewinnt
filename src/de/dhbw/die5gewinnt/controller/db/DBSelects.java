@@ -131,9 +131,10 @@ public class DBSelects extends DBQuery {
 			String sql = "SELECT * FROM Sets WHERE id = "+id;
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				set.setId(Integer.parseInt(rs.getString(1)));
+				int setId = (Integer.parseInt(rs.getString(1))); 
+				set.setId(setId);
 				set.setMoves(selectMoves(id));
-				set.setField(DataManipulation.getSetFieldForJava(rs.getString(2)));
+				set.setField(DataManipulation.getSetFieldForJava(setId, rs.getString(2)));
 				set.setColumnHeight(DataManipulation.getSetColumnHeightForJava(rs.getString(3)));
 	    	}
 	    	rs.close();
@@ -152,7 +153,7 @@ public class DBSelects extends DBQuery {
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
 				int setId = Integer.parseInt(rs.getString(1));
-				sets.add(new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3))));
+				sets.add(new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(setId, rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3))));
 			}
 	    	rs.close();
 	    	stmt.close();
