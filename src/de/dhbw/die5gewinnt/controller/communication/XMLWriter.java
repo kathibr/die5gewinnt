@@ -8,6 +8,8 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
+import de.dhbw.die5gewinnt.controller.Controller;
+
 public class XMLWriter {
 
 	public static void setServerFile() {	
@@ -23,7 +25,7 @@ public class XMLWriter {
 		XMLOutputter xmlOutputter = new XMLOutputter();
 		xmlOutputter.setFormat(Format.getPrettyFormat());
 		try {
-			xmlOutputter.output(document, new FileWriter(CommunicationCenter.getCommunicationCenter().getServerFilePath()));
+			xmlOutputter.output(document, new FileWriter(Controller.getCommunicationController().getServerFilePath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		

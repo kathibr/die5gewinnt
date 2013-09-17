@@ -36,7 +36,7 @@ public class GameNameDialogController {
 			String player = "X";
 			if(playerO.isSelected())
 				player = "O";
-			ModelController.getModelController().newGame(gameName.getText(), "X");
+			Controller.getModelController().newGame(gameName.getText(), "X");
 			// Create CommunicationCenter
 			String serverFile = "server2spielerx.xml";
 			String agentFile = "agentx2server.txt";
@@ -44,7 +44,7 @@ public class GameNameDialogController {
 				serverFile = "server2spielero.xml";
 				agentFile = "agento2server.txt";
 			}
-			Controller.getController().setCommunicationCenter(filePath.getText(), serverFile, agentFile);
+			Controller.setCommunicationController(filePath.getText(), serverFile, agentFile);
 			okClicked = true;
 		    dialogStage.close();
 		}	

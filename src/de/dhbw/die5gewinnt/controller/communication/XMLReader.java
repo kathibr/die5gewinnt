@@ -8,6 +8,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class XMLReader {
@@ -19,7 +20,7 @@ public class XMLReader {
 		Element root = null;
 		ServerFile serverFile = null;
 		
-		file = new File(CommunicationCenter.getCommunicationCenter().getServerFilePath());
+		file = new File(Controller.getCommunicationController().getServerFilePath());
 		while(true) {
 			if(file.exists()) 
 				break;
@@ -30,7 +31,7 @@ public class XMLReader {
 			}	
 		}	
 		try {		
-			document = saxBuilder.build(CommunicationCenter.getCommunicationCenter().getServerFilePath());
+			document = saxBuilder.build(Controller.getCommunicationController().getServerFilePath());
 		} catch (JDOMException | IOException e) {
 			e.printStackTrace();
 		}

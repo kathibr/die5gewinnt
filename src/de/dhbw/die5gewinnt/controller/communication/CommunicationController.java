@@ -1,35 +1,25 @@
 package de.dhbw.die5gewinnt.controller.communication;
 
-public class CommunicationCenter {
+import de.dhbw.die5gewinnt.controller.Controller;
+
+public class CommunicationController {
 	
-	private static CommunicationCenter communicationCenter;
 	private String path, serverFile, agentFile, serverFilePath, agentFilePath;
 	
-	private CommunicationCenter() {
+	
+	public CommunicationController() {
 		setPath("");
 		setServerFile("");
 		setAgentFile("");
 	}
 	
-	private CommunicationCenter(String path, String serverFile, String agentFile) {
+	public CommunicationController(String path, String serverFile, String agentFile) {
 		setPath(path);
 		setServerFile(serverFile);
 		setAgentFile(agentFile);
 	}
 	
 	/* GETTER-Methods */
-	public static CommunicationCenter getCommunicationCenter() {
-		if(communicationCenter == null)
-			communicationCenter = new CommunicationCenter();
-		return communicationCenter;
-	}
-	
-	public static CommunicationCenter getCommunicationCenter(String path, String serverFile, String agentFile) {
-		if(communicationCenter == null)
-			communicationCenter = new CommunicationCenter(path, serverFile, agentFile);
-		return communicationCenter;
-	}
-	
 	private String getPath() {
 		return this.path;
 	}

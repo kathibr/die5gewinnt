@@ -6,7 +6,7 @@ import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
-import de.dhbw.die5gewinnt.controller.communication.CommunicationCenter;
+import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;

@@ -12,11 +12,7 @@ public class ModelController {
 	private Game game;
 	private ArrayList<Set> sets;
 	private ArrayList<Move> moves;
-	
-	public static ModelController getModelController() {
-		return Controller.getController().getModelController();
-	}
-	
+		
 	/* Create new game objects */
 	public Game newGame(String name, String player) {
 		Game newGame = null;
