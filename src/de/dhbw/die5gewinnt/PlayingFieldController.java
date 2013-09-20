@@ -13,7 +13,7 @@ import javafx.stage.Popup;
 public class PlayingFieldController {
 
 	private MainApp mainApp;
-	
+	private Circle circleArray[][];
 	
 	@FXML 
 	private Label gameNameLabel;
@@ -128,25 +128,99 @@ public class PlayingFieldController {
 	      this.mainApp = mainApp;
 	}
 	
+	public void showMove(int column, int row, int color)
+	{
+		
+		if(color==1)
+		{
+			circleArray[column][row].getStyleClass().remove("emptyCircle");
+			circleArray[column][row].getStyleClass().add("yellowCircle");
+		}
+		if(color==2)
+		{
+			circleArray[column][row].getStyleClass().remove("emptyCircle");
+			circleArray[column][row].getStyleClass().add("redCircle");
+		}
+		
+	}
+	
 	@FXML
 	public void handleClickMe(){
+		circleArray = new Circle[20][20];
+		circleArray[0][0]= circle00;
+		circleArray[0][1]= circle01;
+		circleArray[0][2]= circle02;
+		circleArray[0][3]= circle03;
+		circleArray[0][4]= circle04;
+		circleArray[0][5]= circle05;
+		
+		circleArray[1][0]= circle10;
+		circleArray[1][1]= circle11;
+		circleArray[1][2]= circle12;
+		circleArray[1][3]= circle13;
+		circleArray[1][4]= circle14;
+		circleArray[1][5]= circle15;
+		
+		circleArray[2][0]= circle20;
+		circleArray[2][1]= circle21;
+		circleArray[2][2]= circle22;
+		circleArray[2][3]= circle23;
+		circleArray[2][4]= circle24;
+		circleArray[2][5]= circle25;
+		
+		circleArray[3][0]= circle30;
+		circleArray[3][1]= circle31;
+		circleArray[3][2]= circle32;
+		circleArray[3][3]= circle33;
+		circleArray[3][4]= circle34;
+		circleArray[3][5]= circle35;
+		
+		circleArray[4][0]= circle40;
+		circleArray[4][1]= circle41;
+		circleArray[4][2]= circle42;
+		circleArray[4][3]= circle43;
+		circleArray[4][4]= circle44;
+		circleArray[4][5]= circle45;
+		
+		circleArray[5][0]= circle50;
+		circleArray[5][1]= circle51;
+		circleArray[5][2]= circle52;
+		circleArray[5][3]= circle53;
+		circleArray[5][4]= circle54;
+		circleArray[5][5]= circle55;
+		
+		circleArray[6][0]= circle60;
+		circleArray[6][1]= circle61;
+		circleArray[6][2]= circle62;
+		circleArray[6][3]= circle63;
+		circleArray[6][4]= circle64;
+		circleArray[6][5]= circle65;
+		
+		int color = 1;
+		int column = 0;
+		int row = 0;
+		
+		for(column=0;column<7;column++)
+		{
+			
+			for(row=0;row<6;row++)
+			{
+				if(color==1)
+				{
+					circleArray[column][row].getStyleClass().remove("emptyCircle");
+					circleArray[column][row].getStyleClass().add("yellowCircle");
+					color=2;
+				}
+				else if(color==2)
+				{
+					circleArray[column][row].getStyleClass().remove("emptyCircle");
+					circleArray[column][row].getStyleClass().add("redCircle");
+					color=1;
+				}
+			}
+			
+		}
 
-		circle00.getStyleClass().remove("emptyCircle");
-		circle00.getStyleClass().add("yellowCircle");
-		circle11.getStyleClass().remove("emptyCircle");
-		circle11.getStyleClass().add("yellowCircle");
-		circle22.getStyleClass().remove("emptyCircle");
-		circle22.getStyleClass().add("yellowCircle");
-	
-		
-		circle10.getStyleClass().remove("emptyCircle");
-		circle10.getStyleClass().add("redCircle");
-		circle20.getStyleClass().remove("emptyCircle");
-		circle20.getStyleClass().add("redCircle");
-		circle21.getStyleClass().remove("emptyCircle");
-		circle21.getStyleClass().add("redCircle");
-	
-		
 	
 	}
 	
