@@ -22,6 +22,7 @@ public class Controller {
 		return controller;
 	}
 	
+	/* ModelController */
 	public static ModelController getModelController() {
 		getController();
 		if(modelController == null)
@@ -29,6 +30,7 @@ public class Controller {
 		return modelController;
 	}
 	
+	/* CommunicationController */
 	public static CommunicationController getCommunicationController() {
 		getController();
 		if(communicationController == null)
