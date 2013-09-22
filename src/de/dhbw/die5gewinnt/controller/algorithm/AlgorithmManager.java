@@ -8,7 +8,7 @@ public class AlgorithmManager {
 	private static AlgorithmManager algorithmManager;
 	private MastermindAlgorithm mastermindAlgorithm;
 	private RandomAlgorithm randomAlgorithm;
-	private long milliSeconds;
+	private long milliSeconds; 
 	
 	private AlgorithmManager() {
 		mastermindAlgorithm = new MastermindAlgorithm();
