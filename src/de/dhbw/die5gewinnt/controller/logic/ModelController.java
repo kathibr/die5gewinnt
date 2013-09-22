@@ -2,16 +2,60 @@ package de.dhbw.die5gewinnt.controller.logic;
 
 import java.util.ArrayList;
 
+import de.dhbw.die5gewinnt.PlayingFieldController;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.controller.db.DBUpdates;
 import de.dhbw.die5gewinnt.model.*;
+import de.dhbw.die5gewinnt.controller.algorithm.*;
 
 public class ModelController {
 	
 	private Game game;
+	private Set set;																																																																																																																																																																																																																																																																				
 	private ArrayList<Set> sets;
 	private ArrayList<Move> moves;
+	private RandomAlgorithm randomAlg;
+	
+	private int column, row;
+	private int[] columnheight;
+	
+	
+	public void startGame(String name, String player){
+		
+		//game = newGame(name,player);
+		//game.getSets();
+		//sets[0] = newSet();
+		
+		set = newSet();
+		Move[] moves = set.getMoves();
+		
+		for (int i = 0;i<42;i++){
+			
+		   Move move = moves[i];
+		   row = 0;
+		   
+		   do{
+			   column = randomAlg.calcNextColumn();
+			   columnheight = set.getColumnHeight();
+			   row = columnheight[column];
+		   }
+		   while(row==7);
+		   
+		   //move = new Move(row, column, player);
+		   
+		   System.out.println("Stein mit Spalte "+column+" und Zeile "+ row);
+		   //Anzeige des Schrittes durch showMove 
+		   
+		   //
+		   columnheight[column]++;
+		   set.setColumnHeight(columnheight);
+		   
+			
+		}
+		
+		
+	}
 		
 	/* Create new game objects */
 	public Game newGame(String name, String player) {
@@ -98,6 +142,9 @@ public class ModelController {
 	private int addSet(Set set) {
 		this.sets.add(set);
 		return this.sets.size();
+	}
+	
+	private void addMove(){
 	}
 //	
 //	private void setMove(int index) {}

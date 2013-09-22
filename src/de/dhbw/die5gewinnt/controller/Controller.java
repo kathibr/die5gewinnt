@@ -30,6 +30,7 @@ public class Controller {
 		return modelController;
 	}
 	
+	
 	/* CommunicationController */
 	public static CommunicationController getCommunicationController() {
 		getController();
@@ -43,5 +44,7 @@ public class Controller {
 		if(communicationController == null)
 			communicationController = new CommunicationController(path, serverFile, agentFile);
 	}
+	
+	
 	
 }

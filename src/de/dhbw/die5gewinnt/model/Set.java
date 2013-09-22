@@ -12,6 +12,10 @@ public class Set {
 		this.setMoves(new Move[42]);
 		this.setField(new Move[7][6]);
 		this.setColumnHeight(new int[7]);
+		
+		for(int i = 0; i<7;i++){
+			columnHeight[i]=0;
+		}
 	}
 	
 	public Set(Move[] moves, Move[][] field, int[] columnHeight) {

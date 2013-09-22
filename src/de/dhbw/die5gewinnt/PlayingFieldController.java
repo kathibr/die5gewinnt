@@ -11,8 +11,9 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 
 public class PlayingFieldController {
-
+	
 	private MainApp mainApp;
+	
 	private Circle circleArray[][];
 	
 	@FXML 
@@ -111,6 +112,7 @@ public class PlayingFieldController {
 	
 	
 	public PlayingFieldController() {
+		
 
 	}
 
@@ -122,30 +124,6 @@ public class PlayingFieldController {
 		System.out.println("Serverfile: "+Controller.getCommunicationController().getServerFilePath());
 		System.out.println("Agentfile: "+Controller.getCommunicationController().getAgentFilePath());
 		
-	}
-	
-	public void setMainApp(MainApp mainApp) {
-	      this.mainApp = mainApp;
-	}
-	
-	public void showMove(int column, int row, int color)
-	{
-		
-		if(color==1)
-		{
-			circleArray[column][row].getStyleClass().remove("emptyCircle");
-			circleArray[column][row].getStyleClass().add("yellowCircle");
-		}
-		if(color==2)
-		{
-			circleArray[column][row].getStyleClass().remove("emptyCircle");
-			circleArray[column][row].getStyleClass().add("redCircle");
-		}
-		
-	}
-	
-	@FXML
-	public void handleClickMe(){
 		circleArray = new Circle[20][20];
 		circleArray[0][0]= circle00;
 		circleArray[0][1]= circle01;
@@ -195,6 +173,39 @@ public class PlayingFieldController {
 		circleArray[6][3]= circle63;
 		circleArray[6][4]= circle64;
 		circleArray[6][5]= circle65;
+
+		
+	}
+	
+	public void setMainApp(MainApp mainApp) {
+	      this.mainApp = mainApp;
+	}
+	
+	public void showMove(int column, int row, int color)
+	{
+		
+		if(color==1)
+		{
+			circleArray[column][row].getStyleClass().remove("emptyCircle");
+			circleArray[column][row].getStyleClass().add("yellowCircle");
+		}
+		if(color==2)
+		{
+			circleArray[column][row].getStyleClass().remove("emptyCircle");
+			circleArray[column][row].getStyleClass().add("redCircle");
+		}
+		
+	}
+	
+	@FXML
+	public void handleClickMe(){
+		
+		ModelController modController = Controller.getModelController();
+		
+		//modController.startGame(Controller.getModelController().getGame().getName(), Controller.getModelController().getGame().getPlayer());
+		
+		
+		
 		
 		int color = 1;
 		int column = 0;
@@ -207,20 +218,20 @@ public class PlayingFieldController {
 			{
 				if(color==1)
 				{
-					circleArray[column][row].getStyleClass().remove("emptyCircle");
-					circleArray[column][row].getStyleClass().add("yellowCircle");
+					showMove(column, row, color);
 					color=2;
 				}
 				else if(color==2)
 				{
-					circleArray[column][row].getStyleClass().remove("emptyCircle");
-					circleArray[column][row].getStyleClass().add("redCircle");
+					showMove(column, row, color);
 					color=1;
 				}
+				
 			}
 			
+						
 		}
-
+		
 	
 	}
 	
