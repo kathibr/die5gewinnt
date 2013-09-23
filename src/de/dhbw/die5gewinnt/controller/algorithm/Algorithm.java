@@ -5,6 +5,6 @@ public interface Algorithm {
 	public int[][] field = new int[7][6];
 	public int[] columnHeight = new int[7];
 	
-	public int calcNextColumn();
+	public void calcNextColumn();
 	
 }

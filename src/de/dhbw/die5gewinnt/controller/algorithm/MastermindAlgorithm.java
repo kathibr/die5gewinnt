@@ -6,14 +6,13 @@ public class MastermindAlgorithm implements Algorithm, Runnable {
 	
 	/* ALGORITHM-Interface */
 	@Override
-	public int calcNextColumn() {
+	public void calcNextColumn() {
 		for(int i = 0; i<500000000; i++) {
 			for(int j = 0; j<500000000; j++) {
 			}
 		}
 		System.out.println("MastermindAlgorithm: 8");
 		nextColumn = 8;
-		return nextColumn;
 	}
 	
 	/* RUNNABLE-Interface */

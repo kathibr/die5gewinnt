@@ -6,7 +6,8 @@ public class RandomAlgorithm implements Algorithm, Runnable {
 	
 	/* ALGORITHM-Interface */
 	@Override
-	public int calcNextColumn() {
+	public void calcNextColumn() {
+		/*
 		try {
 			
 			Thread.sleep(50);
@@ -14,10 +15,10 @@ public class RandomAlgorithm implements Algorithm, Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		int random = (int) (Math.random() * 6);
 		System.out.println("RandomAlgorithm: "+random);
 		nextColumn = random;
-		return nextColumn;
 	}
 	
 	/* RUNNABLE-Interface */

@@ -15,13 +15,14 @@ public class ModelController {
 	private Set set;																																																																																																																																																																																																																																																																				
 	private ArrayList<Set> sets;
 	private ArrayList<Move> moves;
-	private RandomAlgorithm randomAlg;
+	private AlgorithmManager AlgManager;
 	
-	private int column, row;
+	private int column, row, color;
 	private int[] columnheight;
 	
 	
 	public void startGame(String name, String player){
+		System.out.println("Spiel "+ name + player);		
 		
 		//game = newGame(name,player);
 		//game.getSets();
@@ -34,20 +35,24 @@ public class ModelController {
 			
 		   Move move = moves[i];
 		   row = 0;
+		   color =1;
 		   
 		   do{
-			   column = randomAlg.calcNextColumn();
+			   AlgManager = AlgorithmManager.getAlgorithmManager();
+			   //column = AlgManager.getNextColumn(100);
+			   column = (int) (Math.random() * 6);
 			   columnheight = set.getColumnHeight();
 			   row = columnheight[column];
-		   }
-		   while(row==7);
+			   
+		   }while(row==7);
 		   
 		   //move = new Move(row, column, player);
-		   
+		   if (color==1) color = 2;
+		   else if (color==2) color =1;
 		   System.out.println("Stein mit Spalte "+column+" und Zeile "+ row);
 		   //Anzeige des Schrittes durch showMove 
 		   
-		   //
+		   
 		   columnheight[column]++;
 		   set.setColumnHeight(columnheight);
 		   
@@ -74,6 +79,12 @@ public class ModelController {
 			Move[] moves = new Move[42];
 			Move[][] field = new Move[7][6];
 			int[] columnHeight = new int[7];
+
+			newSet = new Set(moves, field, columnHeight);
+			return newSet;
+		
+			/*
+			
 		if(this.sets.size() == 3) {
 			System.err.println("--- There are already 3 sets!");
 			return this.getSet(3);
@@ -83,6 +94,7 @@ public class ModelController {
 			int newIndex = this.addSet(newSet);
 			return this.getSet(newIndex);
 		}
+		*/
 	}
 	
 //	public Move newMove() {

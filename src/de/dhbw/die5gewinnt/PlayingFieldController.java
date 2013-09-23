@@ -1,6 +1,7 @@
 package de.dhbw.die5gewinnt;
 
 import de.dhbw.die5gewinnt.controller.Controller;
+import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.stage.Popup;
 public class PlayingFieldController {
 	
 	private MainApp mainApp;
+	private static PlayingFieldController playingFieldController;
 	
 	private Circle circleArray[][];
 	
@@ -173,13 +175,19 @@ public class PlayingFieldController {
 		circleArray[6][3]= circle63;
 		circleArray[6][4]= circle64;
 		circleArray[6][5]= circle65;
-
-		
+	
 	}
 	
 	public void setMainApp(MainApp mainApp) {
 	      this.mainApp = mainApp;
 	}
+	
+	/*
+	public static PlayingFieldController getPlayingFieldController(){
+		return playingFieldController;
+		
+	}
+	*/
 	
 	public void showMove(int column, int row, int color)
 	{
@@ -202,8 +210,7 @@ public class PlayingFieldController {
 		
 		ModelController modController = Controller.getModelController();
 		
-		//modController.startGame(Controller.getModelController().getGame().getName(), Controller.getModelController().getGame().getPlayer());
-		
+		modController.startGame(modController.getGame().getName(), modController.getGame().getPlayer());
 		
 		
 		
