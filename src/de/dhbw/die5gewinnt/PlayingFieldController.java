@@ -210,8 +210,7 @@ public class PlayingFieldController {
 		
 		ModelController modController = Controller.getModelController();
 		
-		modController.startGame(modController.getGame().getName(), modController.getGame().getPlayer());
-		
+		int field[][] = modController.startGame(modController.getGame().getName(), modController.getGame().getPlayer());
 		
 		
 		int color = 1;
@@ -223,16 +222,8 @@ public class PlayingFieldController {
 			
 			for(row=0;row<6;row++)
 			{
-				if(color==1)
-				{
-					showMove(column, row, color);
-					color=2;
-				}
-				else if(color==2)
-				{
-					showMove(column, row, color);
-					color=1;
-				}
+				showMove(column, row, field[row][column]);
+				
 				
 			}
 			

@@ -2,12 +2,15 @@ package de.dhbw.die5gewinnt.controller.logic;
 
 import java.util.ArrayList;
 
+import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.PlayingFieldController;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.controller.db.DBUpdates;
 import de.dhbw.die5gewinnt.model.*;
 import de.dhbw.die5gewinnt.controller.algorithm.*;
+import de.dhbw.die5gewinnt.view.*;
+
 
 public class ModelController {
 	
@@ -19,16 +22,20 @@ public class ModelController {
 	
 	private int column, row, color;
 	private int[] columnheight;
+	private int[][] field = new int[6][7];
 	
 	
-	public void startGame(String name, String player){
+	public int[][] startGame(String name, String player){
 		System.out.println("Spiel "+ name + player);		
 		
 		AlgManager = AlgorithmManager.getAlgorithmManager();
+		
 		   
 		//game = newGame(name,player);
 		//game.getSets();
 		//sets[0] = newSet();
+
+		   color =1;
 		
 		set = newSet();
 		Move[] moves = set.getMoves();
@@ -37,7 +44,6 @@ public class ModelController {
 			
 		   Move move = moves[i];
 		   row = 0;
-		   color =1;
 		   
 		   do{
 			   //column = AlgManager.getNextColumn(100);
@@ -45,21 +51,22 @@ public class ModelController {
 			   columnheight = set.getColumnHeight();
 			   row = columnheight[column];
 			   
+			   
 		   }while(row==7);
 		   
 		   //move = new Move(row, column, player);
-		   if (color==1) color = 2;
-		   else if (color==2) color =1;
-		   System.out.println("Stein mit Spalte "+column+" und Zeile "+ row);
+		   if (color == 1) color=2;
+		   else if (color == 2) color =1;
+		   field[column][row] = color;
+		   System.out.println("Stein mit Spalte "+column+" und Zeile "+ row + " vom Spieler" + color);
 		   //Anzeige des Schrittes durch showMove 
-		   
 		   
 		   columnheight[column]++;
 		   set.setColumnHeight(columnheight);
 		   
 			
 		}
-		
+		return field;
 		
 	}
 		

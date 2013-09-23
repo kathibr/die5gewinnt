@@ -4,8 +4,12 @@ import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
+import de.dhbw.die5gewinnt.view.*;
+import javafx.stage.Stage;
 
 public class Controller {
+	
+	private static Stage primaryStage;
 
 	private static Controller controller;
 	private static ModelController modelController;
@@ -18,9 +22,10 @@ public class Controller {
 	
 	public static Controller getController() {
 		if(controller == null)
-			controller = new Controller();
+			controller = new Controller();	
 		return controller;
 	}
+		
 	
 	/* ModelController */
 	public static ModelController getModelController() {
@@ -44,6 +49,8 @@ public class Controller {
 		if(communicationController == null)
 			communicationController = new CommunicationController(path, serverFile, agentFile);
 	}
+	
+	
 	
 	
 	
