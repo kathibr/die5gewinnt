@@ -24,6 +24,8 @@ public class ModelController {
 	public void startGame(String name, String player){
 		System.out.println("Spiel "+ name + player);		
 		
+		AlgManager = AlgorithmManager.getAlgorithmManager();
+		   
 		//game = newGame(name,player);
 		//game.getSets();
 		//sets[0] = newSet();
@@ -38,7 +40,6 @@ public class ModelController {
 		   color =1;
 		   
 		   do{
-			   AlgManager = AlgorithmManager.getAlgorithmManager();
 			   //column = AlgManager.getNextColumn(100);
 			   column = (int) (Math.random() * 6);
 			   columnheight = set.getColumnHeight();
