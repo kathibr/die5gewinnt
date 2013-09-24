@@ -4,11 +4,6 @@ import java.io.IOException;
 
 import org.jdom2.JDOMException;
 
-import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
-import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
-import de.dhbw.die5gewinnt.controller.communication.XMLReader;
-import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
@@ -76,6 +71,7 @@ public class Main {
 	}
 	
 	/* TEST-Methods for Database testing */
+	@SuppressWarnings("unused")
 	private static void loadSampleDBData() {
 		Game game = null;
 			int[] score = new int[2];

@@ -5,8 +5,6 @@ import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
-import de.dhbw.die5gewinnt.view.*;
-import javafx.stage.Stage;
 
 public class Controller {
 

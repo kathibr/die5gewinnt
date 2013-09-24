@@ -1,7 +1,6 @@
 package de.dhbw.die5gewinnt.controller.view;
 
 import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.logic.ModelController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Dialogs;
 import javafx.scene.control.RadioButton;

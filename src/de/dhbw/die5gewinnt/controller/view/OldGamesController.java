@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 
 public class OldGamesController {
 
+	@SuppressWarnings("unused")
 	private MainApp mainApp;
 	private Game[] oldGames;
 

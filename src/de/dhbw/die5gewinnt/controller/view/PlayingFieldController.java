@@ -2,20 +2,15 @@ package de.dhbw.die5gewinnt.controller.view;
 
 import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
-import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
 
 public class PlayingFieldController {
 
+	@SuppressWarnings("unused")
 	private MainApp mainApp;
-	private static PlayingFieldController playingFieldController;
 
 	private Circle circleArray[][];
 

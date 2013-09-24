@@ -2,9 +2,6 @@ package de.dhbw.die5gewinnt.controller.logic;
 
 import java.util.ArrayList;
 
-import de.dhbw.die5gewinnt.MainApp;
-import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
-
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.db.DBUpdates;
 import de.dhbw.die5gewinnt.model.*;
@@ -17,10 +14,12 @@ public class ModelController {
 	private Set set;																																																																																																																																																																																																																																																																				
 	private ArrayList<Set> sets;
 	private ArrayList<Move> moves;
+	@SuppressWarnings("unused")
 	private AlgorithmManager AlgManager;
 	
 	private int column, row, color;
 	private int[] columnheight;
+	@SuppressWarnings("unused")
 	private Move[][] field = new Move[7][6];
 	
 	private final int YELLOW = 1;
@@ -44,7 +43,8 @@ public class ModelController {
 		
 		for (int i = 0;i<23;i++){
 			
-		   Move move = moves[i];
+		   @SuppressWarnings("unused")
+		Move move = moves[i];
 		   row = 0;
 		   
 		   do{
@@ -163,11 +163,13 @@ public class ModelController {
 	
 //	private void setSet(int index) {}
 	
+	@SuppressWarnings("unused")
 	private int addSet(Set set) {
 		this.sets.add(set);
 		return this.sets.size();
 	}
 	
+	@SuppressWarnings("unused")
 	private void addMove(){
 	}
 //	

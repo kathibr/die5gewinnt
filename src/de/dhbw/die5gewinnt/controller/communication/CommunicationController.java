@@ -1,6 +1,5 @@
 package de.dhbw.die5gewinnt.controller.communication;
 
-import de.dhbw.die5gewinnt.controller.Controller;
 
 public class CommunicationController {
 	

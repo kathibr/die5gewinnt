@@ -11,16 +11,17 @@ public class AlgorithmManager {
 	private MastermindAlgorithm mastermindAlgorithm;
 	private RandomAlgorithm randomAlgorithm;
 	private long milliSeconds; 
+	@SuppressWarnings("unused")
 	private Set set;
 	
-	public static void main(String[] args) {
-		getAlgorithmManager();
-		algorithmManager.getNextColumn(System.currentTimeMillis());
-	}
+//	public static void main(String[] args) {
+//		getAlgorithmManager();
+//		algorithmManager.getNextColumn(System.currentTimeMillis());
+//	}
 	
 	private AlgorithmManager() {
-		mastermindAlgorithm = new MastermindAlgorithm(set);
-		randomAlgorithm = new RandomAlgorithm();
+//		mastermindAlgorithm = new MastermindAlgorithm(set);
+//		randomAlgorithm = new RandomAlgorithm();
 	}
 	
 	/* GETTER-Methods */
