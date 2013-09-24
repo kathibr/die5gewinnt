@@ -10,7 +10,7 @@ public class Algorithm2 {
 	
 	public Algorithm2(de.dhbw.die5gewinnt.model.Set set) {
 		field = set.getField();
-		possibleCombinations = new de.dhbw.die5gewinnt.model.Move[57][4];
+		possibleCombinations = new de.dhbw.die5gewinnt.model.Move[69][4];
 	}
 	
 	public int random(){
@@ -28,6 +28,7 @@ public class Algorithm2 {
 				for(int y = start; y >= grenze; y--){
 					possibleCombinations[zeile][spalte] = field[x][y];
 					spalte++;
+					System.out.println(x+y);
 				}
 				grenze--;
 				start--;
