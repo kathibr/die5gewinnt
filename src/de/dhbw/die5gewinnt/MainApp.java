@@ -5,14 +5,17 @@ import java.io.IOException;
 import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.Controller;
+import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.view.OldGamesController;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class MainApp extends Application {
 
@@ -43,6 +46,12 @@ public class MainApp extends Application {
 		    rootLayoutController.setMainApp(this);
 
 		    controller = new Controller();
+		    
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			      public void handle(WindowEvent e){
+			    	  DBConnector.closeDBConnection();			       
+			      }
+			    });
 		    primaryStage.show();
 		    
 		  } catch (IOException e) {
