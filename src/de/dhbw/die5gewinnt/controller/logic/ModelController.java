@@ -25,7 +25,7 @@ public class ModelController {
 	private int[][] field = new int[6][7];
 	
 	
-	public int[][] startGame(String name, String player){
+	public void startGame(String name, String player){
 		System.out.println("Spiel "+ name + player);		
 		
 		AlgManager = AlgorithmManager.getAlgorithmManager();
@@ -60,13 +60,13 @@ public class ModelController {
 		   field[column][row] = color;
 		   System.out.println("Stein mit Spalte "+column+" und Zeile "+ row + " vom Spieler" + color);
 		   //Anzeige des Schrittes durch showMove 
-		   
+		   Controller.playingFieldController.showMove(column, row, color);
 		   columnheight[column]++;
 		   set.setColumnHeight(columnheight);
 		   
 			
 		}
-		return field;
+		
 		
 	}
 		

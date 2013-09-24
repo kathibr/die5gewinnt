@@ -17,6 +17,7 @@ public class MainApp extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	private Controller controller;
 		  
 	public MainApp() {}
 	
@@ -37,10 +38,12 @@ public class MainApp extends Application {
 		    primaryStage.setMinWidth(800);
 
 		    // Give the controller access to the main app
-		    RootLayoutController controller = loader.getController();
-		    controller.setMainApp(this);
+		    RootLayoutController rootLayoutController = loader.getController();
+		    rootLayoutController.setMainApp(this);
 
+		    controller = new Controller();
 		    primaryStage.show();
+		    
 		  } catch (IOException e) {
 		    // Exception gets thrown if the fxml file could not be loaded
 		    e.printStackTrace();
@@ -54,8 +57,9 @@ public class MainApp extends Application {
 			AnchorPane playingFieldPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(playingFieldPage);
 			
-			PlayingFieldController controller = loader.getController();
-			controller.setMainApp(this);
+			PlayingFieldController playingFieldController = loader.getController();
+			playingFieldController.setMainApp(this);
+			controller.setPlayingFieldController(playingFieldController);
 			
 			
 		} catch(IOException e) {
@@ -70,8 +74,8 @@ public class MainApp extends Application {
 			AnchorPane oldGamesPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(oldGamesPage);
 					
-			OldGamesController controller = loader.getController();
-			controller.setMainApp(this);
+			OldGamesController oldGamesController = loader.getController();
+			oldGamesController.setMainApp(this);
 			
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -92,14 +96,14 @@ public class MainApp extends Application {
 		    dialogStage.setScene(scene);
 
 		    
-		    GameNameDialogController controller = loader.getController();
-		    controller.setDialogStage(dialogStage);
+		    GameNameDialogController gameNameDialogController = loader.getController();
+		    gameNameDialogController.setDialogStage(dialogStage);
 		    //controller.setPerson(person);
 
 		    // Show the dialog and wait until the user closes it
 		    dialogStage.showAndWait();
 	    
-		    return controller.isOkClicked();
+		    return gameNameDialogController.isOkClicked();
 			
 		}catch(IOException e){
 			e.printStackTrace();
@@ -114,8 +118,6 @@ public class MainApp extends Application {
 	
 	
 	public static void main(String[] args) throws JDOMException, IOException, InterruptedException {	
-		Controller.getController();
-		//Controller unbedingt in einen eigenen Thread, damit Controller und Oberfläche parallel laufen!
 		launch(args);
 	  }
 }

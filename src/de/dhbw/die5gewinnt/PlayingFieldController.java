@@ -210,25 +210,25 @@ public class PlayingFieldController {
 		
 		ModelController modController = Controller.getModelController();
 		
-		int field[][] = modController.startGame(modController.getGame().getName(), modController.getGame().getPlayer());
+		modController.startGame(modController.getGame().getName(), modController.getGame().getPlayer());
 		
-		
-		int color = 1;
-		int column = 0;
-		int row = 0;
-		
-		for(column=0;column<7;column++)
-		{
-			
-			for(row=0;row<6;row++)
-			{
-				showMove(column, row, field[row][column]);
-				
-				
-			}
-			
-						
-		}
+//		
+//		int color = 1;
+//		int column = 0;
+//		int row = 0;
+//		
+//		for(column=0;column<7;column++)
+//		{
+//			
+//			for(row=0;row<6;row++)
+//			{
+//				showMove(column, row, field[row][column]);
+//				
+//				
+//			}
+//			
+//						
+//		}
 		
 	
 	}
