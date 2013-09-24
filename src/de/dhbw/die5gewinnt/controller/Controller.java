@@ -1,6 +1,6 @@
 package de.dhbw.die5gewinnt.controller;
 
-import de.dhbw.die5gewinnt.PlayingFieldController;
+import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
 import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;

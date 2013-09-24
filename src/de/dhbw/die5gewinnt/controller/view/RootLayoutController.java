@@ -1,5 +1,6 @@
-package de.dhbw.die5gewinnt;
+package de.dhbw.die5gewinnt.controller.view;
 
+import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import javafx.fxml.FXML;
 

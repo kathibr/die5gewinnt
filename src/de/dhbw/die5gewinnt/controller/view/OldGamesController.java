@@ -1,4 +1,4 @@
-package de.dhbw.die5gewinnt.view;
+package de.dhbw.die5gewinnt.controller.view;
 
 import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;

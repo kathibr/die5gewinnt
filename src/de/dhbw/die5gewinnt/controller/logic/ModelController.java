@@ -3,7 +3,7 @@ package de.dhbw.die5gewinnt.controller.logic;
 import java.util.ArrayList;
 
 import de.dhbw.die5gewinnt.MainApp;
-import de.dhbw.die5gewinnt.PlayingFieldController;
+import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.controller.db.DBUpdates;

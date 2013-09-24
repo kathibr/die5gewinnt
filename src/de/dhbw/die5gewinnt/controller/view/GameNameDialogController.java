@@ -1,4 +1,4 @@
-package de.dhbw.die5gewinnt;
+package de.dhbw.die5gewinnt.controller.view;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;

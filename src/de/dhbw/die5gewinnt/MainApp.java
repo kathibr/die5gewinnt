@@ -6,7 +6,10 @@ import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
-import de.dhbw.die5gewinnt.view.OldGamesController;
+import de.dhbw.die5gewinnt.controller.view.GameNameDialogController;
+import de.dhbw.die5gewinnt.controller.view.OldGamesController;
+import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
+import de.dhbw.die5gewinnt.controller.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

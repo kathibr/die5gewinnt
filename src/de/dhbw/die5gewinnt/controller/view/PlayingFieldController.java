@@ -1,5 +1,6 @@
-package de.dhbw.die5gewinnt;
+package de.dhbw.die5gewinnt.controller.view;
 
+import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
