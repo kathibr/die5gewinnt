@@ -40,7 +40,7 @@ public class ModelController {
 		set = newSet();
 		Move[] moves = set.getMoves();
 		
-		for (int i = 0;i<42;i++){
+		for (int i = 0;i<23;i++){
 			
 		   Move move = moves[i];
 		   row = 0;
