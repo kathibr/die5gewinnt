@@ -27,7 +27,7 @@ public class ModelController {
 	
 	
 	public void startGame(String name, String player){
-		System.out.println("Spiel "+ name + player);		
+//		System.out.println("Spiel "+ name + player);		
 		
 		AlgManager = AlgorithmManager.getAlgorithmManager();
 		

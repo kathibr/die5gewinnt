@@ -8,24 +8,21 @@ import de.dhbw.die5gewinnt.controller.logic.ModelController;
 
 public class Controller {
 
+	private static Controller controller;
 	private static ModelController modelController;
 	private static CommunicationController communicationController;
 	public static PlayingFieldController playingFieldController;
 	
-	public Controller() {
+	private Controller() {
 		DBConnector.closeDBConnection();
 		DBSelects.initAutoIncrementKeys();
 	}
 	
-	//public static Controller getController() {
-	//	if(controller == null)
-	//		controller = new Controller();	
-	//	return controller;
-		
-	//	playingfieldcontroller.showMove(column, row, color);
-	//}
-		
-
+	public static Controller getController() {
+		if(controller == null)
+			controller = new Controller();	
+		return controller;
+	}
 	
 	/* ModelController */
 	public static ModelController getModelController() {

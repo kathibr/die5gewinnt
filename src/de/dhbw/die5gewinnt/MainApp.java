@@ -48,20 +48,19 @@ public class MainApp extends Application {
 		    RootLayoutController rootLayoutController = loader.getController();
 		    rootLayoutController.setMainApp(this);
 
-		    controller = new Controller();
+		    controller = Controller.getController();
 		    
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			      public void handle(WindowEvent e){
 			    	  DBConnector.closeDBConnection();			       
 			      }
-			    });
+			});
 		    primaryStage.show();
 		    
 		  } catch (IOException e) {
 		    // Exception gets thrown if the fxml file could not be loaded
 		    e.printStackTrace();
 		  }
-
 	}
 	
 	public void showPlayingField() {
@@ -72,13 +71,10 @@ public class MainApp extends Application {
 			
 			PlayingFieldController playingFieldController = loader.getController();
 			playingFieldController.setMainApp(this);
-			controller.setPlayingFieldController(playingFieldController);
-			
-			
+			controller.setPlayingFieldController(playingFieldController);	
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void showOldGames() {
@@ -88,16 +84,14 @@ public class MainApp extends Application {
 			rootLayout.setCenter(oldGamesPage);
 					
 			OldGamesController oldGamesController = loader.getController();
-			oldGamesController.setMainApp(this);
-			
+			oldGamesController.setMainApp(this);		
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public boolean showGameNameDialog(){
-		try{
-			
+	public boolean showGameNameDialog() {
+		try {	
 			// Load the fxml file and create a new stage for the popup
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/GameNameDialog.fxml"));
 		    AnchorPane page = (AnchorPane) loader.load();
@@ -116,9 +110,8 @@ public class MainApp extends Application {
 		    // Show the dialog and wait until the user closes it
 		    dialogStage.showAndWait();
 	    
-		    return gameNameDialogController.isOkClicked();
-			
-		}catch(IOException e){
+		    return gameNameDialogController.isOkClicked();	
+		} catch(IOException e) {
 			e.printStackTrace();
 		    return false;
 			
@@ -128,7 +121,6 @@ public class MainApp extends Application {
 	public Stage getPrimaryStage() {
 	      return primaryStage;
 	}
-	
 	
 	public static void main(String[] args) throws JDOMException, IOException, InterruptedException {	
 		launch(args);

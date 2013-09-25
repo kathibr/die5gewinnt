@@ -117,10 +117,10 @@ public class PlayingFieldController {
 	@FXML
 	private void initialize() {
 		gameNameLabel.setText(Controller.getModelController().getGame().getName());
-		System.out.println("Spielname: "+Controller.getModelController().getGame().getName());
-		System.out.println("Spieler: "+Controller.getModelController().getGame().getPlayer());
-		System.out.println("Serverfile: "+Controller.getCommunicationController().getServerFilePath());
-		System.out.println("Agentfile: "+Controller.getCommunicationController().getAgentFilePath());
+//		System.out.println("Spielname: "+Controller.getModelController().getGame().getName());
+//		System.out.println("Spieler: "+Controller.getModelController().getGame().getPlayer());
+//		System.out.println("Serverfile: "+Controller.getCommunicationController().getServerFilePath());
+//		System.out.println("Agentfile: "+Controller.getCommunicationController().getAgentFilePath());
 
 		circleArray = new Circle[20][20];
 		circleArray[0][0]= circle00;
