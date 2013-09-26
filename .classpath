@@ -2,9 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="lib/jdom-2.0.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX SDK"/>
 	<classpathentry kind="lib" path="lib/jfxrt.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDOM 2.0.5"/>
+	<classpathentry kind="lib" path="lib/jdom-2.0.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/HSQLDB 2.3.0"/>
+	<classpathentry kind="lib" path="lib/hsqldb-2.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

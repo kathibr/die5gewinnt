@@ -16,9 +16,10 @@ import de.dhbw.die5gewinnt.model.Set;
 public class ModelController {
 	
 	private Game game;
-	private Set set;																																																																																																																																																																																																																																																																				
-	private ArrayList<Set> sets;
-	private ArrayList<Move> moves;
+	private Set set;		
+	private Move move;
+	private Set[] sets;
+	private Move[] moves;
 	@SuppressWarnings("unused")
 	private AlgorithmManager AlgManager;
 	
@@ -49,9 +50,16 @@ public class ModelController {
 	}
 	
 	public void startSet(){
+
 		
 		System.out.println("modelcontroller");
 		//Move[] moves = getSet(setId).getMoves();
+
+
+				
+		sets = getGame().getSets();
+		sets[setId] = newSet();
+		set = newSet();
 
 		
 		if (game.getPlayer()=="X"){
@@ -64,6 +72,7 @@ public class ModelController {
 			opponentPlayer = "X";
 		}
 		
+
 		ServerFile sf1 = new ServerFile();
 		Thread thread = new Thread(new XMLReader(sf1));
 		thread.start();
@@ -71,51 +80,52 @@ public class ModelController {
 		System.out.println(sf1.getOpponentMove());
 		//serverFile = sf1;		
 		//System.out.println(serverFile.getOpponentMove() + "nic");
+
+
 		
 		for(int i = 0; i<42; i++){
 
 
-//
-//			if (serverFile.getOpponentMove() != -1)
-//			{
-//				column = serverFile.getOpponentMove();
-//				columnheight = set.getColumnHeight();
-//				row = columnheight[column];
-//				
-//				columnheight[column]++;
-//				set.setColumnHeight(columnheight);
-//
-//				color = YELLOW;
-//				moves[i] = new Move(row, column, opponentPlayer);
-//				Controller.playingFieldController.showMove(column, row, color);
-//				i++;
-//			}
-//
-//			
-//		
-//			//eigenen Zug erstellen
-//			row = 0;
-//			do{
-//				//column = AlgManager.getNextColumn(100);
-//				column = (int) (Math.random() * 7);
-//				columnheight = set.getColumnHeight();
-//				row = columnheight[column];
-//			   
-//			   
-//			}while(row==6);
-//
-//			columnheight[column]++;
-//			set.setColumnHeight(columnheight);
-//			
-//			color = RED;
-//			moves[i] = new Move(row, column, ownPlayer);
-//			Controller.playingFieldController.showMove(column, row, color);
-//			i++;
-//			
-//			
-//		   
-//		   //System.out.println("Stein mit Spalte "+column+" und Zeile "+ row + " vom Spieler" + color);
+
+
+			if (serverFile.getOpponentMove() != -1)
+			{
+				column = serverFile.getOpponentMove();
+				columnheight = set.getColumnHeight();
+				row = columnheight[column];
+				
+				columnheight[column]++;
+				set.setColumnHeight(columnheight);
+
+				color = YELLOW;
+				move = new Move(row, column, opponentPlayer);
+				moves[i] = move;
+				Controller.playingFieldController.showMove(column, row, color);
+				i++;
+			}
+			
+		
+			//eigenen Zug erstellen
+			row = 0;
+			do{
+				//column = AlgManager.getNextColumn(100);
+				column = (int) (Math.random() * 7);
+				columnheight = set.getColumnHeight();
+				row = columnheight[column];
+			   
+			   
+			}while(row==6);
+
+			columnheight[column]++;
+			set.setColumnHeight(columnheight);
+			
+			color = RED;
+			move = new Move(row, column, ownPlayer);
+			moves[i]=move;
+			Controller.playingFieldController.showMove(column, row, color);
+			i++;	
 		   
+
 		   
 		}
 		
@@ -157,6 +167,7 @@ public class ModelController {
 		*/
 	}
 	
+	
 //	public Move newMove() {
 //		if(this.moves.size() == 42) {
 //			System.err.println("--- There are already 42 moves!");
@@ -166,7 +177,7 @@ public class ModelController {
 //			return this.getMove(newIndex);
 //		}
 //	}
-	
+	/*
 	public void deleteCurrentGame() {
 		if(this.game != null)
 			DBUpdates.updateGame(this.game);
@@ -182,6 +193,7 @@ public class ModelController {
 			this.moves.remove(i);
 		}
 	}
+	*/
 	
 	/* GETTER-Methods */
 	public Game getGame() {
@@ -189,18 +201,18 @@ public class ModelController {
 	}
 	
 	public Set getSet(int index) {
-		return this.sets.get(index);
+		return this.sets[index];
 	}
 	
-	public ArrayList<Set> getSets() {
+	public Set[] getSets() {
 		return this.sets;
 	}
 	
 	public Move getMove(int index) {
-		return this.moves.get(index);
+		return moves[index];
 	}
 	
-	public ArrayList<Move> getMoves() {
+	public Move[] getMoves() {
 		return this.moves;
 	}
 	
@@ -210,7 +222,7 @@ public class ModelController {
 	}
 	
 //	private void setSet(int index) {}
-	
+	/*
 	@SuppressWarnings("unused")
 	private int addSet(Set set) {
 		this.sets.add(set);
@@ -220,6 +232,7 @@ public class ModelController {
 	@SuppressWarnings("unused")
 	private void addMove(){
 	}
+	*/
 //	
 //	private void setMove(int index) {}
 //	
