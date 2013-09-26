@@ -47,6 +47,8 @@ public class ModelController {
 	}
 	
 	public void startSet(){
+		
+		System.out.println("modelcontroller");
 		Move[] moves = getSet(setId).getMoves();
 
 		
@@ -65,9 +67,10 @@ public class ModelController {
 		for(int i = 0; i<42; i++){
 
 			//get Gegnerzug
+			serverFile = xmlReader.getServerFile();
 
-			if (serverFile.getOpponentMove() != -1 && serverFile.getApproval() == false && serverFile.getSetStatus() == "Satz spielen" && serverFile.getWinner() == "offen"){
-				serverFile= xmlReader.getServerFile();
+			if (serverFile.getOpponentMove() != -1)
+			{
 				column = serverFile.getOpponentMove();
 				columnheight = set.getColumnHeight();
 				row = columnheight[column];
