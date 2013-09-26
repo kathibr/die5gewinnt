@@ -1,6 +1,7 @@
 package de.dhbw.die5gewinnt.controller.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import de.dhbw.die5gewinnt.MainApp;
@@ -24,6 +25,15 @@ public class PlayingFieldController {
 	@FXML 
 	private Label gameNameLabel;
 
+	@FXML
+	private Button btStartSet;
+	@FXML
+	private Button btNextSet;
+	@FXML
+	private Button btEndSet;
+	@FXML
+	private Button btEndGame;
+	
 	@FXML
 	private Circle circle05;
 	@FXML
@@ -123,6 +133,9 @@ public class PlayingFieldController {
 
 	@FXML
 	private void initialize() {
+		btNextSet.setDisable(true);
+		btEndSet.setDisable(true);
+		
 		modelController = Controller.getModelController();
 		gameNameLabel.setText(Controller.getModelController().getGame().getName());
 //		System.out.println("Spielname: "+Controller.getModelController().getGame().getName());
@@ -209,11 +222,11 @@ public class PlayingFieldController {
 
 	}
 
-	@FXML
-	private void handleClickMe(){
+	//@FXML
+	//private void handleClickMe(){
 
 
-		modelController.startGame(modelController.getGame().getName(), modelController.getGame().getPlayer());
+	//	modelController.startGame(modelController.getGame().getName(), modelController.getGame().getPlayer());
 
 		//		
 		//		int color = 1;
@@ -234,7 +247,7 @@ public class PlayingFieldController {
 		//		}
 
 
-	}
+	//}
 	
 	@FXML
 	private void handleStartSet(){
