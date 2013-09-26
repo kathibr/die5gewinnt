@@ -2,7 +2,6 @@ package de.dhbw.die5gewinnt.controller.view;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
