@@ -2,7 +2,7 @@ package de.dhbw.die5gewinnt.controller.view;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Dialogs;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -15,6 +15,8 @@ public class GameNameDialogController {
 	private RadioButton playerX, playerO;
 	private Stage dialogStage;
 	private boolean okClicked = false;
+	@FXML
+	private Label errorMessageLabel;
 
 	private final String PLAYER_X ="X";
 	private final String PLAYER_O = "O";
@@ -74,7 +76,8 @@ public class GameNameDialogController {
 		if(errorMessage.length() == 0)
 			return true;
 		else {
-			Dialogs.showErrorDialog(dialogStage, errorMessage, CORRECT_INVALID_FIELDS, INVALID_FIELD);
+			errorMessageLabel.setText(errorMessage);
+			//Dialogs.showErrorDialog(dialogStage, errorMessage, CORRECT_INVALID_FIELDS, INVALID_FIELD);
 			return false;
 		}      
 	}

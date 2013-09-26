@@ -22,12 +22,17 @@ public class AlgorithmTest {
 		field[4][2] = new Move(2, 4, "O");
 		field[3][3] = new Move(3, 3, "O");
 		field[4][3] = new Move(3, 4, "O");
+		
+		Move[][] field2 = new Move[7][6];
+		field2[1][0] = new Move(0, 1, "X");
+		field2[2][0] = new Move(0, 2, "X");
+
 //		for(int i = 0; i < 7; i++) {
 //			for(int j = 0; j < 6; j++)
 //				field[i][j] = new Move();
 //		}
 		Set set = new Set();
-		set.setField(field);
+		set.setField(field2);
 		MastermindAlgorithm algorithm = new MastermindAlgorithm(set);
 
 	}

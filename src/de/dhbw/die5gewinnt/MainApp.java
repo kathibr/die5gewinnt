@@ -13,7 +13,10 @@ import de.dhbw.die5gewinnt.controller.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -26,7 +29,8 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private Controller controller;
-		  
+private ImageView imageV;
+	
 	public MainApp() {}
 	
 	@Override
@@ -40,11 +44,15 @@ public class MainApp extends Application {
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/RootLayout.fxml"));
 		    rootLayout = (BorderPane) loader.load();
 		    Scene scene = new Scene(rootLayout);
+		    imageV = (ImageView) rootLayout.getCenter();
 		    
 		    primaryStage.setScene(scene);
-		    primaryStage.setMinHeight(700);
-		    primaryStage.setMinWidth(800);
-		 //   primaryStage.initStyle(StageStyle.UNDECORATED);
+		    primaryStage.setMinHeight(587);
+		    primaryStage.setMinWidth(820);
+		    primaryStage.setMaxHeight(667);
+		    primaryStage.setMaxWidth(900);
+		    
+		 // primaryStage.initStyle(StageStyle.UNDECORATED);
 
 		    // Give the controller access to the main app
 		    RootLayoutController rootLayoutController = loader.getController();
@@ -69,8 +77,7 @@ public class MainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/PlayingField.fxml"));
 			AnchorPane playingFieldPage = (AnchorPane) loader.load();
-			rootLayout.setCenter(playingFieldPage);
-			
+			rootLayout.setCenter(playingFieldPage);			
 			
 			PlayingFieldController playingFieldController = loader.getController();
 			playingFieldController.setMainApp(this);
@@ -121,7 +128,12 @@ public class MainApp extends Application {
 		}
 	}
 	public void returnToStart(){
-		rootLayout.setCenter(null);
+		//Image image = new Image("@../../img/die5gewinntwhite.png");
+		
+		//ImageView imageView = new ImageView();
+		//imageView.setImage(image);
+		rootLayout.setCenter(imageV);
+		
 	}
 	
 	public Stage getPrimaryStage() {
