@@ -202,7 +202,7 @@ public class PlayingFieldController {
 	}
 
 	@FXML
-	public void handleClickMe(){
+	private void handleClickMe(){
 
 		ModelController modController = Controller.getModelController();
 
@@ -228,10 +228,29 @@ public class PlayingFieldController {
 
 
 	}
-
+	
+	@FXML
+	private void handleStartSet(){
+		System.out.println("start set");
+	}
+	@FXML
+	private void handleNextSet(){
+		System.out.println("next set");
+	}
+	@FXML
+	private void handleEndSet(){
+		System.out.println("end set");
+	}
+	@FXML
+	private void handleEndGame(){
+		System.out.println("end game");
+	}
+	
 	@FXML
 	public void circleAction(){
 
 	}
+	
+	
 
 }
