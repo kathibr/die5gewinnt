@@ -5,11 +5,13 @@ import java.io.IOException;
 import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.Controller;
+import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.view.GameNameDialogController;
 import de.dhbw.die5gewinnt.controller.view.OldGamesController;
 import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
 import de.dhbw.die5gewinnt.controller.view.RootLayoutController;
+import de.dhbw.die5gewinnt.model.ServerFile;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +31,7 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private Controller controller;
-private ImageView imageV;
-	
+	private ImageView imageV;
 	public MainApp() {}
 	
 	@Override
@@ -40,6 +41,11 @@ private ImageView imageV;
 		this.primaryStage.setTitle("die5gewinnt");
 		
 		  try {
+			
+			controller = new Controller();
+			Thread controllerThread = new Thread(controller);
+			controllerThread.start();
+			  
 		    // Load the root layout from the fxml file
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/RootLayout.fxml"));
 		    rootLayout = (BorderPane) loader.load();
@@ -57,8 +63,6 @@ private ImageView imageV;
 		    // Give the controller access to the main app
 		    RootLayoutController rootLayoutController = loader.getController();
 		    rootLayoutController.setMainApp(this);
-
-		    controller = Controller.getController();
 		    
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			      public void handle(WindowEvent e){

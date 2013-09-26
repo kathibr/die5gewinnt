@@ -1,21 +1,24 @@
 package de.dhbw.die5gewinnt.controller.communication;
 
+import de.dhbw.die5gewinnt.model.ServerFile;
+
 
 public class CommunicationController {
 	
-	private String path, serverFile, agentFile, serverFilePath, agentFilePath;
+	private String path, serverFileName, agentFile, serverFilePath, agentFilePath;
+	private static ServerFile serverFile;
 	
 	
 	public CommunicationController() {
 		setPath("");
-		setServerFile("");
-		setAgentFile("");
+		setServerFileName("");
+		setAgentFileName("");
 	}
 	
 	public CommunicationController(String path, String serverFile, String agentFile) {
 		setPath(path);
-		setServerFile(serverFile);
-		setAgentFile(agentFile);
+		setServerFileName(serverFile);
+		setAgentFileName(agentFile);
 	}
 	
 	/* GETTER-Methods */
@@ -23,11 +26,11 @@ public class CommunicationController {
 		return this.path;
 	}
 	
-	private String getServerFile() {
-		return this.serverFile;
+	private String getServerFileName() {
+		return this.serverFileName;
 	}
 
-	private String getAgentFile() {
+	private String getAgentFileName() {
 		return this.agentFile;
 	}
 	
@@ -42,20 +45,20 @@ public class CommunicationController {
 	/* SETTER-Methods */
 	public void setPath(String path) {
 		this.path = path;
-		if(this.getServerFile() != null && this.getAgentFile() != null) {
+		if(this.getServerFileName() != null && this.getAgentFileName() != null) {
 			this.setServerFilePath();
 			this.setAgentFilePath();
 		}
 	}
 
-	public void setServerFile(String serverFile) {
-		this.serverFile = serverFile;
+	public void setServerFileName(String serverFileName) {
+		this.serverFileName = serverFileName;
 		if(this.getPath() != null) {
 			this.setServerFilePath();
 		}
 	}
 	
-	public void setAgentFile(String agentFile) {
+	public void setAgentFileName(String agentFile) {
 		this.agentFile = agentFile;
 		if(this.getPath() != null) {
 			this.setAgentFilePath();
@@ -63,16 +66,24 @@ public class CommunicationController {
 	}
 
 	private void setServerFilePath() {
-		if(this.getServerFile().equals(""))
+		if(this.getServerFileName().equals(""))
 			System.err.println("--- There is no serverfile information!");
 		else
-			this.serverFilePath = this.getPath().concat(this.getServerFile());
+			this.serverFilePath = this.getPath().concat(this.getServerFileName());
 	}
 	
 	private void setAgentFilePath() {
-		if(this.getAgentFile().equals(""))
+		if(this.getAgentFileName().equals(""))
 			System.err.println("--- There is no agentfile information!");
 		else
-			this.agentFilePath = this.getPath().concat(this.getAgentFile());
+			this.agentFilePath = this.getPath().concat(this.getAgentFileName());
+	}
+
+	public static ServerFile getServerFile() {
+		return serverFile;
+	}
+
+	public static void setServerFile(ServerFile serverfile) {
+		serverFile = serverfile;
 	}
 }

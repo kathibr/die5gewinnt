@@ -6,21 +6,26 @@ import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
 
-public class Controller {
+public class Controller implements Runnable {
 
-	private static Controller controller;
+	private Controller controller;
 	private static ModelController modelController;
 	private static CommunicationController communicationController;
 	public static PlayingFieldController playingFieldController;
 	
-	private Controller() {
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Controller() {
 		DBConnector.closeDBConnection();
 		DBSelects.initAutoIncrementKeys();
 	}
 	
-	public static Controller getController() {
-		if(controller == null)
-			controller = new Controller();	
+	public Controller getController() {
+		this.controller = this;
 		return controller;
 	}
 	
@@ -48,7 +53,7 @@ public class Controller {
 	}
 
 	public void setPlayingFieldController(PlayingFieldController playingFieldController) {
-		Controller.playingFieldController = playingFieldController;
+		this.playingFieldController = playingFieldController;
 	}
 	
 }

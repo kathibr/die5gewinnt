@@ -252,7 +252,7 @@ public class PlayingFieldController {
 	@FXML
 	private void handleStartSet(){
 		
-		//modelController.startSet();
+		modelController.startSet();
 
 
 	}

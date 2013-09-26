@@ -11,17 +11,23 @@ import org.jdom2.input.SAXBuilder;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.model.ServerFile;
 
-public class XMLReader {
+public class XMLReader implements Runnable {
+	private ServerFile serverFile = null;
+	
+	public XMLReader (ServerFile sf1)
+	{
+		this.serverFile = sf1;
+	}
+	
 
-	public static ServerFile getServerFile() {
+
+	@Override
+	public void run() {
+		System.out.println("ThreadStart");
 		File file = null;
 		SAXBuilder saxBuilder = new SAXBuilder();
 		Document document = null;
 		Element root = null;
-		ServerFile serverFile = null;
-		
-		System.out.println(Controller.getCommunicationController().getServerFilePath());
-		System.out.println("test");
 		
 		file = new File(Controller.getCommunicationController().getServerFilePath());
 		while(true) {
@@ -39,9 +45,17 @@ public class XMLReader {
 			e.printStackTrace();
 		}
 		root = document.getRootElement();
-		serverFile = new ServerFile(root.getChild("freigabe").getText(), root.getChild("satzstatus").getText(), Integer.parseInt(root.getChild("gegnerzug").getText()), root.getChild("sieger").getText());
+		
+		serverFile.setApproval(root.getChild("freigabe").getText());
+		serverFile.setOpponentMove(Integer.parseInt(root.getChild("gegnerzug").getText()));
+		serverFile.setSetStatus(root.getChild("satzstatus").getText());
+		serverFile.setWinner(root.getChild("sieger").getText());
+		
 		file.delete();
-		return serverFile;
+
+		System.out.println("test");
+		CommunicationController.setServerFile(serverFile);	
+		// TODO Auto-generated method stub	
 	}
 	
 }
