@@ -52,7 +52,7 @@ private ImageView imageV;
 		    primaryStage.setMaxHeight(667);
 		    primaryStage.setMaxWidth(900);
 		    
-		 //   primaryStage.initStyle(StageStyle.UNDECORATED);
+		 // primaryStage.initStyle(StageStyle.UNDECORATED);
 
 		    // Give the controller access to the main app
 		    RootLayoutController rootLayoutController = loader.getController();
