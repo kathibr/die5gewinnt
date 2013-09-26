@@ -7,29 +7,38 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="150.0" prefHeight="221.0" prefWidth="300.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.GameNameDialogController">
+<AnchorPane maxHeight="265.0" minHeight="265.0" prefHeight="265.0" prefWidth="315.9998779296875" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.GameNameDialogController">
   <!-- TODO Add Nodes -->
   <children>
-    <Label layoutX="5.0" layoutY="5.0" styleClass="label-header" text="Neues Spiel" />
-    <Group layoutX="5.0" layoutY="75.0">
-      <Label styleClass="label-bright" text="Name" />
-      <TextField fx:id="gameName" layoutX="55.0" prefWidth="235.0" promptText="" />
+    <Label layoutX="10.0" layoutY="14.0" styleClass="label-header" text="Neues Spiel" />
+    <Group layoutX="10.0" layoutY="75.0" scaleX="1.0" scaleY="1.0">
+      <Label layoutX="0.0" styleClass="label-bright" text="Name des Spiels" />
+      <TextField fx:id="gameName" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="" text="Spiel1" />
     </Group>
-    <Group id="Group" layoutX="5.0" layoutY="115.0">
-    <Label styleClass="label-bright" text="Spieler" />
+    <Group id="Group" layoutX="10.0" layoutY="109.0" scaleX="1.0" scaleY="1.0">
       <children>
-        <RadioButton fx:id="playerX" layoutX="55.0" mnemonicParsing="false" selected="true" styleClass="label-bright" text="Spieler 'X'">
+        <RadioButton fx:id="playerX" layoutX="95.0" mnemonicParsing="false" selected="true" styleClass="label-bright" text="Spieler 'X'">
           <toggleGroup>
             <ToggleGroup fx:id="playerToggleGroup" />
           </toggleGroup>
         </RadioButton>
-        <RadioButton fx:id="playerO" layoutX="155.0" mnemonicParsing="false" styleClass="label-bright" text="Spieler 'O'" toggleGroup="$playerToggleGroup" />
+        <RadioButton fx:id="playerO" layoutX="180.0" mnemonicParsing="false" styleClass="label-bright" text="Spieler 'O'" toggleGroup="$playerToggleGroup" />
       </children>
     </Group>
-    <Label layoutX="5.0" layoutY="146.0" prefWidth="35.0" text="Pfad" textFill="WHITE" />
-    <TextField fx:id="filePath" layoutX="60.0" layoutY="143.0" prefWidth="235.0" promptText="C:/Users/Christian/git/die5gewinnt" />
-    <Button layoutX="115.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
-    <Button layoutX="190.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />  
+    <Group id="Group" layoutX="10.0" layoutY="175.0">
+      <children>
+        <Label layoutX="0.0" layoutY="3.0" prefWidth="35.0" text="Pfad" textFill="WHITE" />
+        <TextField fx:id="filePath" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="C:/Users/Christian/git/die5gewinnt" />
+      </children>
+    </Group>
+    <Button layoutX="124.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+    <Button layoutX="199.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
+    <Group id="Group" layoutX="10.0" layoutY="138.0">
+      <children>
+        <TextField layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="" text="blutwurst1" />
+        <Label layoutX="0.0" layoutY="3.0" styleClass="label-bright" text="Gegner" />
+      </children>
+    </Group>
   </children>
   <stylesheets>
     <URL value="@style.css" />
