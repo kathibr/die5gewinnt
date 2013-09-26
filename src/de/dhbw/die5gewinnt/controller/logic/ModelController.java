@@ -30,31 +30,30 @@ public class ModelController {
 //		System.out.println("Spiel "+ name + player);		
 		
 		AlgManager = AlgorithmManager.getAlgorithmManager();
-		
 		   
 		//game = newGame(name,player);
 		//game.getSets();
 		//sets[0] = newSet();
 
-		   color =1;
+		color =1;
 		
 		set = newSet();
 		Move[] moves = set.getMoves();
 		
-		for (int i = 0;i<23;i++){
+		for (int i = 0;i<31;i++){
 			
 		   @SuppressWarnings("unused")
-		Move move = moves[i];
+		   Move move = moves[i];
 		   row = 0;
 		   
 		   do{
 			   //column = AlgManager.getNextColumn(100);
-			   column = (int) (Math.random() * 6);
+			   column = (int) (Math.random() * 7);
 			   columnheight = set.getColumnHeight();
 			   row = columnheight[column];
 			   
 			   
-		   }while(row==7);
+		   }while(row==6);
 		   
 		   //move = new Move(row, column, player);
 		   if (color == YELLOW) color = RED;
@@ -67,7 +66,6 @@ public class ModelController {
 		   
 		   columnheight[column]++;
 		   set.setColumnHeight(columnheight);
-		   
 			
 		}
 		
