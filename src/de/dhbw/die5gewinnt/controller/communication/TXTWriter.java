@@ -8,23 +8,16 @@ import de.dhbw.die5gewinnt.controller.Controller;
 
 public class TXTWriter {
 	
-	private Controller controller;
-	
-	public TXTWriter(Controller controller)
-	{
-		this.controller = controller;
-	}
-	
-	public void setAgentFile(int nextColumn) {
+	public static void setAgentFile(int nextColumn) {
 		File file = null;
 		FileWriter fileWriter = null;
 		
-		file = new File(controller.getCommunicationController().getAgentFilePath());
+		file = new File(Controller.getCommunicationController().getAgentFilePath());
 		if(file.exists())
 			file.delete();
 		
 		try {
-			fileWriter = new FileWriter(controller.getCommunicationController().getAgentFilePath());
+			fileWriter = new FileWriter(Controller.getCommunicationController().getAgentFilePath());
 			fileWriter.write(""+nextColumn);
 			fileWriter.close();
 		} catch (IOException e) {
@@ -32,8 +25,8 @@ public class TXTWriter {
 		}
 	}
 	
-	public void deleteAgentFile() {
-		File file = new File(controller.getCommunicationController().getAgentFilePath());
+	public static void deleteAgentFile() {
+		File file = new File(Controller.getCommunicationController().getAgentFilePath());
 		
 		if(file.exists())
 			file.delete();

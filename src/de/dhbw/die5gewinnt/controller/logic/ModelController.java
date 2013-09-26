@@ -15,8 +15,6 @@ import de.dhbw.die5gewinnt.model.Set;
 
 public class ModelController {
 	
-	private Controller controller;
-	
 	private Game game;
 	private Set set;		
 	private Move move;
@@ -38,11 +36,6 @@ public class ModelController {
 	
 	private final int YELLOW = 1;
 	private final int RED = 2;
-	
-	public ModelController(Controller controller)
-	{
-		this.controller = controller;
-	}
 	
 	
 	public void startGame(String name, String player){
@@ -81,7 +74,7 @@ public class ModelController {
 		
 
 		ServerFile sf1 = new ServerFile();
-		Thread thread = new Thread(new XMLReader(controller, sf1));
+		Thread thread = new Thread(new XMLReader(sf1));
 		thread.start();
 
 		System.out.println(sf1.getOpponentMove());

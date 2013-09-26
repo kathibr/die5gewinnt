@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class GameNameDialogController {
-	private Controller controller;
 
 	@FXML
 	private TextField gameName, filePath;
@@ -30,11 +29,6 @@ public class GameNameDialogController {
 	private final String CORRECT_INVALID_FIELDS ="Bitte unzulässige Felder korrigieren!";
 	private final String INVALID_FIELD="Unzulässiges Feld";
 
-	public GameNameDialogController(Controller controller)
-	{
-		this.controller = controller;
-	}
-	
 	@FXML
 	private void initialize() {}
 
@@ -53,7 +47,7 @@ public class GameNameDialogController {
 			String player = PLAYER_X;
 			if(playerO.isSelected())
 				player = PLAYER_O;
-			controller.getModelController().newGame(gameName.getText(), player);
+			Controller.getModelController().newGame(gameName.getText(), player);
 			// Create CommunicationCenter
 			String serverFile = SERVER_FILE_X;
 			String agentFile = AGENT_FILE_X;
@@ -61,7 +55,7 @@ public class GameNameDialogController {
 				serverFile = SERVER_FILE_O;
 				agentFile = AGENT_FILE_O;
 			}
-			controller.setCommunicationController(filePath.getText(), serverFile, agentFile);
+			Controller.setCommunicationController(filePath.getText(), serverFile, agentFile);
 			okClicked = true;
 			dialogStage.close();
 		}	
