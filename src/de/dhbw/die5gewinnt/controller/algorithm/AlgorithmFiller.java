@@ -109,7 +109,7 @@ public class AlgorithmFiller {
 		for(int i = 0; i < 69; i++){
 			Move[] row = new Move[4];
 			for(int y = 0; y < 4; y++){
-				row[y]=array[i][y];
+				row[y]=array[y][i];
 			}
 			combinations.add(i,row);
 		}

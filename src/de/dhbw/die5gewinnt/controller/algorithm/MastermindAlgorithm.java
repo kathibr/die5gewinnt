@@ -21,6 +21,7 @@ public class MastermindAlgorithm implements Runnable {
 	public MastermindAlgorithm(Set set){
 		AlgorithmFiller filler = new AlgorithmFiller(set);
 		possibleCombinations = filler.fillList();
+		analyzeField();
 	}
 	
 	/* ALGORITHM-Interface */
@@ -39,37 +40,43 @@ public class MastermindAlgorithm implements Runnable {
 	}
 	
 	public void analyzeField(){
-		int numberOfO = 0, numberOfX = 0;
 		boolean deleted;
 		for(int i = 0; i < possibleCombinations.size(); i++){
 			Move[] row = possibleCombinations.get(i);
 			deleted = false;
+			int numberOfO = 0, numberOfX = 0;
 			for(int x = 0; x < 4; x++){
 				if(!deleted){
-					if(row[x].getPlayer() == X){
-						if(numberOfO > 0){
-							possibleCombinations.remove(i);
-							deleted = true;
+					if(row[x] != null){
+						if(row[x].getPlayer() == X){
+							if(numberOfO > 0){
+								possibleCombinations.remove(i);
+								deleted = true;
+							}
+							else numberOfX++;
 						}
-						else numberOfX++;
-					}
-					else if(row[x].getPlayer() == O){
-						if(numberOfX > 0){
-							possibleCombinations.remove(i);
-							deleted = true;
+						else if(row[x].getPlayer() == O){
+							if(numberOfX > 0){
+								possibleCombinations.remove(i);
+								deleted = true;
+							}
+							else numberOfO++;
 						}
-						else numberOfO++;
 					}
 				}
 			}
+//			System.out.println(numberOfO+""+numberOfX);
 			storeCombinations(row, numberOfO, numberOfX);
 		}
 	}
 	
 	public void storeCombinations(Move[] row, int numberOfO,int numberOfX){
-		if(numberOfO == 3 || numberOfX == 3) threeInARow.add(row);
-		if(numberOfO == 2 || numberOfX == 2) twoInARow.add(row);
-		if(numberOfO == 1 || numberOfX == 1) oneInARow.add(row);
+		if(numberOfO == 3 || numberOfX == 3){ threeInARow.add(row);
+		System.out.println("Three in a row!");}
+		if(numberOfO == 2 || numberOfX == 2){ twoInARow.add(row);
+		System.out.println("Two in a row!");}
+		if(numberOfO == 1 || numberOfX == 1){ oneInARow.add(row);
+		System.out.println("One in a row!");}
 	}
 	
 	/* RUNNABLE-Interface */
