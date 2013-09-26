@@ -1,11 +1,10 @@
 package de.dhbw.die5gewinnt.controller.algorithm;
 
-public class RandomAlgorithm implements Algorithm, Runnable {
+public class RandomAlgorithm implements Runnable {
 
 	public int nextColumn = -1;
 	
 	/* ALGORITHM-Interface */
-	@Override
 	public void calcNextColumn() {
 		/*
 		try {
