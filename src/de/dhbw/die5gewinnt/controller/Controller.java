@@ -9,8 +9,8 @@ import de.dhbw.die5gewinnt.controller.logic.ModelController;
 public class Controller implements Runnable {
 
 	private Controller controller;
-	private static ModelController modelController;
-	private static CommunicationController communicationController;
+	private ModelController modelController;
+	private CommunicationController communicationController;
 	public static PlayingFieldController playingFieldController;
 	
 	@Override
@@ -22,34 +22,30 @@ public class Controller implements Runnable {
 	public Controller() {
 		DBConnector.closeDBConnection();
 		DBSelects.initAutoIncrementKeys();
+		this.modelController = new ModelController(controller);
+		this.communicationController = new CommunicationController();		
+		this.controller = this;
 	}
 	
 	public Controller getController() {
-		this.controller = this;
 		return controller;
 	}
 	
 	/* ModelController */
-	public static ModelController getModelController() {
+	public ModelController getModelController() {
 		//getController();
-		if(modelController == null)
-			modelController = new ModelController();
-		return modelController;
+		return this.modelController;
 	}
 	
 	
 	/* CommunicationController */
-	public static CommunicationController getCommunicationController() {
+	public CommunicationController getCommunicationController() {
 		//getController();
-		if(communicationController == null)
-			communicationController = new CommunicationController();
-		return communicationController;
+		return this.communicationController;
 	}
 	
-	public static void setCommunicationController(String path, String serverFile, String agentFile) {
-		//getController();
-		if(communicationController == null)
-			communicationController = new CommunicationController(path, serverFile, agentFile);
+	public void setCommunicationController(String path, String serverFile, String agentFile) {
+		this.communicationController = new CommunicationController(path, serverFile, agentFile);
 	}
 
 	public void setPlayingFieldController(PlayingFieldController playingFieldController) {

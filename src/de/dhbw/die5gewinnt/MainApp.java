@@ -31,6 +31,8 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private Controller controller;
+	private PlayingFieldController playingFieldController;
+	private GameNameDialogController gameNameDialogController;
 	private ImageView imageV;
 	public MainApp() {}
 	
@@ -82,8 +84,8 @@ public class MainApp extends Application {
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/PlayingField.fxml"));
 			AnchorPane playingFieldPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(playingFieldPage);			
-			
-			PlayingFieldController playingFieldController = loader.getController();
+			playingFieldController = new PlayingFieldController(controller);
+			playingFieldController = loader.getController();
 			playingFieldController.setMainApp(this);
 			controller.setPlayingFieldController(playingFieldController);	
 		} catch(IOException e) {
@@ -116,8 +118,8 @@ public class MainApp extends Application {
 		    Scene scene = new Scene(page);
 		    dialogStage.setScene(scene);
 
-		    
-		    GameNameDialogController gameNameDialogController = loader.getController();
+		    gameNameDialogController = new GameNameDialogController(controller);
+		    gameNameDialogController = loader.getController();
 		    gameNameDialogController.setDialogStage(dialogStage);
 		    //controller.setPerson(person);
 

@@ -13,9 +13,11 @@ import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class XMLReader implements Runnable {
 	private ServerFile serverFile = null;
+	private Controller controller;
 	
-	public XMLReader (ServerFile sf1)
+	public XMLReader (Controller controller, ServerFile sf1)
 	{
+		this.controller = controller;
 		this.serverFile = sf1;
 	}
 	
@@ -29,7 +31,7 @@ public class XMLReader implements Runnable {
 		Document document = null;
 		Element root = null;
 		
-		file = new File(Controller.getCommunicationController().getServerFilePath());
+		file = new File(controller.getCommunicationController().getServerFilePath());
 		while(true) {
 			if(file.exists()) 
 				break;
@@ -40,7 +42,7 @@ public class XMLReader implements Runnable {
 			}	
 		}	
 		try {		
-			document = saxBuilder.build(Controller.getCommunicationController().getServerFilePath());
+			document = saxBuilder.build(controller.getCommunicationController().getServerFilePath());
 		} catch (JDOMException | IOException e) {
 			e.printStackTrace();
 		}

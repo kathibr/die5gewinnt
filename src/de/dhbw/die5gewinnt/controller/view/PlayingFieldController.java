@@ -16,6 +16,7 @@ import de.dhbw.die5gewinnt.model.Set;
 public class PlayingFieldController {
 	
 	private ModelController modelController;
+	private Controller controller;
 
 	@SuppressWarnings("unused")
 	private MainApp mainApp;
@@ -126,9 +127,8 @@ public class PlayingFieldController {
 	private Circle circle60;
 
 
-	public PlayingFieldController() {
-
-
+	public PlayingFieldController(Controller controller) {
+		this.controller = controller;
 	}
 
 	@FXML
@@ -136,8 +136,8 @@ public class PlayingFieldController {
 		btNextSet.setDisable(true);
 		btEndSet.setDisable(true);
 		
-		modelController = Controller.getModelController();
-		gameNameLabel.setText(Controller.getModelController().getGame().getName());
+		modelController = controller.getModelController();
+		gameNameLabel.setText(controller.getModelController().getGame().getName());
 //		System.out.println("Spielname: "+Controller.getModelController().getGame().getName());
 //		System.out.println("Spieler: "+Controller.getModelController().getGame().getPlayer());
 //		System.out.println("Serverfile: "+Controller.getCommunicationController().getServerFilePath());
