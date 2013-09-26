@@ -29,6 +29,7 @@ public class RootLayoutController {
 	private void returnToStart(){
 		// System.out.println("Zum Start");
 	//	mainApp.getPrimaryStage().getScene();mainapp set root empty
-	}
+		mainApp.returnToStart();
+		}
 
 }

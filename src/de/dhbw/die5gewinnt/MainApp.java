@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class MainApp extends Application {
@@ -43,6 +44,7 @@ public class MainApp extends Application {
 		    primaryStage.setScene(scene);
 		    primaryStage.setMinHeight(700);
 		    primaryStage.setMinWidth(800);
+		 //   primaryStage.initStyle(StageStyle.UNDECORATED);
 
 		    // Give the controller access to the main app
 		    RootLayoutController rootLayoutController = loader.getController();
@@ -68,6 +70,7 @@ public class MainApp extends Application {
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/PlayingField.fxml"));
 			AnchorPane playingFieldPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(playingFieldPage);
+			
 			
 			PlayingFieldController playingFieldController = loader.getController();
 			playingFieldController.setMainApp(this);
@@ -116,6 +119,9 @@ public class MainApp extends Application {
 		    return false;
 			
 		}
+	}
+	public void returnToStart(){
+		rootLayout.setCenter(null);
 	}
 	
 	public Stage getPrimaryStage() {
