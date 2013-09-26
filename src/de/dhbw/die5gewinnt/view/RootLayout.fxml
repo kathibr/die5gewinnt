@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.*?>
 
-<BorderPane disable="false" focusTraversable="false" maxHeight="768.0" maxWidth="1024.0" minHeight="700.0" minWidth="800.0" prefHeight="700.0" prefWidth="800.0" snapToPixel="true" style="" styleClass="rootLayout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.RootLayoutController">
+<BorderPane disable="false" focusTraversable="false" maxHeight="667.0" maxWidth="900.0" minHeight="567.0" minWidth="820.0" prefHeight="617.0" prefWidth="800.0" snapToPixel="true" style="" styleClass="rootLayout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.RootLayoutController">
   <!-- TODO Add Nodes -->
   <center>
-    <ImageView fitHeight="34.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+    <ImageView fitHeight="145.0" fitWidth="634.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
       <image>
-        <Image url="@../../../../../img/11.png" />
+        <Image url="@../../../../../img/die5gewinntwhite.png" />
       </image>
     </ImageView>
   </center>
