@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="265.0" minHeight="265.0" prefHeight="265.0" prefWidth="315.9998779296875" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.GameNameDialogController">
+<AnchorPane maxHeight="277.9998779296875" minHeight="264.9998779296875" prefHeight="277.9998779296875" prefWidth="315.9998779296875" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.GameNameDialogController">
   <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="10.0" layoutY="14.0" styleClass="label-header" text="Neues Spiel" />
@@ -31,14 +31,15 @@
         <TextField fx:id="filePath" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="C:/Users/Christian/git/die5gewinnt" />
       </children>
     </Group>
-    <Button layoutX="124.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
-    <Button layoutX="199.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
+    <Button layoutX="124.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+    <Button layoutX="199.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
     <Group id="Group" layoutX="10.0" layoutY="138.0">
       <children>
         <TextField layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="" text="blutwurst1" />
         <Label layoutX="0.0" layoutY="3.0" styleClass="label-bright" text="Gegner" />
       </children>
     </Group>
+    <Label id="errorMessage" fx:id="errorMessageLabel" layoutX="10.0" layoutY="209.0" styleClass="label-bright" text="" />
   </children>
   <stylesheets>
     <URL value="@style.css" />
