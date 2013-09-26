@@ -35,10 +35,9 @@ public class ModelController {
 		//game.getSets();
 		//sets[0] = newSet();
 
-		color =1;
+		color = 1;
 		
-		set = newSet();
-		Move[] moves = set.getMoves();
+		Move[] moves = getSet(1).getMoves();
 		
 		for (int i = 0;i<31;i++){
 			
@@ -177,5 +176,7 @@ public class ModelController {
 //		this.moves.add(move);
 //		return this.sets.size();
 //	}
+	
+	
 	
 }
