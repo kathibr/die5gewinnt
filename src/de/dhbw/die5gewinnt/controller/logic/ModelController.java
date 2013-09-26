@@ -2,7 +2,10 @@ package de.dhbw.die5gewinnt.controller.logic;
 
 import java.util.ArrayList;
 
+import com.sun.webpane.platform.ContextMenu.ShowContext;
+
 import de.dhbw.die5gewinnt.controller.Controller;
+import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.controller.db.DBUpdates;
 import de.dhbw.die5gewinnt.model.*;
 import de.dhbw.die5gewinnt.controller.algorithm.*;
@@ -17,10 +20,16 @@ public class ModelController {
 	@SuppressWarnings("unused")
 	private AlgorithmManager AlgManager;
 	
+	private XMLReader xmlReader;
+	private ServerFile serverFile;
+	
+	private int setId = 0;
+	
 	private int column, row, color;
 	private int[] columnheight;
 	@SuppressWarnings("unused")
 	private Move[][] field = new Move[7][6];
+	private String ownPlayer, opponentPlayer;
 	
 	private final int YELLOW = 1;
 	private final int RED = 2;
@@ -30,42 +39,74 @@ public class ModelController {
 //		System.out.println("Spiel "+ name + player);		
 		
 		AlgManager = AlgorithmManager.getAlgorithmManager();
-		   
+		
+		
 		//game = newGame(name,player);
 		//game.getSets();
 		//sets[0] = newSet();
+	}
+	
+	public void startSet(){
+		Move[] moves = getSet(setId).getMoves();
 
-		color = 1;
 		
-		Move[] moves = getSet(1).getMoves();
+		if (game.getPlayer()=="X"){
+			ownPlayer = "X";
+			opponentPlayer = "O";
+		}
+		else
+		{
+			ownPlayer = "O";
+			opponentPlayer = "X";
+		}
 		
-		for (int i = 0;i<31;i++){
+		
+		
+		for(int i = 0; i<42; i++){
+
+			//get Gegnerzug
+
+			if (serverFile.getOpponentMove() != -1 && serverFile.getApproval() == false && serverFile.getSetStatus() == "Satz spielen" && serverFile.getWinner() == "offen"){
+				serverFile= xmlReader.getServerFile();
+				column = serverFile.getOpponentMove();
+				columnheight = set.getColumnHeight();
+				row = columnheight[column];
+				
+				columnheight[column]++;
+				set.setColumnHeight(columnheight);
+
+				color = YELLOW;
+				moves[i] = new Move(row, column, opponentPlayer);
+				Controller.playingFieldController.showMove(column, row, color);
+				i++;
+			}
+
 			
-		   @SuppressWarnings("unused")
-		   Move move = moves[i];
-		   row = 0;
-		   
-		   do{
-			   //column = AlgManager.getNextColumn(100);
-			   column = (int) (Math.random() * 7);
-			   columnheight = set.getColumnHeight();
-			   row = columnheight[column];
+		
+			//eigenen Zug erstellen
+			row = 0;
+			do{
+				//column = AlgManager.getNextColumn(100);
+				column = (int) (Math.random() * 7);
+				columnheight = set.getColumnHeight();
+				row = columnheight[column];
 			   
 			   
-		   }while(row==6);
-		   
-		   //move = new Move(row, column, player);
-		   if (color == YELLOW) color = RED;
-		   else if (color == RED) color = YELLOW;
+			}while(row==6);
+
+			columnheight[column]++;
+			set.setColumnHeight(columnheight);
+			
+			color = RED;
+			moves[i] = new Move(row, column, ownPlayer);
+			Controller.playingFieldController.showMove(column, row, color);
+			i++;
+			
+			
 		   
 		   //System.out.println("Stein mit Spalte "+column+" und Zeile "+ row + " vom Spieler" + color);
 		   
-		   //Anzeige des Schrittes durch playingFieldController
-		   Controller.playingFieldController.showMove(column, row, color);
 		   
-		   columnheight[column]++;
-		   set.setColumnHeight(columnheight);
-			
 		}
 		
 		
