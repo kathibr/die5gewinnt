@@ -13,7 +13,7 @@ public class MastermindAlgorithm implements Runnable {
 	
 	public MastermindAlgorithm(de.dhbw.die5gewinnt.model.Set set){
 		field = set.getField();
-		possibleCombinations = new Move[4][69];
+		possibleCombinations = new Move[5][69];
 		fillField();
 	}
 	
@@ -112,6 +112,11 @@ public class MastermindAlgorithm implements Runnable {
 				row++;
 			}
 		}
+	}
+	
+	public int calculateMove(Move move){
+		int random = (int) (Math.random() * 6);
+		return random;
 	}
 	
 	/* RUNNABLE-Interface */
