@@ -2,16 +2,14 @@ package de.dhbw.die5gewinnt.model;
 
 public class ServerFile {
 
-	private String approval, setStatus, opponentMove, winner;
+	private String approval, setStatus, winner;
+	private int opponentMove;
 	
 	public ServerFile() {
-		this.setApproval("");
-		this.setSetStatus("");
-		this.setOpponentMove("");
-		this.setWinner("");
+
 	}
 	
-	public ServerFile(String approval, String setStatus, String opponentMove, String winner) {
+	public ServerFile(String approval, String setStatus, int opponentMove, String winner) {
 		this.setApproval(approval);
 		this.setSetStatus(setStatus);
 		this.setOpponentMove(opponentMove);
@@ -31,7 +29,7 @@ public class ServerFile {
 	}
 	
 	public int getOpponentMove() {
-		return Integer.parseInt(this.opponentMove);
+		return this.opponentMove;
 	}
 	
 	public String getWinner() {
@@ -48,7 +46,7 @@ public class ServerFile {
 		this.setStatus = setStatus;
 	}
 	
-	public void setOpponentMove(String opponentMove) {
+	public void setOpponentMove(int opponentMove) {
 		this.opponentMove = opponentMove;
 	}
 	

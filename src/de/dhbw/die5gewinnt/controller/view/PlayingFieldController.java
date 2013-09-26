@@ -1,13 +1,20 @@
 package de.dhbw.die5gewinnt.controller.view;
 
-import de.dhbw.die5gewinnt.MainApp;
-import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.logic.ModelController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
+import de.dhbw.die5gewinnt.MainApp;
+import de.dhbw.die5gewinnt.controller.Controller;
+import de.dhbw.die5gewinnt.controller.algorithm.MastermindAlgorithm;
+import de.dhbw.die5gewinnt.controller.algorithm.RandomAlgorithm;
+import de.dhbw.die5gewinnt.controller.communication.XMLReader;
+import de.dhbw.die5gewinnt.controller.logic.ModelController;
+import de.dhbw.die5gewinnt.model.ServerFile;
+import de.dhbw.die5gewinnt.model.Set;
 
 public class PlayingFieldController {
+	
+	private ModelController modelController = Controller.getModelController();;
 
 	@SuppressWarnings("unused")
 	private MainApp mainApp;
@@ -203,10 +210,7 @@ public class PlayingFieldController {
 
 	@FXML
 	private void handleClickMe(){
-
-		ModelController modController = Controller.getModelController();
-
-		modController.startGame(modController.getGame().getName(), modController.getGame().getPlayer());
+		modelController.startGame(modelController.getGame().getName(), modelController.getGame().getPlayer());
 
 		//		
 		//		int color = 1;
@@ -231,7 +235,9 @@ public class PlayingFieldController {
 	
 	@FXML
 	private void handleStartSet(){
-		System.out.println("start set");
+		
+		modelController.startSet();
+
 	}
 	@FXML
 	private void handleNextSet(){

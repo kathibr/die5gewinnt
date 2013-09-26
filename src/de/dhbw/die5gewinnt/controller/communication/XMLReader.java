@@ -36,7 +36,7 @@ public class XMLReader {
 			e.printStackTrace();
 		}
 		root = document.getRootElement();
-		serverFile = new ServerFile(root.getChild("freigabe").getText(), root.getChild("satzstatus").getText(), root.getChild("gegnerzug").getText(), root.getChild("sieger").getText());
+		serverFile = new ServerFile(root.getChild("freigabe").getText(), root.getChild("satzstatus").getText(), Integer.parseInt(root.getChild("gegnerzug").getText()), root.getChild("sieger").getText());
 		file.delete();
 		return serverFile;
 	}
