@@ -14,9 +14,10 @@ import de.dhbw.die5gewinnt.controller.algorithm.*;
 public class ModelController {
 	
 	private Game game;
-	private Set set;																																																																																																																																																																																																																																																																				
-	private ArrayList<Set> sets;
-	private ArrayList<Move> moves;
+	private Set set;		
+	private Move move;
+	private Set[] sets;
+	private Move[] moves;
 	@SuppressWarnings("unused")
 	private AlgorithmManager AlgManager;
 	
@@ -47,10 +48,10 @@ public class ModelController {
 	}
 	
 	public void startSet(){
-		
-		System.out.println("modelcontroller");
-		Move[] moves = getSet(setId).getMoves();
-
+				
+		sets = getGame().getSets();
+		sets[setId] = newSet();
+		set = newSet();
 		
 		if (game.getPlayer()=="X"){
 			ownPlayer = "X";
@@ -63,11 +64,11 @@ public class ModelController {
 		}
 		
 		
-		
 		for(int i = 0; i<42; i++){
 
 			//get Gegnerzug
 			serverFile = xmlReader.getServerFile();
+
 
 			if (serverFile.getOpponentMove() != -1)
 			{
@@ -79,11 +80,11 @@ public class ModelController {
 				set.setColumnHeight(columnheight);
 
 				color = YELLOW;
-				moves[i] = new Move(row, column, opponentPlayer);
+				move = new Move(row, column, opponentPlayer);
+				moves[i] = move;
 				Controller.playingFieldController.showMove(column, row, color);
 				i++;
 			}
-
 			
 		
 			//eigenen Zug erstellen
@@ -101,14 +102,12 @@ public class ModelController {
 			set.setColumnHeight(columnheight);
 			
 			color = RED;
-			moves[i] = new Move(row, column, ownPlayer);
+			move = new Move(row, column, ownPlayer);
+			moves[i]=move;
 			Controller.playingFieldController.showMove(column, row, color);
-			i++;
-			
-			
+			i++;	
 		   
-		   //System.out.println("Stein mit Spalte "+column+" und Zeile "+ row + " vom Spieler" + color);
-		   
+		   //System.out.println("Stein mit Spalte "+column+" und Zeile "+ row + " vom Spieler" + color);   
 		   
 		}
 		
@@ -150,6 +149,7 @@ public class ModelController {
 		*/
 	}
 	
+	
 //	public Move newMove() {
 //		if(this.moves.size() == 42) {
 //			System.err.println("--- There are already 42 moves!");
@@ -159,7 +159,7 @@ public class ModelController {
 //			return this.getMove(newIndex);
 //		}
 //	}
-	
+	/*
 	public void deleteCurrentGame() {
 		if(this.game != null)
 			DBUpdates.updateGame(this.game);
@@ -175,6 +175,7 @@ public class ModelController {
 			this.moves.remove(i);
 		}
 	}
+	*/
 	
 	/* GETTER-Methods */
 	public Game getGame() {
@@ -182,18 +183,18 @@ public class ModelController {
 	}
 	
 	public Set getSet(int index) {
-		return this.sets.get(index);
+		return this.sets[index];
 	}
 	
-	public ArrayList<Set> getSets() {
+	public Set[] getSets() {
 		return this.sets;
 	}
 	
 	public Move getMove(int index) {
-		return this.moves.get(index);
+		return moves[index];
 	}
 	
-	public ArrayList<Move> getMoves() {
+	public Move[] getMoves() {
 		return this.moves;
 	}
 	
@@ -203,7 +204,7 @@ public class ModelController {
 	}
 	
 //	private void setSet(int index) {}
-	
+	/*
 	@SuppressWarnings("unused")
 	private int addSet(Set set) {
 		this.sets.add(set);
@@ -213,6 +214,7 @@ public class ModelController {
 	@SuppressWarnings("unused")
 	private void addMove(){
 	}
+	*/
 //	
 //	private void setMove(int index) {}
 //	
