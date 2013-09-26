@@ -14,7 +14,7 @@ import de.dhbw.die5gewinnt.model.Set;
 
 public class PlayingFieldController {
 	
-	private ModelController modelController = Controller.getModelController();;
+	private ModelController modelController;
 
 	@SuppressWarnings("unused")
 	private MainApp mainApp;
@@ -123,6 +123,7 @@ public class PlayingFieldController {
 
 	@FXML
 	private void initialize() {
+		modelController = Controller.getModelController();
 		gameNameLabel.setText(Controller.getModelController().getGame().getName());
 //		System.out.println("Spielname: "+Controller.getModelController().getGame().getName());
 //		System.out.println("Spieler: "+Controller.getModelController().getGame().getPlayer());
@@ -210,6 +211,8 @@ public class PlayingFieldController {
 
 	@FXML
 	private void handleClickMe(){
+
+
 		modelController.startGame(modelController.getGame().getName(), modelController.getGame().getPlayer());
 
 		//		
@@ -237,6 +240,7 @@ public class PlayingFieldController {
 	private void handleStartSet(){
 		
 		//modelController.startSet();
+
 
 	}
 	@FXML

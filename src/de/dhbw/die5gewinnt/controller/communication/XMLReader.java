@@ -20,6 +20,9 @@ public class XMLReader {
 		Element root = null;
 		ServerFile serverFile = null;
 		
+		System.out.println(Controller.getCommunicationController().getServerFilePath());
+		System.out.println("test");
+		
 		file = new File(Controller.getCommunicationController().getServerFilePath());
 		while(true) {
 			if(file.exists()) 
