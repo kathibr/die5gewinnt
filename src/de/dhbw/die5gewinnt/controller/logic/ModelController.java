@@ -57,78 +57,78 @@ public class ModelController {
 
 
 				
-		sets = getGame().getSets();
-		sets[setId] = newSet();
-		set = newSet();
-		moves = set.getMoves();
-
-		
-		if (game.getPlayer()=="X"){
-			ownPlayer = "X";
-			opponentPlayer = "O";
-		}
-		else
-		{
-			ownPlayer = "O";
-			opponentPlayer = "X";
-		}
-		
-
-		ServerFile sf1 = new ServerFile();
-		Thread thread = new Thread(new XMLReader(sf1));
-		thread.start();
-
-		System.out.println(sf1.getOpponentMove());
-		serverFile = sf1;		
-		System.out.println(serverFile.getOpponentMove() + "nic");
-
-
-		
-		for(int i = 0; i<42; i++){
-
-
-
-
-			if (serverFile.getOpponentMove() != -1)
-			{
-				column = serverFile.getOpponentMove();
-				columnheight = set.getColumnHeight();
-				row = columnheight[column];
-				
-				columnheight[column]++;
-				set.setColumnHeight(columnheight);
-
-				color = YELLOW;
-				move = new Move(row, column, opponentPlayer);
-				moves[i] = move;
-				Controller.playingFieldController.showMove(column, row, color);
-				i++;
-			}
-			
-		
-			//eigenen Zug erstellen
-			row = 0;
-			do{
-				//column = AlgManager.getNextColumn(100);
-				column = (int) (Math.random() * 7);
-				columnheight = set.getColumnHeight();
-				row = columnheight[column];
-			   
-			   
-			}while(row==6);
-
-			columnheight[column]++;
-			set.setColumnHeight(columnheight);
-			
-			color = RED;
-			move = new Move(row, column, ownPlayer);
-			moves[i]=move;
-			Controller.playingFieldController.showMove(column, row, color);
-			i++;	
-		   
-
-		   
-		}
+//		sets = getGame().getSets();
+//		sets[setId] = newSet();
+//		set = newSet();
+//		moves = set.getMoves();
+//
+//		
+//		if (game.getPlayer()=="X"){
+//			ownPlayer = "X";
+//			opponentPlayer = "O";
+//		}
+//		else
+//		{
+//			ownPlayer = "O";
+//			opponentPlayer = "X";
+//		}
+//		
+//
+//		ServerFile sf1 = new ServerFile();
+//		Thread thread = new Thread(new XMLReader(sf1));
+//		thread.start();
+//
+//		System.out.println(sf1.getOpponentMove());
+//		serverFile = sf1;		
+//		System.out.println(serverFile.getOpponentMove() + "nic");
+//
+//
+//		
+//		for(int i = 0; i<42; i++){
+//
+//
+//
+//
+//			if (serverFile.getOpponentMove() != -1)
+//			{
+//				column = serverFile.getOpponentMove();
+//				columnheight = set.getColumnHeight();
+//				row = columnheight[column];
+//				
+//				columnheight[column]++;
+//				set.setColumnHeight(columnheight);
+//
+//				color = YELLOW;
+//				move = new Move(row, column, opponentPlayer);
+//				moves[i] = move;
+//				Controller.playingFieldController.showMove(column, row, color);
+//				i++;
+//			}
+//			
+//		
+//			//eigenen Zug erstellen
+//			row = 0;
+//			do{
+//				//column = AlgManager.getNextColumn(100);
+//				column = (int) (Math.random() * 7);
+//				columnheight = set.getColumnHeight();
+//				row = columnheight[column];
+//			   
+//			   
+//			}while(row==6);
+//
+//			columnheight[column]++;
+//			set.setColumnHeight(columnheight);
+//			
+//			color = RED;
+//			move = new Move(row, column, ownPlayer);
+//			moves[i]=move;
+//			Controller.playingFieldController.showMove(column, row, color);
+//			i++;	
+//		   
+//
+//		   
+//		}
 		
 		
 	}
