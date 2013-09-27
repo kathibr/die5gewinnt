@@ -9,9 +9,9 @@ import de.dhbw.die5gewinnt.controller.logic.ModelController;
 public class Controller implements Runnable {
 
 	private static Controller controller;
-	private static ModelController modelController;
-	private static CommunicationController communicationController;
-	public static PlayingFieldController playingFieldController;
+	private ModelController modelController;
+	private CommunicationController communicationController;
+	public PlayingFieldController playingFieldController;
 	
 	@Override
 	public void run() {}
@@ -28,26 +28,24 @@ public class Controller implements Runnable {
 	}
 	
 	/* ModelController */
-	public static ModelController getModelController() {
-		//getController();
-		if(modelController == null)
-			modelController = new ModelController();
-		return modelController;
+	public ModelController getModelController() {
+		if(this.modelController == null)
+			this.modelController = new ModelController();
+		return this.modelController;
 	}
 	
 	
 	/* CommunicationController */
-	public static CommunicationController getCommunicationController() {
-		//getController();
-		if(communicationController == null)
-			communicationController = new CommunicationController();
-		return communicationController;
+	public CommunicationController getCommunicationController() {
+		if(this.communicationController == null)
+			this.communicationController = new CommunicationController();
+		return this.communicationController;
 	}
 	
-	public static void setCommunicationController(String path, String serverFile, String agentFile) {
-		//getController();
-		if(communicationController == null)
-			communicationController = new CommunicationController(path, serverFile, agentFile);
+	public CommunicationController setCommunicationController(String path, String serverFile, String agentFile) {
+		if(this.communicationController == null)
+			this.communicationController = new CommunicationController(path, serverFile, agentFile);
+		return this.communicationController;
 	}
 
 	public void setPlayingFieldController(PlayingFieldController playingFieldController) {

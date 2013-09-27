@@ -25,7 +25,7 @@ public class XMLWriter {
 		XMLOutputter xmlOutputter = new XMLOutputter();
 		xmlOutputter.setFormat(Format.getPrettyFormat());
 		try {
-			xmlOutputter.output(document, new FileWriter(Controller.getCommunicationController().getServerFilePath()));
+			xmlOutputter.output(document, new FileWriter(Controller.getController().getCommunicationController().getServerFilePath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		

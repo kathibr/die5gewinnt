@@ -12,12 +12,12 @@ public class TXTWriter {
 		File file = null;
 		FileWriter fileWriter = null;
 		
-		file = new File(Controller.getCommunicationController().getAgentFilePath());
+		file = new File(Controller.getController().getCommunicationController().getAgentFilePath());
 		if(file.exists())
 			file.delete();
 		
 		try {
-			fileWriter = new FileWriter(Controller.getCommunicationController().getAgentFilePath());
+			fileWriter = new FileWriter(Controller.getController().getCommunicationController().getAgentFilePath());
 			fileWriter.write(""+nextColumn);
 			fileWriter.close();
 		} catch (IOException e) {
@@ -26,7 +26,7 @@ public class TXTWriter {
 	}
 	
 	public static void deleteAgentFile() {
-		File file = new File(Controller.getCommunicationController().getAgentFilePath());
+		File file = new File(Controller.getController().getCommunicationController().getAgentFilePath());
 		
 		if(file.exists())
 			file.delete();

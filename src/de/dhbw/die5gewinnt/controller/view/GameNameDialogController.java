@@ -47,7 +47,7 @@ public class GameNameDialogController {
 			String player = PLAYER_X;
 			if(playerO.isSelected())
 				player = PLAYER_O;
-			Controller.getModelController().newGame(gameName.getText(), player);
+			Controller.getController().getModelController().newGame(gameName.getText(), player);
 			// Create CommunicationCenter
 			String serverFile = SERVER_FILE_X;
 			String agentFile = AGENT_FILE_X;
@@ -55,7 +55,7 @@ public class GameNameDialogController {
 				serverFile = SERVER_FILE_O;
 				agentFile = AGENT_FILE_O;
 			}
-			Controller.setCommunicationController(filePath.getText(), serverFile, agentFile);
+			Controller.getController().setCommunicationController(filePath.getText(), serverFile, agentFile);
 			okClicked = true;
 			dialogStage.close();
 		}	

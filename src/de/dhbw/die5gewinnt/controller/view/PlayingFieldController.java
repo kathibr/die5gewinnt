@@ -136,8 +136,8 @@ public class PlayingFieldController {
 		btNextSet.setDisable(true);
 		btEndSet.setDisable(true);
 		
-		modelController = Controller.getModelController();
-		gameNameLabel.setText(Controller.getModelController().getGame().getName());
+		modelController = Controller.getController().getModelController();
+		gameNameLabel.setText(modelController.getGame().getName());
 //		System.out.println("Spielname: "+Controller.getModelController().getGame().getName());
 //		System.out.println("Spieler: "+Controller.getModelController().getGame().getPlayer());
 //		System.out.println("Serverfile: "+Controller.getCommunicationController().getServerFilePath());

@@ -29,7 +29,7 @@ public class XMLReader implements Runnable {
 		Document document = null;
 		Element root = null;
 		
-		file = new File(Controller.getCommunicationController().getServerFilePath());
+		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
 		while(true) {
 			if(file.exists()) 
 				break;
@@ -40,7 +40,7 @@ public class XMLReader implements Runnable {
 			}	
 		}	
 		try {		
-			document = saxBuilder.build(Controller.getCommunicationController().getServerFilePath());
+			document = saxBuilder.build(Controller.getController().getCommunicationController().getServerFilePath());
 		} catch (JDOMException | IOException e) {
 			e.printStackTrace();
 		}
