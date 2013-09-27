@@ -8,24 +8,22 @@ import de.dhbw.die5gewinnt.controller.logic.ModelController;
 
 public class Controller implements Runnable {
 
-	private Controller controller;
+	private static Controller controller;
 	private static ModelController modelController;
 	private static CommunicationController communicationController;
 	public static PlayingFieldController playingFieldController;
 	
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void run() {}
 	
-	public Controller() {
+	private Controller() {
 		DBConnector.closeDBConnection();
 		DBSelects.initAutoIncrementKeys();
 	}
 	
-	public Controller getController() {
-		this.controller = this;
+	public static Controller getController() {
+		if(controller == null)
+			controller = new Controller();
 		return controller;
 	}
 	

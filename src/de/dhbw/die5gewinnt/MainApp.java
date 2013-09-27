@@ -32,6 +32,7 @@ public class MainApp extends Application {
 	private BorderPane rootLayout;
 	private Controller controller;
 	private ImageView imageV;
+	
 	public MainApp() {}
 	
 	@Override
@@ -42,7 +43,7 @@ public class MainApp extends Application {
 		
 		  try {
 			
-			controller = new Controller();
+			controller = Controller.getController();
 			Thread controllerThread = new Thread(controller);
 			controllerThread.start();
 			  
@@ -65,8 +66,10 @@ public class MainApp extends Application {
 		    rootLayoutController.setMainApp(this);
 		    
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			      public void handle(WindowEvent e){
-			    	  DBConnector.closeDBConnection();			       
+			    @SuppressWarnings("deprecation")
+				public void handle(WindowEvent e){
+			    	  DBConnector.closeDBConnection();
+			    	  new Thread(controller).stop();
 			      }
 			});
 		    primaryStage.show();
