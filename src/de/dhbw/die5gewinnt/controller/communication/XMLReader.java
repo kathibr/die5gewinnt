@@ -30,18 +30,23 @@ public class XMLReader implements Runnable {
 		Element root = null;
 		
 		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
+		System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
 		while(true) {
-			if(file.exists()) 
+			if(file.exists()) {
+				System.out.println("File exists");
 				break;
+			}
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				System.out.println("No File Found");
 			}	
 		}	
 		try {		
 			document = saxBuilder.build(Controller.getController().getCommunicationController().getServerFilePath());
 		} catch (JDOMException | IOException e) {
+			System.out.println("Communication to Controller couldn't be established");
 			e.printStackTrace();
 		}
 		root = document.getRootElement();

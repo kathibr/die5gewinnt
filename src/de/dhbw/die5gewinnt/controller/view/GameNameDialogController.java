@@ -28,6 +28,8 @@ public class GameNameDialogController {
 	private final String INVALID_NAME ="Kein zugelassener Spielname!\n";
 	private final String CORRECT_INVALID_FIELDS ="Bitte unzulässige Felder korrigieren!";
 	private final String INVALID_FIELD="Unzulässiges Feld";
+	
+	private String fullFilePath;
 
 	@FXML
 	private void initialize() {}
@@ -55,7 +57,8 @@ public class GameNameDialogController {
 				serverFile = SERVER_FILE_O;
 				agentFile = AGENT_FILE_O;
 			}
-			Controller.getController().setCommunicationController(filePath.getText(), serverFile, agentFile);
+			fullFilePath = filePath.getText()+"\\";
+			Controller.getController().setCommunicationController(fullFilePath, serverFile, agentFile);
 			okClicked = true;
 			dialogStage.close();
 		}	

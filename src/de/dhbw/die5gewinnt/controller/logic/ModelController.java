@@ -1,12 +1,9 @@
 package de.dhbw.die5gewinnt.controller.logic;
 
-import java.util.ArrayList;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
-import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
-import de.dhbw.die5gewinnt.controller.db.DBUpdates;
 import de.dhbw.die5gewinnt.model.Game;
 import de.dhbw.die5gewinnt.model.Move;
 import de.dhbw.die5gewinnt.model.ServerFile;
@@ -20,15 +17,13 @@ public class ModelController {
 	private Move move;
 	private Set[] sets;
 	private Move[] moves;
-	@SuppressWarnings("unused")
-	private AlgorithmManager AlgManager;
+
 	
-	private XMLReader xmlReader;
+	private AlgorithmManager AlgManager;
 	private ServerFile serverFile;
 	
 	private int setId = 0;
-	
-	private int column, row, color;
+	private int column, row;
 	private int[] columnheight;
 	@SuppressWarnings("unused")
 	private Move[][] field = new Move[7][6];
@@ -41,7 +36,7 @@ public class ModelController {
 	public void startGame(String name, String player){
 //		System.out.println("Spiel "+ name + player);		
 		
-		AlgManager = AlgorithmManager.getAlgorithmManager();
+		//AlgManager = AlgorithmManager.getAlgorithmManager();
 		
 		
 		//game = newGame(name,player);
@@ -50,13 +45,7 @@ public class ModelController {
 	}
 	
 	public void startSet(){
-
-		
-		System.out.println("modelcontroller");
-		//Move[] moves = getSet(setId).getMoves();
-
-
-				
+			
 //		sets = getGame().getSets();
 //		sets[setId] = newSet();
 //		set = newSet();
@@ -72,21 +61,14 @@ public class ModelController {
 //			ownPlayer = "O";
 //			opponentPlayer = "X";
 //		}
-//		
 //
-//		ServerFile sf1 = new ServerFile();
-//		Thread thread = new Thread(new XMLReader(sf1));
+//		serverFile = new ServerFile();
+//		Thread thread = new Thread(new XMLReader(serverFile));
 //		thread.start();
 //
-//		System.out.println(sf1.getOpponentMove());
-//		serverFile = sf1;		
 //		System.out.println(serverFile.getOpponentMove() + "nic");
-//
-//
 //		
-//		for(int i = 0; i<42; i++){
-//
-//
+//		for(int i = 0; i<4; i++){
 //
 //
 //			if (serverFile.getOpponentMove() != -1)
@@ -98,10 +80,9 @@ public class ModelController {
 //				columnheight[column]++;
 //				set.setColumnHeight(columnheight);
 //
-//				color = YELLOW;
 //				move = new Move(row, column, opponentPlayer);
 //				moves[i] = move;
-//				Controller.playingFieldController.showMove(column, row, color);
+//				Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
 //				i++;
 //			}
 //			
@@ -120,10 +101,9 @@ public class ModelController {
 //			columnheight[column]++;
 //			set.setColumnHeight(columnheight);
 //			
-//			color = RED;
 //			move = new Move(row, column, ownPlayer);
 //			moves[i]=move;
-//			Controller.playingFieldController.showMove(column, row, color);
+//			Controller.getController().getPlayingFieldController().showMove(column, row, RED);
 //			i++;	
 //		   
 //

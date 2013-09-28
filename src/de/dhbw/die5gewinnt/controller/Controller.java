@@ -52,4 +52,8 @@ public class Controller implements Runnable {
 		this.playingFieldController = playingFieldController;
 	}
 	
+	public PlayingFieldController getPlayingFieldController() {
+		return this.playingFieldController;
+	}
+	
 }

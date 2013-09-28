@@ -6,7 +6,10 @@ public class ServerFile {
 	private int opponentMove;
 	
 	public ServerFile() {
-
+		this.setApproval("false");
+		this.setSetStatus("kein Status");
+		this.setOpponentMove(-2);
+		this.setWinner("offen");	
 	}
 	
 	public ServerFile(String approval, String setStatus, int opponentMove, String winner) {
