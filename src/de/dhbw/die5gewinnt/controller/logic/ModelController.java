@@ -46,30 +46,30 @@ public class ModelController {
 	
 	public void startSet(){
 			
-//		sets = getGame().getSets();
-//		sets[setId] = newSet();
-//		set = newSet();
-//		moves = set.getMoves();
-//
-//		
-//		if (game.getPlayer()=="X"){
-//			ownPlayer = "X";
-//			opponentPlayer = "O";
-//		}
-//		else
-//		{
-//			ownPlayer = "O";
-//			opponentPlayer = "X";
-//		}
-//
-//		serverFile = new ServerFile();
-//		Thread thread = new Thread(new XMLReader(serverFile));
-//		thread.start();
-//
+		sets = getGame().getSets();
+		sets[setId] = newSet();
+		set = newSet();
+		moves = set.getMoves();
+
+		
+		if (game.getPlayer()=="X"){
+			ownPlayer = "X";
+			opponentPlayer = "O";
+		}
+		else
+		{
+			ownPlayer = "O";
+			opponentPlayer = "X";
+		}
+
+		serverFile = new ServerFile();
+		Thread thread = new Thread(new XMLReader(serverFile));
+		thread.start();
+
 //		System.out.println(serverFile.getOpponentMove() + "nic");
-//		
+		
+		
 //		for(int i = 0; i<4; i++){
-//
 //
 //			if (serverFile.getOpponentMove() != -1)
 //			{
@@ -83,6 +83,7 @@ public class ModelController {
 //				move = new Move(row, column, opponentPlayer);
 //				moves[i] = move;
 //				Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
+//				System.out.println("Gegnerzug: " + " Spalte " + column +", Zeile "+row);
 //				i++;
 //			}
 //			
@@ -104,10 +105,9 @@ public class ModelController {
 //			move = new Move(row, column, ownPlayer);
 //			moves[i]=move;
 //			Controller.getController().getPlayingFieldController().showMove(column, row, RED);
+//			System.out.println("eigener Zug: " + " Spalte " + column +", Zeile "+row);
 //			i++;	
-//		   
 //
-//		   
 //		}
 		
 		
