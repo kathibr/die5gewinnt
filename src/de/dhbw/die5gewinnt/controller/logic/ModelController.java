@@ -1,6 +1,12 @@
 package de.dhbw.die5gewinnt.controller.logic;
 
 
+
+
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
@@ -21,6 +27,9 @@ public class ModelController {
 	
 	private AlgorithmManager AlgManager;
 	private ServerFile serverFile;
+	private final  Lock lock             = new ReentrantLock();
+	private final  Condition conditionServerFile     = lock.newCondition();
+
 	
 	private int setId = 0;
 	private int column, row;
@@ -45,7 +54,7 @@ public class ModelController {
 	}
 	
 	public void startSet(){
-			
+					
 		sets = getGame().getSets();
 		sets[setId] = newSet();
 		set = newSet();
@@ -63,13 +72,18 @@ public class ModelController {
 		}
 
 		serverFile = new ServerFile();
-		Thread thread = new Thread(new XMLReader(serverFile));
+		Thread thread = new Thread(new XMLReader(serverFile, lock, conditionServerFile));
 		thread.start();
 
 //		System.out.println(serverFile.getOpponentMove() + "nic");
 		
 		
-//		for(int i = 0; i<4; i++){
+//		for(int i = 0; i<42; i++){
+//			lock.lock();
+//			System.out.println("Model lock");
+//			try {
+//				conditionServerFile.await();
+//				System.out.println("Hallo ich warte im ModelController");
 //
 //			if (serverFile.getOpponentMove() != -1)
 //			{
@@ -86,7 +100,6 @@ public class ModelController {
 //				System.out.println("Gegnerzug: " + " Spalte " + column +", Zeile "+row);
 //				i++;
 //			}
-//			
 //		
 //			//eigenen Zug erstellen
 //			row = 0;
@@ -107,9 +120,19 @@ public class ModelController {
 //			Controller.getController().getPlayingFieldController().showMove(column, row, RED);
 //			System.out.println("eigener Zug: " + " Spalte " + column +", Zeile "+row);
 //			i++;	
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println("Exception wait Model"+e.getMessage());
+//			}
+//			finally{
+//				lock.unlock();
+//				System.out.println("Model unlock");
+//			}
 //
 //		}
-		
+			
+
+
 		
 	}
 		
