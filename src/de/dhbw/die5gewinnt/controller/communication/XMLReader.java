@@ -15,38 +15,22 @@ import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.model.ServerFile;
 
 
-public class XMLReader implements Runnable {
+public class XMLReader extends Thread {
 	private ServerFile serverFile = null;
-	private  Lock lock;
-	private  Condition conditionServerFile;
 
 	
-	public XMLReader (ServerFile sf1)
+	public XMLReader ()
 	{
-		this.serverFile = sf1;
 	}
-
-	public XMLReader(ServerFile sf1, Lock lock,
-			Condition conditionServerFile) {
-		this.serverFile = sf1;
-		this.lock = lock;
-		this.conditionServerFile = conditionServerFile;
-		
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void run() {
-		do{
-		lock.lock();
-		System.out.println("Reader lock");
+	
+	public void run()
+	{
 		File file = null;
 		SAXBuilder saxBuilder = new SAXBuilder();
 		Document document = null;
 		Element root = null;
-		
 		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
-//		System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
+		System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
 		while(true) {
 			if(file.exists()) {
 				break;
@@ -67,30 +51,15 @@ public class XMLReader implements Runnable {
 		root = document.getRootElement();
 		
 		serverFile.setApproval(root.getChild("freigabe").getText());
-//		System.out.println("Freigabe" +root.getChild("freigabe").getText());
+		System.out.println("Freigabe" +root.getChild("freigabe").getText());
 		serverFile.setOpponentMove(Integer.parseInt(root.getChild("gegnerzug").getText()));
 		System.out.println("Gegnerzug" +root.getChild("gegnerzug").getText());
 		serverFile.setSetStatus(root.getChild("satzstatus").getText());
 		serverFile.setWinner(root.getChild("sieger").getText());
 		
 		file.delete();
-
-//		System.out.println("test");
-		CommunicationController.setServerFile(serverFile);	
-		// TODO Auto-generated method stub	
-		try {
-			conditionServerFile.signal();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Exception wait Reader"+e.getMessage());
-		}
-		finally{
-			lock.unlock();
-			System.out.println("Reader unlock");
-		}
-		
-
-		}while(true);
+		Controller.getController().getCommunicationController().setServerFile(serverFile);	
+		Controller.getController().getModelController().continueSet(serverFile);
 	}
 
 	

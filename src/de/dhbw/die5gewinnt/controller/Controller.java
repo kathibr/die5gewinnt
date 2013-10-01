@@ -5,6 +5,7 @@ import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
+import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class Controller extends Thread {
 
@@ -15,19 +16,20 @@ public class Controller extends Thread {
 	
 	@Override
 	public void run() {
+		controller = this;
+		this.modelController = new ModelController();
 		while (true)
 			{System.out.println("Ich bin der Controllerthread und laufe nebenläufig rum!");
 			try {
-				Thread.sleep(300);
+				Thread.sleep(600);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}}
+			}}	
 	}
 	
 	public Controller() {
-		controller = this;
-		this.modelController = new ModelController();
+
 		
 		DBConnector.closeDBConnection();
 		DBSelects.initAutoIncrementKeys();
@@ -62,6 +64,19 @@ public class Controller extends Thread {
 	
 	public PlayingFieldController getPlayingFieldController() {
 		return this.playingFieldController;
+	}
+	
+	public void test()
+	{
+		while (true)
+		{
+			ServerFile serverFile = this.communicationController.getServerFile();
+			if (serverFile != null)
+			{
+				System.out.println("ServerFile eingelesen");
+				break;
+			}
+		}
 	}
 	
 }

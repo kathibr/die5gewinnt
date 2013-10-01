@@ -9,6 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
+import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.model.Game;
 import de.dhbw.die5gewinnt.model.Move;
@@ -52,10 +53,45 @@ public class ModelController {
 		//game.getSets();
 		//sets[0] = newSet();
 	}
+	public void test()
+	{
+		while (true){
+		System.out.println("TEST");}
+	}
 	
 	public void startSet(){
 		System.out.println("StartSet");
-		Controller.getController().getPlayingFieldController().showMove(2, 2, 1);
+		
+		XMLReader xMLReader = new XMLReader();
+		xMLReader.start();
+	}
+	
+	public void continueSet(ServerFile serverFile)
+	{
+		Controller.getController().getPlayingFieldController().showMove(2, 2, 2);
+	}
+		
+//	if (game.getPlayer()=="X")
+//	{
+//		ownPlayer = "X";
+//		opponentPlayer = "O";
+//	}
+//	else
+//	{
+//		ownPlayer = "O";
+//		opponentPlayer = "X";
+//	}
+//	
+//	
+//	while (true)
+//	{
+//		serverFile = CommunicationController.getServerFile();
+//		if (serverFile != null)
+//		{
+//			System.out.println("ServerFile eingelesen");
+//			break;
+//		}
+//	}
 					
 //		sets = getGame().getSets();
 //		sets[setId] = newSet();
@@ -63,19 +99,10 @@ public class ModelController {
 //		moves = set.getMoves();
 //
 //		
-//		if (game.getPlayer()=="X"){
-//			ownPlayer = "X";
-//			opponentPlayer = "O";
-//		}
-//		else
-//		{
-//			ownPlayer = "O";
-//			opponentPlayer = "X";
-//		}
+
 //
 //		serverFile = new ServerFile();
-//		Thread thread = new Thread(new XMLReader(serverFile, lock, conditionServerFile));
-//		thread.start();
+
 
 //		System.out.println(serverFile.getOpponentMove() + "nic");
 		
@@ -136,7 +163,7 @@ public class ModelController {
 
 
 		
-	}
+	
 		
 	/* Create new game objects */
 	public Game newGame(String name, String player) {

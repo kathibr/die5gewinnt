@@ -6,7 +6,7 @@ import de.dhbw.die5gewinnt.model.ServerFile;
 public class CommunicationController {
 	
 	private String path, serverFileName, agentFile, serverFilePath, agentFilePath;
-	private static ServerFile serverFile;
+	private ServerFile serverFile;
 	
 	
 	public CommunicationController() {
@@ -79,11 +79,11 @@ public class CommunicationController {
 			this.agentFilePath = this.getPath().concat(this.getAgentFileName());
 	}
 
-	public static ServerFile getServerFile() {
+	public ServerFile getServerFile() {
 		return serverFile;
 	}
 
-	public static void setServerFile(ServerFile serverfile) {
+	public void setServerFile(ServerFile serverfile) {
 		serverFile = serverfile;
 	}
 }
