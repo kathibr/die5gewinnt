@@ -10,6 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
+import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.model.Game;
 import de.dhbw.die5gewinnt.model.Move;
@@ -113,6 +114,7 @@ public class ModelController {
 		set.setColumnHeight(columnheight);
 
 		// Write data
+		TXTWriter.setAgentFile(column);
 		
 		// Show move
 		Controller.getController().getPlayingFieldController().showMove(column, row, RED);
