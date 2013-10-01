@@ -15,15 +15,15 @@ import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.model.ServerFile;
 
 
-public class XMLReader extends Thread {
-	private ServerFile serverFile = null;
+public class XMLReader  {
+	private ServerFile serverFile = new ServerFile();
 
 	
 	public XMLReader ()
 	{
 	}
 	
-	public void run()
+	public ServerFile getServerFile()
 	{
 		File file = null;
 		SAXBuilder saxBuilder = new SAXBuilder();
@@ -34,6 +34,9 @@ public class XMLReader extends Thread {
 		while(true) {
 			if(file.exists()) {
 				break;
+			} else
+			{
+				System.out.println("Searching file...");
 			}
 			try {
 				Thread.sleep(300);
@@ -51,15 +54,13 @@ public class XMLReader extends Thread {
 		root = document.getRootElement();
 		
 		serverFile.setApproval(root.getChild("freigabe").getText());
-		System.out.println("Freigabe" +root.getChild("freigabe").getText());
 		serverFile.setOpponentMove(Integer.parseInt(root.getChild("gegnerzug").getText()));
-		System.out.println("Gegnerzug" +root.getChild("gegnerzug").getText());
 		serverFile.setSetStatus(root.getChild("satzstatus").getText());
 		serverFile.setWinner(root.getChild("sieger").getText());
 		
 		file.delete();
 		Controller.getController().getCommunicationController().setServerFile(serverFile);	
-		Controller.getController().getModelController().continueSet(serverFile);
+		return serverFile;
 	}
 
 	

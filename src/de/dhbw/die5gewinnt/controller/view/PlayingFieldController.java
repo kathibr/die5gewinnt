@@ -251,9 +251,7 @@ public class PlayingFieldController {
 	
 	@FXML
 	private void handleStartSet(){	
-		modelController.startSet();
-
-
+		Controller.getController().start();
 	}
 	@FXML
 	private void handleNextSet(){

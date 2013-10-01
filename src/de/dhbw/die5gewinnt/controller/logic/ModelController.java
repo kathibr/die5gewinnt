@@ -20,10 +20,11 @@ import de.dhbw.die5gewinnt.model.Set;
 public class ModelController {
 	
 	private Game game;
-	private Set set;		
+	private Set set = new Set();		
 	private Move move;
 	private Set[] sets;
-	private Move[] moves;
+	private int i;
+
 
 	
 	private AlgorithmManager AlgManager;
@@ -37,6 +38,7 @@ public class ModelController {
 	private int[] columnheight;
 	@SuppressWarnings("unused")
 	private Move[][] field = new Move[7][6];
+	private Move[] moves = new Move[42];
 	private String ownPlayer, opponentPlayer;
 	
 	private final int YELLOW = 1;
@@ -53,118 +55,85 @@ public class ModelController {
 		//game.getSets();
 		//sets[0] = newSet();
 	}
-	public void test()
-	{
-		while (true){
-		System.out.println("TEST");}
-	}
-	
+
 	public void startSet(){
-		System.out.println("StartSet");
+		if (game.getPlayer()=="X")
+		{
+			ownPlayer = "X";
+			opponentPlayer = "O";
+		}
+		else
+		{
+			ownPlayer = "O";
+			opponentPlayer = "X";
+		}
 		
-		XMLReader xMLReader = new XMLReader();
-		xMLReader.start();
+		for(int i = 0; i<42; i++){
+			serverFile = new XMLReader().getServerFile();
+			if (serverFile.getOpponentMove() == -1)
+			{
+				proceedOwnMove();
+			}
+			else 
+			{
+				proceedOpponentMove();
+				proceedOwnMove();
+			}
+		}
 	}
 	
-	public void continueSet(ServerFile serverFile)
+	private void proceedOpponentMove()
 	{
-		Controller.getController().getPlayingFieldController().showMove(2, 2, 2);
+		// Calculate move
+		column = serverFile.getOpponentMove();
+		columnheight = set.getColumnHeight();
+		row = columnheight[column];
+		columnheight[column]++;
+		set.setColumnHeight(columnheight);
+
+		// Show move
+		Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
+		System.out.println("Opponent move: " + " Spalte " + column +", Zeile "+row);
+		
+		// Save move
+		move = new Move(row, column, opponentPlayer);
+		moves[i] = move;
+		
+		i++;
+	}
+	
+	
+	private void proceedOwnMove()
+	{	 
+		// Calculate move
+		column = (int)((Math.random()) * 7 + 1);
+		columnheight = set.getColumnHeight();
+		row = columnheight[column];
+		columnheight[column]++;
+		set.setColumnHeight(columnheight);
+
+		// Write data
+		
+		// Show move
+		Controller.getController().getPlayingFieldController().showMove(column, row, RED);
+		System.out.println("Own move: " + " Spalte " + column +", Zeile "+row);
+		
+		// Save move 
+		move = new Move(row, column, ownPlayer);
+		moves[i] = move;		
+		
+		i++;
 	}
 		
-//	if (game.getPlayer()=="X")
-//	{
-//		ownPlayer = "X";
-//		opponentPlayer = "O";
-//	}
-//	else
-//	{
-//		ownPlayer = "O";
-//		opponentPlayer = "X";
-//	}
-//	
-//	
-//	while (true)
-//	{
-//		serverFile = CommunicationController.getServerFile();
-//		if (serverFile != null)
-//		{
-//			System.out.println("ServerFile eingelesen");
-//			break;
-//		}
-//	}
+
 					
 //		sets = getGame().getSets();
 //		sets[setId] = newSet();
 //		set = newSet();
 //		moves = set.getMoves();
 //
-//		
 
-//
-//		serverFile = new ServerFile();
-
-
-//		System.out.println(serverFile.getOpponentMove() + "nic");
-		
-		
-//		for(int i = 0; i<42; i++){
-//			lock.lock();
-//			System.out.println("Model lock");
-//			try {
-//				conditionServerFile.await();
-//				System.out.println("Hallo ich warte im ModelController");
-//
-//			if (serverFile.getOpponentMove() != -1)
-//			{
-//				column = serverFile.getOpponentMove();
-//				columnheight = set.getColumnHeight();
-//				row = columnheight[column];
-//				
-//				columnheight[column]++;
-//				set.setColumnHeight(columnheight);
-//
-//				move = new Move(row, column, opponentPlayer);
-//				moves[i] = move;
-//				Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
-//				System.out.println("Gegnerzug: " + " Spalte " + column +", Zeile "+row);
-//				i++;
-//			}
-//		
-//			//eigenen Zug erstellen
-//			row = 0;
-//			do{
-//				//column = AlgManager.getNextColumn(100);
-//				column = (int) (Math.random() * 7);
-//				columnheight = set.getColumnHeight();
-//				row = columnheight[column];
-//			   
-//			   
-//			}while(row==6);
-//
-//			columnheight[column]++;
-//			set.setColumnHeight(columnheight);
-//			
-//			move = new Move(row, column, ownPlayer);
-//			moves[i]=move;
-//			Controller.getController().getPlayingFieldController().showMove(column, row, RED);
-//			System.out.println("eigener Zug: " + " Spalte " + column +", Zeile "+row);
-//			i++;	
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				System.out.println("Exception wait Model"+e.getMessage());
-//			}
-//			finally{
-//				lock.unlock();
-//				System.out.println("Model unlock");
-//			}
-//
-//		}
 			
-
-
-		
-	
-		
 	/* Create new game objects */
 	public Game newGame(String name, String player) {
 		Game newGame = null;
