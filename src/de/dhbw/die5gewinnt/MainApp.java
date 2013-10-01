@@ -44,7 +44,7 @@ public class MainApp extends Application {
 		  try {
 			
 			controller = new Controller();
-			controller.start();
+		
 			
 
 			  
