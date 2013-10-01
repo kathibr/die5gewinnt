@@ -70,7 +70,7 @@ public class MainApp extends Application {
 			    @SuppressWarnings("deprecation")
 				public void handle(WindowEvent e){
 			    	  DBConnector.closeDBConnection();
-			    	  //new Thread(controller).stop();
+			    	  Controller.getController().stop();	    	  
 			      }
 			});
 		    primaryStage.show();
