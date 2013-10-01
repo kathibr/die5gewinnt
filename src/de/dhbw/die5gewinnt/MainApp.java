@@ -43,9 +43,10 @@ public class MainApp extends Application {
 		
 		  try {
 			
-			controller = Controller.getController();
-			Thread controllerThread = new Thread(controller);
-			controllerThread.start();
+			controller = new Controller();
+			controller.start();
+			
+
 			  
 		    // Load the root layout from the fxml file
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/RootLayout.fxml"));
@@ -69,7 +70,7 @@ public class MainApp extends Application {
 			    @SuppressWarnings("deprecation")
 				public void handle(WindowEvent e){
 			    	  DBConnector.closeDBConnection();
-			    	  new Thread(controller).stop();
+			    	  //new Thread(controller).stop();
 			      }
 			});
 		    primaryStage.show();

@@ -6,7 +6,7 @@ import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
 
-public class Controller implements Runnable {
+public class Controller extends Thread {
 
 	private static Controller controller;
 	private ModelController modelController;
@@ -14,23 +14,31 @@ public class Controller implements Runnable {
 	public PlayingFieldController playingFieldController;
 	
 	@Override
-	public void run() {}
+	public void run() {
+		while (true)
+			{System.out.println("Ich bin der Controllerthread und laufe nebenläufig rum!");
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}
+	}
 	
-	private Controller() {
+	public Controller() {
+		controller = this;
+		this.modelController = new ModelController();
+		
 		DBConnector.closeDBConnection();
 		DBSelects.initAutoIncrementKeys();
 	}
 	
 	public static Controller getController() {
-		if(controller == null)
-			controller = new Controller();
 		return controller;
 	}
 	
 	/* ModelController */
 	public ModelController getModelController() {
-		if(this.modelController == null)
-			this.modelController = new ModelController();
 		return this.modelController;
 	}
 	

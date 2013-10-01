@@ -54,26 +54,28 @@ public class ModelController {
 	}
 	
 	public void startSet(){
+		System.out.println("StartSet");
+		Controller.getController().getPlayingFieldController().showMove(2, 2, 1);
 					
-		sets = getGame().getSets();
-		sets[setId] = newSet();
-		set = newSet();
-		moves = set.getMoves();
-
-		
-		if (game.getPlayer()=="X"){
-			ownPlayer = "X";
-			opponentPlayer = "O";
-		}
-		else
-		{
-			ownPlayer = "O";
-			opponentPlayer = "X";
-		}
-
-		serverFile = new ServerFile();
-		Thread thread = new Thread(new XMLReader(serverFile, lock, conditionServerFile));
-		thread.start();
+//		sets = getGame().getSets();
+//		sets[setId] = newSet();
+//		set = newSet();
+//		moves = set.getMoves();
+//
+//		
+//		if (game.getPlayer()=="X"){
+//			ownPlayer = "X";
+//			opponentPlayer = "O";
+//		}
+//		else
+//		{
+//			ownPlayer = "O";
+//			opponentPlayer = "X";
+//		}
+//
+//		serverFile = new ServerFile();
+//		Thread thread = new Thread(new XMLReader(serverFile, lock, conditionServerFile));
+//		thread.start();
 
 //		System.out.println(serverFile.getOpponentMove() + "nic");
 		
