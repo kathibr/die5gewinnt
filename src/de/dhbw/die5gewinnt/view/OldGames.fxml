@@ -1,27 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.OldGamesController">
   <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="184.0" layoutY="119.0" text="Old Games" />
-    <SplitPane dividerPositions="0.25761421319796957" focusTraversable="true" maxWidth="500.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <SplitPane dividerPositions="0.2543859649122807" focusTraversable="true" maxWidth="500.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
         <AnchorPane maxWidth="200.0" minHeight="0.0" minWidth="200.0" prefHeight="160.0" prefWidth="200.0">
           <children>
-            <ListView fx:id="listOfGames" layoutX="10.0" layoutY="10.0" prefHeight="470.0" prefWidth="180.0" />
+            <ListView fx:id="listOfGames" layoutX="10.0" layoutY="442.0" prefHeight="38.0" prefWidth="180.0" />
+            <Label layoutX="14.0" layoutY="6.0" styleClass="label-header-dark" text="Alte Spiele" />
+            <TableView fx:id="gameTable" layoutX="10.0" layoutY="61.0" prefHeight="200.0" prefWidth="176.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Spielname" fx:id="gameNameColumn" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="86.0" text="Column X" />
+              </columns>
+            </TableView>
           </children>
         </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="300.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="300.0">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="123.0" layoutX="317.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="261.0" />
+            <Group id="Group" layoutX="12.0" layoutY="14.0">
+              <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="123.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="297.0" />
+                <Label id="gameNameLabel" fx:id="gameName" layoutX="8.0" layoutY="0.0" styleClass="label-header-dark" text="Spielname" />
+                <Label layoutX="19.0" layoutY="63.0" styleClass="label-dark" text="Spieler X" underline="true" />
+                <Label layoutX="231.0" layoutY="63.0" styleClass="label-bright, label-dark" text="Spieler O" underline="true" />
+                <Label fx:id="playerXName" layoutX="19.0" layoutY="84.0" text="die5gewinnt" />
+                <Label fx:id="playerOName" layoutX="220.0" layoutY="84.0" text="blutwurst1" />
+                <Label layoutX="118.0" layoutY="69.0" prefWidth="15.0" text="2">
+                  <font>
+                    <Font size="18.0" fx:id="x1" />
+                  </font>
+                </Label>
+                <Label font="$x1" layoutX="147.0" layoutY="67.0" minHeight="16.0" prefHeight="24.0" prefWidth="23.0001220703125" text=":" />
+                <Label font="$x1" layoutX="161.0" layoutY="69.0" text="1" />
+              </children>
+            </Group>
+            <Group id="Group" layoutX="211.0" layoutY="249.0" />
+            <GridPane layoutX="358.0" layoutY="17.0" prefWidth="180.0">
+              <children>
+                <Label text="O" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="Satz 1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label text="Win" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="X" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="Lose" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Satz 2" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Label text="Lose" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label text="Win" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Label text="Satz 3" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Label text="Win" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label text="Losel" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="24.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="45.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="7.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="61.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <TilePane hgap="15.0" layoutX="105.0" layoutY="150.0" minHeight="271.0" prefHeight="322.0" prefWidth="382.0" style="" styleClass="field" vgap="15.0">
+              <children>
+                <Circle id="circle1" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
+                  <fill>
+                    <Color blue="0.875" green="0.875" red="0.875" fx:id="x2" />
+                  </fill>
+                </Circle>
+                <Circle id="circle15" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle25" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle35" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle45" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle55" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle65" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle04" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle14" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle24" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle34" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle44" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle54" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle64" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle03" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle13" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle23" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle33" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle43" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle53" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle63" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle02" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle12" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle22" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle32" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle42" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle52" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle62" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle01" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle11" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle21" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle31" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle41" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle51" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle61" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle00" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle10" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle20" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle30" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
+                  <effect>
+                    <ColorAdjust />
+                  </effect>
+                </Circle>
+                <Circle id="circle40" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle50" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle id="circle60" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+              </children>
+              <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+              </padding>
+            </TilePane>
+          </children>
+        </AnchorPane>
       </items>
     </SplitPane>
   </children>
   <padding>
     <Insets />
   </padding>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
 </AnchorPane>
