@@ -221,6 +221,11 @@ public class PlayingFieldController {
 		}
 
 	}
+	
+	public void updateDisplay(int setId, int[] score){
+		
+		
+	}
 
 	//@FXML
 	//private void handleClickMe(){

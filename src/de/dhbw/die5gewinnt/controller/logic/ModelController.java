@@ -21,7 +21,8 @@ import de.dhbw.die5gewinnt.model.Set;
 public class ModelController {
 	
 	private Game game;
-	private Set set = new Set();		
+	private Set set = new Set();
+	private int score[];
 	private Move move;
 	private Set[] sets;
 	private int i;
@@ -32,9 +33,9 @@ public class ModelController {
 	private ServerFile serverFile;
 
 	
-	private int setId = 0;
+	private int setId;
 	private int column, row;
-	private int[] columnheight;
+	private int[] columnHeight;
 
 	private Move[][] field = new Move[7][6];
 	private Move[] moves = new Move[42];
@@ -57,6 +58,8 @@ public class ModelController {
 
 	public void startSet(){
 		set = newSet();
+		sets[setId] = set;
+		setId++;
 		
 		if (game.getPlayer()=="X")
 		{
@@ -84,13 +87,17 @@ public class ModelController {
 					proceedOwnMove();
 				}
 			}
+			
 			else{
 				if (serverFile.getOpponentMove() != -1){
 					proceedOpponentMove();
 				}
-				//Sieger anzeigen -> Popup/ updaten der Oberfläche
-				//Set beenden
+				//Sieger anzeigen -> Popup?/ updaten der Oberfläche
+				Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
+	
 				System.out.println("Set is over");
+
+				//Set beenden
 				break;				
 				
 			}
@@ -102,10 +109,10 @@ public class ModelController {
 	{
 		// Calculate move
 		column = serverFile.getOpponentMove();
-		columnheight = set.getColumnHeight();
-		row = columnheight[column];
-		columnheight[column]++;
-		set.setColumnHeight(columnheight);
+		columnHeight = set.getColumnHeight();
+		row = columnHeight[column];
+		columnHeight[column]++;
+		set.setColumnHeight(columnHeight);
 
 		// Show move
 		Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
@@ -124,13 +131,13 @@ public class ModelController {
 		// Calculate move
 		//Later with algorithm
 		do{
-			column = (int)((Math.random()) * 7 + 1);
-			columnheight = set.getColumnHeight();
-		}while(columnheight[column]>6);
+			column = (int)((Math.random()) * 6);
+			columnHeight = set.getColumnHeight();
+		}while(columnHeight[column]>6);
 
-		row = columnheight[column];
-		columnheight[column]++;
-		set.setColumnHeight(columnheight);
+		row = columnHeight[column];
+		columnHeight[column]++;
+		set.setColumnHeight(columnHeight);
 
 		// Write data
 		TXTWriter.setAgentFile(column);
@@ -147,31 +154,24 @@ public class ModelController {
 	}
 		
 
-					
-//		sets = getGame().getSets();
-//		sets[setId] = newSet();
-//		set = newSet();
-//		moves = set.getMoves();
-//
-
-			
 	/* Create new game objects */
 	public Game newGame(String name, String player) {
 		Game newGame = null;
-				Set[] sets = new Set[3];
-				int[] score = new int[2];
+				sets = new Set[3];
+				score = new int[2];
 				score[0] = score[1] = 0;
 		newGame = new Game(name, sets, score, false, player);
 //		newGame = DBInserts.insertGame(newGame);
+		setId=0;
 		this.setGame(newGame);
 		return this.getGame();
 	}
 	
 	public Set newSet() {
 		Set newSet = null;
-			Move[] moves = new Move[42];
-			Move[][] field = new Move[7][6];
-			int[] columnHeight = new int[7];
+			moves = new Move[42];
+			field = new Move[7][6];
+			columnHeight = new int[7];
 
 			newSet = new Set(moves, field, columnHeight);
 			return newSet;
