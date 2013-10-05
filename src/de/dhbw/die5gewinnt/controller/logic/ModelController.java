@@ -30,14 +30,12 @@ public class ModelController {
 	
 	private AlgorithmManager AlgManager;
 	private ServerFile serverFile;
-	private final  Lock lock             = new ReentrantLock();
-	private final  Condition conditionServerFile     = lock.newCondition();
 
 	
 	private int setId = 0;
 	private int column, row;
 	private int[] columnheight;
-	@SuppressWarnings("unused")
+
 	private Move[][] field = new Move[7][6];
 	private Move[] moves = new Move[42];
 	private String ownPlayer, opponentPlayer;
@@ -58,6 +56,8 @@ public class ModelController {
 	}
 
 	public void startSet(){
+		set = newSet();
+		
 		if (game.getPlayer()=="X")
 		{
 			ownPlayer = "X";
@@ -68,19 +68,34 @@ public class ModelController {
 			ownPlayer = "O";
 			opponentPlayer = "X";
 		}
+		i = 0;
 		
-		for(int i = 0; i<42; i++){
+		do{
 			serverFile = new XMLReader().getServerFile();
-			if (serverFile.getOpponentMove() == -1)
-			{
-				proceedOwnMove();
+			
+			if (serverFile.getApproval()==true){
+				if (serverFile.getOpponentMove() == -1)
+				{
+					proceedOwnMove();
+				}
+				else 
+				{
+					proceedOpponentMove();
+					proceedOwnMove();
+				}
 			}
-			else 
-			{
-				proceedOpponentMove();
-				proceedOwnMove();
+			else{
+				if (serverFile.getOpponentMove() != -1){
+					proceedOpponentMove();
+				}
+				//Sieger anzeigen -> Popup/ updaten der Oberfläche
+				//Set beenden
+				System.out.println("Set is over");
+				break;				
+				
 			}
-		}
+
+		}while(i<42);
 	}
 	
 	private void proceedOpponentMove()
@@ -107,8 +122,12 @@ public class ModelController {
 	private void proceedOwnMove()
 	{	 
 		// Calculate move
-		column = (int)((Math.random()) * 7 + 1);
-		columnheight = set.getColumnHeight();
+		//Later with algorithm
+		do{
+			column = (int)((Math.random()) * 7 + 1);
+			columnheight = set.getColumnHeight();
+		}while(columnheight[column]>6);
+
 		row = columnheight[column];
 		columnheight[column]++;
 		set.setColumnHeight(columnheight);
