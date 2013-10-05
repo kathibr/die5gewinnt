@@ -223,7 +223,7 @@ public class PlayingFieldController {
 	}
 	
 	public void updateDisplay(int setId, int[] score){
-		
+		btNextSet.setDisable(false);
 		
 	}
 
@@ -256,6 +256,7 @@ public class PlayingFieldController {
 	
 	@FXML
 	private void handleStartSet(){	
+		btEndSet.setDisable(false);
 		Controller.getController().start();
 	}
 	@FXML
@@ -265,6 +266,9 @@ public class PlayingFieldController {
 	@FXML
 	private void handleEndSet(){
 		System.out.println("end set");
+		btEndSet.setDisable(true);
+		btNextSet.setDisable(false);
+		//ausgrauen von StartSet_Button
 	}
 	@FXML
 	private void handleEndGame(){
