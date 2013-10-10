@@ -225,6 +225,29 @@ public class PlayingFieldController {
 	public void updateDisplay(int setId, int[] score){
 		btNextSet.setDisable(false);
 		
+		for(int column = 0; column<7; column++){
+			
+			for(int row = 0; row<6; row++){
+
+				try {
+					circleArray[column][row].getStyleClass().remove("yellowCircle");
+					circleArray[column][row].getStyleClass().add("emptyCircle");
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					// TODO: handle exception
+				}
+				try {
+					circleArray[column][row].getStyleClass().remove("redCircle");
+					circleArray[column][row].getStyleClass().add("emptyCircle");
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println(e.getMessage());
+				}
+				
+			}
+		}
+		
+		
 	}
 
 	//@FXML
@@ -262,18 +285,21 @@ public class PlayingFieldController {
 	@FXML
 	private void handleNextSet(){
 		System.out.println("next set");
+		int score[] = null;
+		updateDisplay(1, score);
 	}
 	@FXML
 	private void handleEndSet(){
 		System.out.println("end set");
 		btEndSet.setDisable(true);
 		btNextSet.setDisable(false);
+		Controller.getController().getModelController().endSet();
 		//ausgrauen von StartSet_Button
 	}
 	@FXML
 	private void handleEndGame(){
 		System.out.println("end game");
-	}
+		}
 	
 	@FXML
 	public void circleAction(){

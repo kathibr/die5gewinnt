@@ -3,13 +3,8 @@ package de.dhbw.die5gewinnt.controller.logic;
 
 
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
-import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.model.Game;
@@ -26,7 +21,7 @@ public class ModelController {
 	private Move move;
 	private Set[] sets;
 	private int i;
-
+	private boolean forceStop = false;
 
 	
 	private AlgorithmManager AlgManager;
@@ -57,6 +52,9 @@ public class ModelController {
 	}
 
 	public void startSet(){
+		
+		forceStop = false;
+		
 		set = newSet();
 		sets[setId] = set;
 		setId++;
@@ -76,33 +74,38 @@ public class ModelController {
 		do{
 			serverFile = new XMLReader().getServerFile();
 			
-			if (serverFile.getApproval()==true){
-				if (serverFile.getOpponentMove() == -1)
-				{
-					proceedOwnMove();
+			if(forceStop==false){
+				
+				if (serverFile.getApproval()==true){
+					if (serverFile.getOpponentMove() == -1)
+					{
+						proceedOwnMove();
+					}
+					else 
+					{
+						proceedOpponentMove();
+						proceedOwnMove();
+					}
 				}
-				else 
-				{
-					proceedOpponentMove();
-					proceedOwnMove();
-				}
-			}
-			
-			else{
-				if (serverFile.getOpponentMove() != -1){
-					proceedOpponentMove();
-				}
-				//Sieger anzeigen -> Popup?/ updaten der Oberfläche
-				Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
-	
-				System.out.println("Set is over");
+				
+				else{
+					if (serverFile.getOpponentMove() != -1){
+						proceedOpponentMove();
+					}
+					//Sieger anzeigen -> Popup?/ updaten der Oberfläche
+					Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
+		
+					System.out.println("Set is over");
 
-				//Set beenden
-				break;				
+					//Set beenden
+					break;				
+				}
+
 				
 			}
-
-		}while(i<42);
+			
+			
+		}while(i<42|forceStop==false);
 	}
 	
 	private void proceedOpponentMove()
@@ -242,6 +245,15 @@ public class ModelController {
 	/* SETTER-Methods */
 	private void setGame(Game game) {
 		this.game = game;
+	}
+
+	public void endSet() {
+		forceStop = true;
+		
+	}
+	
+	public boolean getForceStop(){
+		return this.forceStop;
 	}
 	
 //	private void setSet(int index) {}

@@ -31,7 +31,7 @@ public class XMLReader  {
 		Element root = null;
 		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
 		System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
-		while(true) {
+		while(true&Controller.getController().getModelController().getForceStop()==false) {
 			if(file.exists()) {
 				break;
 			} else
@@ -44,23 +44,27 @@ public class XMLReader  {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
 			}	
-		}	
+		}
+
+		if(Controller.getController().getModelController().getForceStop()==false){
 		try {		
 			document = saxBuilder.build(Controller.getController().getCommunicationController().getServerFilePath());
 		} catch (JDOMException | IOException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-		root = document.getRootElement();
-		
-		serverFile.setApproval(root.getChild("freigabe").getText());
-		serverFile.setOpponentMove(Integer.parseInt(root.getChild("gegnerzug").getText()));
-		serverFile.setSetStatus(root.getChild("satzstatus").getText());
-		serverFile.setWinner(root.getChild("sieger").getText());
-		
-		file.delete();
-		Controller.getController().getCommunicationController().setServerFile(serverFile);	
-		return serverFile;
+			root = document.getRootElement();
+			
+			serverFile.setApproval(root.getChild("freigabe").getText());
+			serverFile.setOpponentMove(Integer.parseInt(root.getChild("gegnerzug").getText()));
+			serverFile.setSetStatus(root.getChild("satzstatus").getText());
+			serverFile.setWinner(root.getChild("sieger").getText());
+			
+			file.delete();
+			Controller.getController().getCommunicationController().setServerFile(serverFile);	
+	
+		}
+				return serverFile;
 	}
 
 	
