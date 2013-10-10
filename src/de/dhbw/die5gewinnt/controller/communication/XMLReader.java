@@ -30,7 +30,7 @@ public class XMLReader  {
 		Document document = null;
 		Element root = null;
 		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
-		System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
+		//System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
 		while(true&Controller.getController().getModelController().getForceStop()==false) {
 			if(file.exists()) {
 				break;

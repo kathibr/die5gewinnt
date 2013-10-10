@@ -6,25 +6,25 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.algorithm.MastermindAlgorithm;
-import de.dhbw.die5gewinnt.controller.algorithm.RandomAlgorithm;
-import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
-import de.dhbw.die5gewinnt.model.ServerFile;
-import de.dhbw.die5gewinnt.model.Set;
 
 public class PlayingFieldController {
 	
 	private ModelController modelController;
 
-	@SuppressWarnings("unused")
 	private MainApp mainApp;
 
 	private Circle circleArray[][];
 
 	@FXML 
 	private Label gameNameLabel;
-
+	@FXML 
+	private Label scorePlayerX;
+	@FXML
+	private Label scorePlayerO;
+	@FXML
+	private Label currentSet;
+	
 	@FXML
 	private Button btStartSet;
 	@FXML
@@ -222,8 +222,7 @@ public class PlayingFieldController {
 
 	}
 	
-	public void updateDisplay(int setId, int[] score){
-		btNextSet.setDisable(false);
+	public void clearPlayingField(){
 		
 		for(int column = 0; column<7; column++){
 			
@@ -234,13 +233,11 @@ public class PlayingFieldController {
 					circleArray[column][row].getStyleClass().add("emptyCircle");
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
-					// TODO: handle exception
 				}
 				try {
 					circleArray[column][row].getStyleClass().remove("redCircle");
 					circleArray[column][row].getStyleClass().add("emptyCircle");
 				} catch (Exception e) {
-					// TODO: handle exception
 					System.out.println(e.getMessage());
 				}
 				
@@ -285,8 +282,7 @@ public class PlayingFieldController {
 	@FXML
 	private void handleNextSet(){
 		System.out.println("next set");
-		int score[] = null;
-		updateDisplay(1, score);
+		clearPlayingField();
 	}
 	@FXML
 	private void handleEndSet(){
@@ -304,6 +300,12 @@ public class PlayingFieldController {
 	@FXML
 	public void circleAction(){
 
+	}
+
+	public void updateDisplay(int setId, int[] score) {
+		String stringSetId = String.valueOf(setId);
+		currentSet.setText(stringSetId);
+		System.out.println("Update Display");
 	}
 	
 	

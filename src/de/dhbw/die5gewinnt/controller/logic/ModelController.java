@@ -92,9 +92,6 @@ public class ModelController {
 					if (serverFile.getOpponentMove() != -1){
 						proceedOpponentMove();
 					}
-					//Sieger anzeigen -> Popup?/ updaten der Oberfläche
-					Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
-		
 					System.out.println("Set is over");
 
 					//Set beenden
@@ -106,6 +103,9 @@ public class ModelController {
 			
 			
 		}while(i<42|forceStop==false);
+
+		//Sieger anzeigen -> Popup?/ updaten der Oberfläche
+		Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
 	}
 	
 	private void proceedOpponentMove()
@@ -249,7 +249,7 @@ public class ModelController {
 
 	public void endSet() {
 		forceStop = true;
-		
+		Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
 	}
 	
 	public boolean getForceStop(){
