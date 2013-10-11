@@ -130,11 +130,10 @@ public class PlayingFieldController {
 	private Circle circle60;
 	
 	private int i;
+	private String stringSetId;
 
 
 	public PlayingFieldController() {
-
-
 	}
 
 	@FXML
@@ -206,12 +205,6 @@ public class PlayingFieldController {
 		this.mainApp = mainApp;
 	}
 
-	/*
-	public static PlayingFieldController getPlayingFieldController(){
-		return playingFieldController;
-
-	}
-	 */
 
 	public void showMove(int column, int row, int color)
 	{
@@ -231,6 +224,7 @@ public class PlayingFieldController {
 	
 	public void clearPlayingField(){
 		System.out.println("Clear PlayingField");
+		currentSet.setText(stringSetId);
 		
 		for(int column = 0; column<7; column++){
 			
@@ -254,32 +248,6 @@ public class PlayingFieldController {
 		
 	}
 
-	//@FXML
-	//private void handleClickMe(){
-
-
-	//	modelController.startGame(modelController.getGame().getName(), modelController.getGame().getPlayer());
-
-		//		
-		//		int color = 1;
-		//		int column = 0;
-		//		int row = 0;
-		//		
-		//		for(column=0;column<7;column++)
-		//		{
-		//			
-		//			for(row=0;row<6;row++)
-		//			{
-		//				showMove(column, row, field[row][column]);
-		//				
-		//				
-		//			}
-		//			
-		//						
-		//		}
-
-
-	//}
 	
 	@FXML
 	private void handleStartSet(){	
@@ -313,7 +281,7 @@ public class PlayingFieldController {
 			Controller.getController().stop();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Controller schon gestopt"+e);
 		}
 		}
 
@@ -324,8 +292,11 @@ public class PlayingFieldController {
 	}
 
 	public void updateDisplay(int setId, int[] score) {
-		String stringSetId = String.valueOf(setId);
-		currentSet.setText(stringSetId);
+		stringSetId = String.valueOf(setId);
+		
+		scorePlayerO.setText(String.valueOf(score[0]));
+		scorePlayerX.setText(String.valueOf(score[1]));
+		
 		System.out.println("Update Display");
 	}
 	
