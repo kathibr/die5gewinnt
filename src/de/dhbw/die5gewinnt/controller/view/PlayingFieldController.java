@@ -124,6 +124,8 @@ public class PlayingFieldController {
 	private Circle circle61;
 	@FXML
 	private Circle circle60;
+	
+	private int i;
 
 
 	public PlayingFieldController() {
@@ -192,6 +194,8 @@ public class PlayingFieldController {
 		circleArray[6][3]= circle63;
 		circleArray[6][4]= circle64;
 		circleArray[6][5]= circle65;
+		
+		i = 0;
 
 	}
 
@@ -223,6 +227,7 @@ public class PlayingFieldController {
 	}
 	
 	public void clearPlayingField(){
+		System.out.println("Clear PlayingField");
 		
 		for(int column = 0; column<7; column++){
 			
@@ -243,7 +248,6 @@ public class PlayingFieldController {
 				
 			}
 		}
-		
 		
 	}
 
@@ -277,13 +281,20 @@ public class PlayingFieldController {
 	@FXML
 	private void handleStartSet(){	
 		btEndSet.setDisable(false);
-		Controller.getController().start();
+		switch (i) {
+		case 0:
+			Controller.getController().start();
+			break;
+		case 3:
+			break;
+		default:
+			clearPlayingField();
+			Controller.getController().getModelController().startSet();
+		}
+		i++;
+		
 	}
-	@FXML
-	private void handleNextSet(){
-		System.out.println("next set");
-		clearPlayingField();
-	}
+	
 	@FXML
 	private void handleEndSet(){
 		System.out.println("end set");
@@ -294,6 +305,11 @@ public class PlayingFieldController {
 	}
 	@FXML
 	private void handleEndGame(){
+		System.out.println("end game");
+		}
+
+	@FXML
+	private void handleNextSet(){
 		System.out.println("end game");
 		}
 	

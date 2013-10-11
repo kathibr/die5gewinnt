@@ -1,8 +1,6 @@
 package de.dhbw.die5gewinnt.controller.logic;
 
 
-
-
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
