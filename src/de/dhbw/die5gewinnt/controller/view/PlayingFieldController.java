@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.logic.ModelController;
@@ -16,6 +17,10 @@ public class PlayingFieldController {
 
 	private Circle circleArray[][];
 
+	@FXML
+	private Rectangle playerXColor;
+	@FXML
+	private Rectangle playerOColor;
 	@FXML 
 	private Label gameNameLabel;
 	@FXML 
