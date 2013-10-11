@@ -30,7 +30,7 @@ public class DBUpdates extends DBQuery {
 		if(set.getClass().getName().equals("de.dhbw.die5gewinnt.model.Set")) {
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "UPDATE Sets SET field = \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', columnheight = \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\' WHERE = "+set.getId();
+				String sql = "UPDATE Sets SET field = \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', columnheight = \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', winner = \'"+DataManipulation.getSetWinnerForDB(set.getWinner())+"\' WHERE = "+set.getId();
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {

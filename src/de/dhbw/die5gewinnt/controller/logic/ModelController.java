@@ -162,7 +162,7 @@ public class ModelController {
 			field = new Move[7][6];
 			columnHeight = new int[7];
 
-			newSet = new Set(moves, field, columnHeight);
+			newSet = new Set(moves, field, columnHeight, false);
 			newSet = DBInserts.insertSet(newSet);
 			return newSet;
 		

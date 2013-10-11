@@ -6,27 +6,28 @@ public class Set {
 	private Move[] moves;
 	private Move[][] field;
 	private int[] columnHeight;
+	private boolean winner;
 	
 	public Set() {
 		this.setId(0);
 		this.setMoves(new Move[42]);
 		this.setField(new Move[7][6]);
 		this.setColumnHeight(new int[7]);
-
-		for(int i = 0; i<7;i++){
-			columnHeight[i]=0;
-		}
-		}
+			for(int i = 0; i<7;i++){
+				columnHeight[i]=0;
+			}
+		this.setWinner(false);
+	}
 	
-	public Set(Move[] moves, Move[][] field, int[] columnHeight) {
+	public Set(Move[] moves, Move[][] field, int[] columnHeight, boolean winner) {
 		this.setId(0);
 		this.setMoves(moves);
 		this.setField(field);
 		this.setColumnHeight(columnHeight);		
-
-		for(int i = 0; i<7;i++){
-			columnHeight[i]=0;
-		}
+			for(int i = 0; i<7;i++){
+				columnHeight[i]=0;
+			}
+		this.setWinner(winner);
 	}
 	
 	/* GETTER-Methods */
@@ -46,6 +47,10 @@ public class Set {
 		return this.columnHeight;
 	}
 	
+	public boolean getWinner() {
+		return this.winner;
+	}
+	
 	/* SETTER-Methods */
 	public void setId(int id) {
 		this.id = id;
@@ -61,6 +66,10 @@ public class Set {
 	
 	public void setColumnHeight(int[] columnHeight) {
 		this.columnHeight = columnHeight;
+	}
+	
+	public void setWinner(boolean winner) {
+		this.winner = winner;
 	}
 
 }
