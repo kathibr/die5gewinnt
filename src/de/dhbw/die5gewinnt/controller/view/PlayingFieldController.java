@@ -292,7 +292,7 @@ public class PlayingFieldController {
 			break;
 		default:
 			clearPlayingField();
-			Controller.getController().start();
+			Controller.getController().resume();
 		}
 		i++;
 		
@@ -301,7 +301,7 @@ public class PlayingFieldController {
 	@FXML
 	private void handleEndSet(){
 		System.out.println("end set");
-		Controller.getController().stop();
+		Controller.getController().suspend();
 		btEndSet.setDisable(true);
 		Controller.getController().getModelController().endSet();
 		//ausgrauen von StartSet_Button

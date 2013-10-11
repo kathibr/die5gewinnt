@@ -35,7 +35,7 @@
     <Button layoutX="199.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
     <Group id="Group" layoutX="10.0" layoutY="138.0">
       <children>
-        <TextField layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="blutwurst1" />
+        <TextField fx:id="opponentName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="blutwurst1" />
         <Label layoutX="0.0" layoutY="3.0" styleClass="label-bright" text="Gegner" />
       </children>
     </Group>

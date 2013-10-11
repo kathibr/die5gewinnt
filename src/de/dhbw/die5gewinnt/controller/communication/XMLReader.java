@@ -31,7 +31,7 @@ public class XMLReader  {
 		Element root = null;
 		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
 		//System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
-		while(true&Controller.getController().getModelController().getForceStop()==false) {
+		while(true) {
 			if(file.exists()) {
 				break;
 			} else
@@ -46,7 +46,7 @@ public class XMLReader  {
 			}	
 		}
 
-		if(Controller.getController().getModelController().getForceStop()==false){
+//		if(Controller.getController().getModelController().getForceStop()==false){
 		try {		
 			document = saxBuilder.build(Controller.getController().getCommunicationController().getServerFilePath());
 		} catch (JDOMException | IOException e) {
@@ -63,7 +63,7 @@ public class XMLReader  {
 			file.delete();
 			Controller.getController().getCommunicationController().setServerFile(serverFile);	
 	
-		}
+//		}
 				return serverFile;
 	}
 

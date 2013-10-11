@@ -15,8 +15,9 @@ import javafx.stage.Stage;
 public class GameNameDialogController {
 
 	@FXML
-	private TextField gameName, filePath;
+	private TextField gameName, filePath, opponentName;
 
+	
 	@FXML
 	private RadioButton playerX, playerO;
 	private Stage dialogStage;
@@ -70,7 +71,7 @@ public class GameNameDialogController {
 			String player = PLAYER_X;
 			if(playerO.isSelected())
 				player = PLAYER_O;
-			Controller.getController().getModelController().newGame(gameName.getText(), player);
+			Controller.getController().getModelController().newGame(gameName.getText(), player, opponentName.getText());
 			// Create CommunicationCenter
 			String serverFile = SERVER_FILE_X;
 			String agentFile = AGENT_FILE_X;

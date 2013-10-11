@@ -19,7 +19,7 @@ public class ModelController {
 	private Move move;
 	private Set[] sets;
 	private int i;
-	private boolean forceStop = false;
+//	private boolean forceStop = false;
 
 	
 	private AlgorithmManager AlgManager;
@@ -51,7 +51,7 @@ public class ModelController {
 
 	public void startSet(){
 		
-		forceStop = false;
+//		forceStop = false;
 		
 		set = newSet();
 		sets[setId] = set;
@@ -67,12 +67,12 @@ public class ModelController {
 			ownPlayer = "O";
 			opponentPlayer = "X";
 		}
-		i = 0;
+//		i = 0;
 		
 		do{
 			serverFile = new XMLReader().getServerFile();
 			
-			if(forceStop==false){
+//			if(forceStop==false){
 				
 				if (serverFile.getApproval()==true){
 					if (serverFile.getOpponentMove() == -1)
@@ -97,13 +97,11 @@ public class ModelController {
 				}
 
 				
-			}
+//			}
 			
 			
-		}while(i<42|forceStop==false);
+		}while(true);
 
-		//Sieger anzeigen -> Popup?/ updaten der Oberfläche
-		Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
 	}
 	
 	private void proceedOpponentMove()
@@ -123,7 +121,7 @@ public class ModelController {
 		move = new Move(row, column, opponentPlayer);
 		moves[i] = move;
 		
-		i++;
+//		i++;
 	}
 	
 	
@@ -151,17 +149,17 @@ public class ModelController {
 		move = new Move(row, column, ownPlayer);
 		moves[i] = move;		
 		
-		i++;
+//		i++;
 	}
 		
 
 	/* Create new game objects */
-	public Game newGame(String name, String player) {
+	public Game newGame(String name, String player, String opponentName) {
 		Game newGame = null;
 				sets = new Set[3];
 				score = new int[2];
 				score[0] = score[1] = 0;
-		newGame = new Game(name, sets, score, false, player);
+		newGame = new Game(name, sets, score, false, player, opponentName);
 //		newGame = DBInserts.insertGame(newGame);
 		setId=0;
 		this.setGame(newGame);
@@ -246,14 +244,19 @@ public class ModelController {
 	}
 
 	public void endSet() {
-		forceStop = true;
+//		forceStop = true;
+		//Sieger anzeigen -> Popup?/ updaten der Oberfläche
 		Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
+		
+		set = newSet();
+		sets[setId] = set;
+		setId++;
 	}
-	
+	/*
 	public boolean getForceStop(){
 		return this.forceStop;
 	}
-	
+	*/
 //	private void setSet(int index) {}
 	/*
 	@SuppressWarnings("unused")
