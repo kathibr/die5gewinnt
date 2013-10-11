@@ -40,8 +40,12 @@ public class DataManipulation {
 	public static String getSetFieldForDB(Move[][] field) {
 		String returnField = "";
 		for(int i = 0; i < 7; i++)
-			for(int j = 0; j < 6; j++)
-				returnField += field[i][j].getId()+",";
+			for(int j = 0; j < 6; j++) {
+				if(field[i][j] == null)
+					returnField += "0,";
+				else
+					returnField += field[i][j].getId()+",";
+			}
 		return returnField.substring(0, returnField.length() - 1);
 	}
 	
