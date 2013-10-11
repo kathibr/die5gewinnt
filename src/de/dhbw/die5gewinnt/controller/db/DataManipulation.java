@@ -42,7 +42,7 @@ public class DataManipulation {
 		for(int i = 0; i < 7; i++)
 			for(int j = 0; j < 6; j++) {
 				if(field[i][j] == null)
-					returnField += "-1,";
+					returnField += "0,";
 				else
 					returnField += field[i][j].getId()+",";
 			}
