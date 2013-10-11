@@ -42,8 +42,6 @@ public class ModelController {
 
 	public void startSet(){
 		
-//		forceStop = false;
-		
 		set = newSet();
 		sets[setId] = set;
 		setId++;
@@ -63,31 +61,34 @@ public class ModelController {
 		do{
 			serverFile = new XMLReader().getServerFile();
 			
-//			if(forceStop==false){
-				
-				if (serverFile.getApproval()==true){
-					if (serverFile.getOpponentMove() == -1)
-					{
-						proceedOwnMove();
-					}
-					else 
-					{
-						proceedOpponentMove();
-						proceedOwnMove();
-					}
+			if (serverFile.getApproval()==true){
+				if (serverFile.getOpponentMove() == -1)
+				{
+					proceedOwnMove();
 				}
-				
-				else{
-					if (serverFile.getOpponentMove() != -1){
-						proceedOpponentMove();
-					}
-					System.out.println("Set is over");
-					endSet();
+				else 
+				{
+					proceedOpponentMove();
+					proceedOwnMove();
 				}
-
-				
-//			}
+			}
 			
+			else{
+				if (serverFile.getOpponentMove() != -1){
+					proceedOpponentMove();
+					set.setWinner(false);
+					score[1]++;
+				}
+				else {
+					set.setWinner(true);
+					score[0]++;
+				}
+				System.out.println("Set is over");
+				game.setScore(score);
+				endSet();
+			}
+
+
 			
 		}while(true);
 
