@@ -180,6 +180,7 @@ private Label playerNameX;
 	@FXML
 	private void handleStartSet(){	
 		btEndSet.setDisable(false);
+		btStartSet.setDisable(true);
 		switch (i) {
 		case 0:
 			Controller.getController().start();
@@ -196,9 +197,12 @@ private Label playerNameX;
 	
 	@FXML
 	private void handleEndSet(){
+		
+		btEndSet.setDisable(true);
+		btStartSet.setDisable(false);
+		
 		System.out.println("end set");
 		Controller.getController().suspend();
-		btEndSet.setDisable(true);
 		Controller.getController().getModelController().endSet();
 		//ausgrauen von StartSet_Button
 	}
