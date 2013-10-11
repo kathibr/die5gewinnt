@@ -17,7 +17,7 @@ public class DBInserts extends DBQuery {
 			game.setId(AutoIncrementKeys.getNextGameIdAndIncrement());
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "INSERT INTO Games VALUES("+game.getId()+", \'"+game.getName()+"\', \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', \'"+DataManipulation.getGameWinnerForDB(game.getWinner())+"\', \'"+game.getPlayer()+"\')";
+				String sql = "INSERT INTO Games VALUES("+game.getId()+", \'"+game.getName()+"\', \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', \'"+DataManipulation.getGameWinnerForDB(game.getWinner())+"\', \'"+game.getPlayer()+"\', \'"+game.getOpponentName()+"\')";
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {

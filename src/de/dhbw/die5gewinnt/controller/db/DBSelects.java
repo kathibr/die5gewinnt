@@ -54,6 +54,7 @@ public class DBSelects extends DBQuery {
 	    		game.setScore(DataManipulation.getGameScoreForJava(rs.getString(3)));
 	    		game.setWinner(DataManipulation.getGameWinnerForJava(rs.getString(4)));
 	    		game.setPlayer(rs.getString(5));
+	    		game.setOpponentName(rs.getString(6));
 	    	}
 	    	rs.close();
 	    	stmt.close();
@@ -79,6 +80,7 @@ public class DBSelects extends DBQuery {
 					game.setScore(DataManipulation.getGameScoreForJava(rs.getString(3)));
 					game.setWinner(DataManipulation.getGameWinnerForJava(rs.getString(4)));
 					game.setPlayer(rs.getString(5));
+					game.setOpponentName(rs.getString(6));
 				oldGames.add(game);
 	    	}
 	    	rs.close();

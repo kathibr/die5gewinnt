@@ -85,7 +85,7 @@ public class Main {
 		Move move = null;
 		
 		for(int i = 0; i < 4; i++) { // Create a game
-			game = new Game("Spiel-Nr. "+i, null, score, false, "X");
+			game = new Game("Spiel-Nr. "+i, null, score, false, "X", "blutwurst1");
 			game = DBInserts.insertGame(game);
 			for(int j = 0; j < (int) (Math.random() * (3 - 2) + 2); j++) { // Create a set
 				set = new Set(moves, field, columnHeight);
