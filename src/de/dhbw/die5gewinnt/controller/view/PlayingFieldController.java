@@ -32,8 +32,7 @@ public class PlayingFieldController {
 	
 	@FXML
 	private Button btStartSet;
-	@FXML
-	private Button btNextSet;
+
 	@FXML
 	private Button btEndSet;
 	@FXML
@@ -140,7 +139,6 @@ public class PlayingFieldController {
 
 	@FXML
 	private void initialize() {
-		btNextSet.setDisable(true);
 		btEndSet.setDisable(true);
 		
 		modelController = Controller.getController().getModelController();
@@ -304,7 +302,6 @@ public class PlayingFieldController {
 	private void handleEndSet(){
 		System.out.println("end set");
 		btEndSet.setDisable(true);
-		btNextSet.setDisable(false);
 		Controller.getController().getModelController().endSet();
 		//ausgrauen von StartSet_Button
 	}
@@ -313,10 +310,6 @@ public class PlayingFieldController {
 		System.out.println("end game");
 		}
 
-	@FXML
-	private void handleNextSet(){
-		System.out.println("end game");
-		}
 	
 	@FXML
 	public void circleAction(){
