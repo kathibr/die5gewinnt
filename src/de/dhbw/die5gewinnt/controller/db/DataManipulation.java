@@ -75,4 +75,18 @@ public class DataManipulation {
 		return returnColumnHeight;
 	}
 	
+	public static String getSetWinnerForDB(boolean winner) {
+		if(winner)
+			return "true";
+		else
+			return "false";		
+	}
+	
+	public static boolean getSetWinnerForJava(String winner) {
+		if(winner.equals("true"))
+			return true;
+		else
+			return false;		
+	}
+	
 }

@@ -51,3 +51,4 @@ SET SCHEMA PUBLIC
 INSERT INTO GAMES VALUES(1,'die1gewinnt','2,1','true','X','blutwurst1')
 INSERT INTO GAMES VALUES(2,'die2gewinnt','1,2','false','X','gegnerTeam')
 INSERT INTO GAMES VALUES(3,'die3gewinnt','3,0','true','O','blutwurst1')
+INSERT INTO GAMES VALUES(4,'Spiel1','0,0','false','X','blutwurst1')
