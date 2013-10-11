@@ -77,17 +77,19 @@ public class ModelController {
 				if (serverFile.getOpponentMove() != -1){
 					proceedOpponentMove();
 					set.setWinner(false);
-					score[1]++;
+					int scoreNr = score[1];
+					score[1]=scoreNr+1;
 				}
 				else {
 					set.setWinner(true);
-					score[0]++;
+
+					int scoreNr = score[0];
+					score[0] =scoreNr+1;
 				}
 				System.out.println("Set is over");
 				game.setScore(score);
-				endSet();
+				Controller.getController().playingFieldController.handleEndSet();
 			}
-
 
 			
 		}while(true);
@@ -111,6 +113,7 @@ public class ModelController {
 		move = new Move(row, column, opponentPlayer);
 		move = DBInserts.insertMove(move,game.getId(),setId);
 		moves[moveId] = move;
+		field[column][row]=move;
 		moveId++;
 	}
 	
@@ -139,6 +142,7 @@ public class ModelController {
 		move = new Move(row, column, ownPlayer);
 		move = DBInserts.insertMove(move,game.getId(),setId);
 		moves[moveId] = move;		
+		field[column][row]=move;
 		
 		moveId++;
 	}

@@ -17,11 +17,13 @@ public class PlayingFieldController {
 	@FXML
 	private Rectangle playerXColor, playerOColor;
 	@FXML 
-	private Label gameNameLabel, scorePlayerX, scorePlayerO, currentSet;
+	private Label gameNameLabel, scorePlayerO, currentSet;
 @FXML
 private Label playerNameO;
 @FXML
 private Label playerNameX;
+@FXML
+private Label scorePlayerX;
 	@FXML	
 	private Button btStartSet, btEndSet, btEndGame;	
 
@@ -44,6 +46,7 @@ private Label playerNameX;
 	
 	private int i;
 	private String stringSetId;
+	private int[] score;
 
 
 	public PlayingFieldController() {
@@ -181,6 +184,7 @@ private Label playerNameX;
 	private void handleStartSet(){	
 		btEndSet.setDisable(false);
 		btStartSet.setDisable(true);
+
 		switch (i) {
 		case 0:
 			Controller.getController().start();
@@ -188,6 +192,10 @@ private Label playerNameX;
 		case 3:
 			break;
 		default:
+
+			scorePlayerO.setText(new Integer(score[0]).toString());
+			System.out.println("Score0: "+score[0]+"/ Score1: "+score[1]);
+			scorePlayerX.setText(new Integer(score[1]).toString());
 			clearPlayingField();
 			Controller.getController().resume();
 		}
@@ -196,15 +204,15 @@ private Label playerNameX;
 	}
 	
 	@FXML
-	private void handleEndSet(){
+	public void handleEndSet(){
 		
 		btEndSet.setDisable(true);
 		btStartSet.setDisable(false);
 		
 		System.out.println("end set");
-		Controller.getController().suspend();
+
 		Controller.getController().getModelController().endSet();
-		//ausgrauen von StartSet_Button
+		Controller.getController().suspend();
 	}
 	@FXML
 	private void handleEndGame(){
@@ -224,10 +232,8 @@ private Label playerNameX;
 	}
 
 	public void updateDisplay(int setId, int[] score) {
-		stringSetId = String.valueOf(setId);
-		
-		scorePlayerO.setText(String.valueOf(score[0]));
-		scorePlayerX.setText(String.valueOf(score[1]));
+		this.stringSetId = String.valueOf(setId);
+		this.score=score;
 		
 		System.out.println("Update Display");
 	}
