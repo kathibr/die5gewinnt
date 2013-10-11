@@ -28,7 +28,7 @@
     <Group id="Group" layoutX="10.0" layoutY="175.0">
       <children>
         <Label layoutX="0.0" layoutY="3.0" prefWidth="35.0" text="Pfad" textFill="WHITE" />
-        <TextField fx:id="filePath" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="C:/Users/Christian/git/die5gewinnt" />
+        <TextField fx:id="filePath" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="" text="C:/" />
       </children>
     </Group>
     <Button layoutX="124.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />

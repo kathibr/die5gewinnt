@@ -12,122 +12,35 @@ import de.dhbw.die5gewinnt.controller.logic.ModelController;
 public class PlayingFieldController {
 	
 	private ModelController modelController;
-
 	private MainApp mainApp;
 
+	@FXML
+	private Rectangle playerXColor, playerOColor;
+	@FXML 
+	private Label gameNameLabel, scorePlayerX, scorePlayerO, currentSet;
+@FXML
+private Label playerNameO;
+@FXML
+private Label playerNameX;
+	@FXML	
+	private Button btStartSet, btEndSet, btEndGame;	
+
+	@FXML
+	private Circle circle05, circle04, circle03, circle02, circle01, circle00;
+	@FXML
+	private Circle circle15, circle14, circle13, circle12, circle11, circle10;
+	@FXML
+	private Circle circle25, circle24, circle23, circle22, circle21, circle20;
+	@FXML
+	private Circle circle35, circle34, circle33, circle32, circle31, circle30;
+	@FXML
+	private Circle circle45, circle44, circle43, circle42, circle41, circle40;
+	@FXML
+	private Circle circle55, circle54, circle53, circle52, circle51, circle50;
+	@FXML
+	private Circle circle65, circle64, circle63, circle62, circle61, circle60;
+	
 	private Circle circleArray[][];
-
-	@FXML
-	private Rectangle playerXColor;
-	@FXML
-	private Rectangle playerOColor;
-	@FXML 
-	private Label gameNameLabel;
-	@FXML 
-	private Label scorePlayerX;
-	@FXML
-	private Label scorePlayerO;
-	@FXML
-	private Label currentSet;
-	
-	@FXML
-	private Button btStartSet;
-
-	@FXML
-	private Button btEndSet;
-	@FXML
-	private Button btEndGame;
-	
-	@FXML
-	private Circle circle05;
-	@FXML
-	private Circle circle04;
-	@FXML
-	private Circle circle03;
-	@FXML
-	private Circle circle02;
-	@FXML
-	private Circle circle01;
-	@FXML
-	private Circle circle00;
-
-	@FXML
-	private Circle circle15;
-	@FXML
-	private Circle circle14;	
-	@FXML
-	private Circle circle13;
-	@FXML
-	private Circle circle12;	
-	@FXML
-	private Circle circle11;	
-	@FXML
-	private Circle circle10;
-
-	@FXML
-	private Circle circle25;
-	@FXML
-	private Circle circle24;
-	@FXML
-	private Circle circle23;
-	@FXML
-	private Circle circle22;
-	@FXML
-	private Circle circle21;
-	@FXML
-	private Circle circle20;
-
-	@FXML
-	private Circle circle35;
-	@FXML
-	private Circle circle34;
-	@FXML
-	private Circle circle33;
-	@FXML
-	private Circle circle32;
-	@FXML
-	private Circle circle31;
-	@FXML
-	private Circle circle30;
-
-	@FXML
-	private Circle circle45;
-	@FXML
-	private Circle circle44;
-	@FXML
-	private Circle circle43;
-	@FXML
-	private Circle circle42;
-	@FXML
-	private Circle circle41;
-	@FXML
-	private Circle circle40;
-
-	@FXML
-	private Circle circle55;
-	@FXML
-	private Circle circle54;
-	@FXML
-	private Circle circle53;
-	@FXML
-	private Circle circle52;
-	@FXML
-	private Circle circle51;
-	@FXML
-	private Circle circle50;
-
-	@FXML
-	private Circle circle65;
-	@FXML
-	private Circle circle64;
-	@FXML
-	private Circle circle63;
-	@FXML
-	private Circle circle62;
-	@FXML
-	private Circle circle61;
-	@FXML
-	private Circle circle60;
 	
 	private int i;
 	private String stringSetId;
@@ -142,10 +55,25 @@ public class PlayingFieldController {
 		
 		modelController = Controller.getController().getModelController();
 		gameNameLabel.setText(modelController.getGame().getName());
-//		System.out.println("Spielname: "+Controller.getModelController().getGame().getName());
-//		System.out.println("Spieler: "+Controller.getModelController().getGame().getPlayer());
-//		System.out.println("Serverfile: "+Controller.getCommunicationController().getServerFilePath());
-//		System.out.println("Agentfile: "+Controller.getCommunicationController().getAgentFilePath());
+		if(modelController.getGame().getPlayer().equals("X")){
+				playerNameX.setText("die5gewinnt");
+				playerNameO.setText(modelController.getGame().getOpponentName());
+				playerXColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
+				playerXColor.getStyleClass().add("yellowCircle");
+				playerOColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
+				playerOColor.getStyleClass().add("redCircle");
+				
+				
+		} else{
+				playerNameO.setText("die5gewinnt");
+				playerNameX.setText(modelController.getGame().getOpponentName());
+				playerOColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
+				playerOColor.getStyleClass().add("yellowCircle");
+				playerXColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
+				playerXColor.getStyleClass().add("redCircle");
+		}
+	
+		
 
 		circleArray = new Circle[20][20];
 		circleArray[0][0]= circle00;
