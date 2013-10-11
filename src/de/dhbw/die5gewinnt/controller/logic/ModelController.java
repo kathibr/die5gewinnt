@@ -18,14 +18,14 @@ public class ModelController {
 	private int score[];
 	private Move move;
 	private Set[] sets;
-	private int i;
 //	private boolean forceStop = false;
 
 	
 	private AlgorithmManager AlgManager;
 	private ServerFile serverFile;
 
-	
+
+	private int moveId;
 	private int setId;
 	private int column, row;
 	private int[] columnHeight;
@@ -38,16 +38,6 @@ public class ModelController {
 	private final int RED = 2;
 	
 	
-	public void startGame(String name, String player){
-//		System.out.println("Spiel "+ name + player);		
-		
-		//AlgManager = AlgorithmManager.getAlgorithmManager();
-		
-		
-		//game = newGame(name,player);
-		//game.getSets();
-		//sets[0] = newSet();
-	}
 
 	public void startSet(){
 		
@@ -91,9 +81,7 @@ public class ModelController {
 						proceedOpponentMove();
 					}
 					System.out.println("Set is over");
-
-					//Set beenden
-					break;				
+					endSet();
 				}
 
 				
@@ -119,9 +107,9 @@ public class ModelController {
 		
 		// Save move
 		move = new Move(row, column, opponentPlayer);
-		moves[i] = move;
+		moves[moveId] = move;
 		
-//		i++;
+		moveId++;
 	}
 	
 	
@@ -147,9 +135,9 @@ public class ModelController {
 		
 		// Save move 
 		move = new Move(row, column, ownPlayer);
-		moves[i] = move;		
+		moves[moveId] = move;		
 		
-//		i++;
+		moveId++;
 	}
 		
 
@@ -251,6 +239,7 @@ public class ModelController {
 		set = newSet();
 		sets[setId] = set;
 		setId++;
+		moveId = 0;
 	}
 	/*
 	public boolean getForceStop(){
