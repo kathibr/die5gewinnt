@@ -294,7 +294,7 @@ public class PlayingFieldController {
 			break;
 		default:
 			clearPlayingField();
-			Controller.getController().getModelController().startSet();
+			Controller.getController().start();
 		}
 		i++;
 		
@@ -303,6 +303,7 @@ public class PlayingFieldController {
 	@FXML
 	private void handleEndSet(){
 		System.out.println("end set");
+		Controller.getController().stop();
 		btEndSet.setDisable(true);
 		btNextSet.setDisable(false);
 		Controller.getController().getModelController().endSet();
@@ -311,6 +312,12 @@ public class PlayingFieldController {
 	@FXML
 	private void handleEndGame(){
 		System.out.println("end game");
+		try {
+			Controller.getController().stop();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		}
 
 	@FXML

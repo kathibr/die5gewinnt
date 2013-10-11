@@ -116,7 +116,7 @@ public class ModelController {
 		set.setColumnHeight(columnHeight);
 
 		// Show move
-		Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
+		Controller.getController().getPlayingFieldController().showMove(column, row, RED);
 		System.out.println("Opponent move: " + " Spalte " + column +", Zeile "+row);
 		
 		// Save move
@@ -144,7 +144,7 @@ public class ModelController {
 		TXTWriter.setAgentFile(column);
 		
 		// Show move
-		Controller.getController().getPlayingFieldController().showMove(column, row, RED);
+		Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
 		System.out.println("Own move: " + " Spalte " + column +", Zeile "+row);
 		
 		// Save move 
