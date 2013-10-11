@@ -1,8 +1,8 @@
 package de.dhbw.die5gewinnt.controller.view;
 
-import de.dhbw.die5gewinnt.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import de.dhbw.die5gewinnt.MainApp;
 
 public class RootLayoutController {
 
@@ -17,19 +17,19 @@ public class RootLayoutController {
 	@FXML
 	private void handleNewGame() {
 		boolean okClicked = mainApp.showGameNameDialog();
-		if(okClicked) {
+		if (okClicked) {
 			mainApp.showPlayingField();
-		}		  
+		}
 	}
+
 	@FXML
 	private void handleOldGames() {
 		mainApp.showOldGames();
 	}
+
 	@FXML
-	private void returnToStart(){
-		// System.out.println("Zum Start");
-	//	mainApp.getPrimaryStage().getScene();mainapp set root empty
+	private void returnToStart() {
 		mainApp.returnToStart();
-		}
+	}
 
 }

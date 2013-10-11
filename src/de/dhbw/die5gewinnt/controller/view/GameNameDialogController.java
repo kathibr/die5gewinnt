@@ -2,27 +2,25 @@ package de.dhbw.die5gewinnt.controller.view;
 
 import java.io.File;
 
-import de.dhbw.die5gewinnt.controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import de.dhbw.die5gewinnt.controller.Controller;
 
 public class GameNameDialogController {
 
 	@FXML
 	private TextField gameName, filePath, opponentName;
-
 	@FXML
 	private RadioButton playerX, playerO;
-	private Stage dialogStage;
-	private boolean okClicked = false;
 	@FXML
 	private Label errorMessageLabel;
+	
+	private Stage dialogStage;
+	private boolean okClicked = false;
 
 	private final String PLAYER_X = "X";
 	private final String PLAYER_O = "O";

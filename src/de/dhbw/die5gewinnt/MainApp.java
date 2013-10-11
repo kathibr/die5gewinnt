@@ -136,12 +136,7 @@ public class MainApp extends Application {
 		}
 	}
 	public void returnToStart(){
-		//Image image = new Image("@../../img/die5gewinntwhite.png");
-		
-		//ImageView imageView = new ImageView();
-		//imageView.setImage(image);
 		rootLayout.setCenter(imageV);
-		
 	}
 	
 	public Stage getPrimaryStage() {
