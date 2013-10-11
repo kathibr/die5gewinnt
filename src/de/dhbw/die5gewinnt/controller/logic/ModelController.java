@@ -5,6 +5,7 @@ import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
+import de.dhbw.die5gewinnt.controller.db.DBInserts;
 import de.dhbw.die5gewinnt.model.Game;
 import de.dhbw.die5gewinnt.model.Move;
 import de.dhbw.die5gewinnt.model.ServerFile;
@@ -107,8 +108,8 @@ public class ModelController {
 		
 		// Save move
 		move = new Move(row, column, opponentPlayer);
+		move = DBInserts.insertMove(move,game.getId(),setId);
 		moves[moveId] = move;
-		
 		moveId++;
 	}
 	
@@ -135,6 +136,7 @@ public class ModelController {
 		
 		// Save move 
 		move = new Move(row, column, ownPlayer);
+		move = DBInserts.insertMove(move,game.getId(),setId);
 		moves[moveId] = move;		
 		
 		moveId++;
@@ -148,7 +150,7 @@ public class ModelController {
 				score = new int[2];
 				score[0] = score[1] = 0;
 		newGame = new Game(name, sets, score, false, player, opponentName);
-//		newGame = DBInserts.insertGame(newGame);
+		newGame = DBInserts.insertGame(newGame);
 		setId=0;
 		this.setGame(newGame);
 		return this.getGame();
@@ -161,6 +163,7 @@ public class ModelController {
 			columnHeight = new int[7];
 
 			newSet = new Set(moves, field, columnHeight);
+			newSet = DBInserts.insertSet(newSet);
 			return newSet;
 		
 			/*
