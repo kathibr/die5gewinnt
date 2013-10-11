@@ -1,16 +1,22 @@
 package de.dhbw.die5gewinnt.controller.view;
 
+import java.io.File;
+
 import de.dhbw.die5gewinnt.controller.Controller;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class GameNameDialogController {
 
 	@FXML
 	private TextField gameName, filePath;
+
 	@FXML
 	private RadioButton playerX, playerO;
 	private Stage dialogStage;
@@ -42,6 +48,21 @@ public class GameNameDialogController {
 		return okClicked;
 	}
 
+	@FXML
+	private void findPath(){
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Wähle Pfad aus");
+
+		File file = directoryChooser.showDialog(dialogStage);
+		
+			if(file!=null){
+
+             filePath.setText(file.getPath());
+
+        }
+		
+	}
+	
 	@FXML
 	private void handleOk() {
 		if(isInputValid()) {

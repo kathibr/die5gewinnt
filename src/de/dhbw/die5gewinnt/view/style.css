@@ -61,6 +61,18 @@
     -fx-text-fill: white;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
+.button-small {
+    -fx-padding: 5 10 5 10;
+       -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #2f3440;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
 
 .button:hover {
     -fx-background-color: #3a3a3a;

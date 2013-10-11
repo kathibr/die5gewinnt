@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="277.9998779296875" minHeight="264.9998779296875" prefHeight="277.9998779296875" prefWidth="315.9998779296875" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.GameNameDialogController">
+<AnchorPane maxHeight="277.9998779296875" minHeight="264.9998779296875" prefHeight="277.9998779296875" prefWidth="375.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.GameNameDialogController">
   <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="10.0" layoutY="14.0" styleClass="label-header" text="Neues Spiel" />
     <Group layoutX="10.0" layoutY="75.0" scaleX="1.0" scaleY="1.0">
       <Label layoutX="0.0" styleClass="label-bright" text="Name des Spiels" />
-      <TextField fx:id="gameName" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="" text="Spiel1" />
+      <TextField fx:id="gameName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="Spiel1" />
     </Group>
     <Group id="Group" layoutX="10.0" layoutY="109.0" scaleX="1.0" scaleY="1.0">
       <children>
@@ -35,11 +35,12 @@
     <Button layoutX="199.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
     <Group id="Group" layoutX="10.0" layoutY="138.0">
       <children>
-        <TextField layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="" text="blutwurst1" />
+        <TextField layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="blutwurst1" />
         <Label layoutX="0.0" layoutY="3.0" styleClass="label-bright" text="Gegner" />
       </children>
     </Group>
     <Label id="errorMessage" fx:id="errorMessageLabel" layoutX="10.0" layoutY="209.0" styleClass="label-bright" text="" />
+    <Button id="selectPath" layoutX="308.0" layoutY="171.0" mnemonicParsing="false" onAction="#findPath" prefWidth="52.0" styleClass="button-small" text="Pfad" />
   </children>
   <stylesheets>
     <URL value="@style.css" />
