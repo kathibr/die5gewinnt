@@ -8,6 +8,7 @@ public class Game {
 	private int[] score;
 	private boolean winner;
 	private String player;
+	private String opponentName;
 	
 	public Game() {
 		this.setId(0);
@@ -16,15 +17,17 @@ public class Game {
 		this.setScore(new int[2]);
 		this.setWinner(true);
 		this.setPlayer("");
+		this.setOpponentName("");
 	}
 	
-	public Game(String name, Set[] sets, int[] score, boolean winner, String player) {
+	public Game(String name, Set[] sets, int[] score, boolean winner, String player, String opponentName) {
 		this.setId(0);
 		this.setName(name);
 		this.setSets(sets);	
 		this.setScore(score);
 		this.setWinner(winner);
 		this.setPlayer(player);
+		this.setOpponentName(opponentName);
 	}
 	
 	/* GETTER-Methods */
@@ -52,6 +55,10 @@ public class Game {
 		return this.player;
 	}
 	
+	public String getOpponentName() {
+		return this.opponentName;
+	}
+	
 	/* SETTER-Methods */
 	public void setId(int id) {
 		this.id = id;
@@ -75,6 +82,10 @@ public class Game {
 	
 	public void setPlayer(String player) {
 		this.player = player;
+	}
+	
+	public void setOpponentName(String opponentName) {
+		this.opponentName = opponentName;
 	}
 
 }
