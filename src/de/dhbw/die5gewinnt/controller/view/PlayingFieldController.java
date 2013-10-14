@@ -1,5 +1,6 @@
 package de.dhbw.die5gewinnt.controller.view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,13 +18,7 @@ public class PlayingFieldController {
 	@FXML
 	private Rectangle playerXColor, playerOColor;
 	@FXML 
-	private Label gameNameLabel, scorePlayerO, currentSet;
-@FXML
-private Label playerNameO;
-@FXML
-private Label playerNameX;
-@FXML
-private Label scorePlayerX;
+	private Label gameNameLabel, scorePlayerO, currentSet, playerNameO, playerNameX, scorePlayerX;
 	@FXML	
 	private Button btStartSet, btEndSet, btEndGame;	
 
@@ -46,7 +41,7 @@ private Label scorePlayerX;
 	
 	private int i;
 	private String stringSetId;
-	private int[] score;
+//	private int[] score;
 
 
 	public PlayingFieldController() {
@@ -155,12 +150,15 @@ private Label scorePlayerX;
 	
 	public void clearPlayingField(){
 		System.out.println("Clear PlayingField");
+		
+		//Update setId auf der Oberfläche
 		currentSet.setText(stringSetId);
 		
+			
+		//Spielfeld leeren
 		for(int column = 0; column<7; column++){
 			
 			for(int row = 0; row<6; row++){
-
 				try {
 					circleArray[column][row].getStyleClass().remove("yellowCircle");
 					circleArray[column][row].getStyleClass().add("emptyCircle");
@@ -192,10 +190,6 @@ private Label scorePlayerX;
 		case 3:
 			break;
 		default:
-
-			scorePlayerO.setText(new Integer(score[0]).toString());
-			System.out.println("Score0: "+score[0]+"/ Score1: "+score[1]);
-			scorePlayerX.setText(new Integer(score[1]).toString());
 			clearPlayingField();
 			Controller.getController().resume();
 		}
@@ -205,15 +199,21 @@ private Label scorePlayerX;
 	
 	@FXML
 	public void handleEndSet(){
-		
 		btEndSet.setDisable(true);
-		btStartSet.setDisable(false);
+		if(! stringSetId.equals("3")){
+
+			btStartSet.setDisable(false);
+		}
 		
 		System.out.println("end set");
-
-		Controller.getController().getModelController().endSet();
+//
+//		Controller.getController().getModelController().endSet();
 		Controller.getController().suspend();
+		
 	}
+
+	
+	
 	@FXML
 	private void handleEndGame(){
 		System.out.println("end game");
@@ -231,13 +231,31 @@ private Label scorePlayerX;
 
 	}
 
-	public void updateDisplay(int setId, int[] score) {
+	public void updateDisplay(int setId,final int[] score) {
 		this.stringSetId = String.valueOf(setId);
-		this.score=score;
+//		this.score=score;
+//		System.out.println("Update Display");
 		
-		System.out.println("Update Display");
+		
+		Platform.runLater(new Runnable() {
+			public void run() {
+				//Score updaten
+				gameNameLabel.setText(modelController.getGame().getName());
+				
+				if(modelController.getGame().getPlayer().equals("X")){
+					//PlayerX ist der eigene Player
+					scorePlayerO.setText(new Integer(score[1]).toString());
+//					System.out.println("Score0: "+score[0]+"/ Score1: "+score[1]);
+					scorePlayerX.setText(new Integer(score[0]).toString());	
+					}
+				else{
+					//Player0 ist der eigene Player
+					scorePlayerO.setText(new Integer(score[0]).toString());
+//					System.out.println("Score0: "+score[0]+"/ Score1: "+score[1]);
+					scorePlayerX.setText(new Integer(score[1]).toString());	
+					}		
+			}
+		});
 	}
 	
-	
-
 }

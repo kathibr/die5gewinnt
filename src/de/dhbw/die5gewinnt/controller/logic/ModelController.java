@@ -44,7 +44,6 @@ public class ModelController {
 		
 		set = newSet();
 		sets[setId] = set;
-		setId++;
 		
 		if (game.getPlayer()=="X")
 		{
@@ -76,18 +75,27 @@ public class ModelController {
 			else{
 				if (serverFile.getOpponentMove() != -1){
 					proceedOpponentMove();
+					System.out.println("Wir haben verloren :(");
 					set.setWinner(false);
 					int scoreNr = score[1];
 					score[1]=scoreNr+1;
 				}
 				else {
+					System.out.println("Wir haben gewonnen :)");
 					set.setWinner(true);
-
 					int scoreNr = score[0];
 					score[0] =scoreNr+1;
 				}
 				System.out.println("Set is over");
 				game.setScore(score);
+				setId++;
+				
+				if(setId<3){
+					set = newSet();
+					sets[setId] = set;
+					moveId = 0;	
+				}
+				Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
 				Controller.getController().playingFieldController.handleEndSet();
 			}
 
@@ -239,16 +247,10 @@ public class ModelController {
 		this.game = game;
 	}
 
-	public void endSet() {
-//		forceStop = true;
-		//Sieger anzeigen -> Popup?/ updaten der Oberfläche
-		Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
-		
-		set = newSet();
-		sets[setId] = set;
-		setId++;
-		moveId = 0;
-	}
+//	public void endSet() {
+////		forceStop = true;
+//		//Sieger anzeigen -> Popup?/ updaten der Oberfläche
+//	}
 	/*
 	public boolean getForceStop(){
 		return this.forceStop;
