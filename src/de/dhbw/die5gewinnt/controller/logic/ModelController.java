@@ -106,23 +106,28 @@ public class ModelController {
 	
 	private void proceedOpponentMove()
 	{
-		// Calculate move
-		column = serverFile.getOpponentMove();
-		columnHeight = set.getColumnHeight();
-		row = columnHeight[column];
-		columnHeight[column]++;
-		set.setColumnHeight(columnHeight);
+		try {
+			// Calculate move
+			column = serverFile.getOpponentMove();
+			columnHeight = set.getColumnHeight();
+			row = columnHeight[column];
+			columnHeight[column]++;
+			set.setColumnHeight(columnHeight);
 
-		// Show move
-		Controller.getController().getPlayingFieldController().showMove(column, row, RED);
-		System.out.println("Opponent move: " + " Spalte " + column +", Zeile "+row);
-		
-		// Save move
-		move = new Move(row, column, opponentPlayer);
-		move = DBInserts.insertMove(move,game.getId(),setId);
-		moves[moveId] = move;
-		field[column][row]=move;
-		moveId++;
+			// Show move
+			Controller.getController().getPlayingFieldController().showMove(column, row, RED);
+			System.out.println("Opponent move: " + " Spalte " + column +", Zeile "+row);
+			
+			// Save move
+			move = new Move(row, column, opponentPlayer);
+			move = DBInserts.insertMove(move,game.getId(),setId);
+			moves[moveId] = move;
+			field[column][row]=move;
+			moveId++;			
+		} catch (Exception e) {
+			System.out.println("Feld ist voll - ungültiger Zug");
+		}
+
 	}
 	
 	
