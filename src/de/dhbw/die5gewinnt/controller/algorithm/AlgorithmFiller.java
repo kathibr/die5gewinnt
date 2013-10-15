@@ -6,22 +6,38 @@ import de.dhbw.die5gewinnt.model.Move;
 import de.dhbw.die5gewinnt.model.Set;
 
 public class AlgorithmFiller {
-	public Move[][] field = new Move[7][6];
+	private Move[][] field = new Move[7][6];
 	private Move[][] possibleCombinations = new Move[4][69];
 	private int row,collumn,start,threshold;
 	private String testcomment;
-	private ArrayList<Move[]> combinations = new ArrayList<Move[]>(69);
+//	private ArrayList<Move[]> combinations = new ArrayList<Move[]>(69);
+	private ArrayList<Integer> combinations = new ArrayList<Integer>(69);
+	private int[][] positions = new int[8][69];
 	
 	public AlgorithmFiller(Set set){
 		field = set.getField();
 	}
+	
+	public int[][] getPositions(){
+		return positions;
+	}
+	
+	public Move[][] getPossibleCombinations(){
+		return possibleCombinations;
+	}
 
-	public ArrayList<Move[]> fillList(){
+	public ArrayList<Integer> fillList(){
 		fillVertical();
 		fillHorizontal();
 		fillDiagonal();
-		fillArrayList(possibleCombinations);
+		fillCombinations();
 		return combinations;
+	}
+	
+	public void fillCombinations(){
+		for(int i = 0; i < 69; i++){
+			combinations.add(i);
+		}
 	}
 	
 	public void fillVertical(){
@@ -34,6 +50,8 @@ public class AlgorithmFiller {
 				testcomment = "";
 				for(int y = start; y >= threshold; y--){
 					possibleCombinations[collumn][row] = field[x][y];
+					positions[2 * collumn + 1][row] = x;
+					positions[2 * collumn][row] = y;
 					collumn++;
 					testcomment = testcomment +" "+ x+""+y;
 				}
@@ -55,6 +73,8 @@ public class AlgorithmFiller {
 				testcomment = "";
 				for(int x = start; x >= threshold; x--){
 					possibleCombinations[collumn][row] = field[x][y];
+					positions[2 * collumn + 1][row] = collumn;
+					positions[2 * collumn][row] = row;
 					collumn++;
 					testcomment = testcomment +" "+ x+""+y;
 				}
@@ -74,6 +94,8 @@ public class AlgorithmFiller {
 				testcomment = "";
 				for(int i = 4; i > 0; i--){
 					possibleCombinations[collumn][row] = field[x][y];
+					positions[2 * collumn + 1][row] = collumn;
+					positions[2 * collumn][row] = row;
 					collumn++;
 					testcomment = testcomment +" "+ x+""+y;
 					x--;
@@ -92,6 +114,8 @@ public class AlgorithmFiller {
 				testcomment = "";
 				for(int i = 4; i > 0; i--){
 					possibleCombinations[collumn][row] = field[x][y];
+					positions[2 * collumn + 1][row] = collumn;
+					positions[2 * collumn][row] = row;
 					collumn++;
 					testcomment = testcomment +" "+ x+""+y;
 					x++;
@@ -102,16 +126,6 @@ public class AlgorithmFiller {
 				System.out.println(testcomment + " Zeile:"+row);
 				row++;
 			}
-		}
-	}
-	
-	public void fillArrayList(Move[][] array){
-		for(int i = 0; i < 69; i++){
-			Move[] row = new Move[4];
-			for(int y = 0; y < 4; y++){
-				row[y]=array[y][i];
-			}
-			combinations.add(i,row);
 		}
 	}
 }

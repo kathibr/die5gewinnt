@@ -34,7 +34,6 @@ public class AlgorithmTest {
 		Set set = new Set();
 		set.setField(field2);
 		MastermindAlgorithm algorithm = new MastermindAlgorithm(set);
-
 	}
 
 }
