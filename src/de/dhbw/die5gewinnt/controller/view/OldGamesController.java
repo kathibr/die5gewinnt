@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +29,12 @@ public class OldGamesController {
 	private ObservableList<Game> oList;
 	@FXML
 	private Label gameName, playerXName, playerOName, playerXScore, playerOScore;
+	@FXML
+	private Button btSetOne;
+	@FXML
+	private Button btSetTwo;
+	@FXML
+	private Button btSetThree;
 
 	public OldGamesController() {
 		oList = FXCollections.observableArrayList();
@@ -102,6 +109,38 @@ public class OldGamesController {
 		}
 		gameTable.setItems(oList);
 
+	}
+	@FXML
+	private void clickSetOne(){
+		if(btSetOne.getText().equals("Start")){
+			btSetOne.setText("Stop");
+			btSetTwo.setText("Start");
+			btSetThree.setText("Start");
+		} else {
+			btSetOne.setText("Start");
+		}
+	}
+	
+	
+	@FXML
+	private void clickSetTwo(){
+		if(btSetTwo.getText().equals("Start")){
+			btSetTwo.setText("Stop");
+			btSetOne.setText("Start");
+			btSetThree.setText("Start");
+		} else {
+			btSetTwo.setText("Start");
+		}
+	}
+	@FXML
+	private void clickSetThree(){
+		if(btSetThree.getText().equals("Start")){
+			btSetThree.setText("Stop");
+			btSetOne.setText("Start");
+			btSetTwo.setText("Start");
+		} else {
+			btSetThree.setText("Start");
+		}
 	}
 
 }

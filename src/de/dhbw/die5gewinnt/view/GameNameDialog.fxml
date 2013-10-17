@@ -13,7 +13,7 @@
     <Label layoutX="10.0" layoutY="14.0" styleClass="label-header" text="Neues Spiel" />
     <Group layoutX="10.0" layoutY="75.0" scaleX="1.0" scaleY="1.0">
       <Label layoutX="0.0" styleClass="label-bright" text="Name des Spiels" />
-      <TextField fx:id="gameName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="Spiel1" />
+      <TextField fx:id="gameName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="" />
     </Group>
     <Group id="Group" layoutX="10.0" layoutY="109.0" scaleX="1.0" scaleY="1.0">
       <children>
@@ -35,7 +35,7 @@
     <Button layoutX="199.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbrechen" />
     <Group id="Group" layoutX="10.0" layoutY="138.0">
       <children>
-        <TextField fx:id="opponentName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="blutwurst1" />
+        <TextField fx:id="opponentName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="" />
         <Label layoutX="0.0" layoutY="3.0" styleClass="label-bright" text="Gegner" />
       </children>
     </Group>
