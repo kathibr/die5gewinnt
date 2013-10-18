@@ -56,18 +56,18 @@ public class PlayingFieldController {
 				playerNameX.setText("die5gewinnt");
 				playerNameO.setText(modelController.getGame().getOpponentName());
 				playerXColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
-				playerXColor.getStyleClass().add("yellowCircle");
+				playerXColor.getStyleClass().add("redCircle");
 				playerOColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
-				playerOColor.getStyleClass().add("redCircle");
+				playerOColor.getStyleClass().add("yellowCircle");
 				
 				
 		} else{
 				playerNameO.setText("die5gewinnt");
 				playerNameX.setText(modelController.getGame().getOpponentName());
 				playerOColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
-				playerOColor.getStyleClass().add("yellowCircle");
+				playerOColor.getStyleClass().add("redCircle");
 				playerXColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
-				playerXColor.getStyleClass().add("redCircle");
+				playerXColor.getStyleClass().add("yellowCircle");
 		}
 	
 		
