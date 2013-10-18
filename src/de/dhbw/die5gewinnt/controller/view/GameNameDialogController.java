@@ -26,8 +26,8 @@ public class GameNameDialogController {
 	private final String PLAYER_O = "O";
 	private final String SERVER_FILE_X = "server2spielerx.xml";
 	private final String SERVER_FILE_O = "server2spielero.xml";
-	private final String AGENT_FILE_X = "agentxserver.txt";
-	private final String AGENT_FILE_O = "agento2server.txt";
+	private final String AGENT_FILE_X = "spielerx2server.txt";
+	private final String AGENT_FILE_O = "spielero2server.txt";
 	private final String EMPTY_MESSAGE = "";
 	private final String INVALID_NAME = "Kein zugelassener Spielname!\n";
 	private final String CORRECT_INVALID_FIELDS = "Bitte unzulässige Felder korrigieren!";
