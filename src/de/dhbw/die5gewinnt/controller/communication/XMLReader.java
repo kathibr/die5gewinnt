@@ -14,7 +14,6 @@ import org.jdom2.input.SAXBuilder;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.model.ServerFile;
 
-
 public class XMLReader  {
 	private ServerFile serverFile = new ServerFile();
 	
