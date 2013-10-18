@@ -29,6 +29,7 @@ public class MastermindAlgorithm implements Runnable {
 	private ArrayList<Integer> oneInARow = new ArrayList<Integer>();
 	private int[][] positions = new int[8][69];
 	private int[] evaluateColumns = new int[6];
+	private ArrayList<Integer> toBeRemoved = new ArrayList<Integer>(69);
 	
 	public MastermindAlgorithm(Set set){
 		game = Controller.getController().getModelController().getGame();			//ZU TESTZWECKEN AUSKOMMENTIERT!
@@ -43,6 +44,8 @@ public class MastermindAlgorithm implements Runnable {
 	}
 	
 	public int calcNextMove(){
+		refreshArrays();
+		analyzeField();
 		result = -1;
 		checkThreeInARow();
 		checkTwoInARow();
@@ -51,17 +54,14 @@ public class MastermindAlgorithm implements Runnable {
 			checkOneInARow();
 			analyzeResults();
 		}
+		if(result == -1) result = 3;
 		return result;
 	}
 	
-	/* ALGORITHM-Interface */
-	public void calcNextColumn() {
-		for(int i = 0; i<50000000; i++) {
-			for(int j = 0; j<5000000; j++) {
-			}
-		}
-		System.out.println("MastermindAlgorithm: 8");
-		nextColumn = 8;
+	public void refreshArrays(){
+		oneInARow.clear();
+		twoInARow.clear();
+		threeInARow.clear();
 	}
 	
 	public int calculateMove(Move move){
@@ -77,14 +77,14 @@ public class MastermindAlgorithm implements Runnable {
 					if(possibleCombinations[x][combinations.get(i)] != null){
 						if(possibleCombinations[x][combinations.get(i)].getPlayer() == X){
 							if(numberOfO > 0){
-								combinations.remove(i);
+								toBeRemoved.add(i);
 								break;
 							}
 							else numberOfX++;
 						}
 						else if(possibleCombinations[x][combinations.get(i)].getPlayer() == O){
 							if(numberOfX > 0){
-								combinations.remove(i);
+								toBeRemoved.add(i);
 								break;
 							}
 							else numberOfO++;
@@ -93,17 +93,21 @@ public class MastermindAlgorithm implements Runnable {
 			}
 			storeCombinations(combinations.get(i), numberOfO, numberOfX);
 		}
+		removeFromPossibilitys();
+	}
+	
+	public void removeFromPossibilitys(){
+		for(int i = 0; i < toBeRemoved.size();i++){
+			combinations.remove(toBeRemoved.get(i));
+		}
+		toBeRemoved.clear();
 	}
 	
 	public void storeCombinations(int combi, int numberOfO,int numberOfX){
-		if(numberOfO == 3 || numberOfX == 3){ threeInARow.add(combi);
-		System.out.println("Three in a row!");}
-		if(numberOfO == 2 && game.getPlayer() == O){ twoInARow.add(combi);
-		System.out.println("Two in a row!");}
-		if(numberOfX == 2 && game.getPlayer() == X){ twoInARow.add(combi);
-		System.out.println("Two in a row!");}
-		if(numberOfO == 1 || numberOfX == 1){ oneInARow.add(combi);
-		System.out.println("One in a row!");}
+		if(numberOfO == 3 || numberOfX == 3) threeInARow.add(combi);
+		if(numberOfO == 2 && game.getPlayer() == O)twoInARow.add(combi);
+		if(numberOfX == 2 && game.getPlayer() == X){twoInARow.add(combi); System.out.println("two in a row stored");}
+		if(numberOfO == 1 || numberOfX == 1)oneInARow.add(combi);
 	}
 	
 	/*
@@ -186,7 +190,8 @@ public class MastermindAlgorithm implements Runnable {
 	
 	public void checkOneInARow(){
 		System.out.println("Check on in a row");
-		for(int i = 0; i <= oneInARow.size(); i++){
+		if(oneInARow.size() == 0) return;
+		for(int i = 0; i < oneInARow.size(); i++){
 			for(int x = 0; x<= 3; x++){
 				if(possibleCombinations[x][oneInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[i][2 * x], positions[i][2 * x + 1]);
@@ -219,7 +224,8 @@ public class MastermindAlgorithm implements Runnable {
 	/* RUNNABLE-Interface */
 	@Override
 	public void run() {
-		calcNextColumn();
+		System.out.println("run");
+//		calcNextColumn();
 	}
 
 }
