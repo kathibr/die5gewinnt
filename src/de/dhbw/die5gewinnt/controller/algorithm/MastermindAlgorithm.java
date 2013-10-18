@@ -127,7 +127,7 @@ public class MastermindAlgorithm implements Runnable {
 		blockEnemy = -1;
 		for(int i = 0; i <= threeInARow.size(); i++){
 			for(int x = 0; x<= 4; x++){
-				if(possibleCombinations[threeInARow.get(i)][x] == null){
+				if(possibleCombinations[x][threeInARow.get(i)] == null){
 					if(x != 0){
 						int missingHeight = missingHeightForThrow(positions[i][2 * x], positions[i][2 * x + 1]);
 						if(possibleCombinations[i][0].getPlayer() == game.getPlayer()){
