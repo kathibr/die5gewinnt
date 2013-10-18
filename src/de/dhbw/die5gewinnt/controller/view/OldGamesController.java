@@ -112,6 +112,7 @@ public class OldGamesController {
 	}
 	@FXML
 	private void clickSetOne(){
+		//Start showing moves
 		if(btSetOne.getText().equals("Start")){
 			btSetOne.setText("Stop");
 			btSetTwo.setText("Start");
