@@ -42,7 +42,7 @@ public class AlgorithmManager {
 
 		AlgorithmManager.getAlgorithmManager().setMilliSeconds(currentMilliSeconds);
 		
-		new Thread(mastermindAlgorithm).start();
+//		new Thread(mastermindAlgorithm).start();
 		new Thread(randomAlgorithm).start();
 		while(System.currentTimeMillis() <= limitMilliSeconds) {
 			if(mastermindAlgorithm.nextColumn != -1) {

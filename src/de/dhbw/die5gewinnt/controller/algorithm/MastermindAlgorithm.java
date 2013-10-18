@@ -6,7 +6,7 @@ import de.dhbw.die5gewinnt.model.Game;
 import de.dhbw.die5gewinnt.model.Move;
 import de.dhbw.die5gewinnt.model.Set;
 
-public class MastermindAlgorithm implements Runnable {
+public class MastermindAlgorithm{
 
 	public int nextColumn = -1;
 //	private Move[][] field = new Move[7][6];
@@ -16,8 +16,8 @@ public class MastermindAlgorithm implements Runnable {
 	private final String O="O";
 	private int result, blockEnemy;
 	private Game game;
-	private final int NONEMISSING = 4;
-	private final int ONEMISSING = -4;
+	private final int NONEMISSING = 8;
+	private final int ONEMISSING = 0;
 	private final int TWOMISSING = 1;
 	private final int THREEMISSING = 2;
 	private final int DONTTHROW = -1000;
@@ -28,31 +28,30 @@ public class MastermindAlgorithm implements Runnable {
 	private ArrayList<Integer> twoInARow = new ArrayList<Integer>();
 	private ArrayList<Integer> oneInARow = new ArrayList<Integer>();
 	private int[][] positions = new int[8][69];
-	private int[] evaluateColumns = new int[6];
+	private int[] evaluateColumns = new int[7];
 	private ArrayList<Integer> toBeRemoved = new ArrayList<Integer>(69);
 	
 	public MastermindAlgorithm(Set set){
-		game = Controller.getController().getModelController().getGame();			//ZU TESTZWECKEN AUSKOMMENTIERT!
-//		game = new Game();															// Test
-//		game.setPlayer(X);															// Test
+		game = Controller.getController().getModelController().getGame();		
 		this.set = set;
 		AlgorithmFiller filler = new AlgorithmFiller(set);
 		combinations = filler.fillList();
 		possibleCombinations = filler.getPossibleCombinations();
 		positions = filler.getPositions();
-		analyzeField();
 	}
 	
 	public int calcNextMove(){
-		refreshArrays();
+		refreshEvaluation();
 		analyzeField();
 		result = -1;
 		checkThreeInARow();
-		checkTwoInARow();
-		analyzeResults();
 		if(result == -1){
-			checkOneInARow();
+			checkTwoInARow();
 			analyzeResults();
+			if(result == -1){
+				checkOneInARow();
+				analyzeResults();
+			}
 		}
 		if(result == -1) result = 3;
 		return result;
@@ -62,12 +61,6 @@ public class MastermindAlgorithm implements Runnable {
 		oneInARow.clear();
 		twoInARow.clear();
 		threeInARow.clear();
-	}
-	
-	public int calculateMove(Move move){
-		result = -1;
-		if(result == -1) result = (int) (Math.random() * 6);
-		return result;
 	}
 	
 	public void analyzeField(){
@@ -106,8 +99,9 @@ public class MastermindAlgorithm implements Runnable {
 	public void storeCombinations(int combi, int numberOfO,int numberOfX){
 		if(numberOfO == 3 || numberOfX == 3) threeInARow.add(combi);
 		if(numberOfO == 2 && game.getPlayer() == O)twoInARow.add(combi);
-		if(numberOfX == 2 && game.getPlayer() == X){twoInARow.add(combi); System.out.println("two in a row stored");}
-		if(numberOfO == 1 || numberOfX == 1)oneInARow.add(combi);
+		if(numberOfX == 2 && game.getPlayer() == X){twoInARow.add(combi);}
+		if(numberOfO == 1 && game.getPlayer() == O)oneInARow.add(combi);
+		if(numberOfX == 1 && game.getPlayer() == X){oneInARow.add(combi);}
 	}
 	
 	/*
@@ -121,66 +115,87 @@ public class MastermindAlgorithm implements Runnable {
 	public int missingHeightForThrow(int column, int height){
 		int missingHeight = 0;
 		int[] columnHeight = set.getColumnHeight();
-		missingHeight = height - columnHeight[column] - 1;
+		missingHeight = height - columnHeight[column];
 		return missingHeight;
 	}
 	
 	public void checkThreeInARow(){
-		System.out.println("Check three in a row");
-		if(threeInARow.size() == 0){ System.out.println("ThreeInARow is empty"); return;}
+		if(threeInARow.size() == 0) return;
 		blockEnemy = -1;
-		for(int i = 0; i <= threeInARow.size(); i++){
-			for(int x = 0; x<= 4; x++){
+		for(int i = 0; i < threeInARow.size(); i++){
+			for(int x = 0; x < 4; x++){
 				if(possibleCombinations[x][threeInARow.get(i)] == null){
 					if(x != 0){
-						int missingHeight = missingHeightForThrow(positions[i][2 * x], positions[i][2 * x + 1]);
-						if(possibleCombinations[i][0].getPlayer() == game.getPlayer()){
+						int missingHeight = missingHeightForThrow(positions[2 * x][threeInARow.get(i)], positions[2 * x + 1][threeInARow.get(i)]);
+						if(possibleCombinations[0][threeInARow.get(i)].getPlayer() == game.getPlayer()){
 							switch(missingHeight){
-							case 0: result = positions[i][2 * x];
-									System.out.println("win");
-									return;
-							case 1: evaluateColumns[positions[i][2 * x]] += ONEMISSING * 2;
-									break;
-							case 2: evaluateColumns[positions[i][2 * x]] += TWOMISSING * 2;
-									break;
-							case 3: evaluateColumns[positions[i][2 * x]] += THREEMISSING * 2;
-									break;
-							default: break;
-							}
+								case 0: result = positions[2 * x][i];
+										return;
+								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + ONEMISSING * 2;
+										break;
+								case 2: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + TWOMISSING * 2;
+										break;
+								case 3: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + THREEMISSING * 2;
+										break;
+								default: break;
+								}
 							}
 						else{
 							switch(missingHeight){
-							case 0: blockEnemy = positions[i][2 * x];
-									break;
-							case 1: evaluateColumns[positions[i][2 * x]] += DONTTHROW;
-									break;
-							default: break;
+								case 0: blockEnemy = positions[2 * x][threeInARow.get(i)];
+										break;
+								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + DONTTHROW;
+										break;
+								default: break;
+								}
+						}
+					}else{
+						int missingHeight = missingHeightForThrow(positions[2 * x][threeInARow.get(i)], positions[2 * x + 1][threeInARow.get(i)]);
+						if(possibleCombinations[1][threeInARow.get(i)].getPlayer() == game.getPlayer()){
+							System.out.println("Missing Height: "+missingHeight);
+							switch(missingHeight){
+								case 0: result = positions[2 * x][threeInARow.get(i)];
+
+										return;
+								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + ONEMISSING * 2;
+										break;
+								case 2: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + TWOMISSING * 2;
+										break;
+								case 3: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + THREEMISSING * 2;
+										break;
+								default: break;
+								}
 							}
+						else{
+							switch(missingHeight){
+								case 0: blockEnemy = positions[2 * x][threeInARow.get(i)];
+										break;
+								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] +  DONTTHROW;
+										break;
+								default: break;
+								}
 						}
 					}
 				}
 			}
 		}
 		if(blockEnemy != -1){
-			System.out.println("Block enemy");
 			result = blockEnemy;
 			return;
 		}
 	}
 	
 	public void checkTwoInARow(){
-		System.out.println("Check two in a row"+twoInARow.size());
 		for(int i = 0; i < twoInARow.size(); i++){
-			for(int x = 0; x<= 3; x++){
+			for(int x = 0; x < 4; x++){
 				if(possibleCombinations[x][twoInARow.get(i)] == null){
-					int missingHeight = missingHeightForThrow(positions[i][2 * x], positions[i][2 * x + 1]);
-					System.out.println("Two in a row possible combinations "+missingHeight);
+					int missingHeight = missingHeightForThrow(positions[2 * x][twoInARow.get(i)], positions[2 * x + 1][twoInARow.get(i)]);
 					switch(missingHeight){
-					case 0: evaluateColumns[positions[i][2 * x]] += NONEMISSING;
+					case 0: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + NONEMISSING * 3;
 					break;
-					case 1: evaluateColumns[positions[i][2 * x]] += ONEMISSING;
+					case 1: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + ONEMISSING * 3;
 					break;
-					case 2: evaluateColumns[positions[i][2 * x]] += TWOMISSING;
+					case 2: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + TWOMISSING * 3;
 					break;
 					}
 				}
@@ -189,18 +204,17 @@ public class MastermindAlgorithm implements Runnable {
 	}
 	
 	public void checkOneInARow(){
-		System.out.println("Check on in a row");
 		if(oneInARow.size() == 0) return;
 		for(int i = 0; i < oneInARow.size(); i++){
 			for(int x = 0; x<= 3; x++){
 				if(possibleCombinations[x][oneInARow.get(i)] == null){
-					int missingHeight = missingHeightForThrow(positions[i][2 * x], positions[i][2 * x + 1]);
+					int missingHeight = missingHeightForThrow(positions[2 * x][oneInARow.get(i)], positions[2 * x + 1][oneInARow.get(i)]);
 					switch(missingHeight){
-					case 0: evaluateColumns[positions[i][2 * x]] += NONEMISSING;
+					case 0: evaluateColumns[positions[2 * x][oneInARow.get(i)]] = evaluateColumns[positions[2 * x][oneInARow.get(i)]] + NONEMISSING;
 					return;
-					case 1: evaluateColumns[positions[i][2 * x]] += ONEMISSING;
+					case 1: evaluateColumns[positions[2 * x][oneInARow.get(i)]] = evaluateColumns[positions[2 * x][oneInARow.get(i)]] + ONEMISSING;
 					break;
-					case 2: evaluateColumns[positions[i][2 * x]] += TWOMISSING;
+					case 2: evaluateColumns[positions[2 * x][oneInARow.get(i)]] = evaluateColumns[positions[2 * x][oneInARow.get(i)]] + TWOMISSING;
 					break;
 					}
 				}
@@ -209,23 +223,22 @@ public class MastermindAlgorithm implements Runnable {
 	}
 	
 	public void analyzeResults(){
-		System.out.println("Analyze Results");
 		String evaluate = "";
 		int highest = 0;
+		int position = -1;
 		for(int i = 0; i < evaluateColumns.length; i++){
-			evaluate = evaluate + evaluateColumns[i];
-			if(highest < evaluateColumns[i]) highest = evaluateColumns[i];
+			evaluate = evaluate +""+ evaluateColumns[i];
+			if(highest < evaluateColumns[i]){
+				highest = evaluateColumns[i];
+				position = i;
+			}
 		}
-		System.out.println(evaluate);
-		System.out.println("highest: "+highest);
-		if(highest > 0) result = highest;
+		if(position != -1) result = position;
 	}
 	
-	/* RUNNABLE-Interface */
-	@Override
-	public void run() {
-		System.out.println("run");
-//		calcNextColumn();
+	public void refreshEvaluation(){
+		for(int i = 0; i < evaluateColumns.length; i++){
+			evaluateColumns[i] = 0;
+		}
 	}
-
 }
