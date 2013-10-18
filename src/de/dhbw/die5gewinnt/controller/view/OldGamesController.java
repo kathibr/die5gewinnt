@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.model.Game;
+import de.dhbw.die5gewinnt.model.Set;
 
 public class OldGamesController {
 
@@ -35,6 +36,10 @@ public class OldGamesController {
 	private Button btSetTwo;
 	@FXML
 	private Button btSetThree;
+	@FXML
+	private Label lbSetOneX, lbSetOneO, lbSetTwoX, lbSetTwoO, lbSetThreeX, lbSetThreeO;
+	
+	
 
 	public OldGamesController() {
 		oList = FXCollections.observableArrayList();
@@ -80,12 +85,41 @@ public class OldGamesController {
 			playerXName.setText("");
 		} else {
 
+			Set sets[] = game.getSets();
+			
 			if (game.getPlayer().equals("X")) {
 				playerXName.setText("die5gewinnt");
 				playerOName.setText(game.getOpponentName());
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[0]).toString());
-				playerOScore.setText(new Integer(score[1]).toString());
+				playerOScore.setText(new Integer(score[1]).toString());				
+				
+				Set set1 = sets[0];
+				if(set1.getWinner()==true){
+					lbSetOneX.setText("Win");
+					lbSetOneO.setText("Lose");
+				}else{
+					lbSetOneX.setText("Lose");
+					lbSetOneO.setText("Win");;
+				}
+				Set set2 = sets[1];
+				if(set2.getWinner()==true){
+					lbSetTwoX.setText("Win");
+					lbSetTwoO.setText("Lose");
+				}else{
+					lbSetTwoX.setText("Lose");					
+					lbSetTwoO.setText("Win");;
+				}
+				Set set3 = sets[2];
+				if(set3.getWinner()==true){
+					lbSetThreeX.setText("Win");
+					lbSetThreeO.setText("Lose");
+				}else{
+					lbSetThreeX.setText("Lose");					
+					lbSetThreeO.setText("Win");;
+				}
+				
+	
 
 			} else {
 				playerOName.setText("die5gewinnt");
@@ -93,6 +127,32 @@ public class OldGamesController {
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[1]).toString());
 				playerOScore.setText(new Integer(score[0]).toString());
+				
+				Set set1 = sets[0];
+				if(set1.getWinner()==true){
+					lbSetOneO.setText("Win");
+					lbSetOneX.setText("Lose");
+				}else{
+					lbSetOneO.setText("Lose");
+					lbSetOneX.setText("Win");;
+				}
+				Set set2 = sets[1];
+				if(set2.getWinner()==true){
+					lbSetTwoO.setText("Win");
+					lbSetTwoX.setText("Lose");
+				}else{
+					lbSetTwoO.setText("Lose");
+					lbSetTwoX.setText("Win");;
+				}
+				Set set3 = sets[2];
+				if(set3.getWinner()==true){
+					lbSetThreeO.setText("Win");
+					lbSetThreeX.setText("Lose");
+				}else{
+					lbSetThreeX.setText("Lose");
+					lbSetThreeO.setText("Win");;
+				}
+				
 			}
 
 			gameName.setText(game.getName());

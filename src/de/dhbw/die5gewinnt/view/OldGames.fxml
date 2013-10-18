@@ -52,16 +52,16 @@
             <GridPane alignment="CENTER" layoutX="335.0" layoutY="16.0" prefWidth="233.0">
               <children>
                 <Label text="O" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <Label text="Satz 1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Label text="Win" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label text="X" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <Label text="Lose" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Satz 1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label fx:id="lbSetOneX" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="lbSetOneO" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label text="Satz 2" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                <Label text="Lose" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <Label text="Win" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Label fx:id="lbSetTwoX" text="-" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label fx:id="lbSetTwoO" text="-" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <Label text="Satz 3" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-                <Label alignment="CENTER" text="Win" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <Label text="Lose" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label fx:id="lbSetThreeX" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label fx:id="lbSetThreeO" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="20.0" />
