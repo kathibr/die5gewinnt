@@ -41,7 +41,7 @@ public class AlgorithmFiller {
 	}
 	
 	public void fillVertical(){
-		System.out.println("FillVertical");
+//		System.out.println("FillVertical");
 		threshold = 2;
 		start = 5;
 		for(int i = 3; i > 0; i--){
@@ -53,9 +53,9 @@ public class AlgorithmFiller {
 					positions[2 * collumn + 1][row] = x;
 					positions[2 * collumn][row] = y;
 					collumn++;
-					testcomment = testcomment +" "+ x+""+y;
+//					testcomment = testcomment +" "+ x+""+y;
 				}
-				System.out.println(testcomment + " Zeile:"+row);
+//				System.out.println(testcomment + " Zeile:"+row);
 				row++;
 			}
 			threshold--;
@@ -64,7 +64,7 @@ public class AlgorithmFiller {
 	}
 	
 	public void fillHorizontal(){
-		System.out.println("fillHorizontal");
+//		System.out.println("fillHorizontal");
 		threshold = 3;
 		start = 6;
 		for(int i = 4; i > 0; i--){
@@ -76,9 +76,9 @@ public class AlgorithmFiller {
 					positions[2 * collumn + 1][row] = collumn;
 					positions[2 * collumn][row] = row;
 					collumn++;
-					testcomment = testcomment +" "+ x+""+y;
+//					testcomment = testcomment +" "+ x+""+y;
 				}
-				System.out.println(testcomment + " Zeile:"+row);
+//				System.out.println(testcomment + " Zeile:"+row);
 				row++;
 			}
 			threshold--;
@@ -87,7 +87,7 @@ public class AlgorithmFiller {
 	}
 	
 	public void fillDiagonal(){
-		System.out.println("FillDiagonal");
+//		System.out.println("FillDiagonal");
 		for(int y = 5; y >= 3; y--){
 			for(int x = 6; x >= 3; x--){
 				collumn = 0;
@@ -97,17 +97,17 @@ public class AlgorithmFiller {
 					positions[2 * collumn + 1][row] = collumn;
 					positions[2 * collumn][row] = row;
 					collumn++;
-					testcomment = testcomment +" "+ x+""+y;
+//					testcomment = testcomment +" "+ x+""+y;
 					x--;
 					y--;
 				}
 				x = x + 4;
 				y = y + 4;
-				System.out.println(testcomment + " Zeile:"+row);
+//				System.out.println(testcomment + " Zeile:"+row);
 				row++;
 			}
 		}
-		System.out.println("FillDiagonal2");
+//		System.out.println("FillDiagonal2");
 		for(int y = 5; y >= 3; y--){
 			for(int x = 0; x <= 3; x++){
 				collumn = 0;
@@ -117,13 +117,13 @@ public class AlgorithmFiller {
 					positions[2 * collumn + 1][row] = collumn;
 					positions[2 * collumn][row] = row;
 					collumn++;
-					testcomment = testcomment +" "+ x+""+y;
+//					testcomment = testcomment +" "+ x+""+y;
 					x++;
 					y--;
 				}
 				x = x - 4;
 				y = y + 4;
-				System.out.println(testcomment + " Zeile:"+row);
+//				System.out.println(testcomment + " Zeile:"+row);
 				row++;
 			}
 		}

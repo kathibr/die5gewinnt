@@ -3,6 +3,7 @@ package de.dhbw.die5gewinnt.controller.logic;
 
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
+import de.dhbw.die5gewinnt.controller.algorithm.MastermindAlgorithm;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
@@ -136,9 +137,11 @@ public class ModelController {
 		// Calculate move
 		//Later with algorithm
 		do{
-			column = (int)((Math.random()) * 6);
-			columnHeight = set.getColumnHeight();
+//			column = (int)((Math.random()) * 6);
+//			columnHeight = set.getColumnHeight();
 		}while(columnHeight[column]>6);
+		MastermindAlgorithm algorithm = new MastermindAlgorithm(set);
+		column = algorithm.calcNextMove();
 
 		row = columnHeight[column];
 		columnHeight[column]++;

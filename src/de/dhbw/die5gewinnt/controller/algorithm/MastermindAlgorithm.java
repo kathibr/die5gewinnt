@@ -31,7 +31,9 @@ public class MastermindAlgorithm implements Runnable {
 	private int[] evaluateColumns = new int[6];
 	
 	public MastermindAlgorithm(Set set){
-		game = Controller.getController().getModelController().getGame();
+		game = Controller.getController().getModelController().getGame();			//ZU TESTZWECKEN AUSKOMMENTIERT!
+//		game = new Game();															// Test
+//		game.setPlayer(X);															// Test
 		this.set = set;
 		AlgorithmFiller filler = new AlgorithmFiller(set);
 		combinations = filler.fillList();
@@ -89,7 +91,6 @@ public class MastermindAlgorithm implements Runnable {
 						}
 					}
 			}
-//			System.out.println(numberOfO+""+numberOfX);
 			storeCombinations(combinations.get(i), numberOfO, numberOfX);
 		}
 	}
@@ -121,6 +122,8 @@ public class MastermindAlgorithm implements Runnable {
 	}
 	
 	public void checkThreeInARow(){
+		System.out.println("Check three in a row");
+		if(threeInARow.size() == 0){ System.out.println("ThreeInARow is empty"); return;}
 		blockEnemy = -1;
 		for(int i = 0; i <= threeInARow.size(); i++){
 			for(int x = 0; x<= 4; x++){
@@ -130,6 +133,7 @@ public class MastermindAlgorithm implements Runnable {
 						if(possibleCombinations[i][0].getPlayer() == game.getPlayer()){
 							switch(missingHeight){
 							case 0: result = positions[i][2 * x];
+									System.out.println("win");
 									return;
 							case 1: evaluateColumns[positions[i][2 * x]] += ONEMISSING * 2;
 									break;
@@ -154,19 +158,22 @@ public class MastermindAlgorithm implements Runnable {
 			}
 		}
 		if(blockEnemy != -1){
+			System.out.println("Block enemy");
 			result = blockEnemy;
 			return;
 		}
 	}
 	
 	public void checkTwoInARow(){
-		for(int i = 0; i <= twoInARow.size(); i++){
-			for(int x = 0; x<= 4; x++){
-				if(possibleCombinations[twoInARow.get(i)][x] == null){
+		System.out.println("Check two in a row"+twoInARow.size());
+		for(int i = 0; i < twoInARow.size(); i++){
+			for(int x = 0; x<= 3; x++){
+				if(possibleCombinations[x][twoInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[i][2 * x], positions[i][2 * x + 1]);
+					System.out.println("Two in a row possible combinations "+missingHeight);
 					switch(missingHeight){
 					case 0: evaluateColumns[positions[i][2 * x]] += NONEMISSING;
-					return;
+					break;
 					case 1: evaluateColumns[positions[i][2 * x]] += ONEMISSING;
 					break;
 					case 2: evaluateColumns[positions[i][2 * x]] += TWOMISSING;
@@ -178,9 +185,10 @@ public class MastermindAlgorithm implements Runnable {
 	}
 	
 	public void checkOneInARow(){
+		System.out.println("Check on in a row");
 		for(int i = 0; i <= oneInARow.size(); i++){
-			for(int x = 0; x<= 4; x++){
-				if(possibleCombinations[oneInARow.get(i)][x] == null){
+			for(int x = 0; x<= 3; x++){
+				if(possibleCombinations[x][oneInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[i][2 * x], positions[i][2 * x + 1]);
 					switch(missingHeight){
 					case 0: evaluateColumns[positions[i][2 * x]] += NONEMISSING;
@@ -196,10 +204,15 @@ public class MastermindAlgorithm implements Runnable {
 	}
 	
 	public void analyzeResults(){
+		System.out.println("Analyze Results");
+		String evaluate = "";
 		int highest = 0;
-		for(int i = 0; i <= evaluateColumns.length; i++){
+		for(int i = 0; i < evaluateColumns.length; i++){
+			evaluate = evaluate + evaluateColumns[i];
 			if(highest < evaluateColumns[i]) highest = evaluateColumns[i];
 		}
+		System.out.println(evaluate);
+		System.out.println("highest: "+highest);
 		if(highest > 0) result = highest;
 	}
 	
