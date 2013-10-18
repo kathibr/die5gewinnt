@@ -29,7 +29,7 @@ public class XMLReader  {
 				break;
 			} else
 			{
-				System.out.println("Searching file...");
+				Controller.getController().getPlayingFieldController().appearLbStatus();			
 			}
 			try {
 				Thread.sleep(300);
@@ -54,7 +54,7 @@ public class XMLReader  {
 			
 			file.delete();
 			Controller.getController().getCommunicationController().setServerFile(serverFile);	
-	
+			Controller.getController().getPlayingFieldController().disappearLbStatus();
 				return serverFile;
 	}
 }

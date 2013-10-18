@@ -15,6 +15,7 @@ public class DBInserts extends DBQuery {
 	public static Game insertGame(Game game) {
 		if(game.getClass().getName().equals("de.dhbw.die5gewinnt.model.Game")) {
 			game.setId(AutoIncrementKeys.getNextGameIdAndIncrement());
+			game.setName(DataManipulation.splitName(game.getName()));
 			try {
 				Statement stmt = getDBConnection().createStatement();	
 				String sql = "INSERT INTO Games VALUES("+game.getId()+", \'"+game.getName()+"\', \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', \'"+DataManipulation.getGameWinnerForDB(game.getWinner())+"\', \'"+game.getPlayer()+"\', \'"+game.getOpponentName()+"\')";

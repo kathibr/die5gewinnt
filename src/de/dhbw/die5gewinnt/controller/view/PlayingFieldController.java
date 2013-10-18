@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.logic.ModelController;
+import de.dhbw.die5gewinnt.controller.ModelController;
 
 public class PlayingFieldController {
 	
@@ -18,7 +18,7 @@ public class PlayingFieldController {
 	@FXML
 	private Rectangle playerXColor, playerOColor;
 	@FXML 
-	private Label gameNameLabel, scorePlayerO, currentSet, playerNameO, playerNameX, scorePlayerX;
+	private Label gameNameLabel, scorePlayerO, currentSet, playerNameO, playerNameX, scorePlayerX, lbStatus;
 	@FXML	
 	private Button btStartSet, btEndSet, btEndGame;	
 
@@ -50,7 +50,6 @@ public class PlayingFieldController {
 	@FXML
 	private void initialize() {
 		btEndSet.setDisable(true);
-		
 		modelController = Controller.getController().getModelController();
 		gameNameLabel.setText(modelController.getGame().getName());
 		if(modelController.getGame().getPlayer().equals("X")){
@@ -223,6 +222,7 @@ public class PlayingFieldController {
 		} catch (Exception e) {
 			System.out.println("Controller schon gestopt"+e);
 		}
+		mainApp.returnToStart();
 		}
 
 	
@@ -232,7 +232,7 @@ public class PlayingFieldController {
 	}
 
 	public void updateDisplay(int setId,final int[] score) {
-		this.stringSetId = String.valueOf(setId);
+		this.stringSetId = String.valueOf(setId+1);
 //		this.score=score;
 //		System.out.println("Update Display");
 		
@@ -257,5 +257,25 @@ public class PlayingFieldController {
 			}
 		});
 	}
+	
+	public void appearLbStatus()
+	{
+		Platform.runLater(new Runnable() {
+		public void run() {
+		lbStatus.setText("Suche Datei");
+		}
+		});
+	}
+	
+	public void disappearLbStatus()
+	{
+		Platform.runLater(new Runnable() {
+		public void run() {
+		lbStatus.setText("");
+		}
+		});
+	}
+
+
 	
 }

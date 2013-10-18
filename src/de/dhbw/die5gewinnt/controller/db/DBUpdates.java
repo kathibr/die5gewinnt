@@ -14,6 +14,7 @@ public class DBUpdates extends DBQuery {
 	/* UPDATE-Query for Model Game */
 	public static void updateGame(Game game) {
 		if(game.getClass().getName().equals("de.dhbw.die5gewinnt.model.Game")) {
+			game.setName(DataManipulation.splitName(game.getName()));
 			try {
 				Statement stmt = getDBConnection().createStatement();	
 				String sql = "UPDATE Games SET name = \'"+game.getName()+"\', score = \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', winner = \'"+DataManipulation.getGameWinnerForDB(game.getWinner())+"\', player = \'"+game.getPlayer()+"\', opponent = \'"+game.getOpponentName()+"\' WHERE id = "+game.getId();

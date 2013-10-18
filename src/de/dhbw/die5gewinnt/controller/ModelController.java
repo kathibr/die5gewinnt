@@ -1,7 +1,6 @@
-package de.dhbw.die5gewinnt.controller.logic;
+package de.dhbw.die5gewinnt.controller;
 
 
-import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.algorithm.MastermindAlgorithm;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
@@ -121,7 +120,7 @@ public class ModelController {
 			
 			// Save move
 			move = new Move(row, column, opponentPlayer);
-			move = DBInserts.insertMove(move,game.getId(),setId);
+			move = DBInserts.insertMove(move,game.getId(),set.getId());
 			moves[moveId] = move;
 			field[column][row]=move;
 			moveId++;			
@@ -156,7 +155,7 @@ public class ModelController {
 		
 		// Save move 
 		move = new Move(row, column, ownPlayer);
-		move = DBInserts.insertMove(move,game.getId(),setId);
+		move = DBInserts.insertMove(move,game.getId(),set.getId());
 		moves[moveId] = move;		
 		field[column][row]=move;
 		
