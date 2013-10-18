@@ -1,4 +1,6 @@
 /bin
+/db
 db/.properties
+db/.script
 db/.lck
 /serverfiles
