@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import de.dhbw.die5gewinnt.MainApp;
 import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.logic.ModelController;
+import de.dhbw.die5gewinnt.controller.ModelController;
 
 public class PlayingFieldController {
 	
