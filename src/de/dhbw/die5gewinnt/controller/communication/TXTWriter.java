@@ -30,6 +30,5 @@ public class TXTWriter {
 		
 		if(file.exists())
 			file.delete();
-	}
-	
+	}	
 }
