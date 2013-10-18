@@ -10,6 +10,13 @@ public class DataManipulation {
 	private DataManipulation() {}
 	
 	/* Data Manipulation for Model Game */
+	public static String splitName(String name) {
+		if(name.length() > 13)
+			return name.substring(0, 13);
+		else
+			return name;
+	}
+	
 	public static String getGameScoreForDB(int[] score) {
 		return score[0]+","+score[1];
 	}
