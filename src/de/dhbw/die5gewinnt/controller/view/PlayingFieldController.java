@@ -222,6 +222,7 @@ public class PlayingFieldController {
 		} catch (Exception e) {
 			System.out.println("Controller schon gestopt"+e);
 		}
+		mainApp.returnToStart();
 		}
 
 	
@@ -231,7 +232,7 @@ public class PlayingFieldController {
 	}
 
 	public void updateDisplay(int setId,final int[] score) {
-		this.stringSetId = String.valueOf(setId);
+		this.stringSetId = String.valueOf(setId+1);
 //		this.score=score;
 //		System.out.println("Update Display");
 		
