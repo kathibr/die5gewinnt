@@ -59,8 +59,9 @@ public class ModelController {
 //		i = 0;
 		
 		do{
-			serverFile = new XMLReader().getServerFile();
 			
+			serverFile = new XMLReader().getServerFile();
+
 			if (serverFile.getApproval()==true){
 				if (serverFile.getOpponentMove() == -1)
 				{

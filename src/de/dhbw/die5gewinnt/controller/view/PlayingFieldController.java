@@ -18,7 +18,7 @@ public class PlayingFieldController {
 	@FXML
 	private Rectangle playerXColor, playerOColor;
 	@FXML 
-	private Label gameNameLabel, scorePlayerO, currentSet, playerNameO, playerNameX, scorePlayerX;
+	private Label gameNameLabel, scorePlayerO, currentSet, playerNameO, playerNameX, scorePlayerX, lbStatus;
 	@FXML	
 	private Button btStartSet, btEndSet, btEndGame;	
 
@@ -50,7 +50,6 @@ public class PlayingFieldController {
 	@FXML
 	private void initialize() {
 		btEndSet.setDisable(true);
-		
 		modelController = Controller.getController().getModelController();
 		gameNameLabel.setText(modelController.getGame().getName());
 		if(modelController.getGame().getPlayer().equals("X")){
@@ -257,5 +256,25 @@ public class PlayingFieldController {
 			}
 		});
 	}
+	
+	public void appearLbStatus()
+	{
+		Platform.runLater(new Runnable() {
+		public void run() {
+		lbStatus.setText("Suche Datei");
+		}
+		});
+	}
+	
+	public void disappearLbStatus()
+	{
+		Platform.runLater(new Runnable() {
+		public void run() {
+		lbStatus.setText("");
+		}
+		});
+	}
+
+
 	
 }
