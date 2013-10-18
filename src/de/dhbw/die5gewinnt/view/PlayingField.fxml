@@ -19,7 +19,7 @@
       <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="74.0" layoutX="0.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="297.0" />
         <Label layoutX="19.0" layoutY="20.0" text="Aktueller Satz:" />
-        <Label fx:id="currentSet" layoutX="118.0" layoutY="20.0" prefWidth="10.0001220703125" text="0" />
+        <Label fx:id="currentSet" layoutX="118.0" layoutY="20.0" prefWidth="10.0001220703125" text="1" />
         <Label layoutX="19.0" layoutY="41.0" text="Nächster Zug:" />
         <Label layoutX="118.0" layoutY="41.0" text="" />
       </children>
@@ -107,6 +107,7 @@
         <Button fx:id="btEndGame" layoutX="-1.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleEndGame" text="Spiel Beenden" />
       </children>
     </Group>
+    <Label fx:id="lbStatus" layoutX="24.0" layoutY="470.0" text="Statusmeldung" />
   </children>
   <padding>
     <Insets top="47.0" />
