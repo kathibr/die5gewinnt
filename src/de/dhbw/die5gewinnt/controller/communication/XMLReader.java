@@ -17,11 +17,6 @@ import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class XMLReader  {
 	private ServerFile serverFile = new ServerFile();
-
-	
-	public XMLReader ()
-	{
-	}
 	
 	public ServerFile getServerFile()
 	{
@@ -30,7 +25,6 @@ public class XMLReader  {
 		Document document = null;
 		Element root = null;
 		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
-		//System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
 		while(true) {
 			if(file.exists()) {
 				break;
@@ -46,7 +40,6 @@ public class XMLReader  {
 			}	
 		}
 
-//		if(Controller.getController().getModelController().getForceStop()==false){
 		try {		
 			document = saxBuilder.build(Controller.getController().getCommunicationController().getServerFilePath());
 		} catch (JDOMException | IOException e) {
@@ -63,9 +56,6 @@ public class XMLReader  {
 			file.delete();
 			Controller.getController().getCommunicationController().setServerFile(serverFile);	
 	
-//		}
 				return serverFile;
 	}
-
-	
 }
