@@ -9,22 +9,21 @@ import de.dhbw.die5gewinnt.model.Set;
 public class MastermindAlgorithm{
 
 	public int nextColumn = -1;
-//	private Move[][] field = new Move[7][6];
 	private Set set;
-//	private int[] columnHeight = new int[7];
 	private final String X="X";
 	private final String O="O";
 	private int result, blockEnemy;
 	private Game game;
-	private final int NONEMISSING = 8;
-	private final int ONEMISSING = 0;
-	private final int TWOMISSING = 1;
-	private final int THREEMISSING = 2;
+	private final int NONEMISSING = 5;
+	private final int ONEMISSING = 3;
+	private final int TWOMISSING = 2;
+	private final int THREEMISSING = 1;
 	private final int DONTTHROW = -1000;
 
 	private Move[][] possibleCombinations = new Move[4][69];
 	private ArrayList<Integer> combinations = new ArrayList<Integer>(69);
 	private ArrayList<Integer> threeInARow = new ArrayList<Integer>();
+	private ArrayList<Integer> enemyThreeInARow = new ArrayList<Integer>();
 	private ArrayList<Integer> twoInARow = new ArrayList<Integer>();
 	private ArrayList<Integer> oneInARow = new ArrayList<Integer>();
 	private int[][] positions = new int[8][69];
@@ -41,19 +40,27 @@ public class MastermindAlgorithm{
 	}
 	
 	public int calcNextMove(){
+		System.out.println("---------------------------------------------------------------------");
+		refreshArrays();
 		refreshEvaluation();
 		analyzeField();
 		result = -1;
-		checkThreeInARow();
-		if(result == -1){
-			checkTwoInARow();
-			analyzeResults();
+		checkMyThreeInARow();
+		if(result==-1){
+			checkEnemyThreeInARow();
 			if(result == -1){
+				checkTwoInARow();
 				checkOneInARow();
 				analyzeResults();
 			}
+			if(result == -1) result = 4;
+			String ausgabe = "";
+			for(int i = 0; i < evaluateColumns.length; i++){
+				ausgabe = ausgabe + evaluateColumns[i] + " ";
+			}
+			System.out.println(ausgabe);
+			System.out.println("Ergebnis: "+result);
 		}
-		if(result == -1) result = 3;
 		return result;
 	}
 	
@@ -61,6 +68,7 @@ public class MastermindAlgorithm{
 		oneInARow.clear();
 		twoInARow.clear();
 		threeInARow.clear();
+		enemyThreeInARow.clear();
 	}
 	
 	public void analyzeField(){
@@ -70,14 +78,14 @@ public class MastermindAlgorithm{
 					if(possibleCombinations[x][combinations.get(i)] != null){
 						if(possibleCombinations[x][combinations.get(i)].getPlayer() == X){
 							if(numberOfO > 0){
-								toBeRemoved.add(i);
+								toBeRemoved.add(combinations.get(i));
 								break;
 							}
 							else numberOfX++;
 						}
 						else if(possibleCombinations[x][combinations.get(i)].getPlayer() == O){
 							if(numberOfX > 0){
-								toBeRemoved.add(i);
+								toBeRemoved.add(combinations.get(i));
 								break;
 							}
 							else numberOfO++;
@@ -90,6 +98,7 @@ public class MastermindAlgorithm{
 	}
 	
 	public void removeFromPossibilitys(){
+		System.out.println("remove:"+toBeRemoved.size());
 		for(int i = 0; i < toBeRemoved.size();i++){
 			combinations.remove(toBeRemoved.get(i));
 		}
@@ -97,11 +106,14 @@ public class MastermindAlgorithm{
 	}
 	
 	public void storeCombinations(int combi, int numberOfO,int numberOfX){
-		if(numberOfO == 3 || numberOfX == 3) threeInARow.add(combi);
+		if(numberOfO == 3 && game.getPlayer() == O)threeInARow.add(combi);
+		if(numberOfO == 3 && game.getPlayer() != O)enemyThreeInARow.add(combi);
+		if(numberOfX == 3 && game.getPlayer() == X)threeInARow.add(combi);
+		if(numberOfX == 3 && game.getPlayer() != X)enemyThreeInARow.add(combi);
 		if(numberOfO == 2 && game.getPlayer() == O)twoInARow.add(combi);
-		if(numberOfX == 2 && game.getPlayer() == X){twoInARow.add(combi);}
+		if(numberOfX == 2 && game.getPlayer() == X)twoInARow.add(combi);
 		if(numberOfO == 1 && game.getPlayer() == O)oneInARow.add(combi);
-		if(numberOfX == 1 && game.getPlayer() == X){oneInARow.add(combi);}
+		if(numberOfX == 1 && game.getPlayer() == X)oneInARow.add(combi);
 	}
 	
 	/*
@@ -119,69 +131,46 @@ public class MastermindAlgorithm{
 		return missingHeight;
 	}
 	
-	public void checkThreeInARow(){
+	public void checkMyThreeInARow(){
 		if(threeInARow.size() == 0) return;
-		blockEnemy = -1;
+		System.out.println("Check my Three");
 		for(int i = 0; i < threeInARow.size(); i++){
 			for(int x = 0; x < 4; x++){
 				if(possibleCombinations[x][threeInARow.get(i)] == null){
-					if(x != 0){
-						int missingHeight = missingHeightForThrow(positions[2 * x][threeInARow.get(i)], positions[2 * x + 1][threeInARow.get(i)]);
-						if(possibleCombinations[0][threeInARow.get(i)].getPlayer() == game.getPlayer()){
-							switch(missingHeight){
-								case 0: result = positions[2 * x][i];
-										return;
-								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + ONEMISSING * 2;
-										break;
-								case 2: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + TWOMISSING * 2;
-										break;
-								case 3: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + THREEMISSING * 2;
-										break;
-								default: break;
-								}
-							}
-						else{
-							switch(missingHeight){
-								case 0: blockEnemy = positions[2 * x][threeInARow.get(i)];
-										break;
-								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + DONTTHROW;
-										break;
-								default: break;
-								}
-						}
-					}else{
-						int missingHeight = missingHeightForThrow(positions[2 * x][threeInARow.get(i)], positions[2 * x + 1][threeInARow.get(i)]);
-						if(possibleCombinations[1][threeInARow.get(i)].getPlayer() == game.getPlayer()){
-							System.out.println("Missing Height: "+missingHeight);
-							switch(missingHeight){
-								case 0: result = positions[2 * x][threeInARow.get(i)];
-
-										return;
-								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + ONEMISSING * 2;
-										break;
-								case 2: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + TWOMISSING * 2;
-										break;
-								case 3: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + THREEMISSING * 2;
-										break;
-								default: break;
-								}
-							}
-						else{
-							switch(missingHeight){
-								case 0: blockEnemy = positions[2 * x][threeInARow.get(i)];
-										break;
-								case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] +  DONTTHROW;
-										break;
-								default: break;
-								}
-						}
+					int missingHeight = missingHeightForThrow(positions[2 * x][threeInARow.get(i)], positions[2 * x + 1][threeInARow.get(i)]);
+						switch(missingHeight){
+							case 0: result = positions[2 * x][threeInARow.get(i)];
+									return;
+							case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + ONEMISSING * 2;
+									break;
+							case 2: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + TWOMISSING * 2;
+									break;
+							case 3: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + THREEMISSING * 2;
+									break;
+							default: break;
 					}
 				}
 			}
 		}
-		if(blockEnemy != -1){
-			result = blockEnemy;
-			return;
+	}
+	
+	public void checkEnemyThreeInARow(){
+		if(enemyThreeInARow.size() == 0) return;
+		System.out.println("Check enemy Three");
+		for(int i = 0; i < enemyThreeInARow.size(); i++){
+			for(int x = 0; x < 4; x++){
+				if(possibleCombinations[x][enemyThreeInARow.get(i)] == null){
+					int missingHeight = missingHeightForThrow(positions[2 * x][enemyThreeInARow.get(i)], positions[2 * x + 1][enemyThreeInARow.get(i)]);
+					System.out.println("Enemy three height: "+missingHeight);
+						switch(missingHeight){
+							case 0: result = positions[2 * x][enemyThreeInARow.get(i)];
+							System.out.println("block enemy at:"+result);
+									return;
+							case 1: evaluateColumns[positions[2 * x][enemyThreeInARow.get(i)]] = evaluateColumns[positions[2 * x][enemyThreeInARow.get(i)]] + DONTTHROW;
+									break;
+					}
+				}
+			}
 		}
 	}
 	
@@ -191,11 +180,11 @@ public class MastermindAlgorithm{
 				if(possibleCombinations[x][twoInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[2 * x][twoInARow.get(i)], positions[2 * x + 1][twoInARow.get(i)]);
 					switch(missingHeight){
-					case 0: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + NONEMISSING * 3;
+					case 0: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + NONEMISSING * 2;
 					break;
-					case 1: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + ONEMISSING * 3;
+					case 1: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + ONEMISSING * 2;
 					break;
-					case 2: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + TWOMISSING * 3;
+					case 2: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + TWOMISSING * 2;
 					break;
 					}
 				}
@@ -206,12 +195,12 @@ public class MastermindAlgorithm{
 	public void checkOneInARow(){
 		if(oneInARow.size() == 0) return;
 		for(int i = 0; i < oneInARow.size(); i++){
-			for(int x = 0; x<= 3; x++){
+			for(int x = 0; x < 4; x++){
 				if(possibleCombinations[x][oneInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[2 * x][oneInARow.get(i)], positions[2 * x + 1][oneInARow.get(i)]);
 					switch(missingHeight){
 					case 0: evaluateColumns[positions[2 * x][oneInARow.get(i)]] = evaluateColumns[positions[2 * x][oneInARow.get(i)]] + NONEMISSING;
-					return;
+					break;
 					case 1: evaluateColumns[positions[2 * x][oneInARow.get(i)]] = evaluateColumns[positions[2 * x][oneInARow.get(i)]] + ONEMISSING;
 					break;
 					case 2: evaluateColumns[positions[2 * x][oneInARow.get(i)]] = evaluateColumns[positions[2 * x][oneInARow.get(i)]] + TWOMISSING;
