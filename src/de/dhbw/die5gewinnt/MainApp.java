@@ -7,6 +7,7 @@ import org.jdom2.JDOMException;
 import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
+import de.dhbw.die5gewinnt.controller.view.CancelSetDialogController;
 import de.dhbw.die5gewinnt.controller.view.GameNameDialogController;
 import de.dhbw.die5gewinnt.controller.view.OldGamesController;
 import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
@@ -135,6 +136,34 @@ public class MainApp extends Application {
 			
 		}
 	}
+	
+	public boolean showCancelSetDialog(){
+		try {	
+			// Load the fxml file and create a new stage for the popup
+		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/CancelSetDialog.fxml"));
+		    AnchorPane page = (AnchorPane) loader.load();
+		    Stage dialogStage = new Stage();
+		    dialogStage.setTitle("Manueller Satzabbruch");
+		    dialogStage.initModality(Modality.WINDOW_MODAL);
+		    dialogStage.initOwner(primaryStage);
+		    Scene scene = new Scene(page);
+		    dialogStage.setScene(scene);
+		    
+		    CancelSetDialogController cancelSetDialogController = loader.getController();
+		    cancelSetDialogController.setDialogStage(dialogStage);
+	
+		    // Show the dialog and wait until the user closes it
+		    dialogStage.showAndWait();
+	    
+		    return cancelSetDialogController.isOkClicked();	
+		} catch(IOException e) {
+			e.printStackTrace();
+		    return false;
+			
+		}
+		
+	}
+	
 	public void returnToStart(){
 		rootLayout.setCenter(imageV);
 	}

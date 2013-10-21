@@ -201,6 +201,15 @@ public class PlayingFieldController {
 		
 	}
 
+	@FXML
+	public void cancelSet(){
+		boolean okClicked = mainApp.showCancelSetDialog();
+		if (okClicked) {
+			//satz wurde erfolgreich abgebrochen > anzeige wird angepasst
+		}
+		
+		
+	}
 	
 	
 	@FXML
