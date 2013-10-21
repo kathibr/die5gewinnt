@@ -12,10 +12,10 @@ public class MastermindAlgorithm{
 	private Set set;
 	private final String X="X";
 	private final String O="O";
-	private int result, blockEnemy;
+	private int result;
 	private Game game;
 	private final int NONEMISSING = 5;
-	private final int ONEMISSING = 3;
+	private final int ONEMISSING = 0;
 	private final int TWOMISSING = 2;
 	private final int THREEMISSING = 1;
 	private final int DONTTHROW = -1000;
@@ -53,7 +53,7 @@ public class MastermindAlgorithm{
 				checkOneInARow();
 				analyzeResults();
 			}
-			if(result == -1) result = 4;
+			if(result == -1) result = 3;
 			String ausgabe = "";
 			for(int i = 0; i < evaluateColumns.length; i++){
 				ausgabe = ausgabe + evaluateColumns[i] + " ";
@@ -72,6 +72,7 @@ public class MastermindAlgorithm{
 	}
 	
 	public void analyzeField(){
+		System.out.println(combinations.size());
 		for(int i = 0; i < combinations.size(); i++){
 			int numberOfO = 0, numberOfX = 0;
 			for(int x = 0; x < 4; x++){
@@ -98,9 +99,8 @@ public class MastermindAlgorithm{
 	}
 	
 	public void removeFromPossibilitys(){
-		System.out.println("remove:"+toBeRemoved.size());
 		for(int i = 0; i < toBeRemoved.size();i++){
-			combinations.remove(toBeRemoved.get(i));
+			combinations.remove(combinations.indexOf(toBeRemoved.get(i)));
 		}
 		toBeRemoved.clear();
 	}
@@ -141,7 +141,7 @@ public class MastermindAlgorithm{
 						switch(missingHeight){
 							case 0: result = positions[2 * x][threeInARow.get(i)];
 									return;
-							case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + ONEMISSING * 2;
+							case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + DONTTHROW;
 									break;
 							case 2: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + TWOMISSING * 2;
 									break;
@@ -175,8 +175,11 @@ public class MastermindAlgorithm{
 	}
 	
 	public void checkTwoInARow(){
+		System.out.println("check two");
 		for(int i = 0; i < twoInARow.size(); i++){
+			String test = "Combination: ";
 			for(int x = 0; x < 4; x++){
+				test = test + " ( " + positions[2 * x][twoInARow.get(i)] + "|" + positions[2 * x + 1][twoInARow.get(i)] + " )";
 				if(possibleCombinations[x][twoInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[2 * x][twoInARow.get(i)], positions[2 * x + 1][twoInARow.get(i)]);
 					switch(missingHeight){
@@ -189,13 +192,16 @@ public class MastermindAlgorithm{
 					}
 				}
 			}
+			System.out.println(test);
 		}
 	}
 	
 	public void checkOneInARow(){
 		if(oneInARow.size() == 0) return;
 		for(int i = 0; i < oneInARow.size(); i++){
+			String test = "Combination: ";
 			for(int x = 0; x < 4; x++){
+				test = test + " ( " + positions[2 * x][oneInARow.get(i)] + "|" + positions[2 * x + 1][oneInARow.get(i)] + " )";
 				if(possibleCombinations[x][oneInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[2 * x][oneInARow.get(i)], positions[2 * x + 1][oneInARow.get(i)]);
 					switch(missingHeight){
@@ -208,6 +214,7 @@ public class MastermindAlgorithm{
 					}
 				}
 			}
+			System.out.println(test);
 		}
 	}
 	

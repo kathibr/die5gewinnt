@@ -83,8 +83,8 @@ public class AlgorithmFiller {
 				collumn = 0;
 				for(int i = 4; i > 0; i--){
 					possibleCombinations[collumn][row] = field[x][y];
-					positions[2 * collumn + 1][row] = x;
-					positions[2 * collumn][row] = y;
+					positions[2 * collumn + 1][row] = y;
+					positions[2 * collumn][row] = x;
 					collumn++;
 					x--;
 					y--;
