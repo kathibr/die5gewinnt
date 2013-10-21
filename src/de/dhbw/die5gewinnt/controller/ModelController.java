@@ -73,18 +73,22 @@ public class ModelController {
 			}
 			
 			else{
-				if (serverFile.getOpponentMove() != -1){
+//				if (serverFile.getOpponentMove() != -1){
+				if(serverFile.getWinner().equals("Spieler "+opponentPlayer)){
 					proceedOpponentMove();
 					System.out.println("Wir haben verloren :(");
 					set.setWinner(false);
 					int scoreNr = score[1];
 					score[1]=scoreNr+1;
 				}
-				else {
+				else if (serverFile.getWinner().equals("Spieler "+ownPlayer)) {
 					System.out.println("Wir haben gewonnen :)");
 					set.setWinner(true);
 					int scoreNr = score[0];
 					score[0] =scoreNr+1;
+				} 
+				else {
+					System.out.println("ungültig!");
 				}
 				System.out.println("Set is over");
 				game.setScore(score);

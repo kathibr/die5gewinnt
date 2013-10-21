@@ -39,7 +39,6 @@ public class PlayingFieldController {
 	
 	private Circle circleArray[][];
 	
-	private int i;
 	private String stringSetId;
 //	private int[] score;
 
@@ -68,9 +67,7 @@ public class PlayingFieldController {
 				playerOColor.getStyleClass().add("redCircle");
 				playerXColor.getStyleClass().removeAll("emptyCircle","redCircle","yellowCircle");
 				playerXColor.getStyleClass().add("yellowCircle");
-		}
-	
-		
+		}		
 
 		circleArray = new Circle[20][20];
 		circleArray[0][0]= circle00;
@@ -121,8 +118,6 @@ public class PlayingFieldController {
 		circleArray[6][3]= circle63;
 		circleArray[6][4]= circle64;
 		circleArray[6][5]= circle65;
-		
-		i = 0;
 
 	}
 
@@ -181,25 +176,20 @@ public class PlayingFieldController {
 	private void handleStartSet(){	
 		btEndSet.setDisable(false);
 		btStartSet.setDisable(true);
-
-		switch (i) {
-		case 0:
-			Controller.getController().start();
-			break;
-		case 3:
-			break;
-		default:
-			clearPlayingField();
+		
+		if(Controller.getController().isAlive()){
 			Controller.getController().resume();
 		}
-		i++;
-		
+		else {
+			Controller.getController().start();
+		}
+	
 	}
 	
 	@FXML
 	public void handleEndSet(){
 		btEndSet.setDisable(true);
-		if(! stringSetId.equals("3")){
+		if(! stringSetId.equals("4")){
 
 			btStartSet.setDisable(false);
 		}
@@ -216,12 +206,7 @@ public class PlayingFieldController {
 	@FXML
 	private void handleEndGame(){
 		System.out.println("end game");
-		try {
-			Controller.getController().stop();
-			
-		} catch (Exception e) {
-			System.out.println("Controller schon gestopt"+e);
-		}
+		Controller.getController().suspend();
 		mainApp.returnToStart();
 		}
 
