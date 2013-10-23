@@ -39,7 +39,7 @@ public class PlayingFieldController {
 	
 	private Circle circleArray[][];
 	
-	private String stringSetId;
+	private String stringSetId="1";
 	private String scoreO="0";
 	private String scoreX="0";
 //	private int[] score;
@@ -145,7 +145,7 @@ public class PlayingFieldController {
 	}
 	
 	public void clearPlayingField(){
-		System.out.println("Clear PlayingField");
+//		System.out.println("Clear PlayingField");
 		
 		//Update setId auf der Oberfläche
 		currentSet.setText(stringSetId);
@@ -190,29 +190,34 @@ public class PlayingFieldController {
 	
 	@FXML
 	public void handleEndSet(){
-		btEndSet.setDisable(true);
-		if(! stringSetId.equals("4")|scoreO.equals("4")|scoreX.equals("4")){
-
-			btStartSet.setDisable(false);
-		}
-		
+	
 		System.out.println("end set");
 		Platform.runLater(new Runnable() {
 			
 			@Override
 			public void run() {
+				updateDisplay();
 				boolean okClicked = mainApp.showCancelSetDialog();
 				
 				if (okClicked) {
 					//satz wurde erfolgreich abgebrochen > anzeige wird angepasst
 				}
+				updateDisplay();
+				
+				btEndSet.setDisable(true);
+//				System.out.println("ScoreX: "+scoreX+"  Scoreo: "+scoreO);
+				
+				if(scoreO.equals("4")||scoreX.equals("4")||stringSetId.equals("4")){
+					btStartSet.setDisable(true);
+				}
+				else {
+					btStartSet.setDisable(false);	
+				}
 				
 			}
 		});
 			
-			
-//
-//		Controller.getController().getModelController().endSet();
+	
 		Controller.getController().suspend();
 		
 	}
@@ -241,7 +246,7 @@ public class PlayingFieldController {
 
 	}
 
-	public void updateDisplay(int setId,final int[] score) {
+	public void updateValues(int setId,final int[] score) {
 		this.stringSetId = String.valueOf(setId+1);
 //		this.score=score;
 //		System.out.println("Update Display");
@@ -256,18 +261,13 @@ public class PlayingFieldController {
 			scoreO = new Integer(score[0]).toString();
 			scoreX = new Integer(score[1]).toString();
 			}		
-		
-		
-		Platform.runLater(new Runnable() {
-			public void run() {
-				//Score updaten
-				gameNameLabel.setText(modelController.getGame().getName());
+	}
+	private void updateDisplay(){
+		//Score updaten
+		gameNameLabel.setText(modelController.getGame().getName());
+		scorePlayerO.setText(scoreO);
+		scorePlayerX.setText(scoreX);	
 
-				scorePlayerO.setText(scoreO);
-				scorePlayerX.setText(scoreX);	
-
-			}
-		});
 	}
 	
 	public void appearLbStatus()
@@ -294,10 +294,18 @@ public class PlayingFieldController {
 	public String getScoreX(){
 		return scoreX;
 	}
+	public void setScoreO(String scoreO){
+		this.scoreO = scoreO;
+	}
+	public void setScoreX(String scoreX){
+		this.scoreX = scoreX;
+	}
 	
 	public String getWinner(){
 		return Controller.getController().getModelController().getWinner();
 	}
-
+	public void setWinner(String winner){
+		
+	}
 	
 }

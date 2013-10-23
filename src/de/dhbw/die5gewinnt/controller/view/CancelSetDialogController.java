@@ -77,7 +77,11 @@ public class CancelSetDialogController {
 		
 		tfResultO.setText(Controller.getController().getPlayingFieldController().getScoreO());
 		tfResultX.setText(Controller.getController().getPlayingFieldController().getScoreX());
-		cbWinner.setValue("player"+Controller.getController().getPlayingFieldController().getWinner());
+		try {
+			cbWinner.setValue("player"+Controller.getController().getPlayingFieldController().getWinner());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	@FXML
@@ -85,6 +89,9 @@ public class CancelSetDialogController {
 		//TODO: alle eigenen und gelesenen züge bis zum abbruch werden automatisch gespeichert
 		//TODO: sieger und punktezahl werden überschrieben
 		//TODO: alle einträge werden überprüft
+		Controller.getController().getPlayingFieldController().setScoreO(tfResultO.getText());
+		Controller.getController().getPlayingFieldController().setScoreX(tfResultX.getText());
+		
 		okClicked = true;
 		dialogStage.close();
 	}

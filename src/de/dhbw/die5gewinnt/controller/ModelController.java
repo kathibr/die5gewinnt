@@ -84,7 +84,7 @@ public class ModelController {
 					sets[setId] = set;
 					moveId = 0;	
 				}
-				Controller.getController().getPlayingFieldController().updateDisplay(setId, score);
+				Controller.getController().getPlayingFieldController().updateValues(setId, score);
 				Controller.getController().playingFieldController.handleEndSet();
 			}
 
@@ -158,13 +158,23 @@ public class ModelController {
 			System.out.println("Wir haben verloren :(");
 			set.setWinner(false);
 			int scoreNr = score[1];
-			score[1]=scoreNr+2;
+			if (isFieldFull()) {
+				score[1]=scoreNr+1;
+			}
+			else {
+				score[1]=scoreNr+2;
+			}
 		}
 		else if (serverFile.getWinner().equals("Spieler "+ownPlayer)) {
 			System.out.println("Wir haben gewonnen :)");
 			set.setWinner(true);
 			int scoreNr = score[0];
-			score[0] =scoreNr+2;
+			if (isFieldFull()) {
+				score[0]=scoreNr+1;
+			}
+			else {
+				score[0]=scoreNr+2;
+			}
 		} 
 		else {
 			System.out.println("ungültig!");
