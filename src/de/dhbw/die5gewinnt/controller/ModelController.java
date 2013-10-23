@@ -55,8 +55,8 @@ public class ModelController {
 			ownPlayer = "O";
 			opponentPlayer = "X";
 		}
-//		i = 0;
 		
+	
 		do{
 			serverFile = new XMLReader().getServerFile();
 			
@@ -64,6 +64,7 @@ public class ModelController {
 				if (serverFile.getOpponentMove() == -1)
 				{
 					proceedOwnMove();
+					set.setFirstMove(true);
 				}
 				else 
 				{
@@ -202,7 +203,7 @@ public class ModelController {
 			field = new Move[7][6];
 			columnHeight = new int[7];
 
-			newSet = new Set(moves, field, columnHeight, false);
+			newSet = new Set(moves, field, columnHeight, false, false);
 			newSet = DBInserts.insertSet(newSet);
 			return newSet;
 		
