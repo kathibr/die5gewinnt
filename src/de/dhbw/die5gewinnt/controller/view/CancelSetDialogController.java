@@ -1,11 +1,13 @@
 package de.dhbw.die5gewinnt.controller.view;
 
+import de.dhbw.die5gewinnt.controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import de.dhbw.die5gewinnt.controller.Controller;
 
 public class CancelSetDialogController {
 	
@@ -41,6 +43,7 @@ public class CancelSetDialogController {
 		cbWinner.getItems().addAll("playerO");
 		cbWinner.setValue("playerX");
 		
+		
 	}
 	
 	public void setDialogStage(Stage dialogStage) {
@@ -70,8 +73,11 @@ public class CancelSetDialogController {
 		cbWinner.setVisible(true);
 		tfResultX.setVisible(true);		
 		tfResultO.setVisible(true);
-		btSave.setVisible(true);		
+		btSave.setVisible(true);
 		
+		tfResultO.setText(Controller.getController().getPlayingFieldController().getScoreO());
+		tfResultX.setText(Controller.getController().getPlayingFieldController().getScoreX());
+		cbWinner.setValue("player"+Controller.getController().getPlayingFieldController().getWinner());
 	}
 	
 	@FXML

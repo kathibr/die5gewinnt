@@ -40,6 +40,8 @@ public class PlayingFieldController {
 	private Circle circleArray[][];
 	
 	private String stringSetId;
+	private String scoreO="0";
+	private String scoreX="0";
 //	private int[] score;
 
 
@@ -176,7 +178,7 @@ public class PlayingFieldController {
 	private void handleStartSet(){	
 		btEndSet.setDisable(false);
 		btStartSet.setDisable(true);
-		
+		clearPlayingField();
 		if(Controller.getController().isAlive()){
 			Controller.getController().resume();
 		}
@@ -189,12 +191,26 @@ public class PlayingFieldController {
 	@FXML
 	public void handleEndSet(){
 		btEndSet.setDisable(true);
-		if(! stringSetId.equals("4")){
+		if(! stringSetId.equals("4")|scoreO.equals("4")|scoreX.equals("4")){
 
 			btStartSet.setDisable(false);
 		}
 		
 		System.out.println("end set");
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				boolean okClicked = mainApp.showCancelSetDialog();
+				
+				if (okClicked) {
+					//satz wurde erfolgreich abgebrochen > anzeige wird angepasst
+				}
+				
+			}
+		});
+			
+			
 //
 //		Controller.getController().getModelController().endSet();
 		Controller.getController().suspend();
@@ -229,25 +245,27 @@ public class PlayingFieldController {
 		this.stringSetId = String.valueOf(setId+1);
 //		this.score=score;
 //		System.out.println("Update Display");
+
+		if(modelController.getGame().getPlayer().equals("X")){
+			//PlayerX ist der eigene Player
+			scoreO = new Integer(score[1]).toString();
+			scoreX = new Integer(score[0]).toString();
+			}
+		else{
+			//Player0 ist der eigene Player
+			scoreO = new Integer(score[0]).toString();
+			scoreX = new Integer(score[1]).toString();
+			}		
 		
 		
 		Platform.runLater(new Runnable() {
 			public void run() {
 				//Score updaten
 				gameNameLabel.setText(modelController.getGame().getName());
-				
-				if(modelController.getGame().getPlayer().equals("X")){
-					//PlayerX ist der eigene Player
-					scorePlayerO.setText(new Integer(score[1]).toString());
-//					System.out.println("Score0: "+score[0]+"/ Score1: "+score[1]);
-					scorePlayerX.setText(new Integer(score[0]).toString());	
-					}
-				else{
-					//Player0 ist der eigene Player
-					scorePlayerO.setText(new Integer(score[0]).toString());
-//					System.out.println("Score0: "+score[0]+"/ Score1: "+score[1]);
-					scorePlayerX.setText(new Integer(score[1]).toString());	
-					}		
+
+				scorePlayerO.setText(scoreO);
+				scorePlayerX.setText(scoreX);	
+
 			}
 		});
 	}
@@ -269,7 +287,17 @@ public class PlayingFieldController {
 		}
 		});
 	}
-
+	
+	public String getScoreO(){
+		return scoreO;
+	}
+	public String getScoreX(){
+		return scoreX;
+	}
+	
+	public String getWinner(){
+		return Controller.getController().getModelController().getWinner();
+	}
 
 	
 }

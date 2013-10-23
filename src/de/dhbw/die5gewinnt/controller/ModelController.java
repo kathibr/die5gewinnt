@@ -73,23 +73,8 @@ public class ModelController {
 			}
 			
 			else{
-//				if (serverFile.getOpponentMove() != -1){
-				if(serverFile.getWinner().equals("Spieler "+opponentPlayer)){
-					proceedOpponentMove();
-					System.out.println("Wir haben verloren :(");
-					set.setWinner(false);
-					int scoreNr = score[1];
-					score[1]=scoreNr+1;
-				}
-				else if (serverFile.getWinner().equals("Spieler "+ownPlayer)) {
-					System.out.println("Wir haben gewonnen :)");
-					set.setWinner(true);
-					int scoreNr = score[0];
-					score[0] =scoreNr+1;
-				} 
-				else {
-					System.out.println("ungültig!");
-				}
+				identifyWinner();
+
 				System.out.println("Set is over");
 				game.setScore(score);
 				setId++;
@@ -164,6 +149,27 @@ public class ModelController {
 		field[column][row]=move;
 		
 		moveId++;
+	}
+	
+	public void identifyWinner(){
+//		if (serverFile.getOpponentMove() != -1){
+		if(serverFile.getWinner().equals("Spieler "+opponentPlayer)){
+			proceedOpponentMove();
+			System.out.println("Wir haben verloren :(");
+			set.setWinner(false);
+			int scoreNr = score[1];
+			score[1]=scoreNr+2;
+		}
+		else if (serverFile.getWinner().equals("Spieler "+ownPlayer)) {
+			System.out.println("Wir haben gewonnen :)");
+			set.setWinner(true);
+			int scoreNr = score[0];
+			score[0] =scoreNr+2;
+		} 
+		else {
+			System.out.println("ungültig!");
+		}
+		
 	}
 		
 
@@ -256,6 +262,11 @@ public class ModelController {
 	/* SETTER-Methods */
 	private void setGame(Game game) {
 		this.game = game;
+	}
+
+	public String getWinner() {
+		return serverFile.getWinner();
+		
 	}
 
 //	public void endSet() {
