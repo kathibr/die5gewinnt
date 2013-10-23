@@ -54,15 +54,29 @@ public class DBInserts extends DBQuery {
 				Statement stmt = getDBConnection().createStatement();	
 				String sql = "INSERT INTO Moves VALUES("+move.getId()+", "+move.getRow()+", "+move.getColumn()+", \'"+move.getPlayer()+"\')";
 				stmt.executeQuery(sql);
-				sql = "INSERT INTO GameToSetToMove VALUES("+gameId+", "+setId+", "+move.getId()+")";
-				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {
-				System.err.println("--- SQL INSERT into Move, GameToSetToMove failed!");
+				System.err.println("--- SQL INSERT into Move failed!");
 				e.printStackTrace();
 			}
 		}
+		insertGameToSetToMove(gameId, setId, move.getId());
 		return move;
+	}
+	
+	/* INSERT-Query for GameToSetToMove */
+	private static boolean insertGameToSetToMove(int gameId, int setId, int moveId) {
+		try {
+			Statement stmt = getDBConnection().createStatement();	
+			String sql = "INSERT INTO GameToSetToMove VALUES("+gameId+", "+setId+", "+moveId+")";
+			stmt.executeQuery(sql);
+			stmt.close();
+		} catch (SQLException e) {
+			System.err.println("--- SQL INSERT into GameToSetToMove failed!");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }

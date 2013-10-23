@@ -12,7 +12,7 @@ public class DBUpdates extends DBQuery {
 	}
 	
 	/* UPDATE-Query for Model Game */
-	public static void updateGame(Game game) {
+	public static boolean updateGame(Game game) {
 		if(game.getClass().getName().equals("de.dhbw.die5gewinnt.model.Game")) {
 			game.setName(DataManipulation.splitName(game.getName()));
 			try {
@@ -22,12 +22,15 @@ public class DBUpdates extends DBQuery {
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
+			return true;
 		}
+		return false;
 	}
 	
 	/* UPDATE-Query for Model Set */
-	public static void updateSet(Set set) {
+	public static boolean updateSet(Set set) {
 		if(set.getClass().getName().equals("de.dhbw.die5gewinnt.model.Set")) {
 			try {
 				Statement stmt = getDBConnection().createStatement();	
@@ -36,12 +39,15 @@ public class DBUpdates extends DBQuery {
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
+		return true;
 		}
+		return false;
 	}
 	
 	/* UPDATE-Query for Model Move */
-	public static void updateMove(Move move) {
+	public static boolean updateMove(Move move) {
 		if(move.getClass().getName().equals("de.dhbw.die5gewinnt.model.Move")) {
 			try {
 				Statement stmt = getDBConnection().createStatement();	
@@ -50,8 +56,11 @@ public class DBUpdates extends DBQuery {
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
+		return true;
 		}
+		return false;
 	}
 	
 }
