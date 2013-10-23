@@ -18,7 +18,7 @@ public class DBInserts extends DBQuery {
 			game.setName(DataManipulation.splitName(game.getName()));
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "INSERT INTO Games VALUES("+game.getId()+", \'"+game.getName()+"\', \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', \'"+DataManipulation.getGameWinnerForDB(game.getWinner())+"\', \'"+game.getPlayer()+"\', \'"+game.getOpponentName()+"\')";
+				String sql = "INSERT INTO Games VALUES("+game.getId()+", \'"+game.getName()+"\', \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', \'"+DataManipulation.getStringFromBoolean(game.getWinner())+"\', \'"+game.getPlayer()+"\', \'"+game.getOpponentName()+"\')";
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {
@@ -35,7 +35,7 @@ public class DBInserts extends DBQuery {
 			set.setId(AutoIncrementKeys.getNextSetIdAndIncrement());
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "INSERT INTO Sets VALUES("+set.getId()+", \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', \'"+DataManipulation.getSetWinnerForDB(set.getWinner())+"\')";
+				String sql = "INSERT INTO Sets VALUES("+set.getId()+", \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', \'"+DataManipulation.getStringFromBoolean(set.getFirstMove())+"\', \'"+DataManipulation.getStringFromBoolean(set.getWinner())+"\')";
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {

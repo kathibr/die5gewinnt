@@ -9,6 +9,21 @@ public class DataManipulation {
 
 	private DataManipulation() {}
 	
+	/* Generic Data Manipulation */
+	public static String getStringFromBoolean(boolean input) {
+		if(input)
+			return "true";
+		else
+			return "false";	
+	}
+	
+	public static boolean getBooleanFromString(String input) {
+		if(input.equals("true"))
+			return true;
+		else
+			return false;		
+	}
+	
 	/* Data Manipulation for Model Game */
 	public static String splitName(String name) {
 		if(name.length() > 13)
@@ -27,20 +42,6 @@ public class DataManipulation {
 		returnScore[0] = Integer.parseInt(stringScore[0]);
 		returnScore[1] = Integer.parseInt(stringScore[1]);
 		return returnScore;
-	}
-	
-	public static String getGameWinnerForDB(boolean winner) {
-		if(winner)
-			return "true";
-		else
-			return "false";
-	}
-	
-	public static boolean getGameWinnerForJava(String winner) {
-		if(winner.equals("true"))
-			return true;
-		else
-			return false;
 	}
 	
 	/* Data Manipulation for Model Set */
@@ -84,20 +85,6 @@ public class DataManipulation {
 			for(int j = 0; j < 7; j++)
 				returnColumnHeight[j] = Integer.parseInt(stringColumnHeight[i++]);
 		return returnColumnHeight;
-	}
-	
-	public static String getSetWinnerForDB(boolean winner) {
-		if(winner)
-			return "true";
-		else
-			return "false";		
-	}
-	
-	public static boolean getSetWinnerForJava(String winner) {
-		if(winner.equals("true"))
-			return true;
-		else
-			return false;		
 	}
 	
 }

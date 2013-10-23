@@ -17,7 +17,7 @@ public class DBUpdates extends DBQuery {
 			game.setName(DataManipulation.splitName(game.getName()));
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "UPDATE Games SET name = \'"+game.getName()+"\', score = \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', winner = \'"+DataManipulation.getGameWinnerForDB(game.getWinner())+"\', player = \'"+game.getPlayer()+"\', opponent = \'"+game.getOpponentName()+"\' WHERE id = "+game.getId();
+				String sql = "UPDATE Games SET name = \'"+game.getName()+"\', score = \'"+DataManipulation.getGameScoreForDB(game.getScore())+"\', winner = \'"+DataManipulation.getStringFromBoolean(game.getWinner())+"\', player = \'"+game.getPlayer()+"\', opponent = \'"+game.getOpponentName()+"\' WHERE id = "+game.getId();
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {
@@ -31,7 +31,7 @@ public class DBUpdates extends DBQuery {
 		if(set.getClass().getName().equals("de.dhbw.die5gewinnt.model.Set")) {
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "UPDATE Sets SET field = \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', columnheight = \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', winner = \'"+DataManipulation.getSetWinnerForDB(set.getWinner())+"\' WHERE = "+set.getId();
+				String sql = "UPDATE Sets SET field = \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', columnheight = \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', firstmove = \'"+DataManipulation.getStringFromBoolean(set.getFirstMove())+"\', winner = \'"+DataManipulation.getStringFromBoolean(set.getWinner())+"\' WHERE = "+set.getId();
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {

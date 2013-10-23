@@ -52,7 +52,7 @@ public class DBSelects extends DBQuery {
 	    		game.setName(rs.getString(2));
 	    		game.setSets(selectSets(id));
 	    		game.setScore(DataManipulation.getGameScoreForJava(rs.getString(3)));
-	    		game.setWinner(DataManipulation.getGameWinnerForJava(rs.getString(4)));
+	    		game.setWinner(DataManipulation.getBooleanFromString(rs.getString(4)));
 	    		game.setPlayer(rs.getString(5));
 	    		game.setOpponentName(rs.getString(6));
 	    	}
@@ -78,7 +78,7 @@ public class DBSelects extends DBQuery {
 					if(withLoadingSets)
 						game.setSets(selectSets(Integer.parseInt(rs.getString(1))));
 					game.setScore(DataManipulation.getGameScoreForJava(rs.getString(3)));
-					game.setWinner(DataManipulation.getGameWinnerForJava(rs.getString(4)));
+					game.setWinner(DataManipulation.getBooleanFromString(rs.getString(4)));
 					game.setPlayer(rs.getString(5));
 					game.setOpponentName(rs.getString(6));
 				oldGames.add(game);
@@ -138,7 +138,8 @@ public class DBSelects extends DBQuery {
 				set.setMoves(selectMoves(id));
 				set.setField(DataManipulation.getSetFieldForJava(setId, rs.getString(2)));
 				set.setColumnHeight(DataManipulation.getSetColumnHeightForJava(rs.getString(3)));
-				set.setWinner(DataManipulation.getSetWinnerForJava(rs.getString(4)));
+				set.setFirstMove(DataManipulation.getBooleanFromString(rs.getString(4)));
+				set.setWinner(DataManipulation.getBooleanFromString(rs.getString(5)));
 	    	}
 	    	rs.close();
 	    	stmt.close();
@@ -156,13 +157,16 @@ public class DBSelects extends DBQuery {
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
 				int setId = Integer.parseInt(rs.getString(1));
-				sets.add(new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(setId, rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3)), DataManipulation.getSetWinnerForJava(rs.getString(4))));
+				Set set = new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(setId, rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3)), DataManipulation.getBooleanFromString(rs.getString(4)), DataManipulation.getBooleanFromString(rs.getString(5)));
+				if(!sets.contains(set))
+					sets.add(set);
 			}
 	    	rs.close();
 	    	stmt.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println(sets.size());
 		return sets.toArray(new Set[sets.size()]);		
 	}
 	
