@@ -268,6 +268,14 @@ public class ModelController {
 		return serverFile.getWinner();
 		
 	}
+	
+	public boolean isFieldFull(){
+		columnHeight = set.getColumnHeight();
+		for(int i = 0; i < columnHeight.length; i++){
+			if(columnHeight[i] != 5)return false;
+		}
+		return true;
+	}
 
 //	public void endSet() {
 ////		forceStop = true;
