@@ -15,8 +15,8 @@ public class MastermindAlgorithm{
 	private int result;
 	private Game game;
 	private final int NONEMISSING = 5;
-	private final int ONEMISSING = 0;
-	private final int TWOMISSING = 2;
+	private final int ONEMISSING = 2;
+	private final int TWOMISSING = 1;
 	private final int THREEMISSING = 1;
 	private final int DONTTHROW = -1000;
 
