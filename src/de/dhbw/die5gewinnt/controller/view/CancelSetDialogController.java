@@ -57,9 +57,7 @@ public class CancelSetDialogController {
 	@FXML
 	private void rejectSet() {
 		//TODO:satz wird verworfen > anzeige des aktuellen satzes zurücksetzen
-		
 		btEditSet.getStyleClass().remove("button-selected");		
-		okClicked = true;
 		dialogStage.close();
 	}
 	
@@ -82,6 +80,7 @@ public class CancelSetDialogController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		okClicked = true;
 	}
 	
 	@FXML
@@ -91,7 +90,7 @@ public class CancelSetDialogController {
 		//TODO: alle einträge werden überprüft
 		Controller.getController().getPlayingFieldController().setScoreO(tfResultO.getText());
 		Controller.getController().getPlayingFieldController().setScoreX(tfResultX.getText());
-		
+		Controller.getController().getModelController().updateSet();
 		okClicked = true;
 		dialogStage.close();
 	}

@@ -87,7 +87,7 @@
         <Circle fx:id="circle00" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
         <Circle fx:id="circle10" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
         <Circle fx:id="circle20" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-        <Circle fx:id="circle30" fill="$x1" onMouseClicked="#circleAction" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
+        <Circle fx:id="circle30" fill="$x1" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
           <effect>
             <ColorAdjust />
           </effect>
@@ -108,7 +108,6 @@
       </children>
     </Group>
     <Label fx:id="lbStatus" layoutX="24.0" layoutY="470.0" text="Statusmeldung" />
-    <Button layoutX="578.0" layoutY="342.0" mnemonicParsing="false" onAction="#cancelSet" text="Cancel" />
   </children>
   <padding>
     <Insets top="47.0" />

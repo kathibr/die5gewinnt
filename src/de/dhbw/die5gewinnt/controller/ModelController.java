@@ -5,7 +5,9 @@ import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.algorithm.MastermindAlgorithm;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
+import de.dhbw.die5gewinnt.controller.db.DBDeletes;
 import de.dhbw.die5gewinnt.controller.db.DBInserts;
+import de.dhbw.die5gewinnt.controller.db.DBUpdates;
 import de.dhbw.die5gewinnt.model.Game;
 import de.dhbw.die5gewinnt.model.Move;
 import de.dhbw.die5gewinnt.model.ServerFile;
@@ -86,7 +88,7 @@ public class ModelController {
 					moveId = 0;	
 				}
 				Controller.getController().getPlayingFieldController().updateValues(setId, score);
-				Controller.getController().playingFieldController.handleEndSet();
+				Controller.getController().playingFieldController.endNormalSet();
 			}
 
 			
@@ -279,6 +281,19 @@ public class ModelController {
 		return serverFile.getWinner();
 		
 	}
+	public int deleteSet(int[] score){
+		System.out.println("deleteSet");
+		this.score=score;
+		game.setScore(score);
+		DBDeletes.deleteSet(setId);
+		set = new Set();
+		setId = setId-1;
+		return setId;
+	}
+	public void updateSet(){
+		System.out.println("updateSet");
+		DBUpdates.updateSet(set);
+	}
 	
 	public boolean isFieldFull(){
 		columnHeight = set.getColumnHeight();
@@ -288,15 +303,6 @@ public class ModelController {
 		return true;
 	}
 
-//	public void endSet() {
-////		forceStop = true;
-//		//Sieger anzeigen -> Popup?/ updaten der Oberfläche
-//	}
-	/*
-	public boolean getForceStop(){
-		return this.forceStop;
-	}
-	*/
 //	private void setSet(int index) {}
 	/*
 	@SuppressWarnings("unused")

@@ -190,18 +190,37 @@ public class PlayingFieldController {
 	
 	@FXML
 	public void handleEndSet(){
+		//manuelles beenden des Sets
 	
 		System.out.println("end set");
 		Platform.runLater(new Runnable() {
 			
 			@Override
 			public void run() {
-				updateDisplay();
+//				updateDisplay();
 				boolean okClicked = mainApp.showCancelSetDialog();
-				
 				if (okClicked) {
-					//satz wurde erfolgreich abgebrochen > anzeige wird angepasst
+					//satz ist gültig
+					endNormalSet();
 				}
+				else {
+					noUpdateDisplay();
+					btEndSet.setDisable(true);
+					btStartSet.setDisable(false);	
+				}
+				
+			}
+		});
+
+		Controller.getController().suspend();
+	}
+	
+	public void endNormalSet(){
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+
 				updateDisplay();
 				
 				btEndSet.setDisable(true);
@@ -216,20 +235,6 @@ public class PlayingFieldController {
 				
 			}
 		});
-			
-	
-		Controller.getController().suspend();
-		
-	}
-
-	@FXML
-	public void cancelSet(){
-		boolean okClicked = mainApp.showCancelSetDialog();
-		if (okClicked) {
-			//satz wurde erfolgreich abgebrochen > anzeige wird angepasst
-		}
-		
-		
 	}
 	
 	
@@ -240,11 +245,6 @@ public class PlayingFieldController {
 		mainApp.returnToStart();
 		}
 
-	
-	@FXML
-	public void circleAction(){
-
-	}
 
 	public void updateValues(int setId,final int[] score) {
 		this.stringSetId = String.valueOf(setId+1);
@@ -262,13 +262,34 @@ public class PlayingFieldController {
 			scoreX = new Integer(score[1]).toString();
 			}		
 	}
+	
+	public void noUpdateDisplay(){
+		int[] score = new int[2];
+		scoreO=scorePlayerO.getText();
+		scoreX=scorePlayerX.getText();	
+		if(modelController.getGame().getPlayer().equals("X")){
+			//PlayerX ist der eigene Player
+			score[1] = Integer.parseInt(scoreO);
+			score[0] = Integer.parseInt(scoreX);
+			}
+		else{
+			//Player0 ist der eigene Player
+			score[1] = Integer.parseInt(scoreX);
+			score[0] = Integer.parseInt(scoreO);
+			}	
+		
+		this.stringSetId = String.valueOf(Controller.getController().getModelController().deleteSet(score));
+	}
+	
+	
 	private void updateDisplay(){
 		//Score updaten
 		gameNameLabel.setText(modelController.getGame().getName());
 		scorePlayerO.setText(scoreO);
 		scorePlayerX.setText(scoreX);	
-
 	}
+	
+		
 	
 	public void appearLbStatus()
 	{
