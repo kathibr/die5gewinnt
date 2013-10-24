@@ -153,7 +153,7 @@ public class DBSelects extends DBQuery {
 		ArrayList<Set> sets = new ArrayList<Set>();
 		try {
 			Statement stmt = getDBConnection().createStatement();
-			String sql = "SELECT * FROM Sets INNER JOIN GameToSetToMove ON Sets.id = GameToSetToMove.setId WHERE GameToSetToMove.gameId = "+gameId;
+			String sql = "SELECT DISTINCT id FROM Sets INNER JOIN GameToSetToMove ON Sets.id = GameToSetToMove.setId WHERE GameToSetToMove.gameId = "+gameId;
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
 				int setId = Integer.parseInt(rs.getString(1));
@@ -166,7 +166,6 @@ public class DBSelects extends DBQuery {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(sets.size());
 		return sets.toArray(new Set[sets.size()]);		
 	}
 	
