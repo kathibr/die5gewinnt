@@ -128,18 +128,20 @@ public class PlayingFieldController {
 	}
 
 
-	public void showMove(int column, int row, int color)
-	{
-
-		if(color==1)
-		{
-			circleArray[column][row].getStyleClass().remove("emptyCircle");
-			circleArray[column][row].getStyleClass().add("yellowCircle");
-		}
-		if(color==2)
-		{
-			circleArray[column][row].getStyleClass().remove("emptyCircle");
-			circleArray[column][row].getStyleClass().add("redCircle");
+	public void showMove(int column, int row, int color){
+		try {
+			if(color==1)
+			{
+				circleArray[column][row].getStyleClass().remove("emptyCircle");
+				circleArray[column][row].getStyleClass().add("yellowCircle");
+			}
+			if(color==2)
+			{
+				circleArray[column][row].getStyleClass().remove("emptyCircle");
+				circleArray[column][row].getStyleClass().add("redCircle");
+			}
+		} catch (Exception e) {
+			System.out.println("Kein Stein zum Anzeigen vorhanden! "+e);
 		}
 
 	}
@@ -279,6 +281,7 @@ public class PlayingFieldController {
 			}	
 		
 		this.stringSetId = String.valueOf(Controller.getController().getModelController().deleteSet(score));
+		System.out.println("StringSetId: "+stringSetId);
 	}
 	
 	

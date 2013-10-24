@@ -194,7 +194,7 @@ public class ModelController {
 				score[0] = score[1] = 0;
 		newGame = new Game(name, sets, score, false, player, opponentName);
 		newGame = DBInserts.insertGame(newGame);
-		setId=0;
+		setId=1;
 		this.setGame(newGame);
 		return this.getGame();
 	}
@@ -287,7 +287,7 @@ public class ModelController {
 		game.setScore(score);
 		DBDeletes.deleteSet(setId);
 		set = new Set();
-		setId = setId-1;
+		System.out.println("ModContr. SetId: "+setId);
 		return setId;
 	}
 	public void updateSet(){
