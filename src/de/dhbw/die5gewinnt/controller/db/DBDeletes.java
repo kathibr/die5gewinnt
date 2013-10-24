@@ -32,7 +32,7 @@ public class DBDeletes extends DBQuery {
 	public static boolean deleteMove(int moveId) {
 		try {
 			Statement stmt = getDBConnection().createStatement();
-			String sql = "DELETE FROM Move WHERE id = "+moveId;
+			String sql = "DELETE FROM Moves WHERE id = "+moveId;
 			stmt.executeQuery(sql);
 			stmt.close();
 			return true;
