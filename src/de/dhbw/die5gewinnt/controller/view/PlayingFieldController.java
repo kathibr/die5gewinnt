@@ -230,7 +230,7 @@ public class PlayingFieldController {
 				btEndSet.setDisable(true);
 //				System.out.println("ScoreX: "+scoreX+"  Scoreo: "+scoreO);
 				
-				if(scoreO.equals("4")||scoreX.equals("4")||setId==4){
+				if(setId==4){
 					btStartSet.setDisable(true);
 				}
 				else {
@@ -245,8 +245,10 @@ public class PlayingFieldController {
 	@FXML
 	private void handleEndGame(){
 		System.out.println("end game");
+		Controller.getController().getModelController().updateGame();
 		Controller.getController().suspend();
 		mainApp.returnToStart();
+		
 		}
 	
 	public void noUpdateDisplay(){

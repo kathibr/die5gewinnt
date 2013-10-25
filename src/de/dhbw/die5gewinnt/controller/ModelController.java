@@ -294,6 +294,10 @@ public class ModelController {
 		System.out.println("updateSet");
 		DBUpdates.updateSet(set);
 	}
+	public void updateGame(){
+		System.out.println("updateGame");
+		DBUpdates.updateGame(game);
+	}
 	
 	public boolean isFieldFull(){
 		columnHeight = set.getColumnHeight();
