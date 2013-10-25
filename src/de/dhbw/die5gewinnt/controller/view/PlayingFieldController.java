@@ -71,7 +71,7 @@ public class PlayingFieldController {
 				playerXColor.getStyleClass().add("yellowCircle");
 		}		
 
-		circleArray = new Circle[20][20];
+		circleArray = new Circle[7][6];
 		circleArray[0][0]= circle00;
 		circleArray[0][1]= circle01;
 		circleArray[0][2]= circle02;

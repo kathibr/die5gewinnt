@@ -82,51 +82,51 @@
                     <Color blue="0.875" green="0.875" red="0.875" fx:id="x2" />
                   </fill>
                 </Circle>
-                <Circle id="circle15" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle25" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle35" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle45" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle55" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle65" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle04" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle14" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle24" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle34" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle44" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle54" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle64" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle03" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle13" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle23" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle33" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle43" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle53" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle63" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle02" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle12" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle22" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle32" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle42" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle52" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle62" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle01" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle11" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle21" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle31" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle41" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle51" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle61" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle00" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle10" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle20" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle30" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
+                <Circle fx:id="circle15" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle25" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle35" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle45" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle55" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle65" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle04" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle14" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle24" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle34" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle44" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle54" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle64" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle03" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle13" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle23" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle33" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle43" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle53" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle63" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle02" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle12" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle22" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle32" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle42" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle52" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle62" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle01" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle11" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle21" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle31" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle41" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle51" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle61" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle00" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle10" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle20" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle30" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
                   <effect>
                     <ColorAdjust />
                   </effect>
                 </Circle>
-                <Circle id="circle40" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle50" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
-                <Circle id="circle60" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle40" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle50" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
+                <Circle fx:id="circle60" fill="$x2" radius="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" />
               </children>
               <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
