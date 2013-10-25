@@ -41,6 +41,7 @@ public class ModelController {
 	
 
 	public void startSet(){
+		Controller.getController().getPlayingFieldController().disappearLbStatus();
 		field = new Move[7][6];
 		moves = new Move[42];
 		set = newSet();
@@ -62,15 +63,19 @@ public class ModelController {
 			serverFile = new XMLReader().getServerFile();
 			
 			if (serverFile.getApproval()==true){
+				Controller.getController().getPlayingFieldController().disappearLbStatus();
 				if (serverFile.getOpponentMove() == -1)
 				{
 					proceedOwnMove();
 					set.setFirstMove(true);
+					Controller.getController().getPlayingFieldController().setNextMoveField(game.getOpponentName());
 				}
 				else 
 				{
 					proceedOpponentMove();
+					Controller.getController().getPlayingFieldController().setNextMoveField(game.getPlayer());
 					proceedOwnMove();
+					Controller.getController().getPlayingFieldController().setNextMoveField(game.getOpponentName());
 				}
 			}
 			
@@ -107,7 +112,7 @@ public class ModelController {
 
 			// Show move
 			Controller.getController().getPlayingFieldController().showMove(column, row, YELLOW);
-			System.out.println("Opponent move: " + " Spalte " + column +", Zeile "+row);
+//			System.out.println("Opponent move: " + " Spalte " + column +", Zeile "+row);
 			
 			// Save move
 			move = new Move(row, column, opponentPlayer);
@@ -142,7 +147,7 @@ public class ModelController {
 		
 		// Show move
 		Controller.getController().getPlayingFieldController().showMove(column, row, RED);
-		System.out.println("Own move: " + " Spalte " + column +", Zeile "+row);
+//		System.out.println("Own move: " + " Spalte " + column +", Zeile "+row);
 		
 		// Save move 
 		move = new Move(row, column, ownPlayer);
@@ -162,9 +167,12 @@ public class ModelController {
 			int scoreNr = score[1];
 			if (isFieldFull()) {
 				score[1]=scoreNr+1;
+				Controller.getController().getPlayingFieldController().setTextForStatus("Spielfeld voll - Spieler "+ opponentPlayer+ "gewinnt");
 			}
 			else {
 				score[1]=scoreNr+2;
+
+				Controller.getController().getPlayingFieldController().setTextForStatus("Wir haben verloren :(");
 			}
 		}
 		else if (serverFile.getWinner().equals("Spieler "+ownPlayer)) {
@@ -173,9 +181,12 @@ public class ModelController {
 			int scoreNr = score[0];
 			if (isFieldFull()) {
 				score[0]=scoreNr+1;
+				Controller.getController().getPlayingFieldController().setTextForStatus("Spielfeld voll - Spieler "+ ownPlayer+ "gewinnt");
 			}
 			else {
 				score[0]=scoreNr+2;
+
+				Controller.getController().getPlayingFieldController().setTextForStatus("Wir haben gewonnen :)");
 			}
 		} 
 		else {
@@ -288,6 +299,7 @@ public class ModelController {
 		DBDeletes.deleteSet(setId);
 		set = new Set();
 		System.out.println("ModContr. SetId: "+setId);
+		Controller.getController().getPlayingFieldController().setTextForStatus("Satz wurde gelöscht");
 		return setId;
 	}
 	public void updateSet(){

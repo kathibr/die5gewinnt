@@ -29,7 +29,7 @@ public class XMLReader  {
 				break;
 			} else
 			{
-				Controller.getController().getPlayingFieldController().appearLbStatus();			
+//				Controller.getController().getPlayingFieldController().setTextForStatus("Warte auf Server");			
 			}
 			try {
 				Thread.sleep(300);

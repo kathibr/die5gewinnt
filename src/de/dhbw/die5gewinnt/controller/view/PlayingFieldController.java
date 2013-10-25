@@ -18,7 +18,7 @@ public class PlayingFieldController {
 	@FXML
 	private Rectangle playerXColor, playerOColor;
 	@FXML 
-	private Label gameNameLabel, scorePlayerO, currentSet, playerNameO, playerNameX, scorePlayerX, lbStatus;
+	private Label gameNameLabel, scorePlayerO, currentSet, playerNameO, playerNameX, scorePlayerX, lbStatus, nextMoveField;
 	@FXML	
 	private Button btStartSet, btEndSet, btEndGame;	
 
@@ -40,10 +40,9 @@ public class PlayingFieldController {
 	private Circle circleArray[][];
 	
 	private int setId = 1;
-//	private String stringSetId="1";
 	private String scoreO="0";
 	private String scoreX="0";
-//	private int[] score;
+	private String textStatus;
 
 
 	public PlayingFieldController() {
@@ -277,13 +276,19 @@ public class PlayingFieldController {
 		scorePlayerX.setText(scoreX);	
 	}
 	
+	public void setTextForStatus(String text){
+		textStatus = text;
+		System.out.println("setTextForStatus"+textStatus);
+		appearLbStatus();
+	}
 		
 	
 	public void appearLbStatus()
 	{
+		System.out.println("appearLbStatus");
 		Platform.runLater(new Runnable() {
 		public void run() {
-		lbStatus.setText("Suche Datei");
+		lbStatus.setText(textStatus);
 		}
 		});
 	}
@@ -313,7 +318,17 @@ public class PlayingFieldController {
 			scoreX = new Integer(score[1]).toString();
 			}		
 	}
-	
+	public void setNextMoveField(final String nextMove){
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+
+				nextMoveField.setText(nextMove);
+				
+			}
+		});
+	}
 	
 	public String getScoreO(){
 		return scoreO;
