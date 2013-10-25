@@ -39,7 +39,6 @@ public class OldGamesController {
 	@FXML
 	private Label lbSetOneX, lbSetOneO, lbSetTwoX, lbSetTwoO, lbSetThreeX, lbSetThreeO;
 	
-	
 
 	public OldGamesController() {
 		oList = FXCollections.observableArrayList();
@@ -86,24 +85,32 @@ public class OldGamesController {
 		} else {
 
 			Set sets[] = game.getSets();
+			Label[] xLabels = new Label[3];
+				xLabels[0] = lbSetOneX;
+				xLabels[1] = lbSetTwoX;
+				xLabels[2] = lbSetThreeX;
+			Label[] oLabels = new Label[3];
+				oLabels[0] = lbSetOneO;
+				oLabels[1] = lbSetTwoO;
+				oLabels[2] = lbSetThreeO;
 			
 			if (game.getPlayer().equals("X")) {
 				playerXName.setText("die5gewinnt");
 				playerOName.setText(game.getOpponentName());
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[0]).toString());
-				playerOScore.setText(new Integer(score[1]).toString());				
+				playerOScore.setText(new Integer(score[1]).toString());
 							
 				for(int i = 0; i < sets.length; i++) {
 					if(sets[i].getStatus() == 0) { // We/X lose
-						lbSetOneX.setText("Lose");
-						lbSetOneO.setText("Win");						
+						xLabels[i].setText("Lose");
+						oLabels[i].setText("Win");						
 					} else if(sets[i].getStatus() == 1) { // We/X win
-						lbSetOneX.setText("Win");
-						lbSetOneO.setText("Lose");						
+						xLabels[i].setText("Win");
+						oLabels[i].setText("Lose");						
 					} else if(sets[i].getStatus() == 2) { // remis
-						lbSetOneX.setText("Remis");
-						lbSetOneO.setText("Remis");					
+						xLabels[i].setText("Remis");
+						oLabels[i].setText("Remis");					
 					}
 				}
 			} else {
@@ -115,14 +122,14 @@ public class OldGamesController {
 
 				for(int i = 0; i < sets.length; i++) {
 					if(sets[i].getStatus() == 0) { // We/O lose
-						lbSetOneX.setText("Win");
-						lbSetOneO.setText("Lose");						
+						xLabels[i].setText("Win");
+						oLabels[i].setText("Lose");						
 					} else if(sets[i].getStatus() == 1) { // We/O win
-						lbSetOneX.setText("Lose");
-						lbSetOneO.setText("Win");						
+						xLabels[i].setText("Lose");
+						oLabels[i].setText("Win");						
 					} else if(sets[i].getStatus() == 2) { // remis
-						lbSetOneX.setText("Remis");
-						lbSetOneO.setText("Remis");					
+						xLabels[i].setText("Remis");
+						oLabels[i].setText("Remis");					
 					}
 				}
 			}

@@ -153,13 +153,12 @@ public class DBSelects extends DBQuery {
 		ArrayList<Set> sets = new ArrayList<Set>();
 		try {
 			Statement stmt = getDBConnection().createStatement();
-			String sql = "SELECT DISTINCT id FROM Sets INNER JOIN GameToSetToMove ON Sets.id = GameToSetToMove.setId WHERE GameToSetToMove.gameId = "+gameId;
+			String sql = "SELECT DISTINCT id, field, columnheight, firstmove, status FROM Sets INNER JOIN GameToSetToMove ON Sets.id = GameToSetToMove.setId WHERE GameToSetToMove.gameId = "+gameId;
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
 				int setId = Integer.parseInt(rs.getString(1));
 				Set set = new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(setId, rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3)), DataManipulation.getBooleanFromString(rs.getString(4)), Integer.parseInt(rs.getString(5)));
-				if(!sets.contains(set))
-					sets.add(set);
+				sets.add(set);
 			}
 	    	rs.close();
 	    	stmt.close();
