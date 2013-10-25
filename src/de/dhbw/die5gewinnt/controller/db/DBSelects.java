@@ -139,7 +139,7 @@ public class DBSelects extends DBQuery {
 				set.setField(DataManipulation.getSetFieldForJava(setId, rs.getString(2)));
 				set.setColumnHeight(DataManipulation.getSetColumnHeightForJava(rs.getString(3)));
 				set.setFirstMove(DataManipulation.getBooleanFromString(rs.getString(4)));
-				set.setWinner(DataManipulation.getBooleanFromString(rs.getString(5)));
+				set.setStatus(Integer.parseInt(rs.getString(5)));
 	    	}
 	    	rs.close();
 	    	stmt.close();
@@ -157,7 +157,7 @@ public class DBSelects extends DBQuery {
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
 				int setId = Integer.parseInt(rs.getString(1));
-				Set set = new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(setId, rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3)), DataManipulation.getBooleanFromString(rs.getString(4)), DataManipulation.getBooleanFromString(rs.getString(5)));
+				Set set = new Set(selectMoves(setId), DataManipulation.getSetFieldForJava(setId, rs.getString(2)), DataManipulation.getSetColumnHeightForJava(rs.getString(3)), DataManipulation.getBooleanFromString(rs.getString(4)), Integer.parseInt(rs.getString(5)));
 				if(!sets.contains(set))
 					sets.add(set);
 			}

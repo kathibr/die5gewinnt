@@ -93,66 +93,38 @@ public class OldGamesController {
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[0]).toString());
 				playerOScore.setText(new Integer(score[1]).toString());				
-				
-				Set set1 = sets[0];
-				if(set1.getWinner()==true){
-					lbSetOneX.setText("Win");
-					lbSetOneO.setText("Lose");
-				}else{
-					lbSetOneX.setText("Lose");
-					lbSetOneO.setText("Win");;
+							
+				for(int i = 0; i < sets.length; i++) {
+					if(sets[i].getStatus() == 0) { // We/X lose
+						lbSetOneX.setText("Lose");
+						lbSetOneO.setText("Win");						
+					} else if(sets[i].getStatus() == 1) { // We/X win
+						lbSetOneX.setText("Win");
+						lbSetOneO.setText("Lose");						
+					} else if(sets[i].getStatus() == 2) { // remis
+						lbSetOneX.setText("Remis");
+						lbSetOneO.setText("Remis");					
+					}
 				}
-				Set set2 = sets[1];
-				if(set2.getWinner()==true){
-					lbSetTwoX.setText("Win");
-					lbSetTwoO.setText("Lose");
-				}else{
-					lbSetTwoX.setText("Lose");					
-					lbSetTwoO.setText("Win");;
-				}
-				Set set3 = sets[2];
-				if(set3.getWinner()==true){
-					lbSetThreeX.setText("Win");
-					lbSetThreeO.setText("Lose");
-				}else{
-					lbSetThreeX.setText("Lose");					
-					lbSetThreeO.setText("Win");;
-				}
-				
-	
-
 			} else {
 				playerOName.setText("die5gewinnt");
 				playerXName.setText(game.getOpponentName());
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[1]).toString());
 				playerOScore.setText(new Integer(score[0]).toString());
-				
-				Set set1 = sets[0];
-				if(set1.getWinner()==true){
-					lbSetOneO.setText("Win");
-					lbSetOneX.setText("Lose");
-				}else{
-					lbSetOneO.setText("Lose");
-					lbSetOneX.setText("Win");;
+
+				for(int i = 0; i < sets.length; i++) {
+					if(sets[i].getStatus() == 0) { // We/O lose
+						lbSetOneX.setText("Win");
+						lbSetOneO.setText("Lose");						
+					} else if(sets[i].getStatus() == 1) { // We/O win
+						lbSetOneX.setText("Lose");
+						lbSetOneO.setText("Win");						
+					} else if(sets[i].getStatus() == 2) { // remis
+						lbSetOneX.setText("Remis");
+						lbSetOneO.setText("Remis");					
+					}
 				}
-				Set set2 = sets[1];
-				if(set2.getWinner()==true){
-					lbSetTwoO.setText("Win");
-					lbSetTwoX.setText("Lose");
-				}else{
-					lbSetTwoO.setText("Lose");
-					lbSetTwoX.setText("Win");;
-				}
-				Set set3 = sets[2];
-				if(set3.getWinner()==true){
-					lbSetThreeO.setText("Win");
-					lbSetThreeX.setText("Lose");
-				}else{
-					lbSetThreeX.setText("Lose");
-					lbSetThreeO.setText("Win");;
-				}
-				
 			}
 
 			gameName.setText(game.getName());

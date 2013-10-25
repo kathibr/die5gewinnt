@@ -35,7 +35,7 @@ public class DBInserts extends DBQuery {
 			set.setId(AutoIncrementKeys.getNextSetIdAndIncrement());
 			try {
 				Statement stmt = getDBConnection().createStatement();	
-				String sql = "INSERT INTO Sets VALUES("+set.getId()+", \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', \'"+DataManipulation.getStringFromBoolean(set.getFirstMove())+"\', \'"+DataManipulation.getStringFromBoolean(set.getWinner())+"\')";
+				String sql = "INSERT INTO Sets VALUES("+set.getId()+", \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', \'"+DataManipulation.getStringFromBoolean(set.getFirstMove())+"\', \'"+set.getStatus()+"\')";
 				stmt.executeQuery(sql);
 				stmt.close();
 			} catch (SQLException e) {
