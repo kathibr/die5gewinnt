@@ -279,9 +279,8 @@ public class PlayingFieldController {
 			score[1] = Integer.parseInt(scoreX);
 			score[0] = Integer.parseInt(scoreO);
 			}	
-		
-		this.stringSetId = String.valueOf(Controller.getController().getModelController().deleteSet(score));
-		System.out.println("StringSetId: "+stringSetId);
+		Controller.getController().getModelController().deleteSet(score);
+//		System.out.println("StringSetId: "+stringSetId);
 	}
 	
 	

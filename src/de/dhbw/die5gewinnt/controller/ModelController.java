@@ -281,18 +281,18 @@ public class ModelController {
 		return serverFile.getWinner();
 		
 	}
-	public int deleteSet(int[] score){
+	public void deleteSet(int[] score){
 		System.out.println("deleteSet");
 		this.score=score;
 		game.setScore(score);
 		DBDeletes.deleteSet(setId);
 		set = new Set();
-		System.out.println("ModContr. SetId: "+setId);
-		return setId;
+//		System.out.println("ModContr. SetId: "+setId);
 	}
 	public void updateSet(){
 		System.out.println("updateSet");
 		DBUpdates.updateSet(set);
+		System.out.println("ModContr. SetId: "+setId);
 	}
 	
 	public boolean isFieldFull(){
