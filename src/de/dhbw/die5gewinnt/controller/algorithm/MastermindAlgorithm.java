@@ -8,13 +8,12 @@ import de.dhbw.die5gewinnt.model.Set;
 
 public class MastermindAlgorithm{
 
-	public int nextColumn = -1;
 	private Set set;
 	private final String X="X";
 	private final String O="O";
 	private int result;
 	private Game game;
-	private final int NONEMISSING = 5;
+	private final int NONEMISSING = 3;
 	private final int ONEMISSING = 2;
 	private final int TWOMISSING = 1;
 	private final int THREEMISSING = 1;
@@ -40,26 +39,19 @@ public class MastermindAlgorithm{
 	}
 	
 	public int calcNextMove(){
-		System.out.println("---------------------------------------------------------------------");
 		refreshArrays();
 		refreshEvaluation();
 		analyzeField();
 		result = -1;
 		checkMyThreeInARow();
-		if(result==-1){
+		if(result == -1){
 			checkEnemyThreeInARow();
-			if(result == -1){
-				checkTwoInARow();
-				checkOneInARow();
-				analyzeResults();
+				if(result == -1){
+					checkTwoInARow();
+					checkOneInARow();
+					analyzeResults();
 			}
 			if(result == -1) result = 3;
-			String ausgabe = "";
-			for(int i = 0; i < evaluateColumns.length; i++){
-				ausgabe = ausgabe + evaluateColumns[i] + " ";
-			}
-			System.out.println(ausgabe);
-			System.out.println("Ergebnis: "+result);
 		}
 		return result;
 	}
@@ -72,7 +64,6 @@ public class MastermindAlgorithm{
 	}
 	
 	public void analyzeField(){
-		System.out.println(combinations.size());
 		for(int i = 0; i < combinations.size(); i++){
 			int numberOfO = 0, numberOfX = 0;
 			for(int x = 0; x < 4; x++){
@@ -133,7 +124,6 @@ public class MastermindAlgorithm{
 	
 	public void checkMyThreeInARow(){
 		if(threeInARow.size() == 0) return;
-		System.out.println("Check my Three");
 		for(int i = 0; i < threeInARow.size(); i++){
 			for(int x = 0; x < 4; x++){
 				if(possibleCombinations[x][threeInARow.get(i)] == null){
@@ -141,7 +131,7 @@ public class MastermindAlgorithm{
 						switch(missingHeight){
 							case 0: result = positions[2 * x][threeInARow.get(i)];
 									return;
-							case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + DONTTHROW;
+							case 1: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + (DONTTHROW/10);
 									break;
 							case 2: evaluateColumns[positions[2 * x][threeInARow.get(i)]] = evaluateColumns[positions[2 * x][threeInARow.get(i)]] + TWOMISSING * 2;
 									break;
@@ -156,15 +146,12 @@ public class MastermindAlgorithm{
 	
 	public void checkEnemyThreeInARow(){
 		if(enemyThreeInARow.size() == 0) return;
-		System.out.println("Check enemy Three");
 		for(int i = 0; i < enemyThreeInARow.size(); i++){
 			for(int x = 0; x < 4; x++){
 				if(possibleCombinations[x][enemyThreeInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[2 * x][enemyThreeInARow.get(i)], positions[2 * x + 1][enemyThreeInARow.get(i)]);
-					System.out.println("Enemy three height: "+missingHeight);
 						switch(missingHeight){
 							case 0: result = positions[2 * x][enemyThreeInARow.get(i)];
-							System.out.println("block enemy at:"+result);
 									return;
 							case 1: evaluateColumns[positions[2 * x][enemyThreeInARow.get(i)]] = evaluateColumns[positions[2 * x][enemyThreeInARow.get(i)]] + DONTTHROW;
 									break;
@@ -175,33 +162,27 @@ public class MastermindAlgorithm{
 	}
 	
 	public void checkTwoInARow(){
-		System.out.println("check two");
 		for(int i = 0; i < twoInARow.size(); i++){
-			String test = "Combination: ";
 			for(int x = 0; x < 4; x++){
-				test = test + " ( " + positions[2 * x][twoInARow.get(i)] + "|" + positions[2 * x + 1][twoInARow.get(i)] + " )";
 				if(possibleCombinations[x][twoInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[2 * x][twoInARow.get(i)], positions[2 * x + 1][twoInARow.get(i)]);
 					switch(missingHeight){
-					case 0: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + NONEMISSING * 2;
+					case 0:	evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + NONEMISSING * 4;
 					break;
-					case 1: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + ONEMISSING * 2;
+					case 1: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + ONEMISSING * 4;
 					break;
-					case 2: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + TWOMISSING * 2;
+					case 2: evaluateColumns[positions[2 * x][twoInARow.get(i)]] = evaluateColumns[positions[2 * x][twoInARow.get(i)]] + TWOMISSING * 4;
 					break;
 					}
 				}
 			}
-			System.out.println(test);
 		}
 	}
 	
 	public void checkOneInARow(){
 		if(oneInARow.size() == 0) return;
 		for(int i = 0; i < oneInARow.size(); i++){
-			String test = "Combination: ";
 			for(int x = 0; x < 4; x++){
-				test = test + " ( " + positions[2 * x][oneInARow.get(i)] + "|" + positions[2 * x + 1][oneInARow.get(i)] + " )";
 				if(possibleCombinations[x][oneInARow.get(i)] == null){
 					int missingHeight = missingHeightForThrow(positions[2 * x][oneInARow.get(i)], positions[2 * x + 1][oneInARow.get(i)]);
 					switch(missingHeight){
@@ -214,16 +195,13 @@ public class MastermindAlgorithm{
 					}
 				}
 			}
-			System.out.println(test);
 		}
 	}
 	
 	public void analyzeResults(){
-		String evaluate = "";
 		int highest = 0;
 		int position = -1;
 		for(int i = 0; i < evaluateColumns.length; i++){
-			evaluate = evaluate +""+ evaluateColumns[i];
 			if(highest < evaluateColumns[i]){
 				highest = evaluateColumns[i];
 				position = i;
@@ -236,5 +214,16 @@ public class MastermindAlgorithm{
 		for(int i = 0; i < evaluateColumns.length; i++){
 			evaluateColumns[i] = 0;
 		}
+	}
+	
+	public int isPreviousOrFollowingStoneSet(int row, int x){
+		int numberOfAdjacentStones = 0;
+		if(x > 0){
+			if(possibleCombinations[x-1][row] != null)numberOfAdjacentStones ++;
+		}
+		if(x < 3){
+			if(possibleCombinations[x+1][row] != null)numberOfAdjacentStones ++;
+		}
+		return numberOfAdjacentStones;
 	}
 }
