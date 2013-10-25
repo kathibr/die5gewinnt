@@ -195,6 +195,7 @@ public class ModelController {
 		newGame = DBInserts.insertGame(newGame);
 		setId=1;
 		this.setGame(newGame);
+		this.game = newGame;
 		return this.getGame();
 	}
 	
