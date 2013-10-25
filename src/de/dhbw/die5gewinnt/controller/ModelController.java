@@ -33,8 +33,8 @@ public class ModelController {
 	private int column, row;
 	private int[] columnHeight;
 
-	private Move[][] field = new Move[7][6];
-	private Move[] moves = new Move[42];
+	private Move[][] field;
+	private Move[] moves;
 	private String ownPlayer, opponentPlayer;
 	
 	private final int YELLOW = 1;
@@ -43,7 +43,8 @@ public class ModelController {
 	
 
 	public void startSet(){
-		
+		field = new Move[7][6];
+		moves = new Move[42];
 		set = newSet();
 		sets[setId] = set;
 		
@@ -80,7 +81,7 @@ public class ModelController {
 
 				System.out.println("Set is over");
 				game.setScore(score);
-				setId++;
+//				setId++;
 				
 				if(setId<3){
 					set = newSet();
@@ -159,7 +160,7 @@ public class ModelController {
 		if(serverFile.getWinner().equals("Spieler "+opponentPlayer)){
 			proceedOpponentMove();
 			System.out.println("Wir haben verloren :(");
-			set.setWinner(false);
+			set.setStatus(0);;
 			int scoreNr = score[1];
 			if (isFieldFull()) {
 				score[1]=scoreNr+1;
@@ -170,7 +171,7 @@ public class ModelController {
 		}
 		else if (serverFile.getWinner().equals("Spieler "+ownPlayer)) {
 			System.out.println("Wir haben gewonnen :)");
-			set.setWinner(true);
+			set.setStatus(0);
 			int scoreNr = score[0];
 			if (isFieldFull()) {
 				score[0]=scoreNr+1;
@@ -205,7 +206,7 @@ public class ModelController {
 			field = new Move[7][6];
 			columnHeight = new int[7];
 
-			newSet = new Set(moves, field, columnHeight, false, false);
+			newSet = new Set(moves, field, columnHeight, false, 0);
 			newSet = DBInserts.insertSet(newSet);
 			return newSet;
 		
@@ -301,6 +302,9 @@ public class ModelController {
 			if(columnHeight[i] != 5)return false;
 		}
 		return true;
+	}
+	public void setSetId(int setId){
+		this.setId = setId;
 	}
 
 //	private void setSet(int index) {}

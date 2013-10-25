@@ -39,7 +39,8 @@ public class PlayingFieldController {
 	
 	private Circle circleArray[][];
 	
-	private String stringSetId="1";
+	private int setId = 1;
+//	private String stringSetId="1";
 	private String scoreO="0";
 	private String scoreX="0";
 //	private int[] score;
@@ -148,10 +149,9 @@ public class PlayingFieldController {
 	
 	public void clearPlayingField(){
 //		System.out.println("Clear PlayingField");
-		
 		//Update setId auf der Oberfläche
-		currentSet.setText(stringSetId);
-		
+		currentSet.setText(String.valueOf(setId));
+		Controller.getController().getModelController().setSetId(setId);
 			
 		//Spielfeld leeren
 		for(int column = 0; column<7; column++){
@@ -218,6 +218,8 @@ public class PlayingFieldController {
 	}
 	
 	public void endNormalSet(){
+		setId++;
+		System.out.println("Satz SetId festlegen: " +setId);
 		Platform.runLater(new Runnable() {
 			
 			@Override
@@ -228,15 +230,15 @@ public class PlayingFieldController {
 				btEndSet.setDisable(true);
 //				System.out.println("ScoreX: "+scoreX+"  Scoreo: "+scoreO);
 				
-				if(scoreO.equals("4")||scoreX.equals("4")||stringSetId.equals("4")){
+				if(scoreO.equals("4")||scoreX.equals("4")||setId==4){
 					btStartSet.setDisable(true);
 				}
 				else {
 					btStartSet.setDisable(false);	
 				}
-				
 			}
 		});
+		Controller.getController().getModelController().updateSet();
 	}
 	
 	
@@ -246,24 +248,6 @@ public class PlayingFieldController {
 		Controller.getController().suspend();
 		mainApp.returnToStart();
 		}
-
-
-	public void updateValues(int setId,final int[] score) {
-		this.stringSetId = String.valueOf(setId+1);
-//		this.score=score;
-//		System.out.println("Update Display");
-
-		if(modelController.getGame().getPlayer().equals("X")){
-			//PlayerX ist der eigene Player
-			scoreO = new Integer(score[1]).toString();
-			scoreX = new Integer(score[0]).toString();
-			}
-		else{
-			//Player0 ist der eigene Player
-			scoreO = new Integer(score[0]).toString();
-			scoreX = new Integer(score[1]).toString();
-			}		
-	}
 	
 	public void noUpdateDisplay(){
 		int[] score = new int[2];
@@ -310,6 +294,24 @@ public class PlayingFieldController {
 		}
 		});
 	}
+	public void updateValues(int setId,final int[] score) {
+//		this.stringSetId = String.valueOf(setId+1);
+		this.setId = setId;
+//		this.score=score;
+//		System.out.println("Update Display");
+
+		if(modelController.getGame().getPlayer().equals("X")){
+			//PlayerX ist der eigene Player
+			scoreO = new Integer(score[1]).toString();
+			scoreX = new Integer(score[0]).toString();
+			}
+		else{
+			//Player0 ist der eigene Player
+			scoreO = new Integer(score[0]).toString();
+			scoreX = new Integer(score[1]).toString();
+			}		
+	}
+	
 	
 	public String getScoreO(){
 		return scoreO;
