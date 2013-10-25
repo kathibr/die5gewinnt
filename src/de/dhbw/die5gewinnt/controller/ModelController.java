@@ -15,19 +15,17 @@ import de.dhbw.die5gewinnt.model.Set;
 
 public class ModelController {
 	
+	private ServerFile serverFile;
 	private Game game;
 	private Set set = new Set();
-	private int score[];
 	private Move move;
-	private Set[] sets;
-//	private boolean forceStop = false;
-
 	
-	private ServerFile serverFile;
-
+	
+	private int score[];
+	private Set[] sets;
 
 	private int moveId;
-	private int setId;
+	private int setCounter;
 	private int column, row;
 	private int[] columnHeight;
 
@@ -39,11 +37,17 @@ public class ModelController {
 	private final int RED = 2;
 	
 	
-
 	public void startSet(){
 		Controller.getController().getPlayingFieldController().disappearLbStatus();
-		set = newSet();
-		sets[setId] = set;
+		System.out.println("SetCounter: "+setCounter);
+		moveId = 0;	
+		sets[setCounter-1] = newSet();
+		set = sets[setCounter-1];
+	}
+
+	public void startGame(){
+		
+		startSet();
 		
 		if (game.getPlayer()=="X")
 		{
@@ -55,7 +59,6 @@ public class ModelController {
 			ownPlayer = "O";
 			opponentPlayer = "X";
 		}
-		
 	
 		do{
 			serverFile = new XMLReader().getServerFile();
@@ -75,6 +78,9 @@ public class ModelController {
 					proceedOwnMove();
 					Controller.getController().getPlayingFieldController().setNextMoveField(game.getOpponentName());
 				}
+				set.setMoves(moves);
+				set.setColumnHeight(columnHeight);
+				set.setField(field);
 			}
 			
 			else{
@@ -82,14 +88,14 @@ public class ModelController {
 
 				System.out.println("Set is over");
 				game.setScore(score);
-//				setId++;
+//				setCounter++;
 				
-				if(setId<3){
-					set = newSet();
-					sets[setId] = set;
-					moveId = 0;	
-				}
-				Controller.getController().getPlayingFieldController().updateValues(setId, score);
+//				if(setCounter<3){
+//					set = newSet();
+//					sets[setCounter] = set;
+//					
+//				}
+				Controller.getController().getPlayingFieldController().updateValues(setCounter, score);
 				Controller.getController().playingFieldController.endNormalSet();
 			}
 
@@ -202,20 +208,21 @@ public class ModelController {
 				score[0] = score[1] = 0;
 		newGame = new Game(name, sets, score, false, player, opponentName);
 		newGame = DBInserts.insertGame(newGame);
-		setId=1;
+		setCounter=1;
 		this.setGame(newGame);
 		this.game = newGame;
 		return this.getGame();
 	}
 	
 	public Set newSet() {
+		System.out.println("neues Set wird erstellt");
 		Set newSet = null;
-		moves = null;
-		field = null;
-		columnHeight = null;
-			moves = new Move[42];
-			field = new Move[7][6];
-			columnHeight = new int[7];
+//		moves = null;
+//		field = null;
+//		columnHeight = null;
+		moves = new Move[42];
+		field = new Move[7][6];
+		columnHeight = new int[7];
 
 			newSet = new Set(moves, field, columnHeight, false, 0);
 			newSet = DBInserts.insertSet(newSet);
@@ -294,16 +301,18 @@ public class ModelController {
 		
 	}
 	public int deleteSet(int[] score){
-		System.out.println("deleteSet");
+//		System.out.println("deleteSet");
 		this.score=score;
 		game.setScore(score);
-		DBDeletes.deleteSet(setId);
+		DBDeletes.deleteSet(set.getId());
+		set = null;
 //		set = new Set();
-		System.out.println("ModContr. SetId: "+setId);
+		System.out.println("ModContr. setCounter: "+setCounter);
 		Controller.getController().getPlayingFieldController().setTextForStatus("Satz wurde gelöscht");
-		return setId;
+		return setCounter;
 	}
 	public void updateSet(){
+		game.setSets(sets);
 		System.out.println("updateSet");
 		DBUpdates.updateSet(set);
 	}
@@ -319,8 +328,8 @@ public class ModelController {
 		}
 		return true;
 	}
-	public void setSetId(int setId){
-		this.setId = setId;
+	public void setSetId(int setCounter){
+		this.setCounter = setCounter;
 	}
 
 //	private void setSet(int index) {}

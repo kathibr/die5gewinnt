@@ -31,6 +31,7 @@ public class DBUpdates extends DBQuery {
 	
 	/* UPDATE-Query for Model Set */
 	public static boolean updateSet(Set set) {
+//		System.out.println("DBUpdate set mit setID: "+set.getId()+" und Status"+ set.getStatus());
 		if(set.getClass().getName().equals("de.dhbw.die5gewinnt.model.Set")) {
 			try {
 				Statement stmt = getDBConnection().createStatement();

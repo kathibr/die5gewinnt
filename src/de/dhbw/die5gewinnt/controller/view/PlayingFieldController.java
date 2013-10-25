@@ -39,7 +39,7 @@ public class PlayingFieldController {
 	
 	private Circle circleArray[][];
 	
-	private int setId = 1;
+	private int setCounter = 1;
 	private String scoreO="0";
 	private String scoreX="0";
 	private String textStatus;
@@ -127,30 +127,28 @@ public class PlayingFieldController {
 		this.mainApp = mainApp;
 	}
 
-
-	public void showMove(int column, int row, int color){
-		try {
-			if(color==1)
-			{
-				circleArray[column][row].getStyleClass().remove("emptyCircle");
-				circleArray[column][row].getStyleClass().add("yellowCircle");
-			}
-			if(color==2)
-			{
-				circleArray[column][row].getStyleClass().remove("emptyCircle");
-				circleArray[column][row].getStyleClass().add("redCircle");
-			}
-		} catch (Exception e) {
-			System.out.println("Kein Stein zum Anzeigen vorhanden! "+e);
-		}
-
-	}
 	
+	@FXML
+	private void handleStartSet(){	
+		btEndSet.setDisable(false);
+		btStartSet.setDisable(true);
+		clearPlayingField();
+		if(Controller.getController().isAlive()){
+			Controller.getController().getModelController().startSet();
+			Controller.getController().resume();
+		}
+		else {
+			Controller.getController().start();
+		}
+	
+	}
+
+
 	public void clearPlayingField(){
 //		System.out.println("Clear PlayingField");
-		//Update setId auf der Oberfläche
-		currentSet.setText(String.valueOf(setId));
-		Controller.getController().getModelController().setSetId(setId);
+		//Update setCounter auf der Oberfläche
+		currentSet.setText(String.valueOf(setCounter));
+		Controller.getController().getModelController().setSetId(setCounter);
 			
 		//Spielfeld leeren
 		for(int column = 0; column<7; column++){
@@ -174,20 +172,24 @@ public class PlayingFieldController {
 		
 	}
 
-	
-	@FXML
-	private void handleStartSet(){	
-		btEndSet.setDisable(false);
-		btStartSet.setDisable(true);
-		clearPlayingField();
-		if(Controller.getController().isAlive()){
-			Controller.getController().resume();
+	public void showMove(int column, int row, int color){
+		try {
+			if(color==1)
+			{
+				circleArray[column][row].getStyleClass().remove("emptyCircle");
+				circleArray[column][row].getStyleClass().add("yellowCircle");
+			}
+			if(color==2)
+			{
+				circleArray[column][row].getStyleClass().remove("emptyCircle");
+				circleArray[column][row].getStyleClass().add("redCircle");
+			}
+		} catch (Exception e) {
+			System.out.println("Kein Stein zum Anzeigen vorhanden! "+e);
 		}
-		else {
-			Controller.getController().start();
-		}
-	
+
 	}
+
 	
 	@FXML
 	public void handleEndSet(){
@@ -216,9 +218,27 @@ public class PlayingFieldController {
 		Controller.getController().suspend();
 	}
 	
+	//Werte für die Anzeige anpassen
+	public void updateValues(int setCounter,final int[] score) {
+		this.setCounter = setCounter;
+//		this.score=score;
+//		System.out.println("Update Display");
+
+		if(modelController.getGame().getPlayer().equals("X")){
+			//PlayerX ist der eigene Player
+			scoreO = new Integer(score[1]).toString();
+			scoreX = new Integer(score[0]).toString();
+			}
+		else{
+			//Player0 ist der eigene Player
+			scoreO = new Integer(score[0]).toString();
+			scoreX = new Integer(score[1]).toString();
+			}		
+	}
+	
 	public void endNormalSet(){
-		setId++;
-		System.out.println("Satz SetId festlegen: " +setId);
+		setCounter++;
+		System.out.println("Satz setCounter festlegen: " +setCounter);
 		Platform.runLater(new Runnable() {
 			
 			@Override
@@ -229,7 +249,7 @@ public class PlayingFieldController {
 				btEndSet.setDisable(true);
 //				System.out.println("ScoreX: "+scoreX+"  Scoreo: "+scoreO);
 				
-				if(setId==4){
+				if(setCounter==4){
 					btStartSet.setDisable(true);
 				}
 				else {
@@ -239,17 +259,7 @@ public class PlayingFieldController {
 		});
 		Controller.getController().getModelController().updateSet();
 	}
-	
-	
-	@FXML
-	private void handleEndGame(){
-		System.out.println("end game");
-		Controller.getController().getModelController().updateGame();
-		Controller.getController().suspend();
-		mainApp.returnToStart();
 		
-		}
-	
 	public void noUpdateDisplay(){
 		int[] score = new int[2];
 		scoreO=scorePlayerO.getText();
@@ -268,68 +278,27 @@ public class PlayingFieldController {
 //		System.out.println("StringSetId: "+stringSetId);
 	}
 	
-	
+	//Oberfläche updaten mit neuen Werten
 	private void updateDisplay(){
 		//Score updaten
 		gameNameLabel.setText(modelController.getGame().getName());
 		scorePlayerO.setText(scoreO);
 		scorePlayerX.setText(scoreX);	
 	}
+
 	
-	public void setTextForStatus(String text){
-		textStatus = text;
-		System.out.println("setTextForStatus"+textStatus);
-		appearLbStatus();
-	}
+	@FXML
+	private void handleEndGame(){
+		System.out.println("end game");
+		Controller.getController().getModelController().updateGame();
+		Controller.getController().suspend();
+		mainApp.returnToStart();
+		
+		}
+	
 		
 	
-	public void appearLbStatus()
-	{
-		System.out.println("appearLbStatus");
-		Platform.runLater(new Runnable() {
-		public void run() {
-		lbStatus.setText(textStatus);
-		}
-		});
-	}
-	
-	public void disappearLbStatus()
-	{
-		Platform.runLater(new Runnable() {
-		public void run() {
-		lbStatus.setText("");
-		}
-		});
-	}
-	public void updateValues(int setId,final int[] score) {
-//		this.stringSetId = String.valueOf(setId+1);
-		this.setId = setId;
-//		this.score=score;
-//		System.out.println("Update Display");
-
-		if(modelController.getGame().getPlayer().equals("X")){
-			//PlayerX ist der eigene Player
-			scoreO = new Integer(score[1]).toString();
-			scoreX = new Integer(score[0]).toString();
-			}
-		else{
-			//Player0 ist der eigene Player
-			scoreO = new Integer(score[0]).toString();
-			scoreX = new Integer(score[1]).toString();
-			}		
-	}
-	public void setNextMoveField(final String nextMove){
-		Platform.runLater(new Runnable() {
-			
-			@Override
-			public void run() {
-
-				nextMoveField.setText(nextMove);
-				
-			}
-		});
-	}
-	
+	//Punktzahl anpassen
 	public String getScoreO(){
 		return scoreO;
 	}
@@ -348,6 +317,42 @@ public class PlayingFieldController {
 	}
 	public void setWinner(String winner){
 		
+	}
+	
+	
+	//Statusanzeige:
+	public void setNextMoveField(final String nextMove){
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+
+				nextMoveField.setText(nextMove);
+				
+			}
+		});
+	}
+	public void setTextForStatus(String text){
+		textStatus = text;
+//		System.out.println("setTextForStatus"+textStatus);
+		appearLbStatus();
+	}
+	public void appearLbStatus()
+	{
+//		System.out.println("appearLbStatus");
+		Platform.runLater(new Runnable() {
+		public void run() {
+		lbStatus.setText(textStatus);
+		}
+		});
+	}
+	public void disappearLbStatus()
+	{
+		Platform.runLater(new Runnable() {
+		public void run() {
+		lbStatus.setText("");
+		}
+		});
 	}
 	
 }

@@ -15,7 +15,7 @@ public class Controller extends Thread {
 	
 	@Override
 	public void run() {
-		this.modelController.startSet();
+		this.modelController.startGame();
 	}
 	
 	public Controller() {

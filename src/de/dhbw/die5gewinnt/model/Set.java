@@ -60,6 +60,7 @@ public class Set {
 	
 	/* SETTER-Methods */
 	public void setId(int id) {
+//		System.out.println("Die SetId des Satzes ist " + id);
 		this.id = id;
 	}
 	
