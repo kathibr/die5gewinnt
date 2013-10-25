@@ -42,8 +42,6 @@ public class ModelController {
 
 	public void startSet(){
 		Controller.getController().getPlayingFieldController().disappearLbStatus();
-		field = new Move[7][6];
-		moves = new Move[42];
 		set = newSet();
 		sets[setId] = set;
 		
@@ -73,7 +71,7 @@ public class ModelController {
 				else 
 				{
 					proceedOpponentMove();
-					Controller.getController().getPlayingFieldController().setNextMoveField(game.getPlayer());
+					Controller.getController().getPlayingFieldController().setNextMoveField("die5gewinnt");
 					proceedOwnMove();
 					Controller.getController().getPlayingFieldController().setNextMoveField(game.getOpponentName());
 				}
@@ -212,6 +210,9 @@ public class ModelController {
 	
 	public Set newSet() {
 		Set newSet = null;
+		moves = null;
+		field = null;
+		columnHeight = null;
 			moves = new Move[42];
 			field = new Move[7][6];
 			columnHeight = new int[7];
@@ -297,7 +298,7 @@ public class ModelController {
 		this.score=score;
 		game.setScore(score);
 		DBDeletes.deleteSet(setId);
-		set = new Set();
+//		set = new Set();
 		System.out.println("ModContr. SetId: "+setId);
 		Controller.getController().getPlayingFieldController().setTextForStatus("Satz wurde gelöscht");
 		return setId;
