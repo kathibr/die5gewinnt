@@ -21,6 +21,7 @@ public class OldGamesController {
 	@SuppressWarnings("unused")
 	private MainApp mainApp;
 	private Game[] oldGames;
+	private Game game;
 
 	@FXML
 	private TableView<Game> gameTable;
@@ -51,12 +52,10 @@ public class OldGamesController {
 
 	@FXML
 	private void initialize() {
-		gameNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Game, String>(
-						"name"));
-
+		gameNameColumn.setCellValueFactory(new PropertyValueFactory<Game, String>("name"));
+		
 		showGameDetails(null);
-
+		
 		gameTable.getSelectionModel().selectedItemProperty()
 				.addListener(new ChangeListener<Game>() {
 
@@ -66,7 +65,6 @@ public class OldGamesController {
 							Game oldValue, Game newValue) {
 						showGameDetails(newValue);
 					}
-
 				});
 		;
 
@@ -78,13 +76,23 @@ public class OldGamesController {
 	}
 
 	private void showGameDetails(Game game) {
-		if (game == null) {
+		this.game = game;
+		if(game == null) {
 			gameName.setText("");
-			playerOName.setText("");
 			playerXName.setText("");
+			playerOName.setText("");	
 		} else {
-
 			Set sets[] = game.getSets();
+			if(sets.length < 3) {
+				btSetThree.setDisable(true);
+			}
+			if(sets.length < 2) {
+				btSetTwo.setDisable(true);
+			}
+			if(sets.length < 1) {
+				btSetOne.setDisable(true);
+			}
+			
 			Label[] xLabels = new Label[3];
 				xLabels[0] = lbSetOneX;
 				xLabels[1] = lbSetTwoX;
@@ -95,6 +103,7 @@ public class OldGamesController {
 				oLabels[2] = lbSetThreeO;
 			
 			if (game.getPlayer().equals("X")) {
+				gameName.setText(game.getName());
 				playerXName.setText("die5gewinnt");
 				playerOName.setText(game.getOpponentName());
 				int[] score = game.getScore();
@@ -133,25 +142,21 @@ public class OldGamesController {
 					}
 				}
 			}
-
-			gameName.setText(game.getName());
-
 		}
-
 	}
 
 	private void loadGameData() {
-
 		oldGames = DBSelects.selectGames(true);
 		for (int i = 0; i < oldGames.length; i++) {
 			oList.add(oldGames[i]);
 		}
 		gameTable.setItems(oList);
-
 	}
+	
 	@FXML
-	private void clickSetOne(){
-		//Start showing moves
+	private void clickSetOne() {
+//		Set[] sets = game.getSets();
+//		if(sets.length >= 1); {
 		if(btSetOne.getText().equals("Start")){
 			btSetOne.setText("Stop");
 			btSetTwo.setText("Start");
@@ -161,9 +166,10 @@ public class OldGamesController {
 		}
 	}
 	
-	
 	@FXML
-	private void clickSetTwo(){
+	private void clickSetTwo() {
+//		Set[] sets = game.getSets();
+//		if(sets.length >= 2); {
 		if(btSetTwo.getText().equals("Start")){
 			btSetTwo.setText("Stop");
 			btSetOne.setText("Start");
@@ -172,8 +178,11 @@ public class OldGamesController {
 			btSetTwo.setText("Start");
 		}
 	}
+	
 	@FXML
-	private void clickSetThree(){
+	private void clickSetThree() {
+//		Set[] sets = game.getSets();
+//		if(sets.length == 3) {
 		if(btSetThree.getText().equals("Start")){
 			btSetThree.setText("Stop");
 			btSetOne.setText("Start");
