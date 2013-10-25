@@ -17,7 +17,6 @@ public class AlgorithmFiller {
 	}
 	
 	public int[][] getPositions(){
-//		readPositions();
 		return positions;
 	}
 	
@@ -109,17 +108,6 @@ public class AlgorithmFiller {
 				y = y + 4;
 				row++;
 			}
-		}
-	}
-	
-	public void readPositions(){
-		String text = "";
-		for(int i = 0; i < 69; i++){
-			text = "Zeile "+i+": ";
-			for(int x = 0; x < 8; x++){
-				text += " "+positions[x][i];
-			}
-			System.out.println(text);
 		}
 	}
 }

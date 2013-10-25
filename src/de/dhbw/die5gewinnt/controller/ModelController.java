@@ -1,7 +1,6 @@
 package de.dhbw.die5gewinnt.controller;
 
 
-import de.dhbw.die5gewinnt.controller.algorithm.AlgorithmManager;
 import de.dhbw.die5gewinnt.controller.algorithm.MastermindAlgorithm;
 import de.dhbw.die5gewinnt.controller.communication.TXTWriter;
 import de.dhbw.die5gewinnt.controller.communication.XMLReader;
@@ -24,7 +23,6 @@ public class ModelController {
 //	private boolean forceStop = false;
 
 	
-	private AlgorithmManager AlgManager;
 	private ServerFile serverFile;
 
 
