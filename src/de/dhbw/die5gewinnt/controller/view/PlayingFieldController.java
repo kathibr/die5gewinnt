@@ -40,6 +40,7 @@ public class PlayingFieldController {
 	private Circle circleArray[][];
 	
 	private int setCounter = 1;
+	private int[] score;
 	private String scoreO="0";
 	private String scoreX="0";
 	private String textStatus;
@@ -207,7 +208,8 @@ public class PlayingFieldController {
 					endNormalSet();
 				}
 				else {
-					noUpdateDisplay();
+					Controller.getController().getModelController().deleteSet();
+					updateScoreFromDisplay();
 					btEndSet.setDisable(true);
 					btStartSet.setDisable(false);	
 				}
@@ -220,6 +222,7 @@ public class PlayingFieldController {
 	
 	//Werte für die Anzeige anpassen
 	public void updateValues(int setCounter,final int[] score) {
+		this.score = score;
 		this.setCounter = setCounter;
 //		this.score=score;
 //		System.out.println("Update Display");
@@ -238,7 +241,7 @@ public class PlayingFieldController {
 	
 	public void endNormalSet(){
 		setCounter++;
-		System.out.println("Satz setCounter festlegen: " +setCounter);
+		System.out.println("PF-Contr. - Satz setCounter festlegen: " +setCounter);
 		Platform.runLater(new Runnable() {
 			
 			@Override
@@ -258,10 +261,12 @@ public class PlayingFieldController {
 			}
 		});
 		Controller.getController().getModelController().updateSet();
+		Controller.getController().getModelController().updateScore(score);
+		
 	}
 		
-	public void noUpdateDisplay(){
-		int[] score = new int[2];
+	public void updateScoreFromDisplay(){
+		score = new int[2];
 		scoreO=scorePlayerO.getText();
 		scoreX=scorePlayerX.getText();	
 		if(modelController.getGame().getPlayer().equals("X")){
@@ -274,12 +279,12 @@ public class PlayingFieldController {
 			score[1] = Integer.parseInt(scoreX);
 			score[0] = Integer.parseInt(scoreO);
 			}	
-		Controller.getController().getModelController().deleteSet(score);
+		Controller.getController().getModelController().updateScore(score);
 //		System.out.println("StringSetId: "+stringSetId);
 	}
 	
 	//Oberfläche updaten mit neuen Werten
-	private void updateDisplay(){
+	public void updateDisplay(){
 		//Score updaten
 		gameNameLabel.setText(modelController.getGame().getName());
 		scorePlayerO.setText(scoreO);

@@ -7,7 +7,7 @@ public class Set {
 	private Move[][] field;
 	private int[] columnHeight;
 	private boolean firstMove;
-	private int status; // 0 > lose; 1 > win; 3 > remis
+	private int status; // 0 > lose; 1 > win; 2 remis, aber verloren 3 > remis, aber gewonnen
 	
 	public Set() {
 		this.setId(0);

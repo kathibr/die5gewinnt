@@ -39,7 +39,7 @@ public class ModelController {
 	
 	public void startSet(){
 		Controller.getController().getPlayingFieldController().disappearLbStatus();
-		System.out.println("SetCounter: "+setCounter);
+		System.out.println("Modelcontroller satz: "+setCounter+ " mit Score "+ score[0]+" - " +score[1]);
 		moveId = 0;	
 		sets[setCounter-1] = newSet();
 		set = sets[setCounter-1];
@@ -87,7 +87,7 @@ public class ModelController {
 				identifyWinner();
 
 				System.out.println("Set is over");
-				game.setScore(score);
+//				game.setScore(score);
 //				setCounter++;
 				
 //				if(setCounter<3){
@@ -167,29 +167,31 @@ public class ModelController {
 		if(serverFile.getWinner().equals("Spieler "+opponentPlayer)){
 			proceedOpponentMove();
 			System.out.println("Wir haben verloren :(");
-			set.setStatus(0);;
+
 			int scoreNr = score[1];
 			if (isFieldFull()) {
 				score[1]=scoreNr+1;
+				set.setStatus(2);
 				Controller.getController().getPlayingFieldController().setTextForStatus("Spielfeld voll - Spieler "+ opponentPlayer+ "gewinnt");
 			}
 			else {
 				score[1]=scoreNr+2;
-
+				set.setStatus(0);
 				Controller.getController().getPlayingFieldController().setTextForStatus("Wir haben verloren :(");
 			}
 		}
 		else if (serverFile.getWinner().equals("Spieler "+ownPlayer)) {
 			System.out.println("Wir haben gewonnen :)");
-			set.setStatus(0);
+
 			int scoreNr = score[0];
 			if (isFieldFull()) {
 				score[0]=scoreNr+1;
+				set.setStatus(3);
 				Controller.getController().getPlayingFieldController().setTextForStatus("Spielfeld voll - Spieler "+ ownPlayer+ "gewinnt");
 			}
 			else {
 				score[0]=scoreNr+2;
-
+				set.setStatus(1);
 				Controller.getController().getPlayingFieldController().setTextForStatus("Wir haben gewonnen :)");
 			}
 		} 
@@ -300,10 +302,13 @@ public class ModelController {
 		return serverFile.getWinner();
 		
 	}
-	public int deleteSet(int[] score){
-//		System.out.println("deleteSet");
+	public void updateScore(int[] score){
 		this.score=score;
 		game.setScore(score);
+	}
+	
+	public int deleteSet(){
+//		System.out.println("deleteSet");
 		DBDeletes.deleteSet(set.getId());
 		set = null;
 //		set = new Set();
@@ -312,7 +317,7 @@ public class ModelController {
 		return setCounter;
 	}
 	public void updateSet(){
-		game.setSets(sets);
+//		game.setScore(score);
 		System.out.println("updateSet");
 		DBUpdates.updateSet(set);
 	}

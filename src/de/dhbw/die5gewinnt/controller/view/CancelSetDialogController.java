@@ -90,6 +90,8 @@ public class CancelSetDialogController {
 		//TODO: alle einträge werden überprüft
 		Controller.getController().getPlayingFieldController().setScoreO(tfResultO.getText());
 		Controller.getController().getPlayingFieldController().setScoreX(tfResultX.getText());
+		Controller.getController().getPlayingFieldController().updateDisplay();
+		Controller.getController().getPlayingFieldController().updateScoreFromDisplay();
 		Controller.getController().getModelController().updateSet();
 		okClicked = true;
 		dialogStage.close();
