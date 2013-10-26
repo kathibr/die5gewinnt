@@ -88,13 +88,7 @@ public class ModelController {
 
 				System.out.println("Set is over");
 //				game.setScore(score);
-//				setCounter++;
-				
-//				if(setCounter<3){
-//					set = newSet();
-//					sets[setCounter] = set;
-//					
-//				}
+
 				Controller.getController().getPlayingFieldController().updateValues(setCounter, score);
 				Controller.getController().playingFieldController.endNormalSet();
 			}
@@ -133,12 +127,13 @@ public class ModelController {
 	
 	private void proceedOwnMove()
 	{	 
-		// Calculate move
-		//Later with algorithm
-		do{
+//		Random Algorithmus
+//		do{
 //			column = (int)((Math.random()) * 6);
 //			columnHeight = set.getColumnHeight();
-		}while(columnHeight[column]>6);
+//		}while(columnHeight[column]>6);
+		
+		// Calculate move
 		MastermindAlgorithm algorithm = new MastermindAlgorithm(set);
 		column = algorithm.calcNextMove();
 
@@ -200,8 +195,7 @@ public class ModelController {
 		}
 		
 	}
-		
-
+	
 	/* Create new game objects */
 	public Game newGame(String name, String player, String opponentName) {
 		Game newGame = null;
@@ -219,9 +213,6 @@ public class ModelController {
 	public Set newSet() {
 		System.out.println("neues Set wird erstellt");
 		Set newSet = null;
-//		moves = null;
-//		field = null;
-//		columnHeight = null;
 		moves = new Move[42];
 		field = new Move[7][6];
 		columnHeight = new int[7];
@@ -229,49 +220,9 @@ public class ModelController {
 			newSet = new Set(moves, field, columnHeight, false, 0);
 			newSet = DBInserts.insertSet(newSet);
 			return newSet;
-		
-			/*
-			
-		if(this.sets.size() == 3) {
-			System.err.println("--- There are already 3 sets!");
-			return this.getSet(3);
-		} else {
-			newSet = new Set(moves, field, columnHeight);
-//			newSet = DBInserts.insertSet(newSet);
-			int newIndex = this.addSet(newSet);
-			return this.getSet(newIndex);
-		}
-		*/
+	
 	}
-	
-	
-//	public Move newMove() {
-//		if(this.moves.size() == 42) {
-//			System.err.println("--- There are already 42 moves!");
-//			return this.getMove(42);
-//		} else {
-//			int newIndex = this.addMove(ModelController.createNewMove());
-//			return this.getMove(newIndex);
-//		}
-//	}
-	/*
-	public void deleteCurrentGame() {
-		if(this.game != null)
-			DBUpdates.updateGame(this.game);
-		this.game = null;
-		for(int i = 0; i < this.sets.size(); i++) {
-			if(this.sets.get(i) != null)
-				DBUpdates.updateSet(sets.get(i));
-			this.sets.remove(i);
-		}
-		for(int i = 0; i < this.moves.size(); i++) {
-			if(this.moves.get(i) != null)
-				DBUpdates.updateMove(this.moves.get(i));
-			this.moves.remove(i);
-		}
-	}
-	*/
-	
+
 	/* GETTER-Methods */
 	public Game getGame() {
 		return this.game;
@@ -311,18 +262,17 @@ public class ModelController {
 //		System.out.println("deleteSet");
 		DBDeletes.deleteSet(set.getId());
 		set = null;
-//		set = new Set();
-		System.out.println("ModContr. setCounter: "+setCounter);
+//		System.out.println("ModContr. setCounter: "+setCounter);
 		Controller.getController().getPlayingFieldController().setTextForStatus("Satz wurde gelöscht");
 		return setCounter;
 	}
 	public void updateSet(){
 //		game.setScore(score);
-		System.out.println("updateSet");
+//		System.out.println("updateSet");
 		DBUpdates.updateSet(set);
 	}
 	public void updateGame(){
-		System.out.println("updateGame");
+//		System.out.println("updateGame");
 		DBUpdates.updateGame(game);
 	}
 	
@@ -336,27 +286,5 @@ public class ModelController {
 	public void setSetId(int setCounter){
 		this.setCounter = setCounter;
 	}
-
-//	private void setSet(int index) {}
-	/*
-	@SuppressWarnings("unused")
-	private int addSet(Set set) {
-		this.sets.add(set);
-		return this.sets.size();
-	}
-	
-	@SuppressWarnings("unused")
-	private void addMove(){
-	}
-	*/
-//	
-//	private void setMove(int index) {}
-//	
-//	private int addMove(Move move) {
-//		this.moves.add(move);
-//		return this.sets.size();
-//	}
-	
-	
 	
 }
