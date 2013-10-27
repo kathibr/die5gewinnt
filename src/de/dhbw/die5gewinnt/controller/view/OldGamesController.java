@@ -20,6 +20,7 @@ import de.dhbw.die5gewinnt.model.Set;
 
 public class OldGamesController {
 
+	@SuppressWarnings("unused")
 	private MainApp mainApp;
 	private Game[] oldGames;
 	private Game game;

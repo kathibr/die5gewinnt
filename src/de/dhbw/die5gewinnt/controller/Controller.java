@@ -4,7 +4,6 @@ import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
 import de.dhbw.die5gewinnt.controller.communication.CommunicationController;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
-import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class Controller extends Thread {
 

@@ -1,12 +1,13 @@
 package de.dhbw.die5gewinnt.test;
 
-import de.dhbw.die5gewinnt.controller.Controller;
+
 import de.dhbw.die5gewinnt.controller.algorithm.MastermindAlgorithm;
 import de.dhbw.die5gewinnt.model.Move;
 import de.dhbw.die5gewinnt.model.Set;
 
 public class AlgorithmTest {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Move[][] field = new Move[7][6];
 		

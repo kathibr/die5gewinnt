@@ -30,8 +30,8 @@ public class GameNameDialogController {
 	private final String AGENT_FILE_O = "spielero2server.txt";
 	private final String EMPTY_MESSAGE = "";
 	private final String INVALID_NAME = "Kein zugelassener Spielname!\n";
-	private final String CORRECT_INVALID_FIELDS = "Bitte unzulässige Felder korrigieren!";
-	private final String INVALID_FIELD = "Unzulässiges Feld";
+//	private final String CORRECT_INVALID_FIELDS = "Bitte unzulässige Felder korrigieren!";
+//	private final String INVALID_FIELD = "Unzulässiges Feld";
 
 	private String fullFilePath;
 

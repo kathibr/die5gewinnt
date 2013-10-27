@@ -129,6 +129,7 @@ public class PlayingFieldController {
 	}
 
 	
+	@SuppressWarnings("deprecation")
 	@FXML
 	private void handleStartSet(){	
 		btEndSet.setDisable(false);
@@ -192,6 +193,7 @@ public class PlayingFieldController {
 	}
 
 	
+	@SuppressWarnings("deprecation")
 	@FXML
 	public void handleEndSet(){
 		//manuelles beenden des Sets
@@ -292,6 +294,7 @@ public class PlayingFieldController {
 	}
 
 	
+	@SuppressWarnings("deprecation")
 	@FXML
 	private void handleEndGame(){
 		System.out.println("end game");

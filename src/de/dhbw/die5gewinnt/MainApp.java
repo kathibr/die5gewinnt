@@ -5,26 +5,21 @@ import java.io.IOException;
 import org.jdom2.JDOMException;
 
 import de.dhbw.die5gewinnt.controller.Controller;
-import de.dhbw.die5gewinnt.controller.communication.XMLReader;
 import de.dhbw.die5gewinnt.controller.db.DBConnector;
 import de.dhbw.die5gewinnt.controller.view.CancelSetDialogController;
 import de.dhbw.die5gewinnt.controller.view.GameNameDialogController;
 import de.dhbw.die5gewinnt.controller.view.OldGamesController;
 import de.dhbw.die5gewinnt.controller.view.PlayingFieldController;
 import de.dhbw.die5gewinnt.controller.view.RootLayoutController;
-import de.dhbw.die5gewinnt.model.ServerFile;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class MainApp extends Application {

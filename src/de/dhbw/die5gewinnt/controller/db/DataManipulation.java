@@ -1,7 +1,5 @@
 package de.dhbw.die5gewinnt.controller.db;
 
-import java.util.ArrayList;
-
 import de.dhbw.die5gewinnt.model.AutoIncrementKeys;
 import de.dhbw.die5gewinnt.model.Move;
 

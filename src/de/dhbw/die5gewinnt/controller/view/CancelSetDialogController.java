@@ -7,7 +7,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import de.dhbw.die5gewinnt.controller.Controller;
 
 public class CancelSetDialogController {
 	
