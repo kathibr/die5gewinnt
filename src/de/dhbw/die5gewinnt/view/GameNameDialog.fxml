@@ -13,7 +13,7 @@
     <Label layoutX="10.0" layoutY="14.0" styleClass="label-header" text="Neues Spiel" />
     <Group layoutX="10.0" layoutY="75.0" scaleX="1.0" scaleY="1.0">
       <Label layoutX="0.0" styleClass="label-bright" text="Name des Spiels" />
-      <TextField fx:id="gameName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="Spiel2" />
+      <TextField fx:id="gameName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="Name des Spiels" text="4gewinnt" />
     </Group>
     <Group id="Group" layoutX="10.0" layoutY="109.0" scaleX="1.0" scaleY="1.0">
       <children>
@@ -27,14 +27,14 @@
     </Group>
     <Group id="Group" layoutX="10.0" layoutY="138.0">
       <children>
-        <TextField fx:id="opponentName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="" text="blutwurst1" />
+        <TextField fx:id="opponentName" layoutX="95.0" layoutY="0.0" prefWidth="255.0" promptText="Gegner" text="Mavericks" />
         <Label layoutX="0.0" layoutY="3.0" styleClass="label-bright" text="Gegner" />
       </children>
     </Group>
     <Group id="Group" layoutX="10.0" layoutY="175.0">
       <children>
         <Label layoutX="0.0" layoutY="3.0" prefWidth="35.0" text="Pfad" textFill="WHITE" />
-        <TextField fx:id="filePath" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="" text="C:/spiel5gewinnt" />
+        <TextField fx:id="filePath" layoutX="95.0" layoutY="0.0" prefWidth="200.0" promptText="Pfad" text="C:/spiel5gewinnt" />
       </children>
     </Group>
     <Button id="selectPath" layoutX="308.0" layoutY="171.0" mnemonicParsing="false" onAction="#findPath" prefWidth="52.0" styleClass="button-small" text="Pfad" />

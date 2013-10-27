@@ -39,13 +39,13 @@
                 <Label layoutX="231.0" layoutY="63.0" styleClass="label-bright, label-dark" text="Spieler O" underline="true" />
                 <Label fx:id="playerXName" layoutX="19.0" layoutY="84.0" text="die5gewinnt" />
                 <Label fx:id="playerOName" layoutX="220.0" layoutY="84.0" text="blutwurst1" />
-                <Label fx:id="playerXScore" layoutX="118.0" layoutY="69.0" prefWidth="15.0" text="2">
+                <Label fx:id="playerXScore" layoutX="118.0" layoutY="69.0" prefWidth="15.0" text="0">
                   <font>
                     <Font size="18.0" fx:id="x1" />
                   </font>
                 </Label>
                 <Label font="$x1" layoutX="147.0" layoutY="67.0" minHeight="16.0" prefHeight="24.0" prefWidth="23.0001220703125" text=":" />
-                <Label fx:id="playerOScore" font="$x1" layoutX="161.0" layoutY="69.0" text="1" />
+                <Label fx:id="playerOScore" font="$x1" layoutX="161.0" layoutY="69.0" text="0" />
               </children>
             </Group>
             <Group id="Group" layoutX="211.0" layoutY="249.0" />
