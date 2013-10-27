@@ -77,14 +77,17 @@ public class OldGamesController {
 			@Override
 			public void changed(
 					ObservableValue<? extends Game> observable,
-					Game oldValue, Game newValue) {
-				showGameDetails(newValue);
-				
+					Game oldValue, Game newValue) {				
 				// Initialize the Start-Buttons for the three Sets
 				btSetOne.setText("Start");
+				btSetOne.setDisable(false);
 				btSetTwo.setText("Start");
+				btSetTwo.setDisable(false);
 				btSetThree.setText("Start");
+				btSetThree.setDisable(false);
 				clearPlayingField();
+				
+				showGameDetails(newValue);
 			}
 			
 		});
