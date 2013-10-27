@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Circle;
 import de.dhbw.die5gewinnt.MainApp;
-import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.controller.db.DBSelects;
 import de.dhbw.die5gewinnt.model.Game;
 import de.dhbw.die5gewinnt.model.Move;
@@ -21,7 +20,6 @@ import de.dhbw.die5gewinnt.model.Set;
 
 public class OldGamesController {
 
-	@SuppressWarnings("unused")
 	private MainApp mainApp;
 	private Game[] oldGames;
 	private Game game;
@@ -35,11 +33,7 @@ public class OldGamesController {
 	@FXML
 	private Label gameName, playerXName, playerOName, playerXScore, playerOScore;
 	@FXML
-	private Button btSetOne;
-	@FXML
-	private Button btSetTwo;
-	@FXML
-	private Button btSetThree;
+	private Button btSetOne, btSetTwo, btSetThree;
 	@FXML
 	private Label lbSetOneX, lbSetOneO, lbSetTwoX, lbSetTwoO, lbSetThreeX, lbSetThreeO;
 	@FXML
@@ -59,6 +53,7 @@ public class OldGamesController {
 	
 	private Circle circleArray[][];
 	
+	private final String NOMEN_NESCIO = "N.N.";
 	private final int YELLOW = 1;
 	private final int RED = 2;
 
@@ -77,22 +72,29 @@ public class OldGamesController {
 		
 		showGameDetails(null);
 		
-		gameTable.getSelectionModel().selectedItemProperty()
-				.addListener(new ChangeListener<Game>() {
-
-					@Override
-					public void changed(
-							ObservableValue<? extends Game> observable,
-							Game oldValue, Game newValue) {
-						showGameDetails(newValue);
-					}
-				});
-		;
+		gameTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Game>() {
+			
+			@Override
+			public void changed(
+					ObservableValue<? extends Game> observable,
+					Game oldValue, Game newValue) {
+				showGameDetails(newValue);
+				
+				// Initialize the Start-Buttons for the three Sets
+				btSetOne.setText("Start");
+				btSetTwo.setText("Start");
+				btSetThree.setText("Start");
+				clearPlayingField();
+			}
+			
+		});
 
 		Platform.runLater(new Runnable() {
+			
 			public void run() {
 				gameTable.getSelectionModel().selectFirst();
 			}
+			
 		});
 		
 		circleArray = new Circle[7][6];
@@ -146,12 +148,21 @@ public class OldGamesController {
 		circleArray[6][5]= circle65;
 	}
 
+	private void loadGameData() {
+		oldGames = DBSelects.selectGames(true);
+		for (int i = 0; i < oldGames.length; i++) {
+			oList.add(oldGames[i]);
+		}
+		gameTable.setItems(oList);
+	}
+
 	private void showGameDetails(Game game) {
 		this.game = game;
+		
 		if(game == null) {
-			gameName.setText("");
-			playerXName.setText("");
-			playerOName.setText("");	
+			gameName.setText(NOMEN_NESCIO);
+			playerXName.setText(NOMEN_NESCIO);
+			playerOName.setText(NOMEN_NESCIO);	
 		} else {
 			Set sets[] = game.getSets();
 			if(sets.length < 3) {
@@ -172,11 +183,11 @@ public class OldGamesController {
 				oLabels[0] = lbSetOneO;
 				oLabels[1] = lbSetTwoO;
 				oLabels[2] = lbSetThreeO;
-			
-			if (game.getPlayer().equals("X")) {
-				gameName.setText(game.getName());
+			gameName.setText(game.getName());
+			if(game.getPlayer().equals("X")) {			
 				playerXName.setText("die5gewinnt");
 				playerOName.setText(game.getOpponentName());
+				
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[0]).toString());
 				playerOScore.setText(new Integer(score[1]).toString());
@@ -188,7 +199,7 @@ public class OldGamesController {
 					} else if(sets[i].getStatus() == 1) { // We/X win
 						xLabels[i].setText("Win");
 						oLabels[i].setText("Lose");						
-					} else if(sets[i].getStatus() == 2) { // remis
+					} else if(sets[i].getStatus() == 2) { // Remis
 						xLabels[i].setText("Remis");
 						oLabels[i].setText("Remis");					
 					}
@@ -196,6 +207,7 @@ public class OldGamesController {
 			} else {
 				playerOName.setText("die5gewinnt");
 				playerXName.setText(game.getOpponentName());
+				
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[1]).toString());
 				playerOScore.setText(new Integer(score[0]).toString());
@@ -207,21 +219,13 @@ public class OldGamesController {
 					} else if(sets[i].getStatus() == 1) { // We/O win
 						xLabels[i].setText("Lose");
 						oLabels[i].setText("Win");						
-					} else if(sets[i].getStatus() == 2) { // remis
+					} else if(sets[i].getStatus() == 2) { // Remis
 						xLabels[i].setText("Remis");
 						oLabels[i].setText("Remis");					
 					}
 				}
 			}
 		}
-	}
-
-	private void loadGameData() {
-		oldGames = DBSelects.selectGames(true);
-		for (int i = 0; i < oldGames.length; i++) {
-			oList.add(oldGames[i]);
-		}
-		gameTable.setItems(oList);
 	}
 	
 	@FXML
@@ -301,30 +305,29 @@ public class OldGamesController {
 			}
 			return true;
 		} catch (Exception e) {
-			System.out.println("Kein Stein zum Anzeigen vorhanden! "+e);
+			System.err.println("-- No Move to show!");
+			System.err.println(e.getStackTrace());
 			return false;
 		}
-
 	}
 	
 	public void clearPlayingField() {
-		for(int column = 0; column < 7; column++){		
-			for(int row = 0; row < 6; row++){
+		for(int column = 0; column < 7; column++) {		
+			for(int row = 0; row < 6; row++) {
 				try {
 					circleArray[column][row].getStyleClass().remove("yellowCircle");
 					circleArray[column][row].getStyleClass().add("emptyCircle");
 				} catch (Exception e) {
-//					System.err.println("YELLOW: " + e.getMessage());
+//					System.err.println("-- .yellowCircle not found!");
 				}
 				try {
 					circleArray[column][row].getStyleClass().remove("redCircle");
 					circleArray[column][row].getStyleClass().add("emptyCircle");
 				} catch (Exception e) {
-//					System.err.println("RED: " + e.getMessage());
+//					System.err.println("-- .redCircle not found!");
 				}
 			}
-		}
-		
+		}	
 	}
 
 }

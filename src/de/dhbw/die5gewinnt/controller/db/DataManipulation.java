@@ -60,14 +60,14 @@ public class DataManipulation {
 	public static Move[][] getSetFieldForJava(int setId, String field) {
 		Move[][] returnField = new Move[7][6];
 		Move[] moves = DBSelects.selectMoves(setId);
-		ArrayList<Move> listOfMoves = new ArrayList<Move>(AutoIncrementKeys.getLastMoveId());
+		Move[] listOfMoves = new Move[AutoIncrementKeys.getLastMoveId() + 1];
 		for(int i = 0; i < moves.length; i++)
-			listOfMoves.add(moves[i].getId(), moves[i]);
+			listOfMoves[moves[i].getId()] = moves[i];
 		String[] stringField = field.split(",");
 		int i = 0;
 			for(int j = 0; j < 7; j++)
 				for(int k = 0; k < 6; k++)
-				returnField[j][k] = listOfMoves.get(Integer.parseInt(stringField[i++]));
+				returnField[j][k] = listOfMoves[Integer.parseInt(stringField[i++])];
 		return returnField;
 	}
 	
