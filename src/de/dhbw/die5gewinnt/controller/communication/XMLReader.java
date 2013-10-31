@@ -12,36 +12,46 @@ import de.dhbw.die5gewinnt.controller.Controller;
 import de.dhbw.die5gewinnt.model.ServerFile;
 
 public class XMLReader  {
-	private ServerFile serverFile = new ServerFile();
+	private ServerFile serverFile;
+	private SAXBuilder saxBuilder;
+	private File file = null;
+	private Document document;
+	private Element root;
 	
 	public ServerFile getServerFile()
 	{
-		File file = null;
-		SAXBuilder saxBuilder = new SAXBuilder();
-		Document document = null;
-		Element root = null;
+		serverFile = new ServerFile();
+		saxBuilder = new SAXBuilder();
+		document = null;
+		root = null;
 		file = new File(Controller.getController().getCommunicationController().getServerFilePath());
-		while(true) {
+		System.out.println(Controller.getController().getCommunicationController().getServerFilePath());
+		while(true) 
+		{
+			
 			if(file.exists()) {
+				fillFile();
 				break;
-			} else
-			{
-//				Controller.getController().getPlayingFieldController().setTextForStatus("Warte auf Server");			
 			}
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			}	
+			else if(Controller.getController().getCommunicationController().getGameOver()==true){
+				System.out.println("Spielende in XML");
+				break;
+			}
 		}
-
-		try {		
-			document = saxBuilder.build(Controller.getController().getCommunicationController().getServerFilePath());
-		} catch (JDOMException | IOException e) {
+						
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+		return serverFile;	
+	}
+		
+	private void fillFile(){
+
+		try {		
+			document = saxBuilder.build(Controller.getController().getCommunicationController().getServerFilePath());
 			root = document.getRootElement();
 			
 			serverFile.setApproval(root.getChild("freigabe").getText());
@@ -52,6 +62,12 @@ public class XMLReader  {
 			file.delete();
 			Controller.getController().getCommunicationController().setServerFile(serverFile);	
 			Controller.getController().getPlayingFieldController().disappearLbStatus();
-				return serverFile;
+		} catch (JDOMException | IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+
 	}
+
+		
 }

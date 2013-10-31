@@ -66,6 +66,7 @@ public class GameNameDialogController {
 			String player = PLAYER_X;
 			if (playerO.isSelected())
 				player = PLAYER_O;
+			System.out.println("Wir sind Spieler " +player);
 			Controller
 					.getController()
 					.getModelController()

@@ -1,6 +1,7 @@
 package de.dhbw.die5gewinnt.controller.view;
 
 import javafx.application.Platform;
+import javafx.collections.SetChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -297,13 +298,21 @@ public class PlayingFieldController {
 	@SuppressWarnings("deprecation")
 	@FXML
 	private void handleEndGame(){
+
+		Controller.getController().getCommunicationController().setGameOver(true);
 		System.out.println("end game");
 		Controller.getController().getModelController().updateGame();
 		Controller.getController().suspend();
 		mainApp.returnToStart();
-		
 		}
 	
+	private void handleEndGameFromMenu(){
+
+		Controller.getController().getCommunicationController().setGameOver(true);
+		System.out.println("end game");
+		Controller.getController().getModelController().updateGame();
+		Controller.getController().suspend();
+		}	
 		
 	
 	//Punktzahl anpassen

@@ -44,6 +44,11 @@ public class Controller extends Thread {
 	public CommunicationController setCommunicationController(String path, String serverFile, String agentFile) {
 		if(this.communicationController == null)
 			this.communicationController = new CommunicationController(path, serverFile, agentFile);
+		else {
+			communicationController.setPath(path);
+			communicationController.setServerFileName(serverFile);
+			communicationController.setAgentFileName(agentFile);
+		}
 		return this.communicationController;
 	}
 

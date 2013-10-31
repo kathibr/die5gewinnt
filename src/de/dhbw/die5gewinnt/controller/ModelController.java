@@ -43,12 +43,7 @@ public class ModelController {
 		moveId = 0;	
 		sets[setCounter-1] = newSet();
 		set = sets[setCounter-1];
-	}
-
-	public void startGame(){
-		
-		startSet();
-		
+		Controller.getController().getCommunicationController().setGameOver(false);
 		if (game.getPlayer()=="X")
 		{
 			ownPlayer = "X";
@@ -59,6 +54,11 @@ public class ModelController {
 			ownPlayer = "O";
 			opponentPlayer = "X";
 		}
+	}
+
+	public void startGame(){
+		
+		startSet();
 	
 		do{
 			serverFile = new XMLReader().getServerFile();
@@ -83,7 +83,7 @@ public class ModelController {
 				set.setField(field);
 			}
 			
-			else{
+			else if(!serverFile.getWinner().equals("offen")){
 				identifyWinner();
 
 				System.out.println("Set is over");
@@ -91,6 +91,9 @@ public class ModelController {
 
 				Controller.getController().getPlayingFieldController().updateValues(setCounter, score);
 				Controller.getController().playingFieldController.endNormalSet();
+			}
+			else {
+				
 			}
 
 			

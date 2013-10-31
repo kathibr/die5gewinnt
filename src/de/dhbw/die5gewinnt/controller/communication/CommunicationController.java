@@ -7,7 +7,7 @@ public class CommunicationController {
 	
 	private String path, serverFileName, agentFile, serverFilePath, agentFilePath;
 	private ServerFile serverFile;
-	
+	private boolean gameOver = false;
 	
 	public CommunicationController() {
 		setPath("");
@@ -86,4 +86,12 @@ public class CommunicationController {
 	public void setServerFile(ServerFile serverfile) {
 		serverFile = serverfile;
 	}
+	public void setGameOver(boolean gameOver){
+//		System.out.println("Update GameOver");
+		this.gameOver = gameOver;
+	}
+	public boolean getGameOver(){
+		return gameOver;
+	}
+	
 }
