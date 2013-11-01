@@ -267,17 +267,19 @@ public class ModelController {
 		set = null;
 //		System.out.println("ModContr. setCounter: "+setCounter);
 		Controller.getController().getPlayingFieldController().setTextForStatus("Satz wurde gelöscht");
+		DBUpdates.updateGame(game);		
 		return setCounter;
 	}
 	public void updateSet(){
-//		game.setScore(score);
+		game.setScore(score);
 //		System.out.println("updateSet");
 		DBUpdates.updateSet(set);
-	}
-	public void updateGame(){
-//		System.out.println("updateGame");
 		DBUpdates.updateGame(game);
 	}
+//	public void updateGame(){
+////		System.out.println("updateGame");
+//		DBUpdates.updateGame(game);
+//	}
 	
 	public boolean isFieldFull(){
 		columnHeight = set.getColumnHeight();

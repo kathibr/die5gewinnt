@@ -301,18 +301,11 @@ public class PlayingFieldController {
 
 		Controller.getController().getCommunicationController().setGameOver(true);
 		System.out.println("end game");
-		Controller.getController().getModelController().updateGame();
+//		Controller.getController().getModelController().updateGame();
 		Controller.getController().suspend();
 		mainApp.returnToStart();
 		}
-	
-	private void handleEndGameFromMenu(){
 
-		Controller.getController().getCommunicationController().setGameOver(true);
-		System.out.println("end game");
-		Controller.getController().getModelController().updateGame();
-		Controller.getController().suspend();
-		}	
 		
 	
 	//Punktzahl anpassen
