@@ -356,31 +356,19 @@ public class PlayingFieldController {
 	}
 	
 	public void updateWinner(){
-		if(winner.equals("playerX")){
-			if(modelController.getGame().getPlayer().equals("X")){
+		if(winner.equals("die5gewinnt")){
 				score[0] = score[0]+2;
-				scoreX = new Integer(score[0]).toString();
-				
-			}
-			else{
-				score[1] = score[1]+2;
-				scoreX = new Integer(score[1]).toString();
-			}
+			
+			
 		}
-		else if(winner.equals("playerO")){
-			if(modelController.getGame().getPlayer().equals("0")){
-				score[0] = score[0]+2;
-				scoreO = new Integer(score[0]).toString();
-			}
-			else{
+		else if(winner.equals(Controller.getController().getModelController().getGame().getOpponentName())){
 				score[1] = score[1]+2;
-				scoreO = new Integer(score[1]).toString();
-			}
+			
 		}
 		else{
 			System.out.println("kein Spieler ausgewählt");
 		}
-
+		updateValues(setCounter, score);
 		Controller.getController().getModelController().updateScore(score);
 		updateDisplay();
 	}

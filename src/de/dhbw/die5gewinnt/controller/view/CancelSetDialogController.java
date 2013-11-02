@@ -28,14 +28,19 @@ public class CancelSetDialogController {
 	@FXML
 	private void initialize() {
 		//TODO: muss dynamisch zugewiesen werden
-		cbWinner.getItems().addAll("playerX");
-		cbWinner.getItems().addAll("playerO");
-		if (Controller.getController().getModelController().getWinner().equals("Spieler X")) {
-			cbWinner.setValue("playerX");
+		cbWinner.getItems().addAll(Controller.getController().getModelController().getGame().getOpponentName());
+		cbWinner.getItems().addAll("die5gewinnt");
+		cbWinner.setValue(Controller.getController().getModelController().getGame().getOpponentName());
+	
+		try {
+			if (Controller.getController().getModelController().getWinner().equals("Spieler "+Controller.getController().getModelController().getGame().getPlayer())) {
+				
+				cbWinner.setValue("die5gewinnt");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		else{
-			cbWinner.setValue("playerO");
-		}
+
 				
 	}
 	
@@ -56,13 +61,7 @@ public class CancelSetDialogController {
 	
 	@FXML
 	private void saveSet(){
-		//TODO: alle eigenen und gelesenen züge bis zum abbruch werden automatisch gespeichert
-		//TODO: sieger und punktezahl werden überschrieben
-		//TODO: alle einträge werden überprüft
 		Controller.getController().getPlayingFieldController().setWinner(cbWinner.getValue());
-//		Controller.getController().getPlayingFieldController().updateDisplay();
-//		Controller.getController().getPlayingFieldController().updateScoreFromDisplay();
-//		Controller.getController().getModelController().updateSet();
 		okClicked = true;
 		dialogStage.close();
 	}
