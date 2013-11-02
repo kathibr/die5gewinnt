@@ -16,8 +16,6 @@ public class CancelSetDialogController {
 	@FXML
 	private Button btRejectSet;	
 	@FXML
-	private Button btEditSet;
-	@FXML
 	private Button btSave;
 	
 	@FXML
@@ -25,14 +23,6 @@ public class CancelSetDialogController {
 	
 	@FXML
 	private Label lbWinner;
-	@FXML
-	private Label lbResult;
-	@FXML
-	private Label lbColon;
-	@FXML
-	private TextField tfResultX;
-	@FXML
-	private TextField tfResultO;
 	
 
 	@FXML
@@ -40,9 +30,13 @@ public class CancelSetDialogController {
 		//TODO: muss dynamisch zugewiesen werden
 		cbWinner.getItems().addAll("playerX");
 		cbWinner.getItems().addAll("playerO");
-		cbWinner.setValue("playerX");
-		
-		
+		if (Controller.getController().getModelController().getWinner().equals("Spieler X")) {
+			cbWinner.setValue("playerX");
+		}
+		else{
+			cbWinner.setValue("playerO");
+		}
+				
 	}
 	
 	public void setDialogStage(Stage dialogStage) {
@@ -56,43 +50,21 @@ public class CancelSetDialogController {
 	@FXML
 	private void rejectSet() {
 		//TODO:satz wird verworfen > anzeige des aktuellen satzes zurücksetzen
-		btEditSet.getStyleClass().remove("button-selected");		
 		dialogStage.close();
 	}
-	
-	@FXML
-	private void editSet() {
-		//TODO: satz ist gültig und muss editiert werden
-		btEditSet.getStyleClass().add("button-selected");
-		lbWinner.setVisible(true);
-		lbResult.setVisible(true);
-		lbColon.setVisible(true);
-		cbWinner.setVisible(true);
-		tfResultX.setVisible(true);		
-		tfResultO.setVisible(true);
-		btSave.setVisible(true);
-		
-		tfResultO.setText(Controller.getController().getPlayingFieldController().getScoreO());
-		tfResultX.setText(Controller.getController().getPlayingFieldController().getScoreX());
-		try {
-			cbWinner.setValue("player"+Controller.getController().getPlayingFieldController().getWinner());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		okClicked = true;
-	}
+
 	
 	@FXML
 	private void saveSet(){
 		//TODO: alle eigenen und gelesenen züge bis zum abbruch werden automatisch gespeichert
 		//TODO: sieger und punktezahl werden überschrieben
 		//TODO: alle einträge werden überprüft
-		Controller.getController().getPlayingFieldController().setScoreO(tfResultO.getText());
-		Controller.getController().getPlayingFieldController().setScoreX(tfResultX.getText());
-		Controller.getController().getPlayingFieldController().updateDisplay();
-		Controller.getController().getPlayingFieldController().updateScoreFromDisplay();
-		Controller.getController().getModelController().updateSet();
+		Controller.getController().getPlayingFieldController().setWinner(cbWinner.getValue());
+//		Controller.getController().getPlayingFieldController().updateDisplay();
+//		Controller.getController().getPlayingFieldController().updateScoreFromDisplay();
+//		Controller.getController().getModelController().updateSet();
 		okClicked = true;
 		dialogStage.close();
 	}
+		
 }

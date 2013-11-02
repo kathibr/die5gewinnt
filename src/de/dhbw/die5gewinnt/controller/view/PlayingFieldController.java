@@ -1,7 +1,6 @@
 package de.dhbw.die5gewinnt.controller.view;
 
 import javafx.application.Platform;
-import javafx.collections.SetChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,7 +43,7 @@ public class PlayingFieldController {
 	private int[] score;
 	private String scoreO="0";
 	private String scoreX="0";
-	private String textStatus;
+	private String textStatus, winner;
 
 
 	public PlayingFieldController() {
@@ -122,6 +121,11 @@ public class PlayingFieldController {
 		circleArray[6][3]= circle63;
 		circleArray[6][4]= circle64;
 		circleArray[6][5]= circle65;
+		
+		score = new int[2];
+		
+		score[0]=0;
+		score[1]=0;
 
 	}
 
@@ -208,7 +212,34 @@ public class PlayingFieldController {
 				boolean okClicked = mainApp.showCancelSetDialog();
 				if (okClicked) {
 					//satz ist gültig
-					endNormalSet();
+					updateWinner();
+					endSet();
+				}
+				else {
+					Controller.getController().getModelController().deleteSet();
+//					updateScoreFromDisplay();
+					btEndSet.setDisable(true);
+					btStartSet.setDisable(false);	
+				}
+				 
+			}
+		});
+
+		Controller.getController().suspend();
+	}
+
+	public void endNormalSet() {
+		// TODO Auto-generated method stub
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+//				updateDisplay();
+				boolean okClicked = mainApp.showCancelSetDialog();
+				if (okClicked) {
+					//satz ist gültig
+//					updateWinner();
+					endSet();
 				}
 				else {
 					Controller.getController().getModelController().deleteSet();
@@ -216,13 +247,12 @@ public class PlayingFieldController {
 					btEndSet.setDisable(true);
 					btStartSet.setDisable(false);	
 				}
-				
+				 
 			}
-		});
+		});		
 
 		Controller.getController().suspend();
 	}
-	
 	//Werte für die Anzeige anpassen
 	public void updateValues(int setCounter,final int[] score) {
 		this.score = score;
@@ -242,7 +272,7 @@ public class PlayingFieldController {
 			}		
 	}
 	
-	public void endNormalSet(){
+	public void endSet(){
 		setCounter++;
 		System.out.println("PF-Contr. - Satz setCounter festlegen: " +setCounter);
 		Platform.runLater(new Runnable() {
@@ -263,8 +293,8 @@ public class PlayingFieldController {
 				}
 			}
 		});
-		Controller.getController().getModelController().updateSet();
 		Controller.getController().getModelController().updateScore(score);
+		Controller.getController().getModelController().updateSet();
 		
 	}
 		
@@ -307,7 +337,6 @@ public class PlayingFieldController {
 		}
 
 		
-	
 	//Punktzahl anpassen
 	public String getScoreO(){
 		return scoreO;
@@ -322,11 +351,38 @@ public class PlayingFieldController {
 		this.scoreX = scoreX;
 	}
 	
-	public String getWinner(){
-		return Controller.getController().getModelController().getWinner();
-	}
 	public void setWinner(String winner){
-		
+		this.winner = winner;
+	}
+	
+	public void updateWinner(){
+		if(winner.equals("playerX")){
+			if(modelController.getGame().getPlayer().equals("X")){
+				score[0] = score[0]+2;
+				scoreX = new Integer(score[0]).toString();
+				
+			}
+			else{
+				score[1] = score[1]+2;
+				scoreX = new Integer(score[1]).toString();
+			}
+		}
+		else if(winner.equals("playerO")){
+			if(modelController.getGame().getPlayer().equals("0")){
+				score[0] = score[0]+2;
+				scoreO = new Integer(score[0]).toString();
+			}
+			else{
+				score[1] = score[1]+2;
+				scoreO = new Integer(score[1]).toString();
+			}
+		}
+		else{
+			System.out.println("kein Spieler ausgewählt");
+		}
+
+		Controller.getController().getModelController().updateScore(score);
+		updateDisplay();
 	}
 	
 	
@@ -364,5 +420,6 @@ public class PlayingFieldController {
 		}
 		});
 	}
+
 	
 }

@@ -10,20 +10,15 @@
 <AnchorPane maxHeight="278.0" minHeight="264.0" prefHeight="278.0" prefWidth="375.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.CancelSetDialogController">
   <!-- TODO Add Nodes -->
   <children>
-    <Label layoutX="14.0" layoutY="14.0" styleClass="label-header" text="Manueller Satzabbruch" />
-    <Button fx:id="btRejectSet" layoutX="16.0" layoutY="81.0" mnemonicParsing="false" onAction="#rejectSet" text="Satz Verwerfen" />
-    <Button fx:id="btEditSet" layoutX="160.0" layoutY="81.0" mnemonicParsing="false" onAction="#editSet" text="Satz Nicht verwerfen" />
-    <Label fx:id="lbWinner" layoutX="16.0" layoutY="134.0" styleClass="label-bright" text="Sieger" visible="false" />
-    <ChoiceBox fx:id="cbWinner" layoutX="68.0" layoutY="131.0" prefWidth="144.0" visible="false">
+    <Label layoutX="14.0" layoutY="14.0" styleClass="label-header" text="Satz beenden" />
+    <Button fx:id="btRejectSet" layoutX="28.0" layoutY="217.0" mnemonicParsing="false" onAction="#rejectSet" text="Satz Verwerfen" />
+    <Label fx:id="lbWinner" layoutX="28.0" layoutY="125.0" styleClass="label-bright" text="Sieger" visible="true" />
+    <ChoiceBox fx:id="cbWinner" layoutX="80.0" layoutY="122.0" prefWidth="144.0" visible="true">
       <items>
         <FXCollections fx:factory="observableArrayList" />
       </items>
     </ChoiceBox>
-    <Label fx:id="lbResult" layoutX="16.0" layoutY="169.0" styleClass="label-bright" text="Ergebnis" visible="false" />
-    <TextField fx:id="tfResultX" layoutX="69.0" layoutY="165.0" prefWidth="32.000099999997474" promptText="X" visible="false" />
-    <Label fx:id="lbColon" layoutX="108.0" layoutY="168.0" prefWidth="32.0" styleClass="label-bright, label-header" text=":" visible="false" />
-    <TextField fx:id="tfResultO" layoutX="117.0" layoutY="165.0" prefWidth="32.0" promptText="O" visible="false" />
-    <Button fx:id="btSave" layoutX="285.0" layoutY="227.0" mnemonicParsing="false" onAction="#saveSet" text="Save" visible="false" />
+    <Button fx:id="btSave" layoutX="211.0" layoutY="217.0" mnemonicParsing="false" onAction="#saveSet" prefWidth="128.0" text="Save" visible="true" />
   </children>
   <stylesheets>
     <URL value="@style.css" />

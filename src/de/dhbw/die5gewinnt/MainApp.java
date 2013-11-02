@@ -41,9 +41,7 @@ public class MainApp extends Application {
 			
 			controller = new Controller();
 		
-			
-
-			  
+		  
 		    // Load the root layout from the fxml file
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/RootLayout.fxml"));
 		    rootLayout = (BorderPane) loader.load();
