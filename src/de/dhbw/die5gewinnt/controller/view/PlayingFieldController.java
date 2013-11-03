@@ -218,6 +218,7 @@ public class PlayingFieldController {
 				else {
 					Controller.getController().getModelController().deleteSet();
 //					updateScoreFromDisplay();
+					clearPlayingField();
 					btEndSet.setDisable(true);
 					btStartSet.setDisable(false);	
 				}
@@ -244,6 +245,7 @@ public class PlayingFieldController {
 				else {
 					Controller.getController().getModelController().deleteSet();
 					updateScoreFromDisplay();
+					clearPlayingField();
 					btEndSet.setDisable(true);
 					btStartSet.setDisable(false);	
 				}
@@ -358,8 +360,6 @@ public class PlayingFieldController {
 	public void updateWinner(){
 		if(winner.equals("die5gewinnt")){
 				score[0] = score[0]+2;
-			
-			
 		}
 		else if(winner.equals(Controller.getController().getModelController().getGame().getOpponentName())){
 				score[1] = score[1]+2;
