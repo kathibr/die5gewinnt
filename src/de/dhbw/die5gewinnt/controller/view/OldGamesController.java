@@ -51,12 +51,23 @@ public class OldGamesController {
 	private Circle circle55, circle54, circle53, circle52, circle51, circle50;
 	@FXML
 	private Circle circle65, circle64, circle63, circle62, circle61, circle60;
-	
+
 	private Circle circleArray[][];
-	
+
 	private final String NOMEN_NESCIO = "N.N.";
 	private final int YELLOW = 1;
 	private final int RED = 2;
+	private final String PROPERTY_NAME = "name";
+	private final String SHOW = "Zeige";
+	private final String DIE5GEWINNT = "die5gewinnt";
+	private final String LOSE ="Lose";
+	private final String WIN="Win";
+	private final String REMIS="Remis";
+	private final String PLAYER_X ="X";
+	private final String CSS_YELLOW ="yellowCircle";
+	private final String CSS_RED="redCircle";
+	private final String CSS_EMPTY="emptyCircle";
+	private final String ERROR_NO_MOVE ="-- No Move to show!";
 
 	public OldGamesController() {
 		oList = FXCollections.observableArrayList();
@@ -69,38 +80,36 @@ public class OldGamesController {
 
 	@FXML
 	private void initialize() {
-		gameNameColumn.setCellValueFactory(new PropertyValueFactory<Game, String>("name"));
-		
+		gameNameColumn.setCellValueFactory(new PropertyValueFactory<Game, String>(PROPERTY_NAME));
+
 		showGameDetails(null);
-		
+
 		gameTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Game>() {
-			
+
 			@Override
 			public void changed(
 					ObservableValue<? extends Game> observable,
 					Game oldValue, Game newValue) {				
-				// Initialize the Start-Buttons for the three Sets
-				btSetOne.setText("Start");
+				// Initialize the Show-Buttons for the three Sets
+				btSetOne.setText(SHOW);
 				btSetOne.setDisable(false);
-				btSetTwo.setText("Start");
+				btSetTwo.setText(SHOW);
 				btSetTwo.setDisable(false);
-				btSetThree.setText("Start");
+				btSetThree.setText(SHOW);
 				btSetThree.setDisable(false);
 				clearPlayingField();
-				
+
 				showGameDetails(newValue);
 			}
-			
+
 		});
 
 		Platform.runLater(new Runnable() {
-			
 			public void run() {
 				gameTable.getSelectionModel().selectFirst();
 			}
-			
 		});
-		
+
 		circleArray = new Circle[7][6];
 		circleArray[0][0]= circle00;
 		circleArray[0][1]= circle01;
@@ -162,7 +171,7 @@ public class OldGamesController {
 
 	private void showGameDetails(Game game) {
 		this.game = game;
-		
+
 		if(game == null) {
 			gameName.setText(NOMEN_NESCIO);
 			playerXName.setText(NOMEN_NESCIO);
@@ -178,157 +187,136 @@ public class OldGamesController {
 			if(sets.length < 1) {
 				btSetOne.setDisable(true);
 			}
-			
+
 			Label[] xLabels = new Label[3];
-				xLabels[0] = lbSetOneX;
-				xLabels[1] = lbSetTwoX;
-				xLabels[2] = lbSetThreeX;
+			xLabels[0] = lbSetOneX;
+			xLabels[1] = lbSetTwoX;
+			xLabels[2] = lbSetThreeX;
 			Label[] oLabels = new Label[3];
-				oLabels[0] = lbSetOneO;
-				oLabels[1] = lbSetTwoO;
-				oLabels[2] = lbSetThreeO;
+			oLabels[0] = lbSetOneO;
+			oLabels[1] = lbSetTwoO;
+			oLabels[2] = lbSetThreeO;
 			gameName.setText(game.getName());
-			if(game.getPlayer().equals("X")) {			
-				playerXName.setText("die5gewinnt");
+			if(game.getPlayer().equals(PLAYER_X)) {			
+				playerXName.setText(DIE5GEWINNT);
 				playerOName.setText(game.getOpponentName());
-				
+
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[0]).toString());
 				playerOScore.setText(new Integer(score[1]).toString());
-							
+
 				for(int i = 0; i < sets.length; i++) {
 					if(sets[i].getStatus() == 0) { // We/X lose
-						xLabels[i].setText("Lose");
-						oLabels[i].setText("Win");						
+						xLabels[i].setText(LOSE);
+						oLabels[i].setText(WIN);						
 					} else if(sets[i].getStatus() == 1) { // We/X win
-						xLabels[i].setText("Win");
-						oLabels[i].setText("Lose");						
+						xLabels[i].setText(WIN);
+						oLabels[i].setText(LOSE);						
 					} else if(sets[i].getStatus() == 2) { // Remis
-						xLabels[i].setText("Remis");
-						oLabels[i].setText("Remis");					
+						xLabels[i].setText(REMIS);
+						oLabels[i].setText(REMIS);					
 					}
 				}
 			} else {
-				playerOName.setText("die5gewinnt");
+				playerOName.setText(DIE5GEWINNT);
 				playerXName.setText(game.getOpponentName());
-				
+
 				int[] score = game.getScore();
 				playerXScore.setText(new Integer(score[1]).toString());
 				playerOScore.setText(new Integer(score[0]).toString());
 
 				for(int i = 0; i < sets.length; i++) {
 					if(sets[i].getStatus() == 0) { // We/O lose
-						xLabels[i].setText("Win");
-						oLabels[i].setText("Lose");						
+						xLabels[i].setText(WIN);
+						oLabels[i].setText(LOSE);						
 					} else if(sets[i].getStatus() == 1) { // We/O win
-						xLabels[i].setText("Lose");
-						oLabels[i].setText("Win");						
+						xLabels[i].setText(LOSE);
+						oLabels[i].setText(WIN);						
 					} else if(sets[i].getStatus() == 2) { // Remis
-						xLabels[i].setText("Remis");
-						oLabels[i].setText("Remis");					
+						xLabels[i].setText(REMIS);
+						oLabels[i].setText(REMIS);					
 					}
 				}
 			}
 		}
 	}
-	
+
 	@FXML
 	private void clickSetOne() {
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length >= 1); {
-			if(btSetOne.getText().equals("Start")){
-				btSetOne.setText("Stop");
-				btSetTwo.setText("Start");
-				btSetThree.setText("Start");
-				Move[] moves = sets[0].getMoves();
-				for(int i = 0; i < moves.length; i++) {		
-					if(moves[i].getPlayer().equals(game.getPlayer()))
-						showMove(moves[i].getColumn(), moves[i].getRow(), RED);
-					else
-						showMove(moves[i].getColumn(), moves[i].getRow(), YELLOW);
-				}
-			} else {
-				btSetOne.setText("Start");
+			Move[] moves = sets[0].getMoves();
+			for(int i = 0; i < moves.length; i++) {		
+				if(moves[i].getPlayer().equals(game.getPlayer()))
+					showMove(moves[i].getColumn(), moves[i].getRow(), RED);
+				else
+					showMove(moves[i].getColumn(), moves[i].getRow(), YELLOW);
 			}
 		}
 	}
-	
+
 	@FXML
 	private void clickSetTwo() {
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length >= 2); {
-			if(btSetTwo.getText().equals("Start")){
-				btSetTwo.setText("Stop");
-				btSetOne.setText("Start");
-				btSetThree.setText("Start");
-				Move[] moves = sets[1].getMoves();
-				for(int i = 0; i < moves.length; i++) {		
-					if(moves[i].getPlayer().equals(game.getPlayer()))
-						showMove(moves[i].getColumn(), moves[i].getRow(), RED);
-					else
-						showMove(moves[i].getColumn(), moves[i].getRow(), YELLOW);
-				}
-			} else {
-				btSetTwo.setText("Start");
+			Move[] moves = sets[1].getMoves();
+			for(int i = 0; i < moves.length; i++) {		
+				if(moves[i].getPlayer().equals(game.getPlayer()))
+					showMove(moves[i].getColumn(), moves[i].getRow(), RED);
+				else
+					showMove(moves[i].getColumn(), moves[i].getRow(), YELLOW);
 			}
 		}
 	}
-	
+
 	@FXML
 	private void clickSetThree() {
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length == 3) {
-			if(btSetThree.getText().equals("Start")){
-				btSetThree.setText("Stop");
-				btSetOne.setText("Start");
-				btSetTwo.setText("Start");
-				Move[] moves = sets[2].getMoves();
-				for(int i = 0; i < moves.length; i++) {		
-					if(moves[i].getPlayer().equals(game.getPlayer()))
-						showMove(moves[i].getColumn(), moves[i].getRow(), RED);
-					else
-						showMove(moves[i].getColumn(), moves[i].getRow(), YELLOW);
-				}
-			} else {
-				btSetThree.setText("Start");
+			Move[] moves = sets[2].getMoves();
+			for(int i = 0; i < moves.length; i++) {		
+				if(moves[i].getPlayer().equals(game.getPlayer()))
+					showMove(moves[i].getColumn(), moves[i].getRow(), RED);
+				else
+					showMove(moves[i].getColumn(), moves[i].getRow(), YELLOW);
 			}
 		}
 	}
-	
+
 	public boolean showMove(int column, int row, int color){
 		try {
 			if(color == YELLOW) {
-				circleArray[column][row].getStyleClass().remove("emptyCircle");
-				circleArray[column][row].getStyleClass().add("yellowCircle");
+				circleArray[column][row].getStyleClass().remove(CSS_EMPTY);
+				circleArray[column][row].getStyleClass().add(CSS_YELLOW);
 			} if(color == RED) {
-				circleArray[column][row].getStyleClass().remove("emptyCircle");
-				circleArray[column][row].getStyleClass().add("redCircle");
+				circleArray[column][row].getStyleClass().remove(CSS_EMPTY);
+				circleArray[column][row].getStyleClass().add(CSS_RED);
 			}
 			return true;
 		} catch (Exception e) {
-			System.err.println("-- No Move to show!");
+			System.err.println(ERROR_NO_MOVE);
 			System.err.println(e.getStackTrace());
 			return false;
 		}
 	}
-	
+
 	public void clearPlayingField() {
 		for(int column = 0; column < 7; column++) {		
 			for(int row = 0; row < 6; row++) {
 				try {
-					circleArray[column][row].getStyleClass().remove("yellowCircle");
-					circleArray[column][row].getStyleClass().add("emptyCircle");
+					circleArray[column][row].getStyleClass().remove(CSS_YELLOW);
+					circleArray[column][row].getStyleClass().add(CSS_EMPTY);
 				} catch (Exception e) {
-//					System.err.println("-- .yellowCircle not found!");
+					//					System.err.println("-- .yellowCircle not found!");
 				}
 				try {
-					circleArray[column][row].getStyleClass().remove("redCircle");
-					circleArray[column][row].getStyleClass().add("emptyCircle");
+					circleArray[column][row].getStyleClass().remove(CSS_RED);
+					circleArray[column][row].getStyleClass().add(CSS_EMPTY);
 				} catch (Exception e) {
-//					System.err.println("-- .redCircle not found!");
+					//					System.err.println("-- .redCircle not found!");
 				}
 			}
 		}	

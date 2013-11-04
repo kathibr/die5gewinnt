@@ -12,38 +12,42 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color:white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.PlayingFieldController">
+<AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" style="" styleClass="playingField" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.PlayingFieldController">
   <!-- TODO Add Nodes -->
   <children>
     <Group id="Group" layoutX="490.0" layoutY="187.0">
       <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="74.0" layoutX="0.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="297.0" />
-        <Label layoutX="19.0" layoutY="20.0" text="Aktueller Satz:" />
-        <Label fx:id="currentSet" layoutX="118.0" layoutY="20.0" prefWidth="10.0001220703125" text="1" />
-        <Label layoutX="19.0" layoutY="41.0" text="Nächster Zug:" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="74.0" layoutX="0.0" layoutY="7.0" stroke="#49545e" strokeType="INSIDE" width="297.0" />
+        <Label layoutX="19.0" layoutY="25.0" text="Aktueller Satz:" />
+        <Label fx:id="currentSet" layoutX="118.0" layoutY="25.0" prefWidth="10.0001220703125" text="1" />
+        <Label layoutX="19.0" layoutY="46.0" text="Nächster Zug:" />
         <Label fx:id="nextMoveField" layoutX="118.0" layoutY="41.0" text="" />
+        <Group id="Group" layoutX="0.0" layoutY="-134.0">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="135.96092987060547" layoutX="0.0" layoutY="-5.0" strokeDashOffset="0.0" strokeLineCap="BUTT" strokeLineJoin="MITER" strokeMiterLimit="10.0" strokeType="INSIDE" strokeWidth="1.0" styleClass="border" width="297.0">
+              <stroke>
+                <Color blue="0.369" green="0.329" red="0.286" fx:id="x3" />
+              </stroke>
+            </Rectangle>
+            <Label fx:id="gameNameLabel" layoutX="8.0" layoutY="-1.0" prefWidth="288.0" styleClass="label-header-dark" text="Spielname" />
+            <Label layoutX="19.0" layoutY="54.0" styleClass="label-dark" text="Spieler X" underline="true" />
+            <Label layoutX="231.0" layoutY="54.0" styleClass="label-bright, label-dark" text="Spieler O" underline="true" />
+            <Label fx:id="playerNameX" layoutX="19.0" layoutY="75.0" text="Spielername" />
+            <Label fx:id="playerNameO" alignment="CENTER_RIGHT" layoutX="214.0" layoutY="75.0" text="Spielername" textAlignment="RIGHT" />
+            <Label id="" fx:id="scorePlayerX" layoutX="123.0" layoutY="60.0" text="0">
+              <font>
+                <Font size="12.0" fx:id="x2" />
+              </font>
+            </Label>
+            <Label font="$x2" layoutX="144.0" layoutY="56.0" minHeight="16.0" prefHeight="20.000091552734375" prefWidth="20.0001220703125" text=":" />
+            <Label fx:id="scorePlayerO" font="$x2" layoutX="161.0" layoutY="60.0" text="0" />
+            <Rectangle fx:id="playerXColor" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="38.0" layoutY="95.0" stroke="$x3" strokeType="INSIDE" styleClass="emptyCircle" width="20.0" />
+            <Rectangle fx:id="playerOColor" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="244.0" layoutY="95.0" stroke="$x3" strokeType="INSIDE" styleClass="emptyCircle" width="20.0" />
+          </children>
+        </Group>
       </children>
     </Group>
-    <Group id="Group" layoutX="490.0" layoutY="49.0">
-      <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="135.96092987060547" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="297.0" />
-        <Label fx:id="gameNameLabel" layoutX="8.0" layoutY="0.0" prefWidth="288.0" styleClass="label-header-dark" text="Spielname" />
-        <Label layoutX="19.0" layoutY="63.0" styleClass="label-dark" text="Spieler X" underline="true" />
-        <Label layoutX="231.0" layoutY="63.0" styleClass="label-bright, label-dark" text="Spieler O" underline="true" />
-        <Label fx:id="playerNameX" layoutX="19.0" layoutY="84.0" text="die5gewinnt" />
-        <Label fx:id="playerNameO" layoutX="220.0" layoutY="84.0" text="blutwurst1" />
-        <Label id="" fx:id="scorePlayerX" layoutX="123.0" layoutY="69.0" text="0">
-          <font>
-            <Font size="12.0" fx:id="x2" />
-          </font>
-        </Label>
-        <Label font="$x2" layoutX="144.0" layoutY="65.0" minHeight="16.0" prefHeight="20.000091552734375" prefWidth="20.0001220703125" text=":" />
-        <Label fx:id="scorePlayerO" font="$x2" layoutX="161.0" layoutY="69.0" text="0" />
-        <Rectangle fx:id="playerXColor" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="38.0" layoutY="104.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" width="20.0" />
-        <Rectangle fx:id="playerOColor" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="244.0" layoutY="104.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle" width="20.0" />
-      </children>
-    </Group>
-    <TilePane hgap="15.0" layoutX="14.0" layoutY="47.0" prefHeight="397.0" prefWidth="461.0" style="" styleClass="field" vgap="15.0">
+    <TilePane hgap="15.0" layoutX="14.0" layoutY="47.0" prefHeight="397.0" prefWidth="463.0" style="" styleClass="field" vgap="15.0">
       <children>
         <Circle id="circle1" fx:id="circle05" radius="25.0" stroke="BLACK" strokeType="INSIDE" styleClass="emptyCircle">
           <fill>
@@ -100,11 +104,11 @@
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
       </padding>
     </TilePane>
-    <Group id="Group" layoutX="579.0" layoutY="276.0">
+    <Group id="Group" layoutX="570.0" layoutY="284.0" scaleX="1.0" scaleY="1.0">
       <children>
-        <Button fx:id="btStartSet" layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleStartSet" prefWidth="131.99997792968497" text="Satz Starten" />
-        <Button id="btEndset" fx:id="btEndSet" layoutX="-1.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleEndSet" prefWidth="132.0" text="Satz Abbrechen" />
-        <Button fx:id="btEndGame" layoutX="-1.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleEndGame" text="Spiel Beenden" />
+        <Button fx:id="btStartSet" layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleStartSet" prefWidth="141.99997792968497" styleClass="dark-blue" text="Satz Starten" />
+        <Button id="btEndset" fx:id="btEndSet" layoutX="-1.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleEndSet" prefWidth="142.0" styleClass="dark-blue" text="Satz Abbrechen" />
+        <Button fx:id="btEndGame" layoutX="-1.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleEndGame" prefWidth="142.0" styleClass="dark-blue" text="Spiel Beenden" />
       </children>
     </Group>
     <Label fx:id="lbStatus" layoutX="24.0" layoutY="470.0" text="" />

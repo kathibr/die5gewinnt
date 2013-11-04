@@ -18,7 +18,7 @@ public class GameNameDialogController {
 	private RadioButton playerX, playerO;
 	@FXML
 	private Label errorMessageLabel;
-	
+
 	private Stage dialogStage;
 	private boolean okClicked = false;
 
@@ -29,9 +29,10 @@ public class GameNameDialogController {
 	private final String AGENT_FILE_X = "spielerx2server.txt";
 	private final String AGENT_FILE_O = "spielero2server.txt";
 	private final String EMPTY_MESSAGE = "";
-	private final String INVALID_NAME = "Kein zugelassener Spielname!\n";
-//	private final String CORRECT_INVALID_FIELDS = "Bitte unzulässige Felder korrigieren!";
-//	private final String INVALID_FIELD = "Unzulässiges Feld";
+	private final String INVALID_GAME_NAME = "Kein zugelassener Spielname! ";
+	private final String INVALID_OPPONENT_NAME = "Kein zugelassener Spielername! ";
+	private final String CHOOSE_PATH ="Wähle einen Pfad aus";
+	private final String WE_ARE_PLAYER ="Wir sind Spieler ";
 
 	private String fullFilePath;
 
@@ -50,7 +51,7 @@ public class GameNameDialogController {
 	@FXML
 	private void findPath() {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
-		directoryChooser.setTitle("Wähle einen Pfad aus");
+		directoryChooser.setTitle(CHOOSE_PATH);
 
 		File file = directoryChooser.showDialog(dialogStage);
 
@@ -66,11 +67,11 @@ public class GameNameDialogController {
 			String player = PLAYER_X;
 			if (playerO.isSelected())
 				player = PLAYER_O;
-			System.out.println("Wir sind Spieler " +player);
+			System.out.println(WE_ARE_PLAYER +player);
 			Controller
-					.getController()
-					.getModelController()
-					.newGame(gameName.getText(), player, opponentName.getText());
+			.getController()
+			.getModelController()
+			.newGame(gameName.getText(), player, opponentName.getText());
 			// Create CommunicationCenter
 			String serverFile = SERVER_FILE_X;
 			String agentFile = AGENT_FILE_X;
@@ -94,15 +95,16 @@ public class GameNameDialogController {
 	private boolean isInputValid() {
 		String errorMessage = EMPTY_MESSAGE;
 
-		if (gameName.getText() == null || gameName.getText().length() == 0)
-			errorMessage += INVALID_NAME;
+		if (gameName.getText() == null || gameName.getText().length() == 0 || gameName.getText().length() > 13)
+			errorMessage += INVALID_GAME_NAME;
+
+		if (opponentName.getText() == null || opponentName.getText().length() == 0 || gameName.getText().length() > 30)
+			errorMessage += INVALID_OPPONENT_NAME;
 
 		if (errorMessage.length() == 0)
 			return true;
 		else {
 			errorMessageLabel.setText(errorMessage);
-			// Dialogs.showErrorDialog(dialogStage, errorMessage,
-			// CORRECT_INVALID_FIELDS, INVALID_FIELD);
 			return false;
 		}
 	}

@@ -136,7 +136,7 @@ public class MainApp extends Application {
 		    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/CancelSetDialog.fxml"));
 		    AnchorPane page = (AnchorPane) loader.load();
 		    Stage dialogStage = new Stage();
-		    dialogStage.setTitle("Manueller Satzabbruch");
+		    dialogStage.setTitle("Satz Beenden");
 		    dialogStage.initModality(Modality.WINDOW_MODAL);
 		    dialogStage.initOwner(primaryStage);
 		    Scene scene = new Scene(page);
