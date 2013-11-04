@@ -80,11 +80,11 @@ public class OldGamesController {
 					ObservableValue<? extends Game> observable,
 					Game oldValue, Game newValue) {				
 				// Initialize the Start-Buttons for the three Sets
-				btSetOne.setText("Start");
+				btSetOne.setText("ein");
 				btSetOne.setDisable(false);
-				btSetTwo.setText("Start");
+				btSetTwo.setText("ein");
 				btSetTwo.setDisable(false);
-				btSetThree.setText("Start");
+				btSetThree.setText("ein");
 				btSetThree.setDisable(false);
 				clearPlayingField();
 				
@@ -237,10 +237,10 @@ public class OldGamesController {
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length >= 1); {
-			if(btSetOne.getText().equals("Start")){
-				btSetOne.setText("Stop");
-				btSetTwo.setText("Start");
-				btSetThree.setText("Start");
+			if(btSetOne.getText().equals("ein")){
+				btSetOne.setText("aus");
+				btSetTwo.setText("ein");
+				btSetThree.setText("aus");
 				Move[] moves = sets[0].getMoves();
 				for(int i = 0; i < moves.length; i++) {		
 					if(moves[i].getPlayer().equals(game.getPlayer()))
@@ -249,7 +249,7 @@ public class OldGamesController {
 						showMove(moves[i].getColumn(), moves[i].getRow(), YELLOW);
 				}
 			} else {
-				btSetOne.setText("Start");
+				btSetOne.setText("ein");
 			}
 		}
 	}
@@ -259,10 +259,10 @@ public class OldGamesController {
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length >= 2); {
-			if(btSetTwo.getText().equals("Start")){
-				btSetTwo.setText("Stop");
-				btSetOne.setText("Start");
-				btSetThree.setText("Start");
+			if(btSetTwo.getText().equals("ein")){
+				btSetTwo.setText("aus");
+				btSetOne.setText("ein");
+				btSetThree.setText("ein");
 				Move[] moves = sets[1].getMoves();
 				for(int i = 0; i < moves.length; i++) {		
 					if(moves[i].getPlayer().equals(game.getPlayer()))
@@ -281,10 +281,10 @@ public class OldGamesController {
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length == 3) {
-			if(btSetThree.getText().equals("Start")){
-				btSetThree.setText("Stop");
-				btSetOne.setText("Start");
-				btSetTwo.setText("Start");
+			if(btSetThree.getText().equals("ein")){
+				btSetThree.setText("aus");
+				btSetOne.setText("ein");
+				btSetTwo.setText("ein");
 				Move[] moves = sets[2].getMoves();
 				for(int i = 0; i < moves.length; i++) {		
 					if(moves[i].getPlayer().equals(game.getPlayer()))
