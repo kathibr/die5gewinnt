@@ -93,12 +93,14 @@ public class OldGamesController {
 				// Initialize the Show-Buttons for the three Sets
 				btSetOne.setText(SHOW);
 				btSetOne.setDisable(false);
+
 				btSetTwo.setText(SHOW);
 				btSetTwo.setDisable(false);
+
 				btSetThree.setText(SHOW);
 				btSetThree.setDisable(false);
+				
 				clearPlayingField();
-
 				showGameDetails(newValue);
 			}
 
