@@ -13,7 +13,6 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="de.dhbw.die5gewinnt.controller.view.OldGamesController">
-  <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="184.0" layoutY="119.0" text="Old Games" />
     <SplitPane dividerPositions="0.2543859649122807" focusTraversable="true" maxWidth="500.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -136,9 +135,11 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
               </padding>
             </TilePane>
+
             <Button id="setOne" fx:id="btSetOne" graphicTextGap="1.0" layoutX="349.0" layoutY="103.0" mnemonicParsing="false" onAction="#clickSetOne" prefWidth="57.0" styleClass="dark-blue-small" text="Zeige" textAlignment="LEFT" />
             <Button fx:id="btSetTwo" layoutX="417.0" layoutY="103.0" mnemonicParsing="false" onAction="#clickSetTwo" prefWidth="57.0" styleClass="dark-blue-small" text="Zeige" />
-            <Button fx:id="btSetThree" graphicTextGap="4.0" layoutX="485.0" layoutY="103.0" mnemonicParsing="false" onAction="#clickSetThree" prefWidth="57.0" styleClass="dark-blue-small" text="Zeige" /
+            <Button fx:id="btSetThree" graphicTextGap="4.0" layoutX="485.0" layoutY="103.0" mnemonicParsing="false" onAction="#clickSetThree" prefWidth="57.0" styleClass="dark-blue-small" text="Zeige" />
+ 
           </children>
         </AnchorPane>
       </items>
