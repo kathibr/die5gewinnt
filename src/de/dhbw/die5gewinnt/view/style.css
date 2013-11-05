@@ -86,6 +86,29 @@
     	-fx-background-radius: 5,4,3,5;
    	-fx-background-insets: 0,1,2,0;
 }
+.dark-blue-small Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+}
+
+.dark-blue-small:hover{
+	-fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, black),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    	-fx-background-radius: 5,4,3,5;
+   	-fx-background-insets: 0,1,2,0;
+}
+
+.dark-blue-small:pressed{
+	-fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, black),
+        radial-gradient(center 50% 0%, radius 50%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    	-fx-background-radius: 5,4,3,5;
+   	-fx-background-insets: 0,1,2,0;
+}
 
 /*Colors*/
 .emptyCircle{
