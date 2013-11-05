@@ -5,9 +5,11 @@ import de.dhbw.die5gewinnt.model.Move;
 
 public class DataManipulation {
 
+	/* Konstruktor */
 	private DataManipulation() {}
 	
 	/* Generic Data Manipulation */
+	/* Methode erzeugt aus einem Boolean einen String */
 	public static String getStringFromBoolean(boolean input) {
 		if(input)
 			return "true";
@@ -15,6 +17,7 @@ public class DataManipulation {
 			return "false";	
 	}
 	
+	/* Methode erzeugt aus einem String einen Boolean */
 	public static boolean getBooleanFromString(String input) {
 		if(input.equals("true"))
 			return true;
@@ -23,6 +26,7 @@ public class DataManipulation {
 	}
 	
 	/* Data Manipulation for Model Game */
+	/* Methode kürzt einen String auf einen String mit max. 13 Zeichen */
 	public static String splitName(String name) {
 		if(name.length() > 13)
 			return name.substring(0, 13);
@@ -30,10 +34,12 @@ public class DataManipulation {
 			return name;
 	}
 	
+	/* Methode erzeugt einen String aus zwei Integer-Werten aus einem definierten Array */
 	public static String getGameScoreForDB(int[] score) {
 		return score[0]+","+score[1];
 	}
 	
+	/* Methode erzeugt einen Integer-Array aus einem String */
 	public static int[] getGameScoreForJava(String score) {
 		int[] returnScore = new int[3];
 		String[] stringScore = score.split(",");
@@ -43,6 +49,7 @@ public class DataManipulation {
 	}
 	
 	/* Data Manipulation for Model Set */
+	/* Methode erzeugt einen String aus Move-Werten aus einem definierten Array */
 	public static String getSetFieldForDB(Move[][] field) {
 		String returnField = "";
 		for(int i = 0; i < 7; i++)
@@ -55,6 +62,7 @@ public class DataManipulation {
 		return returnField.substring(0, returnField.length() - 1);
 	}
 	
+	/* Methode erzeugt einen Move-Array aus einem String */
 	public static Move[][] getSetFieldForJava(int setId, String field) {
 		Move[][] returnField = new Move[7][6];
 		Move[] moves = DBSelects.selectMoves(setId);
@@ -69,6 +77,7 @@ public class DataManipulation {
 		return returnField;
 	}
 	
+	/* Methode erzeugt einen String aus Integer-Werten aus einem definierten Array */
 	public static String getSetColumnHeightForDB(int[] columnHeight) {
 		String returnColumnHeight = "";
 		for(int i = 0; i < columnHeight.length; i++)
@@ -76,6 +85,7 @@ public class DataManipulation {
 		return returnColumnHeight.substring(0, returnColumnHeight.length() - 1);
 	}
 	
+	/* Methode erzeugt einen Integer-Array aus einem String */
 	public static int[] getSetColumnHeightForJava(String columnHeight) {
 		int[] returnColumnHeight = new int[7];
 		String[] stringColumnHeight = columnHeight.split(",");

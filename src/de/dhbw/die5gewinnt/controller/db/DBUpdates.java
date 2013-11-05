@@ -7,11 +7,13 @@ import de.dhbw.die5gewinnt.model.*;
 
 public class DBUpdates extends DBQuery {
 	
+	/* Konstruktor */
 	private DBUpdates() {
 		super();
 	}
 	
 	/* UPDATE-Query for Model Game */
+	/* Methode aktualisiert ein bestimmtes Spiel in der Datenbank */
 	public static boolean updateGame(Game game) {
 		if(game.getClass().getName().equals("de.dhbw.die5gewinnt.model.Game")) {
 			game.setName(DataManipulation.splitName(game.getName()));
@@ -30,12 +32,11 @@ public class DBUpdates extends DBQuery {
 	}
 	
 	/* UPDATE-Query for Model Set */
+	/* Methode aktualisiert einen bestimmten Satz in der Datenbank */
 	public static boolean updateSet(Set set) {
-//		System.out.println("DBUpdate set mit setID: "+set.getId()+" und Status"+ set.getStatus());
 		if(set.getClass().getName().equals("de.dhbw.die5gewinnt.model.Set")) {
 			try {
 				Statement stmt = getDBConnection().createStatement();
-//				System.out.println("UPDATE Sets SET field = \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', columnheight = \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', firstmove = \'"+DataManipulation.getStringFromBoolean(set.getFirstMove())+"\', status = \'"+set.getStatus()+ "\' WHERE id = "+set.getId());
 				String sql = "UPDATE Sets SET field = \'"+DataManipulation.getSetFieldForDB(set.getField())+"\', columnheight = \'"+DataManipulation.getSetColumnHeightForDB(set.getColumnHeight())+"\', firstmove = \'"+DataManipulation.getStringFromBoolean(set.getFirstMove())+"\', status = \'"+set.getStatus()+ "\' WHERE id = "+set.getId();
 				stmt.executeQuery(sql);
 				stmt.close();
@@ -49,6 +50,7 @@ public class DBUpdates extends DBQuery {
 	}
 	
 	/* UPDATE-Query for Model Move */
+	/* Methode aktualisiert einen bestimmten Zug in der Datenbank */
 	public static boolean updateMove(Move move) {
 		if(move.getClass().getName().equals("de.dhbw.die5gewinnt.model.Move")) {
 			try {

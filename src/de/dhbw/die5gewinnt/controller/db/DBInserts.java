@@ -7,11 +7,13 @@ import de.dhbw.die5gewinnt.model.*;
 
 public class DBInserts extends DBQuery {
 	
+	/* Konstruktor */
 	private DBInserts() {
 		super();
 	}
 	
 	/* INSERT-Query for Model Game */
+	/* Methode speichert ein bestimmtes Spiel in der Datenbank ab */
 	public static Game insertGame(Game game) {
 		if(game.getClass().getName().equals("de.dhbw.die5gewinnt.model.Game")) {
 			game.setId(AutoIncrementKeys.getNextGameIdAndIncrement());
@@ -30,6 +32,7 @@ public class DBInserts extends DBQuery {
 	}
 	
 	/* INSERT-Query for Model Set */
+	/* Methode speichert einen bestimmten Satz in der Datenbank ab */
 	public static Set insertSet(Set set) {
 		if(set.getClass().getName().equals("de.dhbw.die5gewinnt.model.Set")) {
 			set.setId(AutoIncrementKeys.getNextSetIdAndIncrement());
@@ -47,6 +50,7 @@ public class DBInserts extends DBQuery {
 	}
 	
 	/* INSERT-Query for Model Move */
+	/* Methode speichert einen bestimmten Zug in der Datenbank ab */
 	public static Move insertMove(Move move, int gameId, int setId) {
 		if(move.getClass().getName().equals("de.dhbw.die5gewinnt.model.Move")) {
 			move.setId(AutoIncrementKeys.getNextMoveIdAndIncrement());
@@ -65,6 +69,7 @@ public class DBInserts extends DBQuery {
 	}
 	
 	/* INSERT-Query for GameToSetToMove */
+	/* Methode speichert die Beziehung zwischen einem Spiel, einem Satz und einem Zug in der Datenbank ab */
 	private static boolean insertGameToSetToMove(int gameId, int setId, int moveId) {
 		try {
 			Statement stmt = getDBConnection().createStatement();	

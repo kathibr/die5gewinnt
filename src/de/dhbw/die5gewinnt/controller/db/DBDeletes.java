@@ -7,11 +7,13 @@ import de.dhbw.die5gewinnt.model.Move;
 
 public class DBDeletes extends DBQuery {
 	
+	/* Konstruktor */
 	private DBDeletes() {
 		super();
 	}
 	
 	/* DELETE-Query for Model Set */
+	/* Methode löscht einen bestimmten Satz aus der Datenbank */
 	public static boolean deleteSet(int setId) {
 		DBDeletes.deleteMovesFromSet(setId);
 		DBDeletes.deleteGameToSetToMoveFromSet(setId);
@@ -29,6 +31,7 @@ public class DBDeletes extends DBQuery {
 	}
 	
 	/* DELETE-Query for Model Move */
+	/* Methode löscht einen bestimmtenZug aus der Datenbank */
 	public static boolean deleteMove(int moveId) {
 		try {
 			Statement stmt = getDBConnection().createStatement();
@@ -43,6 +46,7 @@ public class DBDeletes extends DBQuery {
 		}		
 	}
 	
+	/* Methode löscht alle Züge eines bestimmten Satzes aus der Datenbank */
 	public static boolean deleteMovesFromSet(int setId) {
 		Move[] moves = DBSelects.selectMoves(setId);
 		for(int i = 0; i < moves.length; i++) {
@@ -53,6 +57,7 @@ public class DBDeletes extends DBQuery {
 	}
 	
 	/* DELETE-Query for Model GameToSetToMove */
+	/* Methode löscht alle Beziehungseinträge eines bestimmten Satzes aus der Datenbank */
 	public static boolean deleteGameToSetToMoveFromSet(int setId) {
 		try {
 			Statement stmt = getDBConnection().createStatement();

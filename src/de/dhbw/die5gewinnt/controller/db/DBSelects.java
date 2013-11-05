@@ -9,10 +9,12 @@ import de.dhbw.die5gewinnt.model.*;
 
 public class DBSelects extends DBQuery {
 
+	/* Konstruktor */
 	private DBSelects() {
 		super();
 	}
 	
+	/* Methode generiert die nächsten primären Schlüssel der Model */
 	public static void initAutoIncrementKeys() {
 		try {
 			Statement stmt = getDBConnection().createStatement();
@@ -41,6 +43,7 @@ public class DBSelects extends DBQuery {
 	}
 	
 	/* SELECT-Queries for Model Game */
+	/* Methode gibt ein bestimmtes Spiel aus der Datenbank zurück */
 	public static Game selectGame(int id) {
 		Game game = new Game();
 		try {
@@ -64,6 +67,7 @@ public class DBSelects extends DBQuery {
 		return game;		
 	}
 	
+	/* Methode gibt alle Spiele (evtl. inkl. Sätze) aus der Datenbank zurück */
 	public static Game[] selectGames(boolean withLoadingSets) {
 		ArrayList<Game> oldGames = new ArrayList<Game>();
 		Game game = null;
@@ -91,6 +95,7 @@ public class DBSelects extends DBQuery {
 		return oldGames.toArray(new Game[oldGames.size()]);	
 	}
 	
+	/* Methode gibt die ID eines Spiels anhand eines Satzes zurück */
 	public static int selectGameIdFromSetId(int setId) {
 		int gameId = 0;
 		try {
@@ -108,6 +113,7 @@ public class DBSelects extends DBQuery {
 		return gameId;			
 	}
 	
+	/* Methode gibt die ID eines Spiels anhand eines Zuges zurück */
 	public static int selectGameIdFromMoveId(int moveId) {
 		int gameId = 0;
 		try {
@@ -126,6 +132,7 @@ public class DBSelects extends DBQuery {
 	}
 	
 	/* SELECT-Queries for Model Set */
+	/* Methode gibt einen bestimmten Satz aus der Datenbank zurück */
 	public static Set selectSet(int id) {
 		Set set = new Set();
 		try {
@@ -149,6 +156,7 @@ public class DBSelects extends DBQuery {
 		return set;		
 	}
 	
+	/* Methode gibt alle Sätze eines bestimmten Spiels aus der Datenbank zurück */
 	public static Set[] selectSets(int gameId) {
 		ArrayList<Set> sets = new ArrayList<Set>();
 		try {
@@ -168,6 +176,7 @@ public class DBSelects extends DBQuery {
 		return sets.toArray(new Set[sets.size()]);		
 	}
 	
+	/* Methode gibt die ID eines Satzes anhand eines Zuges zurück */
 	public static int selectSetIdFromMoveId(int moveId) {
 		int setId = 0;
 		try {
@@ -186,6 +195,7 @@ public class DBSelects extends DBQuery {
 	}
 
 	/* SELECT-Queries for Model Move */
+	/* Methode gibt einen bestimmten Zug aus der Datenbank zurück */
 	public static Move selectMove(int id) {
 		Move move = new Move();
 		try {
@@ -206,6 +216,7 @@ public class DBSelects extends DBQuery {
 		return move;
 	}
 	
+	/* Methode gibt alle Züge eines bestimmten Satzes aus der Datenbank zurück */
 	public static Move[] selectMoves(int setId) {
 		ArrayList<Move> moves = new ArrayList<Move>();
 		try {

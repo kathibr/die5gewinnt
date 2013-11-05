@@ -8,16 +8,19 @@ public class DBConnector {
 	
 	private static Connection dbConnection;
 	
+	/* Konstruktor */
     private DBConnector() {          
 	    dbConnection = null;
     }
     
+    /* Zugriffs-Methode für das Singleton-Pattern */
 	protected static Connection getDBConnection() {
     	if(dbConnection == null)
     		openDBConnection();
     	return dbConnection;
     }
     
+	/* Methode erstellt eine DB-Verbindung zur HSQLDB */
 	private static void openDBConnection() {
 	    try {
 	    	dbConnection = DriverManager.getConnection("jdbc:hsqldb:file:db/; shutdown=true", "die5gewinnt", "lauterbach" );
@@ -27,6 +30,7 @@ public class DBConnector {
 	    }		
 	}
 	
+	/* Methode schließt die vorhandene DB-Verbindung zur HSQLDB */
     public static void closeDBConnection() {
     	if(dbConnection != null) {
     		try { 
