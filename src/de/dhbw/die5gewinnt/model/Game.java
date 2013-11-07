@@ -73,7 +73,7 @@ public class Game {
 	}
 	
 	public void setScore(int[] score) {
-		System.out.println("Game - Score: "+ score[0]+" - " +score[1]);
+//		System.out.println("Game - Score: "+ score[0]+" - " +score[1]);
 		this.score = score;
 	}
 	
