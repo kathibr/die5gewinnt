@@ -38,6 +38,10 @@ public class MastermindAlgorithm{
 		positions = filler.getPositions();
 	}
 	
+	/*
+	 * This Method is called by the game logic to calculate the next move
+	 * It calls the different methods, needed to calculate the next move
+	 */
 	public int calcNextMove(){
 		refreshArrays();
 		refreshEvaluation();
@@ -56,6 +60,9 @@ public class MastermindAlgorithm{
 		return result;
 	}
 	
+	/*
+	 * This Method clears all arrays from the last calculation
+	 */
 	public void refreshArrays(){
 		oneInARow.clear();
 		twoInARow.clear();
@@ -63,6 +70,11 @@ public class MastermindAlgorithm{
 		enemyThreeInARow.clear();
 	}
 	
+	/*
+	 * This Method loops through the Arrays to analyse which combinations allready have different stones 
+	 * Theese combinations will then be stored in different arrays in the method storeCombinations
+	 * All combinations containing one stone of each team will get deleted, because they can't be relevant for a win anymore
+	 */
 	public void analyzeField(){
 		for(int i = 0; i < combinations.size(); i++){
 			int numberOfO = 0, numberOfX = 0;
@@ -89,6 +101,9 @@ public class MastermindAlgorithm{
 		removeFromPossibilitys();
 	}
 	
+	/*
+	 * This Method deletes all combinations from the indexArray that are in the array toBeRemoved
+	 */
 	public void removeFromPossibilitys(){
 		for(int i = 0; i < toBeRemoved.size();i++){
 			combinations.remove(combinations.indexOf(toBeRemoved.get(i)));
@@ -96,6 +111,10 @@ public class MastermindAlgorithm{
 		toBeRemoved.clear();
 	}
 	
+	/*
+	 * This Method stores the different combinations depending on how many stones are allready set
+	 * Combinations with three stones have to be differentiated in combinations with enemy stones or own stones
+	 */
 	public void storeCombinations(int combi, int numberOfO,int numberOfX){
 		if(numberOfO == 3 && game.getPlayer() == O)threeInARow.add(combi);
 		if(numberOfO == 3 && game.getPlayer() != O)enemyThreeInARow.add(combi);
@@ -108,12 +127,7 @@ public class MastermindAlgorithm{
 	}
 	
 	/*
-	 * This Method checks whether a specific stone can be thrown
-	 * You have to pass the values of the column and the height the targeted stone is at
-	 * The Method returns the number of empty fields BELOW the targeted stone
-	 * Example: I want to throw at (5|4)
-	 * 			The height of column 5 is 2
-	 * 			4-2=2 the Method will return 1, because one stone has to be dropped before we can set the stone we want.
+	 * This Method checks whether a specific stone can be thrown and returnes the height which is needed till the stone can be thrown
 	 */
 	public int missingHeightForThrow(int column, int height){
 		int missingHeight = 0;
@@ -122,6 +136,10 @@ public class MastermindAlgorithm{
 		return missingHeight;
 	}
 	
+	/*
+	 * This Method analyses the combinations containing three of our own stones
+	 * Depending on the height thats needed for the stone different values will be added to the array that
+	 */
 	public void checkMyThreeInARow(){
 		if(threeInARow.size() == 0) return;
 		for(int i = 0; i < threeInARow.size(); i++){
@@ -144,6 +162,10 @@ public class MastermindAlgorithm{
 		}
 	}
 	
+	/*
+	 * This Method analyses the combinations containing three of enemy stones
+	 * Depending on the height thats needed for the stone the enemy will be blocked or the row is blocked for throws
+	 */
 	public void checkEnemyThreeInARow(){
 		if(enemyThreeInARow.size() == 0) return;
 		for(int i = 0; i < enemyThreeInARow.size(); i++){
@@ -161,6 +183,10 @@ public class MastermindAlgorithm{
 		}
 	}
 	
+	/*
+	 * This Method analyses the combinations containing two of our own stones
+	 * Depending on the height thats needed for the stone different values will be added to the array that
+	 */
 	public void checkTwoInARow(){
 		for(int i = 0; i < twoInARow.size(); i++){
 			for(int x = 0; x < 4; x++){
@@ -179,6 +205,10 @@ public class MastermindAlgorithm{
 		}
 	}
 	
+	/*
+	 * This Method analyses the combinations containing one of our own stone
+	 * Depending on the height thats needed for the stone different values will be added to the array that
+	 */
 	public void checkOneInARow(){
 		if(oneInARow.size() == 0) return;
 		for(int i = 0; i < oneInARow.size(); i++){
@@ -198,6 +228,9 @@ public class MastermindAlgorithm{
 		}
 	}
 	
+	/*
+	 * The Array is checked for the highest value, which is the result of the algorithm
+	 */
 	public void analyzeResults(){
 		int highest = 0;
 		int position = -1;
@@ -210,20 +243,12 @@ public class MastermindAlgorithm{
 		if(position != -1) result = position;
 	}
 	
+	/*
+	 * The Evaluatione Array is reseted
+	 */
 	public void refreshEvaluation(){
 		for(int i = 0; i < evaluateColumns.length; i++){
 			evaluateColumns[i] = 0;
 		}
-	}
-	
-	public int isPreviousOrFollowingStoneSet(int row, int x){
-		int numberOfAdjacentStones = 0;
-		if(x > 0){
-			if(possibleCombinations[x-1][row] != null)numberOfAdjacentStones ++;
-		}
-		if(x < 3){
-			if(possibleCombinations[x+1][row] != null)numberOfAdjacentStones ++;
-		}
-		return numberOfAdjacentStones;
 	}
 }
