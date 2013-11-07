@@ -34,6 +34,8 @@ public class OldGamesController {
 	@FXML
 	private Label gameName, playerXName, playerOName, playerXScore, playerOScore;
 	@FXML
+	private Label set1, set2, set3;
+	@FXML
 	private Button btSetOne, btSetTwo, btSetThree;
 	@FXML
 	private Label lbSetOneX, lbSetOneO, lbSetTwoX, lbSetTwoO, lbSetThreeX, lbSetThreeO;
@@ -67,6 +69,8 @@ public class OldGamesController {
 	private final String CSS_YELLOW ="yellowCircle";
 	private final String CSS_RED="redCircle";
 	private final String CSS_EMPTY="emptyCircle";
+	private final String CSS_BOLD = "boldFont";
+	private final String CSS_NORMAL = "normalFont";
 	private final String ERROR_NO_MOVE ="-- No Move to show!";
 
 	public OldGamesController() {
@@ -89,7 +93,15 @@ public class OldGamesController {
 			@Override
 			public void changed(
 					ObservableValue<? extends Game> observable,
-					Game oldValue, Game newValue) {				
+					Game oldValue, Game newValue) {
+				// Initialize the Set Labels
+				set1.getStyleClass().add(CSS_NORMAL);
+				set1.getStyleClass().remove(CSS_BOLD);
+				set2.getStyleClass().add(CSS_NORMAL);
+				set2.getStyleClass().remove(CSS_BOLD);
+				set3.getStyleClass().add(CSS_NORMAL);
+				set3.getStyleClass().remove(CSS_BOLD);
+				
 				// Initialize the Show-Buttons for the three Sets
 				btSetOne.setText(SHOW);
 				btSetOne.setDisable(false);
@@ -245,6 +257,12 @@ public class OldGamesController {
 
 	@FXML
 	private void clickSetOne() {
+		set1.getStyleClass().remove(CSS_NORMAL);
+		set1.getStyleClass().add(CSS_BOLD);		
+		set2.getStyleClass().add(CSS_NORMAL);
+		set2.getStyleClass().remove(CSS_BOLD);
+		set3.getStyleClass().add(CSS_NORMAL);
+		set3.getStyleClass().remove(CSS_BOLD);	
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length >= 1); {
@@ -260,6 +278,12 @@ public class OldGamesController {
 
 	@FXML
 	private void clickSetTwo() {
+		set1.getStyleClass().add(CSS_NORMAL);
+		set1.getStyleClass().remove(CSS_BOLD);		
+		set2.getStyleClass().remove(CSS_NORMAL);
+		set2.getStyleClass().add(CSS_BOLD);
+		set3.getStyleClass().add(CSS_NORMAL);
+		set3.getStyleClass().remove(CSS_BOLD);	
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length >= 2); {
@@ -275,6 +299,12 @@ public class OldGamesController {
 
 	@FXML
 	private void clickSetThree() {
+		set1.getStyleClass().add(CSS_NORMAL);
+		set1.getStyleClass().remove(CSS_BOLD);		
+		set2.getStyleClass().add(CSS_NORMAL);
+		set2.getStyleClass().remove(CSS_BOLD);	
+		set3.getStyleClass().remove(CSS_NORMAL);
+		set3.getStyleClass().add(CSS_BOLD);
 		clearPlayingField();
 		Set[] sets = game.getSets();
 		if(sets.length == 3) {

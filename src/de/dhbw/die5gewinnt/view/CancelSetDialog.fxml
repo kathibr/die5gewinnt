@@ -19,7 +19,7 @@
         <FXCollections fx:factory="observableArrayList" />
       </items>
     </ChoiceBox>
-    <Button fx:id="btSave" layoutX="212.0" layoutY="227.0" mnemonicParsing="false" onAction="#saveSet" prefWidth="128.0" styleClass="dark-blue" text="Save" visible="true" />
+    <Button fx:id="btSave" layoutX="212.0" layoutY="227.0" mnemonicParsing="false" onAction="#saveSet" prefWidth="128.0" styleClass="dark-blue" text="Speichern" visible="true" />
     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-2.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@images/winner.png" />
