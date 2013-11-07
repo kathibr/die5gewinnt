@@ -14,7 +14,7 @@
   <center>
     <ImageView fitHeight="145.0" fitWidth="634.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
       <image>
-        <Image url="@../../../../../img/die5gewinnt.png" />
+        <Image url="@images/die5gewinnt.png" />
       </image>
     </ImageView>
   </center>
@@ -32,7 +32,7 @@
         <Pane maxHeight="2.000099999997474" maxWidth="900.0" minHeight="1.0" minWidth="820.0" prefHeight="1.0" prefWidth="820.0" scaleY="1.0" styleClass="border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0" />
         <ImageView fitHeight="35.0" fitWidth="153.0" layoutX="26.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="@../../../../../img/11transp.png" />
+            <Image url="@images/11transp.png" />
           </image>
         </ImageView>
       </children>
